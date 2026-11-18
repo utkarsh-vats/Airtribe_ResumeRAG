@@ -127,6 +127,9 @@ class Role:
     company: str
     date_text: str
     lines: tuple[str, ...]  # the role's body (bullets), without its header lines
+    # Span of header + body in ``ParsedResume.lines`` (end exclusive).
+    start_line: int = 0
+    end_line: int = 0
 
 
 # --- Headings -----------------------------------------------------------------------------
@@ -218,29 +221,38 @@ def role_header_at(lines: Sequence[str], i: int) -> RoleHeader | None:
     return None
 
 
+def content_start(section: Section) -> int:
+    """Index in ``ParsedResume.lines`` of the section's first content line."""
+    return section.start_line + (1 if section.heading is not None else 0)
+
+
 def split_roles(section: Section) -> list[Role]:
     """The roles in an experience section, in order.
 
     Lines after a role header belong to that role until the next header. Lines before the
-    first header (an intro sentence, say) belong to no role; they stay in ``section.lines``.
+    first header (an intro sentence, say) belong to no role; they stay in ``section.lines``
+    (see ``preamble``).
     """
     lines = section.lines
-    roles: list[Role] = []
-    current: tuple[str, str, str] | None = None
-    body: list[str] = []
+    offset = content_start(section)
+    starts: list[tuple[int, RoleHeader]] = []
     i = 0
     while i < len(lines):
         found = role_header_at(lines, i)
         if found:
-            if current:
-                roles.append(Role(*current, tuple(body)))
-            title, company, date_text, used = found
-            current, body = (title, company, date_text), []
-            i += used
-            continue
-        if current:
-            body.append(lines[i])
-        i += 1
-    if current:
-        roles.append(Role(*current, tuple(body)))
+            starts.append((i, found))
+            i += found[3]
+        else:
+            i += 1
+    roles = []
+    for n, (start, (title, company, date_text, used)) in enumerate(starts):
+        end = starts[n + 1][0] if n + 1 < len(starts) else len(lines)
+        body = tuple(lines[start + used : end])
+        roles.append(Role(title, company, date_text, body, offset + start, offset + end))
     return roles
+
+
+def preamble(section: Section, roles: Sequence[Role]) -> tuple[int, int]:
+    """Span in ``ParsedResume.lines`` of the section's lines before its first role."""
+    start = content_start(section)
+    return start, roles[0].start_line if roles else section.end_line

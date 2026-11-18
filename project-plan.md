@@ -35,8 +35,9 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **5a. Section detection + role splitting** – `rag/text.py` (normalising extracted
       text), `rag/dates.py` (date-range detection), `rag/sections.py` (`parse_resume`,
       `split_roles`) + unit tests and checks over all 35 resumes.
-- [ ] **5b. Chunkers** – section-aware chunker (per-role experience chunks with contextual
-      headers) and the fixed-size baseline + tests.
+- [x] **5b. Chunkers** – `rag/chunking.py`: section-aware chunker (per-role experience chunks
+      with contextual headers, oversize guard, `-noctx` ablation) and the fixed-size word-window
+      baseline, a small registry, deterministic chunk ids + tests over all 35 resumes.
 - [ ] **6. Metadata extractor** – name, education, skills, roles, merged years, per-skill years
       (injected `as_of`) + tests against the manifest.
 - [ ] **7. Embedders** – `Embedder` ABC + lazy registry (`huggingface`, `gemini`, `fake`) + tests.

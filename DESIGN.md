@@ -127,8 +127,11 @@ Lines after a header belong to that role until the next header.
 ### Section-aware chunker (default)
 
 - One chunk per section. **Experience is split per role.**
-- Long sections are split on paragraph or bullet boundaries to stay under a token budget, with
-  a small overlap.
+- Oversize guard: a chunk body over `max_words` (default 300; bge-small truncates at 512
+  tokens) is split at line boundaries into parts, each with the same contextual header.
+  Nothing in the corpus triggers it (the longest chunk is 97 words).
+- Lines in an experience section before its first role (an intro sentence) become their own
+  experience chunk with no role.
 - Before embedding, a **contextual header line** is prepended: `Section: Experience | Role:
   Data Scientist at Acme` for experience chunks and `Section: Skills` (the section kind)
   otherwise. It gives an isolated bullet enough context to be retrievable. It deliberately
@@ -142,10 +145,18 @@ Lines after a header belong to that role until the next header.
 
 ### Fixed-size baseline (experiments)
 
-`FixedSizeChunker(size, overlap)` makes character/token windows that ignore structure. It
-exists only so the notebook can compare retrieval quality and latency against the
-section-aware chunker. Both implement the same `Chunker` protocol and emit the same `Chunk`
-dataclass (`text`, `embed_text`, `section`, `role_index`, `ordinal`, `char_span`).
+`FixedSizeChunker(size=120, overlap=30)` makes overlapping word windows over the whole
+cleaned text, header included, with no contextual header, as a naive pipeline would. Each
+window is labelled with the section most of its words come from, only so excerpts can still
+name a section. It exists so the notebook can compare retrieval quality and latency against
+the section-aware chunker. Both implement the same `Chunker` protocol (`rag/chunking.py`,
+registry `get_chunker(name, **params)`) and emit the same frozen `Chunk` dataclass:
+`chunk_id`, `candidate_id`, `resume_path`, `chunker_id`, `section`, `role_index`,
+`role_title`, `role_company`, `part`, `text`, `embed_text`, `start_line`, `end_line`.
+`chunk_id` is a SHA-256 over (resume path, chunker id, section, role index, part, text),
+truncated to 16 hex chars. `chunker_id` (`section-v1`, `section-v1-noctx`,
+`fixed-w120-o30`) encodes every parameter that changes the output, so collection names
+derive from it.
 
 ## 4. Metadata extraction (rule-based)
 
