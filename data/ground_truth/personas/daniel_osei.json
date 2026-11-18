@@ -1,0 +1,94 @@
+{
+  "id": "daniel_osei",
+  "name": "Daniel Osei",
+  "email": "daniel.osei@example.com",
+  "phone": "+44 555-0112",
+  "location": "Manchester, UK",
+  "headline": "Python / Django Developer",
+  "summary": "Former head of mathematics who retrained as a developer in 2023. Two and a half years shipping Django features for education and fintech products, with a teacher's habit of explaining things clearly.",
+  "skills_section": [
+    "Python", "Django", "Django REST Framework", "PostgreSQL", "HTML", "CSS", "Docker", "pytest",
+    "Git", "Excel"
+  ],
+  "experience": [
+    {
+      "title": "Django Developer",
+      "company": "Ledgerly",
+      "employment_type": "full_time",
+      "start": "2025-07",
+      "end": "present",
+      "skills_used": ["Python", "Django", "Django REST Framework", "PostgreSQL", "Docker", "pytest"],
+      "bullets": [
+        "Build accounting integrations in Django REST Framework that sync 50,000 invoices a month with three banking partners.",
+        "Wrote PostgreSQL reporting views that replaced a fragile spreadsheet export used by the finance team.",
+        "Added pytest fixtures and factory data that cut the test suite runtime from 14 to 5 minutes.",
+        "Packaged the service with Docker so local and pipeline environments match."
+      ]
+    },
+    {
+      "title": "Junior Developer",
+      "company": "Brightpath EdTech",
+      "employment_type": "full_time",
+      "start": "2024-04",
+      "end": "2025-06",
+      "skills_used": ["Python", "Django", "HTML", "CSS"],
+      "bullets": [
+        "Built teacher-facing Django pages for setting and marking homework, used in 40 schools.",
+        "Wrote Python scripts that import pupil rosters from school information systems each night.",
+        "Fixed accessibility issues in the HTML and CSS templates, reaching WCAG AA on the core flows."
+      ]
+    },
+    {
+      "title": "Head of Mathematics",
+      "company": "Fenwick School",
+      "employment_type": "full_time",
+      "start": "2019-09",
+      "end": "2023-07",
+      "skills_used": ["Excel"],
+      "bullets": [
+        "Led a department of seven teachers and raised the GCSE maths pass rate from 68% to 81% in three years.",
+        "Built Excel trackers for pupil progress that flagged students for intervention every half term.",
+        "Redesigned the Key Stage 4 scheme of work around retrieval practice and weekly low-stakes quizzes."
+      ]
+    },
+    {
+      "title": "Mathematics Teacher",
+      "company": "Kingsmead Academy",
+      "employment_type": "full_time",
+      "start": "2014-09",
+      "end": "2019-08",
+      "skills_used": ["Excel"],
+      "bullets": [
+        "Taught mathematics to around 180 students a year across Years 7 to 13.",
+        "Kept department assessment data in Excel and produced termly progress reports for parents.",
+        "Ran the after-school maths club and coached the regional team for the UK Maths Challenge."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Diploma",
+      "field": "Software Development",
+      "institution": "Forge Coding Bootcamp",
+      "start_year": 2023,
+      "end_year": 2024,
+      "grade": "Distinction"
+    },
+    {
+      "degree": "B.Sc.",
+      "field": "Mathematics",
+      "institution": "Medway University",
+      "start_year": 2011,
+      "end_year": 2014,
+      "grade": "2:1"
+    }
+  ],
+  "hobbies": ["Puzzle hunts", "Park runs"],
+  "render": {
+    "format": "docx",
+    "layout": "classic",
+    "header_variant": "history",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["career_changer"]
+}

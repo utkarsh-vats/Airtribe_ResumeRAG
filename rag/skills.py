@@ -8,12 +8,14 @@ This module is data plus exact-name lookups only. Finding skills inside resume o
 - ``implies`` lists skills you necessarily use when you use this one: a framework implies its
   language (Django -> Python), a specific RDBMS implies SQL. Implications are transitive and
   must stay acyclic.
-- ``ambiguous`` marks canonical names that are also common words or very short (Go, R, C,
-  Excel, Spark). The extractor only matches these inside a skills section. Aliases are chosen
-  to be unambiguous (``Golang``, ``Apache Spark``), so they can match anywhere.
+- ``ambiguous`` marks canonical names that are also ordinary English words or very short
+  (Go, R, C, React, Spark, Excel, "rest assured"). Their canonical name only counts in its exact
+  case. Aliases are always safe (``Golang``, ``Apache Spark``, ``ReactJS``) and match in any case.
+  The full mention contract is in ``data/ground_truth/README.md``.
 
 Deliberately missing aliases: ``CV`` for Computer Vision (it also means "resume"), ``Node`` for
-Node.js and ``Lambda`` for AWS Lambda (too generic).
+Node.js, ``Lambda`` for AWS Lambda, ``Express`` for Express.js and ``Tailwind`` for Tailwind CSS
+(all ordinary words or too generic).
 """
 
 from collections.abc import Iterable
@@ -87,7 +89,7 @@ SKILLS: tuple[Skill, ...] = (
     Skill("Django REST Framework", _B, ("DRF",), ("Django",)),
     Skill("FastAPI", _B, (), ("Python",)),
     Skill("Flask", _B, (), ("Python",), ambiguous=True),
-    Skill("Celery", _B, (), ("Python",)),
+    Skill("Celery", _B, (), ("Python",), ambiguous=True),
     Skill("Spring Boot", _B, ("SpringBoot",), ("Java",)),
     Skill("Spring Cloud", _B, (), ("Spring Boot",)),
     Skill("Hibernate", _B, (), ("Java",)),
@@ -101,13 +103,13 @@ SKILLS: tuple[Skill, ...] = (
     Skill("Kafka", _B, ("Apache Kafka",)),
     Skill("RabbitMQ", _B),
     # Frontend
-    Skill("React", _F, ("React.js", "ReactJS"), ("JavaScript",)),
+    Skill("React", _F, ("React.js", "ReactJS"), ("JavaScript",), ambiguous=True),
     Skill("Next.js", _F, ("NextJS",), ("React",)),
     Skill("Vue.js", _F, ("Vue", "VueJS"), ("JavaScript",)),
-    Skill("Angular", _F, ("AngularJS",), ("JavaScript",)),
+    Skill("Angular", _F, ("AngularJS", "Angular.js"), ("JavaScript",), ambiguous=True),
     Skill("Redux", _F, ("Redux Toolkit",), ("JavaScript",)),
-    Skill("Tailwind CSS", _F, ("Tailwind", "TailwindCSS"), ("CSS",)),
-    Skill("Storybook", _F),
+    Skill("Tailwind CSS", _F, ("TailwindCSS",), ("CSS",)),
+    Skill("Storybook", _F, ("Storybook.js",), ambiguous=True),
     # Mobile
     Skill("Android", _M, ("Android SDK",)),
     Skill("iOS", _M),
@@ -118,7 +120,7 @@ SKILLS: tuple[Skill, ...] = (
     Skill("Spark", _D, ("Apache Spark",), ambiguous=True),
     Skill("PySpark", _D, (), ("Spark", "Python")),
     Skill("Airflow", _D, ("Apache Airflow",), ("Python",), ambiguous=True),
-    Skill("dbt", _D, ("data build tool",), ("SQL",)),
+    Skill("dbt", _D, ("data build tool", "dbt Core"), ("SQL",), ambiguous=True),
     Skill("Snowflake", _D, (), ("SQL",), ambiguous=True),
     Skill("BigQuery", _D, ("Google BigQuery",), ("SQL", "GCP")),
     Skill("Tableau", _D),
@@ -162,7 +164,7 @@ SKILLS: tuple[Skill, ...] = (
     # DevOps, infrastructure and tooling
     Skill("Docker", _O),
     Skill("Kubernetes", _O, ("k8s",)),
-    Skill("Helm", _O, (), ("Kubernetes",), ambiguous=True),
+    Skill("Helm", _O, ("Helm charts", "Helm chart"), ("Kubernetes",), ambiguous=True),
     Skill("ArgoCD", _O, ("Argo CD",), ("Kubernetes",)),
     Skill("Terraform", _O),
     Skill("Ansible", _O),
@@ -174,20 +176,20 @@ SKILLS: tuple[Skill, ...] = (
     Skill("Linux", _O),
     Skill("Nginx", _O),
     Skill("Git", _O),
-    Skill("Maven", _O, ("Apache Maven",), ("Java",)),
+    Skill("Maven", _O, ("Apache Maven",), ("Java",), ambiguous=True),
     Skill("Gradle", _O),
     # Testing
     Skill("pytest", _T, (), ("Python",)),
     Skill("JUnit", _T, (), ("Java",)),
-    Skill("Selenium", _T),
-    Skill("Playwright", _T),
-    Skill("Cypress", _T),
+    Skill("Selenium", _T, ("Selenium WebDriver",), ambiguous=True),
+    Skill("Playwright", _T, ("Playwright Test",), ambiguous=True),
+    Skill("Cypress", _T, ("Cypress.io",), ambiguous=True),
     Skill("Jest", _T, (), ("JavaScript",), ambiguous=True),
-    Skill("Postman", _T),
-    Skill("REST Assured", _T, ("RestAssured",), ("Java",)),
+    Skill("Postman", _T, ("Postman API Platform",), ambiguous=True),
+    Skill("REST Assured", _T, ("RestAssured",), ("Java",), ambiguous=True),
     # Business / non-tech tools
     Skill("Excel", _X, ("Microsoft Excel", "MS Excel"), ambiguous=True),
-    Skill("Salesforce", _X),
+    Skill("Salesforce", _X, ("Salesforce CRM",), ambiguous=True),
     Skill("HubSpot", _X),
     Skill("SEO", _X, ("Search Engine Optimization", "Search Engine Optimisation")),
     Skill("Google Analytics", _X),

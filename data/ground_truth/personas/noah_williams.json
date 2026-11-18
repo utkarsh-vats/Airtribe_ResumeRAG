@@ -1,0 +1,71 @@
+{
+  "id": "noah_williams",
+  "name": "Noah Williams",
+  "email": "noah.williams@example.com",
+  "phone": "+1 555-0110",
+  "location": "Toronto, ON, Canada",
+  "headline": "Backend Engineer",
+  "summary": "Backend engineer with 6 years on logistics and energy platforms: Python 3 services, Postgres, k8s, and the occasional ML model when the data supports one.",
+  "skills_section": [
+    "Python", "FastAPI", "PostgreSQL", "Kubernetes", "Docker", "AWS", "JavaScript",
+    "Machine Learning", "scikit-learn", "REST APIs"
+  ],
+  "experience": [
+    {
+      "title": "Senior Backend Engineer",
+      "company": "Harbourline Freight",
+      "employment_type": "full_time",
+      "start": "2023-02",
+      "end": "present",
+      "skills_used": ["Python", "FastAPI", "PostgreSQL", "Kubernetes", "Machine Learning", "scikit-learn"],
+      "bullets": [
+        "Rebuilt the shipment-tracking service in FastAPI on Python 3.12, now ingesting 40M carrier events a day.",
+        "Tuned Postgres indexes and partitioning, cutting p95 query latency from 900 ms to 85 ms.",
+        "Run 30 services on k8s with Kustomize overlays and horizontal pod autoscaling; zero unplanned downtime in 2025.",
+        "Shipped an ETA-prediction ML model built with sklearn and served it behind the tracking API."
+      ]
+    },
+    {
+      "title": "Backend Developer",
+      "company": "Maple Grid Energy",
+      "employment_type": "full_time",
+      "start": "2020-11",
+      "end": "2023-01",
+      "skills_used": ["Python", "PostgreSQL", "REST APIs", "JavaScript", "Docker", "AWS"],
+      "bullets": [
+        "Built RESTful APIs in Python 3 for smart-meter billing across 220,000 households.",
+        "Designed the Postgres schema for tariff versioning, removing a whole class of back-billing errors.",
+        "Wrote JS dashboards for the operations team on top of the billing APIs.",
+        "Containerised nightly reporting jobs with Docker and moved them from cron boxes to Amazon Web Services."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Science",
+      "institution": "Northshore University",
+      "start_year": 2016,
+      "end_year": 2020,
+      "grade": "GPA 3.5/4.0"
+    }
+  ],
+  "hobbies": ["Canoe tripping", "Home espresso"],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "employment",
+    "date_format": "numeric",
+    "skill_labels": {
+      "Python": "Python 3",
+      "PostgreSQL": "Postgres",
+      "Kubernetes": "k8s",
+      "AWS": "Amazon Web Services",
+      "JavaScript": "JS",
+      "Machine Learning": "ML",
+      "scikit-learn": "sklearn",
+      "REST APIs": "RESTful APIs"
+    }
+  },
+  "edge_cases": ["aliases_only"]
+}

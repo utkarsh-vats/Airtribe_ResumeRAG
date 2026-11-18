@@ -1,0 +1,59 @@
+{
+  "id": "mateo_garcia",
+  "name": "Mateo Garcia",
+  "email": "mateo.garcia@example.com",
+  "phone": "+54 555-0111",
+  "location": "Buenos Aires, Argentina",
+  "headline": "Python Backend Developer",
+  "summary": "Python backend developer with 4 years of full-time experience in travel tech, plus two years of concurrent freelance API work for e-commerce clients.",
+  "skills_section": [
+    "Python", "Django", "FastAPI", "PostgreSQL", "MongoDB", "Celery", "Docker", "Git", "REST APIs"
+  ],
+  "experience": [
+    {
+      "title": "Backend Engineer",
+      "company": "Pampa Travel Tech",
+      "employment_type": "full_time",
+      "start": "2022-08",
+      "end": "present",
+      "skills_used": ["Python", "Django", "PostgreSQL", "Celery", "Docker"],
+      "bullets": [
+        "Maintain the booking engine's Django back office used by 120 travel agents across Argentina and Chile.",
+        "Cut fare-search response time from 2.4 s to 600 ms by caching supplier responses and rewriting the slowest PostgreSQL queries.",
+        "Moved email and voucher generation to Celery, removing timeouts during flash sales.",
+        "Introduced Docker-based local environments, taking new-hire setup from two days to one hour."
+      ]
+    },
+    {
+      "title": "Freelance Python Developer",
+      "company": "Self-employed",
+      "employment_type": "freelance",
+      "start": "2023-01",
+      "end": "2024-12",
+      "skills_used": ["Python", "FastAPI", "MongoDB", "REST APIs"],
+      "bullets": [
+        "Delivered REST APIs in FastAPI for four e-commerce and logistics clients alongside my full-time role.",
+        "Built a Python inventory-sync service linking two marketplaces to a client's warehouse, covering 15,000 SKUs.",
+        "Modelled product catalogues in MongoDB for a fashion retailer and wrote its nightly import job."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Eng.",
+      "field": "Informatics Engineering",
+      "institution": "Universidad del Plata",
+      "start_year": 2017,
+      "end_year": 2022,
+      "grade": "8.4/10"
+    }
+  ],
+  "hobbies": ["Tango", "Five-a-side football"],
+  "render": {
+    "format": "pdf",
+    "layout": "compact",
+    "header_variant": "standard",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["overlapping_roles"]
+}

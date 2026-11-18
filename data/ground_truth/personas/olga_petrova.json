@@ -1,0 +1,65 @@
+{
+  "id": "olga_petrova",
+  "name": "Olga Petrova",
+  "email": "olga.petrova@example.com",
+  "phone": "+372 555-0118",
+  "location": "Tallinn, Estonia",
+  "headline": "Senior Site Reliability Engineer",
+  "summary": "Site reliability engineer with 9 years on telecom and logistics platforms. Returned to work in 2022 after a two-year career break for family care.",
+  "skills_section": [
+    "Kubernetes", "Terraform", "AWS", "Helm", "Prometheus", "Grafana", "Linux", "Ansible", "Go",
+    "Bash"
+  ],
+  "experience": [
+    {
+      "title": "Senior Site Reliability Engineer",
+      "company": "Baltic Freightways",
+      "employment_type": "full_time",
+      "start": "2022-03",
+      "end": "present",
+      "skills_used": ["Kubernetes", "Terraform", "AWS", "Helm", "Prometheus", "Go"],
+      "bullets": [
+        "Run 12 production Kubernetes clusters on AWS for a freight-booking platform with a 99.95% availability target.",
+        "Rewrote the infrastructure as Terraform modules shared by six teams, removing 2,000 lines of copy-pasted config.",
+        "Standardised deployments on Helm charts with automated canary analysis, halving failed releases.",
+        "Built Prometheus SLO alerting and wrote a small Go exporter for queue depth on the booking pipeline."
+      ]
+    },
+    {
+      "title": "Site Reliability Engineer",
+      "company": "Neva Telecom",
+      "employment_type": "full_time",
+      "start": "2015-06",
+      "end": "2020-01",
+      "skills_used": ["Linux", "Ansible", "Terraform", "AWS", "Grafana", "Bash"],
+      "bullets": [
+        "Automated provisioning for 800 Linux servers with Ansible, cutting new-site setup from a week to a day.",
+        "Led the move of the first workloads to AWS, writing the Terraform for networking and IAM.",
+        "Built Grafana dashboards for the network operations centre covering 4 million subscribers.",
+        "Wrote Bash tooling for on-call runbooks and log collection."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Systems Engineering",
+      "institution": "Baltic State Technical University",
+      "start_year": 2011,
+      "end_year": 2015,
+      "grade": "Cum laude"
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect - Associate",
+    "Certified Kubernetes Administrator (CKA)"
+  ],
+  "hobbies": ["Cross-country skiing"],
+  "render": {
+    "format": "pdf",
+    "layout": "modern",
+    "header_variant": "history",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["career_gap"]
+}

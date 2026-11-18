@@ -1,0 +1,68 @@
+{
+  "id": "hannah_berg",
+  "name": "Hannah Berg",
+  "email": "hannah.berg@example.com",
+  "phone": "+49 555-0117",
+  "location": "Hamburg, Germany",
+  "headline": "Business Analyst",
+  "summary": "Business analyst with 5 years in insurance and logistics. I turn messy processes into clear requirements and dashboards, and I studied machine learning during my master's.",
+  "skills_section": ["SQL", "Excel", "Tableau", "Power BI", "Jira"],
+  "experience": [
+    {
+      "title": "Business Analyst",
+      "company": "Nordlicht Insurance",
+      "employment_type": "full_time",
+      "start": "2023-01",
+      "end": "present",
+      "skills_used": ["SQL", "Tableau", "Jira", "Excel"],
+      "bullets": [
+        "Gather requirements for the claims-processing platform and keep a backlog of 300 Jira tickets in shape with the product owner.",
+        "Built Tableau dashboards on claims cycle time that the operations board reviews every month.",
+        "Write SQL against the claims warehouse to size process changes before they reach development.",
+        "Modelled the business case for straight-through processing in Excel, supporting a EUR 1.2M investment decision."
+      ]
+    },
+    {
+      "title": "Junior Business Analyst",
+      "company": "Elbe Logistics",
+      "employment_type": "full_time",
+      "start": "2021-01",
+      "end": "2022-12",
+      "skills_used": ["Excel", "Power BI"],
+      "bullets": [
+        "Mapped order-to-cash processes across three warehouses and documented 40 improvement opportunities.",
+        "Built Power BI reports on late deliveries that cut weekly reporting effort by six hours.",
+        "Maintained the Excel capacity models used for peak-season staffing."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Sc.",
+      "field": "Business Analytics",
+      "institution": "Hanseatic University of Applied Sciences",
+      "start_year": 2019,
+      "end_year": 2020,
+      "grade": "1.7",
+      "coursework": [
+        "Machine Learning", "Deep Learning with PyTorch", "Statistical Learning", "Data Visualisation"
+      ]
+    },
+    {
+      "degree": "B.A.",
+      "field": "Economics",
+      "institution": "Elbmarsch University",
+      "start_year": 2016,
+      "end_year": 2019,
+      "grade": "2.1"
+    }
+  ],
+  "hobbies": ["Sailing on the Alster", "Choir"],
+  "render": {
+    "format": "docx",
+    "layout": "classic",
+    "header_variant": "professional",
+    "date_format": "year_only"
+  },
+  "edge_cases": ["coursework_only_skill"]
+}

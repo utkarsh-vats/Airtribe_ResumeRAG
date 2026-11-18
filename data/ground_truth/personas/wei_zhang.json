@@ -1,0 +1,74 @@
+{
+  "id": "wei_zhang",
+  "name": "Wei Zhang",
+  "email": "wei.zhang@example.com",
+  "phone": "+65 555-0114",
+  "location": "Singapore",
+  "headline": "Machine Learning Engineer (Computer Vision)",
+  "summary": "ML engineer focused on computer vision for robotics and logistics, from data collection and labelling to models running on edge devices.",
+  "skills_section": [
+    "Python", "PyTorch", "Computer Vision", "Deep Learning", "ONNX", "FastAPI", "Docker", "NumPy",
+    "MongoDB", "Git"
+  ],
+  "experience": [
+    {
+      "title": "Machine Learning Engineer",
+      "company": "Lumen Robotics",
+      "employment_type": "full_time",
+      "start": "2023-03",
+      "end": "present",
+      "skills_used": ["Python", "PyTorch", "Computer Vision", "ONNX", "FastAPI", "Docker"],
+      "bullets": [
+        "Train and ship PyTorch computer vision models for warehouse robots, lifting pick accuracy from 91% to 97.5%.",
+        "Exported models to ONNX and cut on-device inference time from 80 ms to 23 ms on edge GPUs.",
+        "Built the FastAPI model-serving gateway, with Docker images rolled out to 400 robots through staged updates.",
+        "Set up a Python evaluation harness that replays 2 million labelled frames before every release."
+      ]
+    },
+    {
+      "title": "Computer Vision Engineer",
+      "company": "Harbor Eye Analytics",
+      "employment_type": "full_time",
+      "start": "2020-10",
+      "end": "2023-02",
+      "skills_used": ["Python", "PyTorch", "Computer Vision", "NumPy", "MongoDB"],
+      "bullets": [
+        "Developed PyTorch computer vision models that count shipping containers from port cameras, replacing manual tallies at three terminals.",
+        "Wrote NumPy pre-processing for 4K video streams, doubling throughput per GPU.",
+        "Stored detections and audit trails in MongoDB for the customer-facing reporting tool.",
+        "Curated a 120,000-image dataset with a two-person annotation team."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Sc.",
+      "field": "Artificial Intelligence",
+      "institution": "Straits Institute of Technology",
+      "start_year": 2018,
+      "end_year": 2020,
+      "grade": "Distinction"
+    },
+    {
+      "degree": "B.Eng.",
+      "field": "Computer Engineering",
+      "institution": "Jiangnan University of Science and Technology",
+      "start_year": 2014,
+      "end_year": 2018,
+      "grade": "GPA 3.7/4.0"
+    }
+  ],
+  "projects": [
+    {
+      "name": "open-pallet",
+      "skills_used": ["PyTorch"],
+      "description": "Open-source PyTorch dataset loaders and baselines for pallet and parcel detection."
+    }
+  ],
+  "render": {
+    "format": "pdf",
+    "layout": "modern",
+    "header_variant": "professional",
+    "date_format": "iso"
+  }
+}

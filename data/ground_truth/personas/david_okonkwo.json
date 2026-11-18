@@ -1,0 +1,75 @@
+{
+  "id": "david_okonkwo",
+  "name": "David Okonkwo",
+  "email": "david.okonkwo@example.com",
+  "phone": "+44 555-0119",
+  "location": "London, UK",
+  "headline": "Principal Cloud Engineer",
+  "summary": "Principal cloud engineer with 16 years in software and infrastructure, from Java development to running regulated Kubernetes platforms on AWS for a major bank.",
+  "skills_section": [
+    "AWS", "Kubernetes", "EKS", "Terraform", "ArgoCD", "Docker", "Jenkins", "Ansible", "Linux", "Java"
+  ],
+  "experience": [
+    {
+      "title": "Principal Cloud Engineer",
+      "company": "Meridian Bank Group",
+      "employment_type": "full_time",
+      "start": "2020-01",
+      "end": "present",
+      "skills_used": ["AWS", "Kubernetes", "EKS", "Terraform", "ArgoCD"],
+      "bullets": [
+        "Lead the nine-person cloud platform team that runs 70 EKS clusters for 1,400 engineers across retail and corporate banking.",
+        "Designed the landing-zone Terraform used for 220 AWS accounts, with policy-as-code guardrails signed off by the regulator.",
+        "Moved 300 services to GitOps with ArgoCD, cutting mean deployment lead time from 5 days to 3 hours.",
+        "Chair the Kubernetes architecture forum and set the bank's container security baseline."
+      ]
+    },
+    {
+      "title": "Lead DevOps Engineer",
+      "company": "Atlas Retail",
+      "employment_type": "full_time",
+      "start": "2015-01",
+      "end": "2019-12",
+      "skills_used": ["AWS", "Terraform", "Ansible", "Jenkins", "Docker"],
+      "bullets": [
+        "Moved the e-commerce platform from a co-located data centre to AWS with a zero-downtime cut-over before peak season.",
+        "Introduced Terraform and Ansible, replacing 40 hand-built servers with reproducible environments.",
+        "Built Jenkins pipelines and Docker images for 60 services, taking releases from monthly to daily."
+      ]
+    },
+    {
+      "title": "Java Developer",
+      "company": "Okapi Systems",
+      "employment_type": "full_time",
+      "start": "2010-01",
+      "end": "2014-12",
+      "skills_used": ["Java", "Hibernate", "JUnit", "Linux"],
+      "bullets": [
+        "Developed Java back-office modules for a telecoms billing product used by five operators.",
+        "Mapped billing entities with Hibernate and tuned the slowest overnight batch queries.",
+        "Wrote JUnit regression suites and looked after the team's Linux build servers."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Eng.",
+      "field": "Electrical and Electronic Engineering",
+      "institution": "Lagoon City University",
+      "start_year": 2005,
+      "end_year": 2009,
+      "grade": "Second Class Upper"
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect - Professional",
+    "HashiCorp Certified: Terraform Associate"
+  ],
+  "hobbies": ["Highlife guitar", "Coaching youth football"],
+  "render": {
+    "format": "pdf",
+    "layout": "classic",
+    "header_variant": "standard",
+    "date_format": "year_only"
+  }
+}

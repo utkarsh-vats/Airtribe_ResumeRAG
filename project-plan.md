@@ -10,8 +10,13 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       aliases, implications), `scripts/persona_schema.py`, `scripts/build_manifest.py`
       (`data/ground_truth/manifest.json`), the 8 Milestone 1 personas carried over,
       `data/ground_truth/persona_plan.md` (35 slots) and ground-truth conventions + tests.
-- [ ] **2b. Author the 27 new personas** from `persona_plan.md`; rebuild the manifest; the
-      full plan-coverage test stops skipping.
+- [x] **2b. Mention rules + JD themes + first 12 new personas** – skill-mention contract in
+      `data/ground_truth/README.md`, taxonomy ambiguity audit, reference matcher
+      (`tests/skill_mentions.py`) with forward and reverse bullet checks,
+      `data/ground_truth/jd_themes.json` + `scripts/jd_themes.py`, label-consistency tests
+      (strong / distractor vs must-haves), and 12 personas authored from the plan.
+- [ ] **2c. Author the remaining 15 personas** from `persona_plan.md`; rebuild the manifest;
+      the full plan-coverage test stops skipping.
 - [ ] **3. Resume generator** – `scripts/` generator with several layouts, PDF/DOCX/TXT, and
       deliberate edge cases (overlapping roles, odd date formats, skills-list-only mentions,
       missing headers) → `data/resumes/`.

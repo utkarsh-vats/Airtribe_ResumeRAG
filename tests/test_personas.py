@@ -1,5 +1,6 @@
 """Validation of the persona files, the persona plan and the ground-truth manifest maths."""
 
+import json
 import re
 import unicodedata
 from collections import Counter
@@ -7,8 +8,9 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 
 import pytest
+from skill_mentions import find_mentions, mentioned_skills
 
-from rag.skills import canonicalize, get_skill
+from rag.skills import _key, canonicalize, expand_implied, get_skill
 from scripts.build_manifest import (
     MANIFEST_PATH,
     build_manifest,
@@ -21,6 +23,7 @@ from scripts.build_manifest import (
     skill_years,
     total_years,
 )
+from scripts.jd_themes import load_jd_themes, unmet_must_haves
 from scripts.persona_schema import (
     AS_OF,
     EDGE_CASES,
@@ -45,7 +48,8 @@ from scripts.persona_schema import (
 PERSONA_FILES = sorted(PERSONA_DIR.glob("*.json"))
 PLAN_PATH = GROUND_TRUTH_DIR / "persona_plan.md"
 PLAN_SIZE = 35
-JDS = ("py_backend", "ml", "devops", "frontend", "java", "data_eng")
+THEMES = {theme.id: theme for theme in load_jd_themes()}
+JDS = tuple(THEMES)
 RELEVANCE = ("strong", "partial", "distractor", "none")
 REQUIRED_EDGE_CASES = (
     "python_in_hobbies",
@@ -84,10 +88,11 @@ def slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", ascii_name.lower()).strip("_")
 
 
-def mentions(skill: str, text: str) -> bool:
-    """Case-insensitive word-boundary match of a skill's canonical name or any alias."""
-    forms = (skill, *get_skill(skill).aliases)
-    return any(re.search(rf"(?<!\w){re.escape(f)}(?!\w)", text, re.IGNORECASE) for f in forms)
+def skill_texts(persona: Persona) -> list[tuple[str, tuple[str, ...], str]]:
+    """``(where, skills_used, text)`` for every role's bullets and project's description."""
+    texts = [(f"role {r.company}", r.skills_used, "\n".join(r.bullets)) for r in persona.experience]
+    texts += [(f"project {p.name}", p.skills_used, p.description) for p in persona.projects]
+    return texts
 
 
 def all_skill_refs(persona: Persona) -> list[str]:
@@ -167,6 +172,12 @@ def manifest(personas) -> dict[str, dict]:
     return {c["candidate_id"]: c for c in build_manifest(personas)["candidates"]}
 
 
+@pytest.fixture(scope="module")
+def committed_manifest() -> dict[str, dict]:
+    with MANIFEST_PATH.open(encoding="utf-8") as handle:
+        return {c["candidate_id"]: c for c in json.load(handle)["candidates"]}
+
+
 persona_file = pytest.mark.parametrize("path", PERSONA_FILES, ids=[p.stem for p in PERSONA_FILES])
 
 
@@ -218,6 +229,15 @@ def test_all_skills_canonical(path: Path):
 
 
 @persona_file
+def test_skills_section_entries_are_recognised(path: Path):
+    # What the Skills section will display must be read back as exactly that skill.
+    persona = load_persona(path)
+    for skill in persona.skills_section:
+        shown = persona.render.skill_labels.get(skill, skill)
+        assert mentioned_skills(shown) == {skill}, f"{shown!r} is not recognised as {skill!r}"
+
+
+@persona_file
 def test_dates_valid_and_ordered(path: Path):
     persona = load_persona(path)
     as_of = month_index(PRESENT)
@@ -239,15 +259,44 @@ def test_year_only_dates_hide_no_months(path: Path):
 
 
 @persona_file
-def test_roles_list_skills_and_bullets_mention_them(path: Path):
+def test_roles_list_skills_and_have_bullets(path: Path):
     persona = load_persona(path)
     for role in persona.experience:
-        assert role.bullets, f"{role.company}: no bullets"
+        low, high = (1, 5) if persona.id in MILESTONE1_IDS else (3, 5)
+        assert low <= len(role.bullets) <= high, f"{role.company}: {len(role.bullets)} bullets"
         if role.employment_type is not EmploymentType.INTERNSHIP:
             assert role.skills_used, f"{role.company}: non-internship role lists no skills"
-        text = " ".join(role.bullets)
-        missing = [s for s in role.skills_used if not mentions(s, text)]
-        assert missing == [], f"{role.company}: bullets never mention {missing}"
+
+
+@persona_file
+def test_skills_used_are_mentioned(path: Path):
+    for where, used, text in skill_texts(load_persona(path)):
+        evidenced = expand_implied(mentioned_skills(text))
+        missing = sorted(set(used) - evidenced)
+        assert missing == [], f"{where}: never mentions {missing}"
+
+
+@persona_file
+def test_no_mentions_beyond_skills_used(path: Path):
+    for where, used, text in skill_texts(load_persona(path)):
+        extra = sorted(mentioned_skills(text) - expand_implied(used))
+        assert extra == [], f"{where}: mentions {extra} but skills_used does not cover them"
+
+
+@persona_file
+def test_aliases_only_persona_never_writes_canonical_names(path: Path):
+    persona = load_persona(path)
+    if "aliases_only" not in persona.edge_cases:
+        return
+    for skill in persona.skills_section:
+        if get_skill(skill).aliases:
+            label = persona.render.skill_labels.get(skill, skill)
+            assert _key(label) != _key(skill), f"{skill} is shown by its canonical name"
+    for where, _used, text in skill_texts(persona):
+        canonical = [
+            m.text for m in find_mentions(text) if not m.via_alias and get_skill(m.skill).aliases
+        ]
+        assert canonical == [], f"{where}: canonical names {canonical}"
 
 
 @persona_file
@@ -336,9 +385,73 @@ def test_persona_matches_its_plan_slot(path: Path, plan, manifest):
     assert abs(manifest[persona.id]["total_years"] - slot.years) <= 1.0
 
 
+# --- Labels vs JD must-haves --------------------------------------------------------------
+
+
+def test_jd_themes_match_plan_columns(plan):
+    assert JDS == (
+        "python_backend",
+        "ml_engineer",
+        "devops_sre",
+        "frontend",
+        "java_backend",
+        "data_engineer",
+    )
+    assert all(tuple(slot.relevance) == JDS for slot in plan.values())
+
+
+def _labelled(plan, committed_manifest, jd: str, labels: set[str]):
+    for cid, candidate in committed_manifest.items():
+        if plan[cid].relevance[jd] in labels:
+            yield cid, unmet_must_haves(THEMES[jd], candidate)
+
+
+@pytest.mark.parametrize("jd", JDS)
+def test_strong_candidates_meet_every_must_have(jd, plan, committed_manifest):
+    failing = {cid: u for cid, u in _labelled(plan, committed_manifest, jd, {"strong"}) if u}
+    assert failing == {}
+
+
+@pytest.mark.parametrize("jd", JDS)
+def test_distractors_fail_some_must_have(jd, plan, committed_manifest):
+    passing = [cid for cid, u in _labelled(plan, committed_manifest, jd, {"distractor"}) if not u]
+    assert passing == []
+
+
+@pytest.mark.parametrize("jd", JDS)
+def test_candidates_meeting_every_must_have_are_strong_or_partial(jd, plan, committed_manifest):
+    mislabelled = [
+        f"{cid} ({plan[cid].relevance[jd]})"
+        for cid, u in _labelled(plan, committed_manifest, jd, {"distractor", "none"})
+        if not u
+    ]
+    assert mislabelled == []
+
+
+def test_unmet_must_haves_rules():
+    theme = THEMES["python_backend"]
+    base = {
+        "total_years": 6.0,
+        "skills": ["Django", "PostgreSQL", "Python", "SQL"],
+        "skill_years": {"Django": 0.0, "PostgreSQL": 1.0, "Python": 5.0, "SQL": 1.0},
+    }
+    assert unmet_must_haves(theme, base) == []
+    short = {**base, "skill_years": {**base["skill_years"], "Python": 4.9}}
+    assert unmet_must_haves(theme, short) == ["5+ yrs Python"]
+    no_framework = {**base, "skills": ["PostgreSQL", "Python", "SQL"]}
+    assert unmet_must_haves(theme, no_framework) == ["Django or FastAPI"]
+    devops = THEMES["devops_sre"]
+    junior = {
+        "total_years": 3.9,
+        "skills": ["AWS", "Kubernetes", "Terraform"],
+        "skill_years": {"AWS": 3.9, "Kubernetes": 3.9, "Terraform": 3.9},
+    }
+    assert unmet_must_haves(devops, junior) == ["4+ total yrs"]
+
+
 def test_every_plan_slot_has_a_persona(personas, plan, manifest):
     if len(personas) < PLAN_SIZE:
-        pytest.skip(f"{len(personas)}/{PLAN_SIZE} personas authored; the rest arrive in step 2b")
+        pytest.skip(f"{len(personas)}/{PLAN_SIZE} personas authored; the rest arrive in step 2c")
     assert {p.id for p in personas} == set(plan)
     by_id = {p.id: p for p in personas}
     years = [c["total_years"] for c in manifest.values()]

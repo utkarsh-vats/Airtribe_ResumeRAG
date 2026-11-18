@@ -40,6 +40,136 @@
       "total_years": 3.4
     },
     {
+      "candidate_id": "ananya_iyer",
+      "edge_cases": [],
+      "format": "docx",
+      "highest_education": {
+        "degree": "B.Tech",
+        "end_year": 2019,
+        "field": "Computer Science and Engineering",
+        "institution": "Coromandel Institute of Technology"
+      },
+      "name": "Ananya Iyer",
+      "resume_path": "resumes/ananya_iyer.docx",
+      "skill_years": {
+        "AWS": 4.3,
+        "Celery": 2.8,
+        "Django": 2.8,
+        "Django REST Framework": 2.8,
+        "Docker": 4.3,
+        "FastAPI": 4.3,
+        "Flask": 0.0,
+        "Git": 0.0,
+        "PostgreSQL": 7.1,
+        "Python": 7.1,
+        "REST APIs": 2.8,
+        "Redis": 4.3,
+        "SQL": 7.1,
+        "pytest": 4.3
+      },
+      "skills": [
+        "AWS",
+        "Celery",
+        "Django",
+        "Django REST Framework",
+        "Docker",
+        "FastAPI",
+        "Flask",
+        "Git",
+        "PostgreSQL",
+        "Python",
+        "REST APIs",
+        "Redis",
+        "SQL",
+        "pytest"
+      ],
+      "total_years": 7.1
+    },
+    {
+      "candidate_id": "daniel_osei",
+      "edge_cases": [
+        "career_changer"
+      ],
+      "format": "docx",
+      "highest_education": {
+        "degree": "B.Sc.",
+        "end_year": 2014,
+        "field": "Mathematics",
+        "institution": "Medway University"
+      },
+      "name": "Daniel Osei",
+      "resume_path": "resumes/daniel_osei.docx",
+      "skill_years": {
+        "CSS": 1.2,
+        "Django": 2.7,
+        "Django REST Framework": 1.4,
+        "Docker": 1.4,
+        "Excel": 8.9,
+        "Git": 0.0,
+        "HTML": 1.2,
+        "PostgreSQL": 1.4,
+        "Python": 2.7,
+        "SQL": 1.4,
+        "pytest": 1.4
+      },
+      "skills": [
+        "CSS",
+        "Django",
+        "Django REST Framework",
+        "Docker",
+        "Excel",
+        "Git",
+        "HTML",
+        "PostgreSQL",
+        "Python",
+        "SQL",
+        "pytest"
+      ],
+      "total_years": 11.6
+    },
+    {
+      "candidate_id": "david_okonkwo",
+      "edge_cases": [],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "B.Eng.",
+        "end_year": 2009,
+        "field": "Electrical and Electronic Engineering",
+        "institution": "Lagoon City University"
+      },
+      "name": "David Okonkwo",
+      "resume_path": "resumes/david_okonkwo.pdf",
+      "skill_years": {
+        "AWS": 11.9,
+        "Ansible": 5.0,
+        "ArgoCD": 6.9,
+        "Docker": 5.0,
+        "EKS": 6.9,
+        "Hibernate": 5.0,
+        "JUnit": 5.0,
+        "Java": 5.0,
+        "Jenkins": 5.0,
+        "Kubernetes": 6.9,
+        "Linux": 5.0,
+        "Terraform": 11.9
+      },
+      "skills": [
+        "AWS",
+        "Ansible",
+        "ArgoCD",
+        "Docker",
+        "EKS",
+        "Hibernate",
+        "JUnit",
+        "Java",
+        "Jenkins",
+        "Kubernetes",
+        "Linux",
+        "Terraform"
+      ],
+      "total_years": 16.9
+    },
+    {
       "candidate_id": "elena_rodriguez",
       "edge_cases": [
         "skills_table"
@@ -86,6 +216,112 @@
         "Spring Cloud"
       ],
       "total_years": 6.2
+    },
+    {
+      "candidate_id": "fatima_al_sayed",
+      "edge_cases": [],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "PhD",
+        "end_year": 2022,
+        "field": "Computer Science",
+        "institution": "Gulf University of Science and Technology"
+      },
+      "name": "Fatima Al-Sayed",
+      "resume_path": "resumes/fatima_al_sayed.pdf",
+      "skill_years": {
+        "Deep Learning": 4.2,
+        "Docker": 2.6,
+        "Git": 0.0,
+        "Hugging Face": 2.6,
+        "Large Language Models": 2.6,
+        "Machine Learning": 4.2,
+        "Natural Language Processing": 4.2,
+        "PyTorch": 4.2,
+        "Python": 4.2
+      },
+      "skills": [
+        "Deep Learning",
+        "Docker",
+        "Git",
+        "Hugging Face",
+        "Large Language Models",
+        "Machine Learning",
+        "Natural Language Processing",
+        "PyTorch",
+        "Python"
+      ],
+      "total_years": 4.2
+    },
+    {
+      "candidate_id": "hannah_berg",
+      "edge_cases": [
+        "coursework_only_skill"
+      ],
+      "format": "docx",
+      "highest_education": {
+        "degree": "M.Sc.",
+        "end_year": 2020,
+        "field": "Business Analytics",
+        "institution": "Hanseatic University of Applied Sciences"
+      },
+      "name": "Hannah Berg",
+      "resume_path": "resumes/hannah_berg.docx",
+      "skill_years": {
+        "Excel": 5.9,
+        "Jira": 3.9,
+        "Power BI": 2.0,
+        "SQL": 3.9,
+        "Tableau": 3.9
+      },
+      "skills": [
+        "Excel",
+        "Jira",
+        "Power BI",
+        "SQL",
+        "Tableau"
+      ],
+      "total_years": 5.9
+    },
+    {
+      "candidate_id": "ishaan_gupta",
+      "edge_cases": [
+        "internships_only"
+      ],
+      "format": "docx",
+      "highest_education": {
+        "degree": "B.Tech",
+        "end_year": 2026,
+        "field": "Computer Science and Engineering",
+        "institution": "Indus Valley Institute of Technology"
+      },
+      "name": "Ishaan Gupta",
+      "resume_path": "resumes/ishaan_gupta.docx",
+      "skill_years": {
+        "Computer Vision": 0.0,
+        "Deep Learning": 0.0,
+        "Git": 0.0,
+        "Machine Learning": 0.0,
+        "NumPy": 0.0,
+        "PyTorch": 0.0,
+        "Python": 0.0,
+        "SQL": 0.0,
+        "pandas": 0.0,
+        "scikit-learn": 0.0
+      },
+      "skills": [
+        "Computer Vision",
+        "Deep Learning",
+        "Git",
+        "Machine Learning",
+        "NumPy",
+        "PyTorch",
+        "Python",
+        "SQL",
+        "pandas",
+        "scikit-learn"
+      ],
+      "total_years": 0.0
     },
     {
       "candidate_id": "john_doe",
@@ -268,6 +504,170 @@
       "total_years": 7.5
     },
     {
+      "candidate_id": "mateo_garcia",
+      "edge_cases": [
+        "overlapping_roles"
+      ],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "B.Eng.",
+        "end_year": 2022,
+        "field": "Informatics Engineering",
+        "institution": "Universidad del Plata"
+      },
+      "name": "Mateo Garcia",
+      "resume_path": "resumes/mateo_garcia.pdf",
+      "skill_years": {
+        "Celery": 4.3,
+        "Django": 4.3,
+        "Docker": 4.3,
+        "FastAPI": 2.0,
+        "Git": 0.0,
+        "MongoDB": 2.0,
+        "PostgreSQL": 4.3,
+        "Python": 4.3,
+        "REST APIs": 2.0,
+        "SQL": 4.3
+      },
+      "skills": [
+        "Celery",
+        "Django",
+        "Docker",
+        "FastAPI",
+        "Git",
+        "MongoDB",
+        "PostgreSQL",
+        "Python",
+        "REST APIs",
+        "SQL"
+      ],
+      "total_years": 4.3
+    },
+    {
+      "candidate_id": "noah_williams",
+      "edge_cases": [
+        "aliases_only"
+      ],
+      "format": "txt",
+      "highest_education": {
+        "degree": "B.Sc.",
+        "end_year": 2020,
+        "field": "Computer Science",
+        "institution": "Northshore University"
+      },
+      "name": "Noah Williams",
+      "resume_path": "resumes/noah_williams.txt",
+      "skill_years": {
+        "AWS": 2.2,
+        "Docker": 2.2,
+        "FastAPI": 3.8,
+        "JavaScript": 2.2,
+        "Kubernetes": 3.8,
+        "Machine Learning": 3.8,
+        "PostgreSQL": 6.1,
+        "Python": 6.1,
+        "REST APIs": 2.2,
+        "SQL": 6.1,
+        "scikit-learn": 3.8
+      },
+      "skills": [
+        "AWS",
+        "Docker",
+        "FastAPI",
+        "JavaScript",
+        "Kubernetes",
+        "Machine Learning",
+        "PostgreSQL",
+        "Python",
+        "REST APIs",
+        "SQL",
+        "scikit-learn"
+      ],
+      "total_years": 6.1
+    },
+    {
+      "candidate_id": "olga_petrova",
+      "edge_cases": [
+        "career_gap"
+      ],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "B.Sc.",
+        "end_year": 2015,
+        "field": "Computer Systems Engineering",
+        "institution": "Baltic State Technical University"
+      },
+      "name": "Olga Petrova",
+      "resume_path": "resumes/olga_petrova.pdf",
+      "skill_years": {
+        "AWS": 9.4,
+        "Ansible": 4.7,
+        "Bash": 4.7,
+        "Go": 4.8,
+        "Grafana": 4.7,
+        "Helm": 4.8,
+        "Kubernetes": 4.8,
+        "Linux": 4.7,
+        "Prometheus": 4.8,
+        "Terraform": 9.4
+      },
+      "skills": [
+        "AWS",
+        "Ansible",
+        "Bash",
+        "Go",
+        "Grafana",
+        "Helm",
+        "Kubernetes",
+        "Linux",
+        "Prometheus",
+        "Terraform"
+      ],
+      "total_years": 9.4
+    },
+    {
+      "candidate_id": "omar_haddad",
+      "edge_cases": [
+        "listed_never_used"
+      ],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "B.Sc.",
+        "end_year": 2020,
+        "field": "Computer Information Systems",
+        "institution": "Zarqa Valley University"
+      },
+      "name": "Omar Haddad",
+      "resume_path": "resumes/omar_haddad.pdf",
+      "skill_years": {
+        "Django": 0.0,
+        "Docker": 4.5,
+        "Git": 0.0,
+        "JavaScript": 6.1,
+        "Laravel": 6.1,
+        "MySQL": 6.1,
+        "PHP": 6.1,
+        "Python": 0.0,
+        "Redis": 4.5,
+        "SQL": 6.1,
+        "Vue.js": 4.5
+      },
+      "skills": [
+        "Django",
+        "Docker",
+        "Git",
+        "JavaScript",
+        "Laravel",
+        "MySQL",
+        "PHP",
+        "Python",
+        "Redis",
+        "SQL",
+        "Vue.js"
+      ],
+      "total_years": 6.1
+    },
+    {
       "candidate_id": "priya_sharma",
       "edge_cases": [
         "implied_skill_evidence"
@@ -346,6 +746,80 @@
         "tidyverse"
       ],
       "total_years": 2.9
+    },
+    {
+      "candidate_id": "tomas_novak",
+      "edge_cases": [],
+      "format": "txt",
+      "highest_education": {
+        "degree": "Diploma",
+        "end_year": 2016,
+        "field": "Information Technology",
+        "institution": "Brno Secondary School of Electrical Engineering"
+      },
+      "name": "Tomas Novak",
+      "resume_path": "resumes/tomas_novak.txt",
+      "skill_years": {
+        "Ansible": 5.7,
+        "Bash": 4.4,
+        "Docker": 2.6,
+        "Git": 0.0,
+        "Grafana": 5.7,
+        "Linux": 10.1,
+        "Nginx": 5.7,
+        "Prometheus": 5.7
+      },
+      "skills": [
+        "Ansible",
+        "Bash",
+        "Docker",
+        "Git",
+        "Grafana",
+        "Linux",
+        "Nginx",
+        "Prometheus"
+      ],
+      "total_years": 10.1
+    },
+    {
+      "candidate_id": "wei_zhang",
+      "edge_cases": [],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "M.Sc.",
+        "end_year": 2020,
+        "field": "Artificial Intelligence",
+        "institution": "Straits Institute of Technology"
+      },
+      "name": "Wei Zhang",
+      "resume_path": "resumes/wei_zhang.pdf",
+      "skill_years": {
+        "Computer Vision": 6.2,
+        "Deep Learning": 6.2,
+        "Docker": 3.8,
+        "FastAPI": 3.8,
+        "Git": 0.0,
+        "Machine Learning": 6.2,
+        "MongoDB": 2.4,
+        "NumPy": 2.4,
+        "ONNX": 3.8,
+        "PyTorch": 6.2,
+        "Python": 6.2
+      },
+      "skills": [
+        "Computer Vision",
+        "Deep Learning",
+        "Docker",
+        "FastAPI",
+        "Git",
+        "Machine Learning",
+        "MongoDB",
+        "NumPy",
+        "ONNX",
+        "PyTorch",
+        "Python"
+      ],
+      "total_years": 6.2
     }
   ]
 }

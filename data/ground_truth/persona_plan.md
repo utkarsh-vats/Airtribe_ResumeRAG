@@ -7,14 +7,16 @@ against its row as personas are added.
 
 ## JD themes and intended must-haves
 
+Structured version (the source of truth for the label tests): `jd_themes.json`.
+
 | Key | JD | Must-haves |
 |---|---|---|
-| `py_backend` | Senior Python Backend Engineer | 5+ yrs Python; Django **or** FastAPI; PostgreSQL |
-| `ml` | Machine Learning Engineer | 3+ yrs Python; PyTorch; Machine Learning |
-| `devops` | DevOps / SRE | 4+ yrs experience; Kubernetes; Terraform; AWS |
+| `python_backend` | Senior Python Backend Engineer | 5+ yrs Python; Django **or** FastAPI; PostgreSQL |
+| `ml_engineer` | Machine Learning Engineer | 3+ yrs Python; PyTorch; Machine Learning |
+| `devops_sre` | DevOps / SRE | 4+ yrs experience; Kubernetes; Terraform; AWS |
 | `frontend` | Frontend Engineer | 3+ yrs React; TypeScript |
-| `java` | Java Backend Engineer | 5+ yrs Java; Spring Boot; Microservices |
-| `data_eng` | Data Engineer | SQL; Spark; Airflow |
+| `java_backend` | Java Backend Engineer | 5+ yrs Java; Spring Boot; Microservices |
+| `data_engineer` | Data Engineer | SQL; Spark; Airflow |
 
 Relevance labels (intended; the hand-authored qrels in step 4 are the real ground truth):
 
@@ -24,9 +26,13 @@ Relevance labels (intended; the hand-authored qrels in step 4 are the real groun
   must-haves. It must rank below strong and partial candidates.
 - **none** – unrelated.
 
+Enforced against `manifest.json` by `tests/test_personas.py`: every strong candidate meets all
+of the JD's must-haves, every distractor fails at least one, and anyone who meets them all is
+labelled strong or partial.
+
 ## Slots
 
-| id | archetype | seniority | years | format | layout | date_format | edge_cases | py_backend | ml | devops | frontend | java | data_eng |
+| id | archetype | seniority | years | format | layout | date_format | edge_cases | python_backend | ml_engineer | devops_sre | frontend | java_backend | data_engineer |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | `john_doe` | Senior Python backend (M1) | senior | 8.9 | pdf | classic | year_only | two_page | strong | none | partial | none | none | none |
 | `priya_sharma` | Data scientist (M1) | mid | 5.4 | pdf | modern | month_name | implied_skill_evidence | none | partial | none | none | none | partial |
@@ -71,12 +77,12 @@ exact for the 8 carried over.
 
 | JD | strong | partial | distractor |
 |---|---|---|---|
-| `py_backend` | john_doe, ananya_iyer, noah_williams | mateo_garcia, daniel_osei, wei_zhang | omar_haddad, peter_hughes |
-| `ml` | kenji_tanaka, wei_zhang, fatima_al_sayed | priya_sharma, noah_williams, ishaan_gupta | hannah_berg, peter_hughes |
-| `devops` | marcus_chen, olga_petrova, david_okonkwo | john_doe, kenji_tanaka, noah_williams | liam_walsh, tomas_novak |
+| `python_backend` | john_doe, ananya_iyer, noah_williams | mateo_garcia, daniel_osei, wei_zhang | omar_haddad, peter_hughes |
+| `ml_engineer` | kenji_tanaka, wei_zhang, fatima_al_sayed | priya_sharma, noah_williams, ishaan_gupta | hannah_berg, peter_hughes |
+| `devops_sre` | marcus_chen, olga_petrova, david_okonkwo | john_doe, kenji_tanaka, noah_williams | liam_walsh, tomas_novak |
 | `frontend` | aisha_okafor, lucas_martin, emily_clarke | priya_sharma_2, zoe_turner, kwame_mensah | liam_walsh, mohammed_rahman |
-| `java` | elena_rodriguez, rahul_verma, hans_mueller | david_okonkwo, mohammed_rahman, kwame_mensah | emily_clarke, yuki_sato |
-| `data_eng` | nina_kowalski, arjun_nair, grace_kim | priya_sharma, sofia_rossi, kenji_tanaka | hannah_berg, peter_hughes |
+| `java_backend` | elena_rodriguez, rahul_verma, hans_mueller | david_okonkwo, mohammed_rahman, kwame_mensah | emily_clarke, yuki_sato |
+| `data_engineer` | nina_kowalski, arjun_nair, grace_kim | priya_sharma, sofia_rossi, kenji_tanaka | hannah_berg, peter_hughes |
 
 - Formats: 14 pdf / 12 docx / 9 txt.
 - Date formats: month_name 13, iso 8, numeric 7, year_only 7.
@@ -128,13 +134,15 @@ Section-heading variants (`render.header_variant`, defined in `scripts/persona_s
 | `history` | Profile | Work History | Core Competencies | Academic Background | Key Projects | Licenses & Certifications | Interests |
 | `employment` | About Me | Employment | Skills & Tools | Qualifications | Personal Projects | Courses & Certifications | Outside Work |
 
-## Notes for step 2b
+## Notes for step 2c
 
-- `peter_hughes`'s company "Spark Energy Ltd" and his "airflow" bullets use ambiguous names
-  (`Spark`, `Airflow`) outside any skills section. Leave them out of `skills_used`; the
-  bullet check ignores unlisted mentions.
-- `noah_williams` needs `render.skill_labels` (e.g. `{"PostgreSQL": "Postgres",
-  "Kubernetes": "k8s"}`) and bullets that use the aliases.
-- `daniel_osei`'s teaching roles need non-empty `skills_used` (e.g. Excel) because every
-  non-internship role must list skills.
-- `david_okonkwo`'s early Java roles must come without Spring Boot so the Java JD stays partial.
+- `peter_hughes`: put "Spark Energy Ltd" in the `company` field only (company names never
+  count). Write "airflow" in lowercase in bullets; a capitalised "Airflow" at the start of a
+  sentence would count as the skill under the mention rules. Keep "Python" out of everything
+  except `hobbies`.
+- `emily_clarke` (JavaScript-heavy) must have no Java anywhere, and `mohammed_rahman` no
+  React or TypeScript. The label tests check both against the must-haves.
+- `yuki_sato` (Kotlin / Android): Kotlin and Gradle don't imply Java, so the Java JD
+  must-haves fail as intended.
+- `grace_kim` meets every data_engineer must-have only if Spark and Airflow are both used in
+  roles; `kwame_mensah` must stay below 3 React years (no React at all is simplest).

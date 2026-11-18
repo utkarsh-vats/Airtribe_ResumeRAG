@@ -1,0 +1,82 @@
+{
+  "id": "fatima_al_sayed",
+  "name": "Fatima Al-Sayed",
+  "email": "fatima.alsayed@example.com",
+  "phone": "+971 555-0115",
+  "location": "Dubai, UAE",
+  "headline": "Research Engineer, NLP",
+  "summary": "NLP researcher turned engineer. PhD on low-resource Arabic dialects; now building and evaluating large language models for production use.",
+  "skills_section": [
+    "Python", "PyTorch", "Hugging Face", "Natural Language Processing", "Large Language Models",
+    "Machine Learning", "Docker", "Git"
+  ],
+  "experience": [
+    {
+      "title": "Research Engineer, NLP",
+      "company": "Qalam AI",
+      "employment_type": "full_time",
+      "start": "2024-05",
+      "end": "present",
+      "skills_used": ["Python", "PyTorch", "Hugging Face", "Large Language Models", "Docker"],
+      "bullets": [
+        "Fine-tune and evaluate Arabic LLMs with PyTorch and Hugging Face, improving dialect question-answering accuracy by 11 points.",
+        "Built a Python evaluation suite covering 14 Arabic dialects that is now the team's release gate.",
+        "Cut fine-tuning cost by 40% by moving to LoRA adapters and mixed-precision training.",
+        "Containerised training jobs with Docker so experiments reproduce across the shared GPU cluster."
+      ]
+    },
+    {
+      "title": "Applied Scientist",
+      "company": "Mirage Language Labs",
+      "employment_type": "full_time",
+      "start": "2022-10",
+      "end": "2024-04",
+      "skills_used": ["Python", "PyTorch", "Natural Language Processing"],
+      "bullets": [
+        "Built named-entity recognition models in PyTorch for legal contracts in Arabic and English.",
+        "Wrote the annotation guidelines for a 60,000-sentence NLP corpus produced with three external vendors.",
+        "Shipped a Python service that redacts personal data from contracts, processing 8,000 documents a day."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "PhD",
+      "field": "Computer Science",
+      "institution": "Gulf University of Science and Technology",
+      "start_year": 2018,
+      "end_year": 2022,
+      "grade": null
+    },
+    {
+      "degree": "M.Sc.",
+      "field": "Computer Science",
+      "institution": "Emirates Institute of Science",
+      "start_year": 2016,
+      "end_year": 2018,
+      "grade": "GPA 3.9/4.0"
+    },
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Engineering",
+      "institution": "Nile Valley University",
+      "start_year": 2012,
+      "end_year": 2016,
+      "grade": "Excellent with Honours"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Dialect-ID benchmark",
+      "skills_used": ["Python", "Hugging Face"],
+      "description": "Open benchmark and baseline models for Arabic dialect identification, published on Hugging Face with Python evaluation scripts."
+    }
+  ],
+  "hobbies": ["Calligraphy", "Desert running"],
+  "render": {
+    "format": "pdf",
+    "layout": "academic",
+    "header_variant": "history",
+    "date_format": "month_name"
+  }
+}

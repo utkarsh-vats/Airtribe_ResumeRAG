@@ -85,7 +85,7 @@ def test_canonicalize_aliases_case_and_whitespace(raw, canonical):
     assert canonicalize(raw) == canonical
 
 
-@pytest.mark.parametrize("raw", ["", "Javascripts", "CV", "Node", "Cobol"])
+@pytest.mark.parametrize("raw", ["", "Javascripts", "CV", "Node", "Express", "Tailwind", "Cobol"])
 def test_canonicalize_unknown_returns_none(raw):
     assert canonicalize(raw) is None
 
@@ -96,7 +96,22 @@ def test_get_skill_unknown_raises():
 
 
 def test_ambiguous_flags():
-    for name in ("Go", "R", "C", "Excel", "Spark", "Airflow"):
+    for name in (
+        "Go",
+        "R",
+        "C",
+        "Excel",
+        "Spark",
+        "Airflow",
+        "React",
+        "Angular",
+        "Helm",
+        "Selenium",
+        "Cypress",
+        "Postman",
+        "REST Assured",
+        "Salesforce",
+    ):
         assert get_skill(name).ambiguous, name
     for name in ("Python", "Java", "Kubernetes", "PostgreSQL"):
         assert not get_skill(name).ambiguous, name
@@ -125,7 +140,7 @@ def test_expand_implied_is_transitive(skills, expected):
 
 
 def test_expand_implied_is_idempotent_and_canonical():
-    once = expand_implied(["express js", "k8s", "Tailwind"])
+    once = expand_implied(["express js", "k8s", "TailwindCSS"])
     assert expand_implied(once) == once
     assert once == {"Express.js", "Node.js", "JavaScript", "Kubernetes", "Tailwind CSS", "CSS"}
 

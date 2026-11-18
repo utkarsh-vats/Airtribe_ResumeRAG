@@ -1,0 +1,67 @@
+[
+  {
+    "id": "python_backend",
+    "title": "Senior Python Backend Engineer",
+    "min_total_years": null,
+    "must_have": [
+      {"any_of": ["Python"], "min_years": 5},
+      {"any_of": ["Django", "FastAPI"], "min_years": null},
+      {"any_of": ["PostgreSQL"], "min_years": null}
+    ],
+    "nice_to_have": ["Docker", "Redis", "Celery", "AWS"]
+  },
+  {
+    "id": "ml_engineer",
+    "title": "Machine Learning Engineer",
+    "min_total_years": null,
+    "must_have": [
+      {"any_of": ["Python"], "min_years": 3},
+      {"any_of": ["PyTorch"], "min_years": null},
+      {"any_of": ["Machine Learning"], "min_years": null}
+    ],
+    "nice_to_have": ["MLflow", "Computer Vision", "Natural Language Processing", "Docker"]
+  },
+  {
+    "id": "devops_sre",
+    "title": "DevOps / Site Reliability Engineer",
+    "min_total_years": 4,
+    "must_have": [
+      {"any_of": ["Kubernetes"], "min_years": null},
+      {"any_of": ["Terraform"], "min_years": null},
+      {"any_of": ["AWS"], "min_years": null}
+    ],
+    "nice_to_have": ["Helm", "Prometheus", "ArgoCD", "Go"]
+  },
+  {
+    "id": "frontend",
+    "title": "Frontend Engineer (React)",
+    "min_total_years": null,
+    "must_have": [
+      {"any_of": ["React"], "min_years": 3},
+      {"any_of": ["TypeScript"], "min_years": null}
+    ],
+    "nice_to_have": ["Next.js", "Redux", "Jest", "Tailwind CSS"]
+  },
+  {
+    "id": "java_backend",
+    "title": "Java Backend Engineer",
+    "min_total_years": null,
+    "must_have": [
+      {"any_of": ["Java"], "min_years": 5},
+      {"any_of": ["Spring Boot"], "min_years": null},
+      {"any_of": ["Microservices"], "min_years": null}
+    ],
+    "nice_to_have": ["Kafka", "Hibernate", "Docker", "Kubernetes"]
+  },
+  {
+    "id": "data_engineer",
+    "title": "Data Engineer",
+    "min_total_years": null,
+    "must_have": [
+      {"any_of": ["SQL"], "min_years": null},
+      {"any_of": ["Spark"], "min_years": null},
+      {"any_of": ["Airflow"], "min_years": null}
+    ],
+    "nice_to_have": ["Python", "Kafka", "dbt", "Snowflake"]
+  }
+]

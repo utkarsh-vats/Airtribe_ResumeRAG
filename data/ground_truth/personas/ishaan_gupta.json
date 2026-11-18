@@ -1,0 +1,71 @@
+{
+  "id": "ishaan_gupta",
+  "name": "Ishaan Gupta",
+  "email": "ishaan.gupta@example.com",
+  "phone": "+91 555-0116",
+  "location": "Pune, India",
+  "headline": "Graduate Machine Learning Engineer",
+  "summary": "Computer science graduate (2026) with two internships in applied machine learning, looking for a first full-time role building models that reach real users.",
+  "skills_section": [
+    "Python", "PyTorch", "Computer Vision", "scikit-learn", "pandas", "NumPy", "SQL", "Git"
+  ],
+  "experience": [
+    {
+      "title": "Machine Learning Intern",
+      "company": "Saffron Analytics",
+      "employment_type": "internship",
+      "start": "2025-05",
+      "end": "2025-07",
+      "skills_used": ["Python", "PyTorch", "Computer Vision"],
+      "bullets": [
+        "Trained a PyTorch computer vision model that grades produce quality from photos, reaching 88% accuracy.",
+        "Wrote Python data-augmentation scripts that grew the training set from 3,000 to 18,000 images.",
+        "Presented the results to the founders; the model is now in a pilot with two wholesalers."
+      ]
+    },
+    {
+      "title": "Data Science Intern",
+      "company": "Kirana Commerce",
+      "employment_type": "internship",
+      "start": "2024-05",
+      "end": "2024-07",
+      "skills_used": ["Python", "pandas", "scikit-learn", "SQL"],
+      "bullets": [
+        "Pulled six months of order data with SQL and cleaned it with pandas for a churn analysis.",
+        "Built a scikit-learn churn model that the retention team used to target 2,000 at-risk customers.",
+        "Automated a weekly Python report that replaced three hours of manual spreadsheet work."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech",
+      "field": "Computer Science and Engineering",
+      "institution": "Indus Valley Institute of Technology",
+      "start_year": 2022,
+      "end_year": 2026,
+      "grade": "9.1 CGPA",
+      "coursework": ["Machine Learning", "Deep Learning", "Computer Networks", "Operating Systems"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Leaf-disease classifier",
+      "skills_used": ["PyTorch", "Computer Vision"],
+      "description": "Final-year project: a PyTorch computer vision model that identifies 12 tomato leaf diseases from phone photos."
+    },
+    {
+      "name": "Elective recommender",
+      "skills_used": ["Python", "scikit-learn"],
+      "description": "A Python and scikit-learn recommender for university electives, used by 300 students in its first term."
+    }
+  ],
+  "hobbies": ["Table tennis", "Sketching"],
+  "render": {
+    "format": "docx",
+    "layout": "academic",
+    "header_variant": "standard",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["internships_only"]
+}

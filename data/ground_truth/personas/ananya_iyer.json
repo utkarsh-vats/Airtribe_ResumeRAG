@@ -1,0 +1,74 @@
+{
+  "id": "ananya_iyer",
+  "name": "Ananya Iyer",
+  "email": "ananya.iyer@example.com",
+  "phone": "+91 555-0109",
+  "location": "Bengaluru, India",
+  "headline": "Senior Backend Engineer (Python)",
+  "summary": "Backend engineer with 7 years of experience building payment and invoicing systems in Python. Comfortable owning a service end to end, from schema design to on-call.",
+  "skills_section": [
+    "Python", "FastAPI", "Django", "Django REST Framework", "PostgreSQL", "Redis", "Celery",
+    "Docker", "AWS", "pytest", "Git", "REST APIs"
+  ],
+  "experience": [
+    {
+      "title": "Senior Software Engineer, Backend",
+      "company": "Kaveri Commerce",
+      "employment_type": "full_time",
+      "start": "2022-08",
+      "end": "present",
+      "skills_used": ["Python", "FastAPI", "PostgreSQL", "Redis", "Docker", "AWS", "pytest"],
+      "bullets": [
+        "Own the order-management service in FastAPI, serving 2,500 requests per second with p99 latency under 120 ms.",
+        "Partitioned a 1.8 TB PostgreSQL orders table by month, cutting nightly vacuum time from 6 hours to 40 minutes.",
+        "Added Redis-backed rate limiting and idempotency keys after a duplicate-charge incident; repeat charges dropped to zero.",
+        "Moved 14 Python services from hand-managed EC2 hosts to Docker containers on AWS ECS with blue-green releases.",
+        "Raised pytest coverage on the payments module from 48% to 91% and made it a merge gate."
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Nimbus Ledger",
+      "employment_type": "full_time",
+      "start": "2019-11",
+      "end": "2022-07",
+      "skills_used": ["Django", "Django REST Framework", "REST APIs", "PostgreSQL", "Celery"],
+      "bullets": [
+        "Built REST APIs for invoice reconciliation with Django REST Framework, used by 300 small-business customers.",
+        "Moved PDF generation and bank-statement parsing onto Celery workers, keeping the web tier responsive during month-end peaks.",
+        "Designed PostgreSQL migrations for a multi-tenant schema serving 9,000 tenants without downtime.",
+        "Rewrote the Django admin for the finance operations team, cutting manual reconciliation time by 60%."
+      ]
+    },
+    {
+      "title": "Software Engineering Intern",
+      "company": "Tessellate Labs",
+      "employment_type": "internship",
+      "start": "2019-05",
+      "end": "2019-07",
+      "skills_used": ["Python", "Flask"],
+      "bullets": [
+        "Built an internal Flask tool for tagging support tickets, adopted by a 25-person support team.",
+        "Wrote Python scripts that de-duplicated 40,000 customer records.",
+        "Presented a latency dashboard prototype to the engineering leads at the end of the internship."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech",
+      "field": "Computer Science and Engineering",
+      "institution": "Coromandel Institute of Technology",
+      "start_year": 2015,
+      "end_year": 2019,
+      "grade": "8.6 CGPA"
+    }
+  ],
+  "hobbies": ["Bharatanatyam", "Competitive chess"],
+  "render": {
+    "format": "docx",
+    "layout": "modern",
+    "header_variant": "professional",
+    "date_format": "iso"
+  }
+}

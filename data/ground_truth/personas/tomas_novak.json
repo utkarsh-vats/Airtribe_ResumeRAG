@@ -1,0 +1,69 @@
+{
+  "id": "tomas_novak",
+  "name": "Tomas Novak",
+  "email": "tomas.novak@example.com",
+  "phone": "+420 555-0120",
+  "location": "Prague, Czech Republic",
+  "headline": "Infrastructure Engineer",
+  "summary": "Infrastructure engineer with 10 years running Linux estates for hosting, banking and the public sector. Strong on automation, monitoring and keeping older systems healthy.",
+  "skills_section": ["Linux", "Bash", "Ansible", "Nginx", "Docker", "Git", "Prometheus", "Grafana"],
+  "experience": [
+    {
+      "title": "Infrastructure Engineer",
+      "company": "Vltava Hosting",
+      "employment_type": "full_time",
+      "start": "2021-04",
+      "end": "present",
+      "skills_used": ["Linux", "Ansible", "Nginx", "Prometheus", "Grafana"],
+      "bullets": [
+        "Maintain 600 Linux servers across two data centres for a shared-hosting provider with 45,000 customers.",
+        "Rolled out Ansible playbooks for patching and hardening, cutting monthly maintenance windows from 8 hours to 2.",
+        "Tuned Nginx reverse proxies that handle 30,000 requests per second at peak.",
+        "Set up Prometheus and Grafana monitoring to replace a legacy Nagios installation."
+      ]
+    },
+    {
+      "title": "Linux System Administrator",
+      "company": "Moravia Bank",
+      "employment_type": "full_time",
+      "start": "2018-09",
+      "end": "2021-03",
+      "skills_used": ["Linux", "Bash", "Docker"],
+      "bullets": [
+        "Administered the Linux hosts behind internet banking, including quarterly disaster-recovery tests.",
+        "Automated user and certificate management with Bash scripts, saving 20 hours of manual work a month.",
+        "Piloted Docker for internal tools, the bank's first containerised workloads."
+      ]
+    },
+    {
+      "title": "Junior IT Administrator",
+      "company": "Brno City IT Services",
+      "employment_type": "full_time",
+      "start": "2016-11",
+      "end": "2018-08",
+      "skills_used": ["Linux", "Bash"],
+      "bullets": [
+        "Supported 900 municipal staff on Windows desktops and Linux file servers.",
+        "Wrote Bash backup scripts for the file servers and tested restores every month.",
+        "Documented the network and server inventory in the team wiki."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Diploma",
+      "field": "Information Technology",
+      "institution": "Brno Secondary School of Electrical Engineering",
+      "start_year": 2012,
+      "end_year": 2016,
+      "grade": "Excellent"
+    }
+  ],
+  "hobbies": ["Bouldering", "Restoring old radios"],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "employment",
+    "date_format": "numeric"
+  }
+}

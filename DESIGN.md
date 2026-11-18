@@ -122,12 +122,15 @@ path.
   location. Falls back to the filename stem (`resume_priya_sharma` → `Priya Sharma`).
 - **Education**: degree keywords (B.Tech, BSc, MSc, MBA, PhD, …) + institution + year from the
   `education` section.
-- **Skills**: matched against a **taxonomy with aliases** (`rag/taxonomy.py`). Each canonical
-  skill (`javascript`, `kubernetes`, `postgresql`) has aliases (`JS`, `k8s`, `Postgres`).
+- **Skills**: matched against a **taxonomy with aliases** (`rag/skills.py`). Each canonical
+  skill (`JavaScript`, `Kubernetes`, `PostgreSQL`) has aliases (`JS`, `k8s`, `Postgres`).
   Matching uses token boundaries that handle punctuation in names (`C++`, `C#`, `.NET`,
   `Node.js`), so **`Java` never matches `JavaScript`** and `Go` doesn't match `Google`.
-  Ambiguous short aliases (`Go`, `R`, `C`) only count inside the skills section or next to
-  language cues.
+  Skills that are also ordinary words (`Go`, `R`, `React`, `Spark`, `Excel`) are flagged
+  ambiguous. Their canonical name counts only in its exact case, while their safe aliases
+  (`Golang`, `Apache Spark`) count in any case. Mentions count only in skills sections,
+  bullets and project descriptions, never in hobbies, coursework, titles, company names or
+  institution names. The full contract is in `data/ground_truth/README.md`.
 - **Experience entries**: `{title, company, start, end, is_current, text}` for each role.
   **Multi-format date parsing** covers `Jan 2020`, `January 2020`, `01/2020`, `2020-01`,
   `2020`, and `Present` / `Current` / `Now`. Ranges use `-`, `–`, `—` or `to`.

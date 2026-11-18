@@ -1,0 +1,60 @@
+{
+  "id": "omar_haddad",
+  "name": "Omar Haddad",
+  "email": "omar.haddad@example.com",
+  "phone": "+962 555-0113",
+  "location": "Amman, Jordan",
+  "headline": "Senior PHP / Laravel Developer",
+  "summary": "PHP and Laravel developer with 6 years building marketplaces and billing systems. Currently exploring Python and Django in my own time.",
+  "skills_section": [
+    "PHP", "Laravel", "MySQL", "Redis", "JavaScript", "Vue.js", "Docker", "Git", "Python", "Django"
+  ],
+  "experience": [
+    {
+      "title": "Senior PHP Developer",
+      "company": "Souk Digital",
+      "employment_type": "full_time",
+      "start": "2022-06",
+      "end": "present",
+      "skills_used": ["PHP", "Laravel", "MySQL", "Redis", "Vue.js", "Docker"],
+      "bullets": [
+        "Lead a team of four maintaining a Laravel marketplace with 1.2M monthly visitors and 6,000 sellers.",
+        "Reduced checkout errors by 35% after moving cart state from MySQL sessions to Redis.",
+        "Rebuilt the seller dashboard as Vue.js components backed by Laravel endpoints.",
+        "Upgraded the codebase from PHP 7.4 to PHP 8.3 and introduced Docker-based staging environments."
+      ]
+    },
+    {
+      "title": "PHP Developer",
+      "company": "Petra Hosting",
+      "employment_type": "full_time",
+      "start": "2020-11",
+      "end": "2022-05",
+      "skills_used": ["PHP", "Laravel", "MySQL", "JavaScript"],
+      "bullets": [
+        "Built the customer billing portal in Laravel, handling renewals for 30,000 hosting accounts.",
+        "Wrote MySQL reports on churn and payment failures for the weekly management review.",
+        "Added JavaScript validation to the signup and payment forms, halving support tickets about failed orders.",
+        "Migrated legacy PHP cron jobs for domain renewals onto Laravel's scheduler."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Information Systems",
+      "institution": "Zarqa Valley University",
+      "start_year": 2016,
+      "end_year": 2020,
+      "grade": "Very Good"
+    }
+  ],
+  "hobbies": ["Hiking in Wadi Rum", "Oud"],
+  "render": {
+    "format": "pdf",
+    "layout": "sidebar",
+    "header_variant": "standard",
+    "date_format": "numeric"
+  },
+  "edge_cases": ["listed_never_used"]
+}
