@@ -109,8 +109,9 @@ English sense (for example "React quickly to…" at the start of a sentence, "Se
 ## Rendering variants
 
 `scripts/layouts.py` turns a persona into format-agnostic blocks (`scripts/resume_doc.py`);
-`scripts/render_txt.py` and `scripts/render_docx.py` draw them (PDF in step 3b). Regenerate
-with `python -m scripts.generate_resumes [--only <id>]`. Section detection and parsing in
+`scripts/render_txt.py`, `scripts/render_docx.py` and `scripts/render_pdf.py` draw them.
+Regenerate with `python -m scripts.generate_resumes [--only <id>]`; `--check` exits 1 if
+`data/resumes/` differs byte-for-byte from a fresh generation. Section detection and parsing in
 steps 5-6 parse against the contract below; `tests/test_generator.py` checks the rendered
 files against it and checks the layout table below against the code.
 
@@ -141,7 +142,7 @@ section) emits no heading at all.
 | Layout | Heading style | TXT underline | DOCX heading | Role header | Date separator | Ongoing | Skills | Section order |
 |---|---|---|---|---|---|---|---|---|
 | `classic` | caps | none | styled | stacked | en dash | Present | list | summary, experience, skills, education, coursework, projects, certifications, hobbies |
-| `modern` | title | none | styled | stacked | hyphen | Present | grouped | summary, skills, experience, projects, education, coursework, certifications, hobbies |
+| `modern` | title | none | styled | split | hyphen | Present | grouped | summary, skills, experience, projects, education, coursework, certifications, hobbies |
 | `compact` | caps + colon | none | bold | inline | en dash | Current | list | skills, summary, experience, education, coursework, projects, certifications, hobbies |
 | `sidebar` | title | none | styled | stacked | to | Present | list | [panel: skills, education, coursework], summary, experience, projects, certifications, hobbies |
 | `table-skills` | caps | none | styled | stacked | hyphen | Current | table | summary, skills, experience, education, coursework, projects, certifications, hobbies |
@@ -150,9 +151,12 @@ section) emits no heading at all.
 | `minimal` | title | - | bold | inline | to | Current | list | summary, experience, skills, education, coursework, projects, certifications, hobbies |
 
 - **TXT underline**: `=` or `-` means a row of that character, the same length as the heading,
-  on the next line; `none` means no underline (those layouts aren't used for TXT personas). Headings are preceded by one blank line.
+  on the next line; `none` means no underline (those layouts aren't used for TXT personas).
+  Headings are preceded by one blank line.
 - **DOCX heading**: *styled* uses Word's `Heading 1` style (the name uses `Title`); *bold* is a
-  plain paragraph with a bold run (16 pt for the name, 12 pt for headings).
+  plain paragraph with a bold run (16 pt for the name, 12 pt for headings). In PDF, *styled*
+  headings are Helvetica-Bold 12 pt and *bold* ones Helvetica-Bold 10.5 pt; the text is the
+  same in every format.
 - **Date separator**: en dash is `" – "` (U+2013 with spaces), hyphen is `" - "`, to is
   `" to "`. Education years use the same separator. **Ongoing** is the word that replaces
   the end date of a `present` role.
@@ -173,8 +177,12 @@ section) emits no heading at all.
   three separate lines inside the panel.
 - **Role header**: *stacked* is the title on one line, then `Company | <date range>` (DOCX:
   the title bold, the company line italic). *inline* is `Title | Company | <date range>` on
-  one line. Bullets follow: TXT `- ` (`minimal`: `* `), DOCX `List Bullet` paragraphs. Each
-  bullet is the persona text verbatim, one per line. Roles are separated by a blank line.
+  one line. *split* (`modern`) is `Title | Company` on the left with the date range
+  right-aligned on the same visual line: in PDF a two-cell borderless table, in DOCX a right
+  tab stop (TXT falls back to *stacked*). Bullets follow: TXT `- ` (`minimal`: `* `), DOCX
+  `List Bullet` paragraphs, PDF `•` (U+2022). Each bullet is the persona text verbatim. Roles
+  are separated by a blank line (TXT) or a small gap, and in PDF a role (header plus
+  bullets) is never split across pages.
 - **Skills**: *list* is one comma-separated line in persona order; *grouped* is one
   `Group: a, b, c` line per category; *table* is a real DOCX table (TXT: `Group | a, b, c`
   lines) with one `Group | skills` row per category and no header row. Groups appear in
@@ -197,6 +205,37 @@ section) emits no heading at all.
   section heading).
 - **DOCX metadata**: core properties are fixed (author and last-modified-by are the
   candidate's name; created, modified and last printed are 2026-11-01T00:00:00Z; revision 1).
+- **Page breaks**: a persona tagged `two_page` (`john_doe`) starts a new page before its
+  Education section, so page 2 holds Education, Projects and Certifications. Everyone else
+  fits on one page.
+- **PDF footer**: a document longer than one page gets `<Name> · Page N of M` (U+00B7
+  middle dot, Helvetica 8 pt, centred in the bottom margin) on every page. Single-page PDFs
+  have no footer.
+
+### What `fs_tools.read_file` extracts
+
+Steps 5-6 parse the text as extracted, which differs from the visual form in places:
+
+| Format | Extracted form |
+|---|---|
+| TXT | Exactly the file (UTF-8, LF line endings). |
+| DOCX | One line per paragraph; no bullet markers (`List Bullet` numbering isn't text). Table rows are `cell \| cell` lines at the table's position. A *split* role header is one line: `Title \| Company<TAB>date range`. Shaded panel paragraphs are ordinary lines. |
+| PDF | One line per visual line; long paragraphs and bullets wrap onto several lines, never mid-word (hyphenation is off). Bullet lines start with spaces and no glyph: reportlab writes `•` as WinAnsi code 0x7F, pypdf extracts DEL and `fs_tools` turns control characters into spaces. A *split* role header comes out as **two lines**: `Title \| Company`, then the date range (with a leading space). Pages are separated by `\n\f\n`; the footer is drawn last on each page, so it is that page's last line. |
+
+### Determinism
+
+Every file is byte-identical across runs and platforms (`tests/test_generator.py` compares a
+fresh generation with the committed files, so CI on Linux checks files generated on
+Windows). CPython's Windows build links zlib-ng (`zlib.ZLIB_VERSION` is `1.3.1.zlib-ng`), so
+no output may depend on compressed bytes:
+
+- **TXT**: plain UTF-8 text.
+- **DOCX**: the package python-docx saves is rewritten with the same entry order,
+  `ZIP_STORED` (no compression), a fixed 1980-01-01 entry timestamp and fixed host-system
+  and permission fields. CRC-32 is fully specified, so it doesn't vary between zlib builds.
+- **PDF**: reportlab invariant mode (creation and modification dates fixed at
+  2000-01-01, deterministic document ID), page compression off, fixed metadata,
+  written from memory so no file path is embedded.
 
 ## Known limitations
 

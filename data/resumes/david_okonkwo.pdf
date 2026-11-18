@@ -1,0 +1,324 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (David Okonkwo) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (David Okonkwo - Resume) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 5547
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (David Okonkwo) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Principal Cloud Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (david.okonkwo@example.com | +44 555-0119 | London, UK) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 707.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (SUMMARY) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 678.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Principal cloud engineer with 16 years in software and infrastructure, from Java development to running) Tj T* (regulated Kubernetes platforms on AWS for a major bank.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 653.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (EXPERIENCE) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 637.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Principal Cloud Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 623.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Meridian Bank Group | 2020 \226 Present) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 595.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Lead the nine-person cloud platform team that runs 70 EKS clusters for 1,400 engineers across retail and) Tj T* (corporate banking.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 568.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Designed the landing-zone Terraform used for 220 AWS accounts, with policy-as-code guardrails signed) Tj T* (off by the regulator.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 554.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Moved 300 services to GitOps with ArgoCD, cutting mean deployment lead time from 5 days to 3 hours.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 540.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Chair the Kubernetes architecture forum and set the bank's container security baseline.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 533.8661 cm
+Q
+q
+1 0 0 1 57.02362 520.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Lead DevOps Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 506.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Atlas Retail | 2015 \226 2019) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 478.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Moved the e-commerce platform from a co-located data centre to AWS with a zero-downtime cut-over) Tj T* (before peak season.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 464.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Introduced Terraform and Ansible, replacing 40 hand-built servers with reproducible environments.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 450.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built Jenkins pipelines and Docker images for 60 services, taking releases from monthly to daily.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 443.8661 cm
+Q
+q
+1 0 0 1 57.02362 430.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Java Developer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 416.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Okapi Systems | 2010 \226 2014) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 401.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Developed Java back-office modules for a telecoms billing product used by five operators.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 387.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Mapped billing entities with Hibernate and tuned the slowest overnight batch queries.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 373.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote JUnit regression suites and looked after the team's Linux build servers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 348.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (SKILLS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 332.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (AWS, Kubernetes, EKS, Terraform, ArgoCD, Docker, Jenkins, Ansible, Linux, Java) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 307.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (EDUCATION) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 291.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Eng. in Electrical and Electronic Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 277.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Lagoon City University, 2005 \226 2009 | Grade: Second Class Upper) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 252.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (CERTIFICATIONS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 236.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (AWS Certified Solutions Architect - Professional) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 222.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (HashiCorp Certified: Terraform Associate) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 197.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (INTERESTS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 181.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Highlife guitar, Coaching youth football) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000649 00000 n 
+0000000717 00000 n 
+0000001011 00000 n 
+0000001070 00000 n 
+trailer
+<<
+/ID 
+[<d690c229a561c57d7946c779684c66a1><d690c229a561c57d7946c779684c66a1>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+6668
+%%EOF

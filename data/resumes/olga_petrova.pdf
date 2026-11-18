@@ -1,0 +1,319 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (Olga Petrova) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Olga Petrova - Resume) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 5169
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Olga Petrova) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Senior Site Reliability Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (olga.petrova@example.com | +372 555-0118 | Tallinn, Estonia) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 707.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Profile) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 678.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Site reliability engineer with 9 years on telecom and logistics platforms. Returned to work in 2022 after a) Tj T* (two-year career break for family care.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 653.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Core Competencies) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 637.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F1 10 Tf 0 0 0 rg (DevOps & Tooling: Kubernetes, Terraform, Helm, Prometheus, Grafana, Linux, Ansible) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 622.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Cloud: AWS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 607.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Languages: Go, Bash) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 582.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Work History) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.02362 564.8661 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 2 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Senior Site Reliability Engineer) Tj /F1 10 Tf ( | Baltic Freightways) Tj T* ET
+Q
+Q
+q
+1 0 0 1 345.2598 2 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL 62.3785 0 Td (Mar 2022 - Present) Tj T* -62.3785 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 538.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Run 12 production Kubernetes clusters on AWS for a freight-booking platform with a 99.95% availability) Tj T* (target.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 511.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Rewrote the infrastructure as Terraform modules shared by six teams, removing 2,000 lines of) Tj T* (copy-pasted config.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 497.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Standardised deployments on Helm charts with automated canary analysis, halving failed releases.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 483.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built Prometheus SLO alerting and wrote a small Go exporter for queue depth on the booking pipeline.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 476.8661 cm
+Q
+q
+1 0 0 1 51.02362 461.8661 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 2 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Site Reliability Engineer) Tj /F1 10 Tf ( | Neva Telecom) Tj T* ET
+Q
+Q
+q
+1 0 0 1 345.2598 2 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL 56.7985 0 Td (Jun 2015 - Jan 2020) Tj T* -56.7985 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 448.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Automated provisioning for 800 Linux servers with Ansible, cutting new-site setup from a week to a day.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 434.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Led the move of the first workloads to AWS, writing the Terraform for networking and IAM.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 420.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built Grafana dashboards for the network operations centre covering 4 million subscribers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 406.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote Bash tooling for on-call runbooks and log collection.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 381.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Academic Background) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 365.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Sc. in Computer Systems Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 351.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Baltic State Technical University, 2011 - 2015 | Grade: Cum laude) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 326.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 15 TL /F2 12 Tf 0 0 0 rg (Licenses & Certifications) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 310.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (AWS Certified Solutions Architect - Associate) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 296.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Certified Kubernetes Administrator \(CKA\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 271.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Interests) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 255.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Cross-country skiing) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000649 00000 n 
+0000000717 00000 n 
+0000001009 00000 n 
+0000001068 00000 n 
+trailer
+<<
+/ID 
+[<d8b0df3049bb0363aafef3dda5f1121a><d8b0df3049bb0363aafef3dda5f1121a>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+6288
+%%EOF

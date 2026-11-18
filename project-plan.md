@@ -24,8 +24,10 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       `python -m scripts.generate_resumes`, the "Rendering variants" contract in
       `data/ground_truth/README.md`, a cp1252 encoding guard, and the 21 TXT/DOCX resumes in
       `data/resumes/`.
-- [ ] **3b. PDF renderer** – reportlab (standard Helvetica) for the 14 PDF personas, including
-      the two-page `john_doe`; byte-deterministic PDF and DOCX output.
+- [x] **3b. PDF renderer** – reportlab (standard Helvetica) for the 14 PDF personas, including
+      the two-page `john_doe`; byte-deterministic PDF and DOCX output; all 35 resumes in
+      `data/resumes/`, with `python -m scripts.generate_resumes --check` and a byte-identity
+      test.
 - [ ] **4. Job descriptions + qrels** – 6 JDs in `data/job_descriptions/` and
       `data/ground_truth/qrels.json` (hand-authored, reviewed, 0/1/2 per JD × candidate).
 - [ ] **5. Chunking** – section detection + section-aware and fixed-size chunkers + tests.

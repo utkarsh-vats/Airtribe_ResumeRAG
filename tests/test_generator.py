@@ -2,6 +2,7 @@
 
 import json
 import re
+import zipfile
 from pathlib import Path
 
 import pytest
@@ -11,7 +12,7 @@ from skill_mentions import mentioned_skills
 import fs_tools
 from scripts import generate_resumes
 from scripts.build_manifest import MANIFEST_PATH
-from scripts.generate_resumes import DATA_DIR, SUPPORTED, generate, render
+from scripts.generate_resumes import DATA_DIR, RESUME_DIR, compare, generate
 from scripts.layouts import (
     LAYOUT_FUNCTIONS,
     SKILL_GROUPS,
@@ -29,38 +30,46 @@ from scripts.persona_schema import (
     HEADER_VARIANTS,
     LAYOUTS,
     PERSONA_DIR,
+    ROOT,
     Persona,
     ResumeFormat,
     load_personas,
 )
-from scripts.render_txt import render_txt
-from scripts.resume_doc import Heading, RoleHeader, block_texts
+from scripts.render_docx import ZIP_TIMESTAMP
+from scripts.render_pdf import footer_text
+from scripts.resume_doc import Heading, RoleStyle, block_texts
 
 PERSONAS = load_personas()
 BY_ID = {p.id: p for p in PERSONAS}
-RENDERED = [p for p in PERSONAS if p.render.format in SUPPORTED]
+PDFS = [p for p in PERSONAS if p.render.format is ResumeFormat.PDF]
 README = (GROUND_TRUTH_DIR / "README.md").read_text(encoding="utf-8")
 JAVA = re.compile(r"(?<!\w)java(?!\w)", re.IGNORECASE)
+FOOTER = re.compile(r"^.+ · Page \d+ of \d+$")
 
-rendered_persona = pytest.mark.parametrize("persona", RENDERED, ids=[p.id for p in RENDERED])
 any_persona = pytest.mark.parametrize("persona", PERSONAS, ids=[p.id for p in PERSONAS])
+pdf_persona = pytest.mark.parametrize("persona", PDFS, ids=[p.id for p in PDFS])
 
 
-def read(root: Path, relpath: str) -> str:
-    """Extract a file's text with fs_tools.read_file, the loader the RAG pipeline uses."""
+def read(root: Path, relpath: str) -> dict:
+    """``read_file``'s data (content + metadata): the loader the RAG pipeline uses."""
     with pytest.MonkeyPatch.context() as mp:
         mp.setenv("WORKSPACE_ROOT", str(root))
         result = fs_tools.read_file(relpath)
     assert result["success"], result["error"]
-    return result["data"]["content"]
-
-
-def collapse(text: str) -> str:
-    return " ".join(text.split())
+    return result["data"]
 
 
 def lines(text: str) -> list[str]:
     return [line.strip() for line in text.splitlines()]
+
+
+def body(text: str) -> str:
+    """Extracted text without PDF footer lines and page separators."""
+    return "\n".join(line for line in lines(text) if not FOOTER.match(line))
+
+
+def collapse(text: str) -> str:
+    return " ".join(text.split())
 
 
 @pytest.fixture(scope="module")
@@ -70,9 +79,14 @@ def manifest() -> dict[str, dict]:
 
 
 @pytest.fixture(scope="module")
-def committed(manifest) -> dict[str, str]:
-    """Extracted text of every committed TXT/DOCX resume, keyed by persona id."""
-    return {p.id: read(DATA_DIR, manifest[p.id]["resume_path"]) for p in RENDERED}
+def extracted(manifest) -> dict[str, dict]:
+    """``read_file`` data for every committed resume, keyed by persona id."""
+    return {p.id: read(DATA_DIR, manifest[p.id]["resume_path"]) for p in PERSONAS}
+
+
+@pytest.fixture(scope="module")
+def committed(extracted) -> dict[str, str]:
+    return {pid: data["content"] for pid, data in extracted.items()}
 
 
 @pytest.fixture(scope="module")
@@ -99,7 +113,7 @@ def _strings(value):
 
 @any_persona
 def test_persona_text_encodes_in_cp1252(persona: Persona):
-    # reportlab's standard Helvetica (step 3b) can only show cp1252 characters.
+    # reportlab's standard Helvetica can only show cp1252 characters.
     data = json.loads((PERSONA_DIR / f"{persona.id}.json").read_text(encoding="utf-8"))
     bad = []
     for text in [*_strings(data), *block_texts(build(persona))]:
@@ -151,7 +165,7 @@ def test_readme_layout_table_matches_code():
 def test_readme_lists_every_heading_string():
     for variant in HEADER_VARIANTS.values():
         for heading in variant.values():
-            assert f"| {heading} |" in README or f" {heading} |" in README, heading
+            assert f" {heading} |" in README, heading
 
 
 def test_heading_styles():
@@ -201,10 +215,16 @@ def test_blocks_carry_every_bullet_verbatim(persona: Persona):
         assert project.description in texts
 
 
-# --- Committed files ----------------------------------------------------------------------
+def test_name_is_the_first_block():
+    for persona in PERSONAS:
+        first = build(persona)[0]
+        assert isinstance(first, Heading) and first.level == 0 and first.text == persona.name
 
 
-@rendered_persona
+# --- Committed files: round trip through fs_tools.read_file --------------------------------
+
+
+@any_persona
 def test_file_exists_at_manifest_path(persona: Persona, manifest):
     relpath = manifest[persona.id]["resume_path"]
     path = DATA_DIR / relpath
@@ -212,21 +232,21 @@ def test_file_exists_at_manifest_path(persona: Persona, manifest):
     assert path.suffix == f".{persona.render.format.value}"
 
 
-def test_resume_dir_holds_only_generated_files(manifest):
-    expected = {Path(manifest[p.id]["resume_path"]).name for p in RENDERED}
-    actual = {p.name for p in (DATA_DIR / "resumes").iterdir() if p.name != ".gitkeep"}
-    assert actual == expected
+def test_committed_resumes_are_byte_identical_to_a_fresh_generation(two_runs):
+    # The --check logic. Committed files come from Windows and CI regenerates on Linux, so
+    # this is the cross-platform determinism check.
+    assert compare(two_runs[0], RESUME_DIR) == []
 
 
-@rendered_persona
-def test_committed_file_is_up_to_date(persona: Persona, two_runs, committed):
-    fresh = read(two_runs[0], f"{persona.id}.{persona.render.format.value}")
-    assert committed[persona.id] == fresh, "stale; run: python -m scripts.generate_resumes"
+@any_persona
+def test_generation_is_byte_deterministic(persona: Persona, two_runs):
+    name = f"{persona.id}.{persona.render.format.value}"
+    assert (two_runs[0] / name).read_bytes() == (two_runs[1] / name).read_bytes()
 
 
-@rendered_persona
+@any_persona
 def test_extracted_text_has_every_rendered_field(persona: Persona, committed):
-    text = committed[persona.id]
+    text = body(committed[persona.id])
     flat = collapse(text)
     assert persona.name in flat
     assert collapse(persona.summary) in flat
@@ -244,41 +264,88 @@ def test_extracted_text_has_every_rendered_field(persona: Persona, committed):
 
 
 def test_no_skills_section_persona_has_no_skills_heading(committed):
-    for persona in RENDERED:
-        if "no_skills_section" not in persona.edge_cases:
-            continue
-        every_skills_heading = {
-            form
-            for variant in HEADER_VARIANTS.values()
-            for base in (variant["skills"], variant["skills"].upper())
-            for form in (base, f"{base}:")
-        }
+    every_skills_heading = {
+        form
+        for variant in HEADER_VARIANTS.values()
+        for base in (variant["skills"], variant["skills"].upper())
+        for form in (base, f"{base}:")
+    }
+    tagged = [p for p in PERSONAS if "no_skills_section" in p.edge_cases]
+    assert tagged
+    for persona in tagged:
         assert set(lines(committed[persona.id])).isdisjoint(every_skills_heading)
         assert "skills" not in section_order(persona)
-        break
-    else:
-        pytest.fail("no rendered persona is tagged no_skills_section")
 
 
 def test_js_heavy_persona_has_no_java_token(committed):
     assert not JAVA.search(committed["emily_clarke"])
 
 
-def test_peter_hughes_traps_in_rendered_text():
-    # peter_hughes is a PDF persona (step 3b); check his layout's text through the TXT
-    # renderer so the trap guards already hold for the blocks the PDF will draw.
+def test_peter_hughes_traps_in_his_pdf(committed):
     peter = BY_ID["peter_hughes"]
-    blocks = build(peter)
-    text = render_txt(blocks)
-    role_lines = {f"{b.company} | {b.date_range}" for b in blocks if isinstance(b, RoleHeader)} | {
-        b.title for b in blocks if isinstance(b, RoleHeader)
-    }
-    spark_lines = [line for line in lines(text) if "Spark" in line or "spark" in line.lower()]
-    assert spark_lines and all(line in role_lines for line in spark_lines), spark_lines
-    hobbies = heading_text("hobbies", peter)
-    before, _, after = text.partition(f"\n{hobbies}\n")
+    assert peter.render.format is ResumeFormat.PDF
+    text = body(committed["peter_hughes"])
+    role_lines = {f"{r.company} | {date_range(r, peter)}" for r in peter.experience}
+    spark_lines = [line for line in lines(text) if "spark" in line.lower()]
+    assert spark_lines and set(spark_lines) <= role_lines, spark_lines
+    before, _, after = text.partition(f"\n{heading_text('hobbies', peter)}\n")
     assert after, "no hobbies section"
     assert "python" not in before.lower() and "Python" in after
+    assert "airflow" in text and "Airflow" not in text and "AIRFLOW" not in text
+    assert not re.search(r"(?<!\w)ml(?!\w)", text, re.IGNORECASE)
+
+
+# --- PDF ----------------------------------------------------------------------------------
+
+
+@pdf_persona
+def test_pdf_page_count_and_footers(persona: Persona, extracted):
+    data = extracted[persona.id]
+    footers = [line for line in lines(data["content"]) if FOOTER.match(line)]
+    if persona.id == "john_doe":
+        assert data["metadata"]["page_count"] == 2
+        assert footers == [footer_text("John Doe", 1, 2), footer_text("John Doe", 2, 2)]
+        # Milestone 1 fact: page 2 holds education, projects and certifications.
+        page_two = data["content"].split("\f", 1)[1]
+        for section in ("education", "projects", "certifications"):
+            assert heading_text(section, persona) in lines(page_two)
+    else:
+        assert data["metadata"]["page_count"] == 1
+        assert footers == []
+
+
+@pdf_persona
+def test_pdf_has_no_timestamp_path_or_compression(persona: Persona, manifest):
+    raw = (DATA_DIR / manifest[persona.id]["resume_path"]).read_bytes()
+    dates = re.findall(rb"/(?:CreationDate|ModDate) \(D:(\d{14})", raw)
+    assert dates and set(dates) == {b"20000101000000"}
+    assert b"/FlateDecode" not in raw
+    for path in (ROOT, ROOT.parent):
+        for form in (str(path), path.as_posix()):
+            assert form.encode() not in raw
+
+
+def test_pdf_bullets_extract_as_indented_lines(committed):
+    # reportlab draws U+2022 as WinAnsi code 0x7F; pypdf extracts that as DEL and
+    # fs_tools replaces control characters with spaces, so no bullet glyph survives.
+    text = committed["john_doe"]
+    assert "•" not in text
+    bullet = BY_ID["john_doe"].experience[0].bullets[0]
+    line = next(line for line in text.splitlines() if line.strip().startswith(bullet[:30]))
+    assert line.startswith(" ") and line.strip() == bullet
+
+
+def test_modern_pdf_dates_extract_on_their_own_line(committed):
+    # The right-aligned date cell extracts after the title | company cell, on the next line.
+    wei = BY_ID["wei_zhang"]
+    text_lines = lines(committed["wei_zhang"])
+    for role in wei.experience:
+        at = text_lines.index(f"{role.title} | {role.company}")
+        assert text_lines[at + 1] == date_range(role, wei)
+    assert STYLES["modern"].role_style is RoleStyle.SPLIT
+
+
+# --- DOCX ---------------------------------------------------------------------------------
 
 
 @pytest.mark.parametrize("pid", ["elena_rodriguez", "grace_kim"])
@@ -306,17 +373,26 @@ def test_docx_extraction_keeps_tables_in_document_order(committed):
         assert text_lines[skills_at + 1 : next_at] == rows, pid
 
 
-def test_docx_core_properties_fixed(manifest):
-    document = Document(str(DATA_DIR / manifest["elena_rodriguez"]["resume_path"]))
-    props = document.core_properties
-    assert props.author == "Elena Rodriguez"
-    assert props.created.isoformat().startswith("2026-11-01T00:00:00")
-    assert props.modified == props.created
-    assert props.revision == 1
+def test_docx_packages_are_stored_with_fixed_metadata(manifest):
+    for persona in PERSONAS:
+        if persona.render.format is not ResumeFormat.DOCX:
+            continue
+        path = DATA_DIR / manifest[persona.id]["resume_path"]
+        with zipfile.ZipFile(path) as package:
+            assert package.testzip() is None
+            for info in package.infolist():
+                assert info.compress_type == zipfile.ZIP_STORED, info.filename
+                assert info.date_time == ZIP_TIMESTAMP, info.filename
+                assert (info.create_system, info.external_attr) == (0, 0o600 << 16), info.filename
+        document = Document(str(path))  # reopens cleanly
+        props = document.core_properties
+        assert props.author == persona.name
+        assert props.created.isoformat().startswith("2026-11-01T00:00:00")
+        assert props.modified == props.created and props.revision == 1
 
 
 def test_styled_headings_only_where_layout_says(manifest):
-    for persona in RENDERED:
+    for persona in PERSONAS:
         if persona.render.format is not ResumeFormat.DOCX:
             continue
         document = Document(str(DATA_DIR / manifest[persona.id]["resume_path"]))
@@ -325,28 +401,27 @@ def test_styled_headings_only_where_layout_says(manifest):
         assert headings == (expected_headings(persona) if styled else []), persona.id
 
 
-# --- Determinism and CLI ------------------------------------------------------------------
+def test_docx_split_role_header_uses_a_right_tab(committed):
+    persona = BY_ID["ananya_iyer"]
+    assert persona.render.layout == "modern"
+    role = persona.experience[0]
+    assert f"{role.title} | {role.company}\t{date_range(role, persona)}" in committed[persona.id]
 
 
-@rendered_persona
-def test_generation_is_deterministic(persona: Persona, two_runs):
-    name = f"{persona.id}.{persona.render.format.value}"
-    first, second = (root / name for root in two_runs)
-    assert read(two_runs[0], name) == read(two_runs[1], name)
-    if persona.render.format is ResumeFormat.TXT:
-        assert first.read_bytes() == second.read_bytes()
-        assert b"\r" not in first.read_bytes()
+# --- TXT and CLI --------------------------------------------------------------------------
 
 
-def test_cli_only_renders_one_persona(tmp_path: Path, capsys):
-    assert generate_resumes.main(["--only", "zoe_turner", "--out-dir", str(tmp_path)]) == 0
-    assert [p.name for p in tmp_path.iterdir()] == ["zoe_turner.txt"]
+def test_txt_files_use_lf_only(manifest):
+    for persona in PERSONAS:
+        if persona.render.format is ResumeFormat.TXT:
+            raw = (DATA_DIR / manifest[persona.id]["resume_path"]).read_bytes()
+            assert b"\r" not in raw and raw.endswith(b"\n")
+            raw.decode("utf-8")
 
 
-def test_cli_skips_pdf_with_message(tmp_path: Path, capsys):
+def test_cli_only_renders_one_persona(tmp_path: Path):
     assert generate_resumes.main(["--only", "john_doe", "--out-dir", str(tmp_path)]) == 0
-    assert list(tmp_path.iterdir()) == []
-    assert "step 3b" in capsys.readouterr().err
+    assert [p.name for p in tmp_path.iterdir()] == ["john_doe.pdf"]
 
 
 def test_cli_rejects_unknown_id(tmp_path: Path):
@@ -354,12 +429,23 @@ def test_cli_rejects_unknown_id(tmp_path: Path):
         generate_resumes.main(["--only", "nobody", "--out-dir", str(tmp_path)])
 
 
-def test_render_refuses_pdf(tmp_path: Path):
-    with pytest.raises(ValueError, match="3b"):
-        render(BY_ID["john_doe"], tmp_path)
+def test_cli_check_reports_missing_extra_and_changed(tmp_path: Path, two_runs, capsys):
+    out = tmp_path / "resumes"
+    out.mkdir()
+    for source in two_runs[0].iterdir():
+        (out / source.name).write_bytes(source.read_bytes())
+    assert generate_resumes.main(["--check", "--out-dir", str(out)]) == 0
+    (out / "zoe_turner.txt").unlink()
+    (out / "notes.md").write_text("stray", encoding="utf-8")
+    raw = (out / "john_doe.pdf").read_bytes()
+    (out / "john_doe.pdf").write_bytes(raw.replace(b"John Doe", b"Jane Doe", 1))
+    capsys.readouterr()
+    assert generate_resumes.main(["--check", "--out-dir", str(out)]) == 1
+    err = capsys.readouterr().err
+    for problem in ("differs: john_doe.pdf", "extra: notes.md", "missing: zoe_turner.txt"):
+        assert problem in err
 
 
-def test_name_is_the_first_block():
-    for persona in PERSONAS:
-        first = build(persona)[0]
-        assert isinstance(first, Heading) and first.level == 0 and first.text == persona.name
+def test_cli_check_refuses_only(tmp_path: Path):
+    with pytest.raises(SystemExit):
+        generate_resumes.main(["--check", "--only", "john_doe", "--out-dir", str(tmp_path)])

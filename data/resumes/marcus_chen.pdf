@@ -1,0 +1,236 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
+endobj
+6 0 obj
+<<
+/Author (Marcus Chen) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Marcus Chen - Resume) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Length 3542
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Marcus Chen) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (DevOps / Platform Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (marcus.chen@example.com | +1 555-0103 | Seattle, WA, USA) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 711.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (CORE COMPETENCIES:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 698.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Go, Bash, Kubernetes, Helm, ArgoCD, EKS, Terraform, Linux, Nginx, Prometheus, Grafana) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 677.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (PROFILE:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 651.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Platform engineer with 7 years of experience running Kubernetes at scale and writing infrastructure tooling in) Tj T* (Go.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 630.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (WORK HISTORY:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 617.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Senior Platform Engineer) Tj /F1 10 Tf ( | Cascade Cloudworks | 04/2022 \226 Current) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 602.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Operated 40+ Kubernetes clusters on EKS serving 600 microservices.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 588.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote a Go Kubernetes operator that automates certificate rotation, eliminating 95% of manual tickets.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 574.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Introduced GitOps with ArgoCD and Helm for all production deployments.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 567.8661 cm
+Q
+q
+1 0 0 1 57.02362 554.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (DevOps Engineer) Tj /F1 10 Tf ( | Rainier Media | 06/2019 \226 03/2022) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 539.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Migrated on-prem virtual machines to AWS using reusable Terraform modules.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 525.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built Prometheus and Grafana alerting, cutting MTTR from 2 hours to 25 minutes.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 504.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (ACADEMIC BACKGROUND:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 491.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.S. in Computer Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 477.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Puget Sound Tech, 2015 \226 2019 | Grade: GPA 3.4/4.0) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 456.8661 cm
+q
+BT 1 0 0 1 0 2.5 Tm 13 TL /F2 10.5 Tf 0 0 0 rg (LICENSES & CERTIFICATIONS:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 443.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Certified Kubernetes Administrator \(CKA\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 422.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (INTERESTS:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 409.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Rock climbing) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000524 00000 n 
+0000000592 00000 n 
+0000000882 00000 n 
+0000000941 00000 n 
+trailer
+<<
+/ID 
+[<a8441b07389ece0768d619370f450cbc><a8441b07389ece0768d619370f450cbc>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
+startxref
+4534
+%%EOF

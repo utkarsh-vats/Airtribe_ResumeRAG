@@ -1,0 +1,302 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (Priya Sharma) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Priya Sharma - Resume) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 4324
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Priya Sharma) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Data Scientist) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (priya.sharma@example.com | +91 555-0102 | Bengaluru, India) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 707.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Professional Summary) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 678.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Data scientist with 5 years of experience in demand forecasting, experimentation and customer analytics for) Tj T* (retail and fintech.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 653.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Technical Skills) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 637.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Languages: Python, SQL) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 622.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Data: pandas, Airflow, Tableau, Jupyter) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 607.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F1 10 Tf 0 0 0 rg (AI & Modelling: scikit-learn, XGBoost, statsmodels) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 592.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Practices: A/B Testing) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 567.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Professional Experience) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.02362 549.8661 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 2 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Data Scientist) Tj /F1 10 Tf ( | Monsoon Retail) Tj T* ET
+Q
+Q
+q
+1 0 0 1 345.2598 2 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL 64.0385 0 Td (Apr 2023 - Present) Tj T* -64.0385 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 536.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built XGBoost demand-forecasting models that reduced stock-outs by 18% across 300 stores.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 522.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Designed and analysed 25+ A/B tests on the checkout funnel.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 508.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Productionised feature pipelines with Airflow.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 501.8661 cm
+Q
+q
+1 0 0 1 51.02362 486.8661 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 2 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Associate Data Scientist) Tj /F1 10 Tf ( | Ganga Fintech) Tj T* ET
+Q
+Q
+q
+1 0 0 1 345.2598 2 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL 59.0385 0 Td (Jul 2021 - Mar 2023) Tj T* -59.0385 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 473.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Developed a credit-risk scorecard with scikit-learn using logistic regression and gradient boosting.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 459.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Cleaned five years of loan-application data with pandas.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 445.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Automated weekly KPI reporting with Jupyter notebooks and Tableau.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 420.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Education) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 404.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (M.Sc. in Statistics) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 390.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Deccan Institute of Science, 2019 - 2021 | Grade: First Class) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 375.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Sc. in Mathematics) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 361.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Mysore Arts and Science College, 2016 - 2019 | Grade: 8.7 CGPA) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 336.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Hobbies) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 320.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Carnatic music, Trail running) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000649 00000 n 
+0000000717 00000 n 
+0000001009 00000 n 
+0000001068 00000 n 
+trailer
+<<
+/ID 
+[<e32b63d31b68442ad3bfbe030bf8ec38><e32b63d31b68442ad3bfbe030bf8ec38>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+5443
+%%EOF

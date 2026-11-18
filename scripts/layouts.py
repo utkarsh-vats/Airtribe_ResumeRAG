@@ -16,6 +16,7 @@ from scripts.resume_doc import (
     Block,
     BulletList,
     Heading,
+    PageBreak,
     Panel,
     Paragraph,
     RoleHeader,
@@ -99,7 +100,7 @@ STYLES: dict[str, LayoutStyle] = {
         styled_headings=True,
         separator=" - ",
         ongoing="Present",
-        role_style=RoleStyle.STACKED,
+        role_style=RoleStyle.SPLIT,
         bullet="-",
         skills="grouped",
         sections=(
@@ -399,6 +400,8 @@ def build(persona: Persona) -> list[Block]:
         blocks.append(Paragraph(f"{persona.email} | {persona.phone} | {persona.location}"))
     for section in style.sections:
         if section in present:
+            if section == "education" and "two_page" in persona.edge_cases:
+                blocks.append(PageBreak())  # page 2 holds education onwards (Milestone 1 fact)
             blocks += _section(section, persona, style)
     return blocks
 

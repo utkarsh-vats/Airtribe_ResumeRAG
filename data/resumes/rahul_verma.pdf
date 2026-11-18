@@ -1,0 +1,302 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
+endobj
+6 0 obj
+<<
+/Author (Rahul Verma) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Rahul Verma - Resume) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Length 5759
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Rahul Verma) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Lead Java Backend Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (rahul.verma@example.com | +91 555-0126 | Hyderabad, India) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 711.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (SKILLS:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 685.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Java, Spring Boot, Spring Cloud, Microservices, Kafka, Hibernate, PostgreSQL, MySQL, Docker,) Tj T* (Kubernetes, JUnit, Maven) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 664.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (SUMMARY:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 638.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Backend engineer with 9 years building high-volume Java services for payments, insurance and telecoms. I) Tj T* (design for failure first: idempotency, back-pressure and clear ownership between services.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 617.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (EXPERIENCE:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 604.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Lead Software Engineer) Tj /F1 10 Tf ( | Charminar Payments | Apr 2022 \226 Current) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 576.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Lead a team of eight building the UPI settlement platform: 14 Spring Boot microservices processing 3) Tj T* (million transactions a day.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 562.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Designed the Kafka event backbone with exactly-once settlement, removing nightly reconciliation breaks.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 548.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Moved the services onto Kubernetes with autoscaling, cutting peak-hour latency from 900 ms to 180 ms.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 534.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Partitioned the PostgreSQL ledger by month and brought month-end reporting from hours to minutes.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 520.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Upgraded the codebase from Java 11 to Java 21 and adopted virtual threads for the I/O-heavy services.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 513.8661 cm
+Q
+q
+1 0 0 1 57.02362 500.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Senior Software Engineer) Tj /F1 10 Tf ( | Godavari Insurance Tech | Feb 2019 \226 Mar 2022) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 472.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Broke the policy-administration monolith into Spring Cloud microservices with service discovery and circuit) Tj T* (breakers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 458.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built the premium-calculation service in Spring Boot, serving 200 partner brokers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 444.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Tuned MySQL indexes and connection pools, halving p95 response times on quote APIs.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 430.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Containerised all services with Docker for the move to a shared platform.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 423.8661 cm
+Q
+q
+1 0 0 1 57.02362 410.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Software Engineer) Tj /F1 10 Tf ( | Deccan Telecom Solutions | Jul 2017 \226 Jan 2019) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 395.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built Java modules for a prepaid-recharge platform used by 12 million subscribers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 381.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Mapped the subscriber and tariff model with Hibernate and removed N+1 queries from the hot paths.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 367.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote JUnit suites and Maven build profiles that let the team release weekly instead of monthly.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 346.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (EDUCATION:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 333.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Tech in Computer Science and Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 319.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Krishna Valley Institute of Technology, 2013 \226 2017 | Grade: 8.4 CGPA) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 298.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (CERTIFICATIONS:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 285.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Oracle Certified Professional: Java SE 17 Developer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 264.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (INTERESTS:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 251.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Badminton, Hindustani classical music) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000524 00000 n 
+0000000592 00000 n 
+0000000882 00000 n 
+0000000941 00000 n 
+trailer
+<<
+/ID 
+[<28222eba0ebad7a01348ebe4e87886de><28222eba0ebad7a01348ebe4e87886de>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
+startxref
+6751
+%%EOF

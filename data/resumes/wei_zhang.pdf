@@ -1,0 +1,338 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (Wei Zhang) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Wei Zhang - Resume) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 5455
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Wei Zhang) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Machine Learning Engineer \(Computer Vision\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (wei.zhang@example.com | +65 555-0114 | Singapore) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 707.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Professional Summary) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 678.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (ML engineer focused on computer vision for robotics and logistics, from data collection and labelling to) Tj T* (models running on edge devices.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 653.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Technical Skills) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 637.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Languages: Python) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 622.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F1 10 Tf 0 0 0 rg (AI & Modelling: PyTorch, Computer Vision, Deep Learning, ONNX) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 607.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Backend: FastAPI) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 592.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F1 10 Tf 0 0 0 rg (DevOps & Tooling: Docker, Git) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 577.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Data: NumPy) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 562.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Databases: MongoDB) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 537.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Professional Experience) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.02362 519.8661 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 2 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Machine Learning Engineer) Tj /F1 10 Tf ( | Lumen Robotics) Tj T* ET
+Q
+Q
+q
+1 0 0 1 345.2598 2 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL 67.9285 0 Td (2023-03 - Present) Tj T* -67.9285 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 493.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Train and ship PyTorch computer vision models for warehouse robots, lifting pick accuracy from 91% to) Tj T* (97.5%.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 479.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Exported models to ONNX and cut on-device inference time from 80 ms to 23 ms on edge GPUs.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 452.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Built the FastAPI model-serving gateway, with Docker images rolled out to 400 robots through staged) Tj T* (updates.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 438.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Set up a Python evaluation harness that replays 2 million labelled frames before every release.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 431.8661 cm
+Q
+q
+1 0 0 1 51.02362 416.8661 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 2 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Computer Vision Engineer) Tj /F1 10 Tf ( | Harbor Eye Analytics) Tj T* ET
+Q
+Q
+q
+1 0 0 1 345.2598 2 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL 65.6985 0 Td (2020-10 - 2023-02) Tj T* -65.6985 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 390.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Developed PyTorch computer vision models that count shipping containers from port cameras, replacing) Tj T* (manual tallies at three terminals.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 376.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote NumPy pre-processing for 4K video streams, doubling throughput per GPU.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 362.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Stored detections and audit trails in MongoDB for the customer-facing reporting tool.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 348.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Curated a 120,000-image dataset with a two-person annotation team.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 323.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Selected Projects) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 307.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (open-pallet) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 293.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Open-source PyTorch dataset loaders and baselines for pallet and parcel detection.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 268.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Education) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 252.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (M.Sc. in Artificial Intelligence) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 238.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Straits Institute of Technology, 2018 - 2020 | Grade: Distinction) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 223.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Eng. in Computer Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 209.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Jiangnan University of Science and Technology, 2014 - 2018 | Grade: GPA 3.7/4.0) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000649 00000 n 
+0000000717 00000 n 
+0000001003 00000 n 
+0000001062 00000 n 
+trailer
+<<
+/ID 
+[<0d30acfebfd573726e2715a01dadab87><0d30acfebfd573726e2715a01dadab87>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+6568
+%%EOF

@@ -1,0 +1,321 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (Fatima Al-Sayed) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Fatima Al-Sayed - Resume) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 5256
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Fatima Al-Sayed) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Research Engineer, NLP) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (fatima.alsayed@example.com | +971 555-0115 | Dubai, UAE) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 707.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Academic Background:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 691.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (PhD in Computer Science) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 677.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Gulf University of Science and Technology, 2018 to 2022) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 662.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (M.Sc. in Computer Science) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 648.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Emirates Institute of Science, 2016 to 2018 | Grade: GPA 3.9/4.0) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 633.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Sc. in Computer Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 619.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Nile Valley University, 2012 to 2016 | Grade: Excellent with Honours) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 594.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Profile:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 565.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (NLP researcher turned engineer. PhD on low-resource Arabic dialects; now building and evaluating large) Tj T* (language models for production use.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 540.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Key Projects:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 524.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Dialect-ID benchmark) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 497.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Open benchmark and baseline models for Arabic dialect identification, published on Hugging Face with) Tj T* (Python evaluation scripts.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 472.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Work History:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 456.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Research Engineer, NLP) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 442.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Qalam AI | May 2024 to present) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 414.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Fine-tune and evaluate Arabic LLMs with PyTorch and Hugging Face, improving dialect) Tj T* (question-answering accuracy by 11 points.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 400.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built a Python evaluation suite covering 14 Arabic dialects that is now the team's release gate.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 386.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Cut fine-tuning cost by 40% by moving to LoRA adapters and mixed-precision training.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 372.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Containerised training jobs with Docker so experiments reproduce across the shared GPU cluster.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 365.8661 cm
+Q
+q
+1 0 0 1 57.02362 352.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Applied Scientist) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 338.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Mirage Language Labs | Oct 2022 to Apr 2024) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 323.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built named-entity recognition models in PyTorch for legal contracts in Arabic and English.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 309.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote the annotation guidelines for a 60,000-sentence NLP corpus produced with three external vendors.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 295.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Shipped a Python service that redacts personal data from contracts, processing 8,000 documents a day.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 270.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Core Competencies:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 254.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Languages: Python) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 226.8661 cm
+q
+BT 1 0 0 1 0 16 Tm 13 TL /F1 10 Tf 0 0 0 rg (AI & Modelling: PyTorch, Hugging Face, Natural Language Processing, Large Language Models, Machine) Tj T* (Learning) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 211.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F1 10 Tf 0 0 0 rg (DevOps & Tooling: Docker, Git) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 186.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Interests:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 170.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Calligraphy, Desert running) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000649 00000 n 
+0000000717 00000 n 
+0000001015 00000 n 
+0000001074 00000 n 
+trailer
+<<
+/ID 
+[<53c93ef8957bc24d5310b9aee6dfca11><53c93ef8957bc24d5310b9aee6dfca11>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+6381
+%%EOF

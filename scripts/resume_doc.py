@@ -12,6 +12,9 @@ from enum import StrEnum
 class RoleStyle(StrEnum):
     STACKED = "stacked"  # title on one line; company and dates on the next
     INLINE = "inline"  # title | company | dates on one line
+    # title | company on the left, dates right-aligned on the same line (PDF table, DOCX right
+    # tab stop); TXT has no right alignment and falls back to STACKED
+    SPLIT = "split"
 
 
 @dataclass(frozen=True)
@@ -56,13 +59,18 @@ class Spacer:
 
 
 @dataclass(frozen=True)
+class PageBreak:
+    """Start a new page (PDF and DOCX; TXT ignores it)."""
+
+
+@dataclass(frozen=True)
 class Panel:
     """A shaded / boxed group (sidebar layout). Content order stays single-column."""
 
     blocks: tuple[Block, ...]
 
 
-type Block = Heading | Paragraph | BulletList | RoleHeader | Table | Spacer | Panel
+type Block = Heading | Paragraph | BulletList | RoleHeader | Table | Spacer | PageBreak | Panel
 
 
 def block_texts(blocks: list[Block] | tuple[Block, ...]) -> list[str]:

@@ -1,0 +1,350 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 10 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 9 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/Contents 11 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 9 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+7 0 obj
+<<
+/PageMode /UseNone /Pages 9 0 R /Type /Catalog
+>>
+endobj
+8 0 obj
+<<
+/Author (John Doe) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (John Doe - Resume) /Trapped /False
+>>
+endobj
+9 0 obj
+<<
+/Count 2 /Kids [ 5 0 R 6 0 R ] /Type /Pages
+>>
+endobj
+10 0 obj
+<<
+/Length 3904
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (John Doe) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Senior Backend Python Developer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (john.doe@example.com | +1 555-0101 | Austin, TX, USA) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 707.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (SUMMARY) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 678.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Senior backend engineer with 8+ years of experience building Python services and APIs. Specialises in) Tj T* (Python web frameworks, PostgreSQL performance tuning and event-driven architectures.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 653.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (EXPERIENCE) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 637.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Senior Backend Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 623.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Lonestar Payments | 2023 \226 Present) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 608.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Led migration of a monolithic Django app to 12 FastAPI microservices, cutting p95 latency by 40%.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 594.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Designed an idempotent payment-webhook pipeline on Celery and Redis processing 3M events per day.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 580.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Mentored 4 engineers and introduced mypy type checking across all Python repositories.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 573.8661 cm
+Q
+q
+1 0 0 1 57.02362 560.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Backend Developer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 546.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Bluebonnet Health | 2020 \226 2023) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 531.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built HIPAA-compliant REST APIs with Django REST Framework.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 517.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Optimised PostgreSQL queries and indexes, reducing report generation from 9 minutes to 45 seconds.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 503.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Automated container deployments with Docker and GitHub Actions.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 496.8661 cm
+Q
+q
+1 0 0 1 57.02362 483.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Junior Software Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 469.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Prairie Logistics | 2018 \226 2020) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 454.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote Python ETL scripts consolidating shipment data from 5 carriers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 440.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Maintained internal Flask dashboards for the operations team.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 415.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (SKILLS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 386.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Python, SQL, Bash, Django, FastAPI, Flask, Celery, PostgreSQL, Redis, Docker, AWS Lambda, GitHub) Tj T* (Actions) Tj T* ET
+Q
+Q
+q
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 256.7218 25.51181 Tm (John Doe \267 Page 1 of 2) Tj T* ET
+Q
+ 
+endstream
+endobj
+11 0 obj
+<<
+/Length 1450
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 769.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (EDUCATION) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 753.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.S. in Computer Science) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 739.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Hill Country University, 2014 \226 2018 | Grade: GPA 3.6/4.0) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 714.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (PROJECTS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 698.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (django-audit-lite) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 684.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Maintainer of an open-source Python package for Django model change history.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 669.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Async Python in Production) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 655.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Talk given at the Austin Python Meetup on running asyncio services.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 630.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (CERTIFICATIONS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 614.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (AWS Certified Developer - Associate) Tj T* ET
+Q
+Q
+q
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 256.7218 25.51181 Tm (John Doe \267 Page 2 of 2) Tj T* ET
+Q
+ 
+endstream
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000650 00000 n 
+0000000854 00000 n 
+0000000922 00000 n 
+0000001206 00000 n 
+0000001271 00000 n 
+0000005227 00000 n 
+trailer
+<<
+/ID 
+[<3527b060d92cee5fae11c7958b3b298d><3527b060d92cee5fae11c7958b3b298d>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 8 0 R
+/Root 7 0 R
+/Size 12
+>>
+startxref
+6729
+%%EOF

@@ -1,0 +1,273 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (Kwame Mensah) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Kwame Mensah - Resume) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 4307
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Kwame Mensah) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Senior Software Engineer \(.NET / Angular\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (kwame.mensah@example.com | +233 555-0128 | Accra, Ghana) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 707.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (ABOUT ME) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 678.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Full-stack engineer with 8 years building C# services and Angular front ends for health and mobile-money) Tj T* (platforms. Happiest owning a feature from the API contract to the screen.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 653.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (EMPLOYMENT) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 637.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Senior Software Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 623.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Volta Health Systems | 03/2021 \226 Present) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 608.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Designed ASP.NET Core microservices for patient records and lab results, serving 140 clinics.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 594.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built the clinician portal in Angular with offline support for clinics on unreliable connections.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 580.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Moved the platform to Azure with Docker containers, cutting hosting costs by 30%.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 566.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Wrote the C# integration layer for HL7 feeds from six laboratory systems.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 559.8661 cm
+Q
+q
+1 0 0 1 57.02362 546.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Software Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 532.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Ashanti Mobile Money | 06/2018 \226 02/2021) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 517.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built REST APIs in C# on .NET for agent float management across 9,000 agents.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 503.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Developed the agent back-office in Angular and TypeScript, replacing a desktop client.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 489.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Tuned SQL Server stored procedures behind daily settlement, cutting the run from 3 hours to 25 minutes.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 464.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 15 TL /F2 12 Tf 0 0 0 rg (SKILLS & TOOLS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 448.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (C#, .NET, Microservices, Angular, TypeScript, SQL Server, Azure, Docker, REST APIs) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 423.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (QUALIFICATIONS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 407.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Sc. in Computer Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 393.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Gold Coast University of Science and Technology, 2014 \226 2018 | Grade: First Class) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 368.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 15 TL /F2 12 Tf 0 0 0 rg (COURSES & CERTIFICATIONS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 352.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Microsoft Certified: Azure Developer Associate) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 327.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (OUTSIDE WORK) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 311.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Highlife drumming, Football) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000649 00000 n 
+0000000717 00000 n 
+0000001009 00000 n 
+0000001068 00000 n 
+trailer
+<<
+/ID 
+[<af154d3968d29e9ca57c01137afc1080><af154d3968d29e9ca57c01137afc1080>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+5426
+%%EOF

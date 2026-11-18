@@ -1,0 +1,359 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (Lucas Martin) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Lucas Martin - Resume) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 5808
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Lucas Martin) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Staff Frontend Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.02362 567.8661 cm
+q
+.909804 .933333 .956863 rg
+n 0 178 493.2283 -178 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 8 162 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (lucas.martin@example.com) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 147 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (+33 555-0121) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 132 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Lyon, France) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 105 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Skills) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 89 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (React, TypeScript, Next.js, Redux, JavaScript, HTML, CSS, Storybook, Jest, Git) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 62 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Education) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 46 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (M.Sc. in Computer Science) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 32 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Universite de Rhone-Alpes, 2015 to 2017 | Grade: Mention Bien) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 17 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Sc. in Computer Science) Tj T* ET
+Q
+Q
+q
+1 0 0 1 8 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Universite de Rhone-Alpes, 2012 to 2015) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.501961 .501961 .501961 RG
+.5 w
+n 0 178 m 493.2283 178 l S
+n 0 0 m 493.2283 0 l S
+n 0 0 m 0 178 l S
+n 493.2283 0 m 493.2283 178 l S
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 561.8661 cm
+Q
+q
+1 0 0 1 57.02362 536.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Summary) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 507.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Frontend engineer with 9 years building fast, accessible web products for media and travel. I care about) Tj T* (design systems, performance budgets and helping product teams ship with confidence.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 482.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Experience) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 466.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Staff Frontend Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 452.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Brume Media | Feb 2022 to Present) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 424.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Lead the move of four news sites from a legacy templating front end to Next.js, serving 9 million monthly) Tj T* (readers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 397.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Raised Core Web Vitals to 'good' on 92% of pages by moving rendering to the server and cutting the) Tj T* (TypeScript bundle by 38%.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 383.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built the shared design system in Storybook, now used by 11 teams and 140 components.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 369.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Set up Jest unit and snapshot suites that run on every pull request.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 362.8661 cm
+Q
+q
+1 0 0 1 57.02362 349.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Senior Frontend Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 335.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Ciel Voyages | Jan 2019 to Jan 2022) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 320.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Rebuilt the flight search and booking flow in React and TypeScript, lifting mobile conversion by 14%.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 293.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Replaced ad-hoc state handling with Redux Toolkit across the checkout, removing a class of) Tj T* (double-booking bugs.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 279.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Introduced Jest component tests and raised front-end coverage from 20% to 75%.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 265.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Mentored three junior developers through their first year on the team.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 258.8661 cm
+Q
+q
+1 0 0 1 57.02362 245.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (Frontend Developer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 231.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F3 10 Tf 13 TL (Atelier Numerique | Jan 2018 to Dec 2018) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 216.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Built marketing and e-commerce sites for agency clients in React and plain JavaScript.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 202.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Turned designers' mock-ups into responsive HTML and CSS that met WCAG AA.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 188.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Cut average page weight by half by introducing image pipelines and lazy loading.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 163.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 12 Tf 15 TL (Interests) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 147.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Road cycling, Film photography) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000649 00000 n 
+0000000717 00000 n 
+0000001009 00000 n 
+0000001068 00000 n 
+trailer
+<<
+/ID 
+[<0aaf0e7da4a84972a961f24421a1ae8d><0aaf0e7da4a84972a961f24421a1ae8d>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+6927
+%%EOF

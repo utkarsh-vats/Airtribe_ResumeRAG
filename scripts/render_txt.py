@@ -7,6 +7,7 @@ from scripts.resume_doc import (
     Block,
     BulletList,
     Heading,
+    PageBreak,
     Panel,
     Paragraph,
     RoleHeader,
@@ -43,6 +44,8 @@ def _lines(blocks: Iterable[Block]) -> list[str]:
                 lines += [" | ".join(row) for row in block.rows]
             case Spacer():
                 lines.append("")
+            case PageBreak():
+                pass
             case Panel():
                 inner = _lines(block.blocks)
                 rule = "+" + "-" * (max(map(len, inner), default=0) + 2)

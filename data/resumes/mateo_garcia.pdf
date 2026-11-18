@@ -1,0 +1,238 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
+endobj
+6 0 obj
+<<
+/Author (Mateo Garcia) /CreationDate (D:20000101000000+00'00') /Creator (Airtribe ResumeRAG resume generator) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject () /Title (Mateo Garcia - Resume) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Length 3899
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 762.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Mateo Garcia) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 747.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Python Backend Developer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 732.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (mateo.garcia@example.com | +54 555-0111 | Buenos Aires, Argentina) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 711.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (SKILLS:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 698.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Python, Django, FastAPI, PostgreSQL, MongoDB, Celery, Docker, Git, REST APIs) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 677.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (SUMMARY:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 651.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16 Tm /F1 10 Tf 13 TL (Python backend developer with 4 years of full-time experience in travel tech, plus two years of concurrent) Tj T* (freelance API work for e-commerce clients.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 630.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (EXPERIENCE:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 617.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Backend Engineer) Tj /F1 10 Tf ( | Pampa Travel Tech | Aug 2022 \226 Current) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 602.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Maintain the booking engine's Django back office used by 120 travel agents across Argentina and Chile.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 575.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Cut fare-search response time from 2.4 s to 600 ms by caching supplier responses and rewriting the) Tj T* (slowest PostgreSQL queries.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 561.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Moved email and voucher generation to Celery, removing timeouts during flash sales.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 547.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Introduced Docker-based local environments, taking new-hire setup from two days to one hour.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 540.8661 cm
+Q
+q
+1 0 0 1 57.02362 527.8661 cm
+q
+BT 1 0 0 1 0 3 Tm 13 TL /F2 10 Tf 0 0 0 rg (Freelance Python Developer) Tj /F1 10 Tf ( | Self-employed | Jan 2023 \226 Dec 2024) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 512.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Delivered REST APIs in FastAPI for four e-commerce and logistics clients alongside my full-time role.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 485.8661 cm
+q
+BT 1 0 0 1 2 16 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 16 Tm /F1 10 Tf 13 TL (Built a Python inventory-sync service linking two marketplaces to a client's warehouse, covering 15,000) Tj T* (SKUs.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 471.8661 cm
+q
+BT 1 0 0 1 2 3 Tm /F1 10 Tf 12 TL 0 0 0 rg (\177) Tj ET
+0 0 0 rg
+BT 1 0 0 1 12 3 Tm /F1 10 Tf 13 TL (Modelled product catalogues in MongoDB for a fashion retailer and wrote its nightly import job.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 450.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (EDUCATION:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 437.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F2 10 Tf 13 TL (B.Eng. in Informatics Engineering) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 423.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Universidad del Plata, 2017 \226 2022 | Grade: 8.4/10) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 402.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2.5 Tm /F2 10.5 Tf 13 TL (INTERESTS:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 389.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3 Tm /F1 10 Tf 13 TL (Tango, Five-a-side football) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000524 00000 n 
+0000000592 00000 n 
+0000000884 00000 n 
+0000000943 00000 n 
+trailer
+<<
+/ID 
+[<beca40b3c7b4f0bc36b6debe1406a72a><beca40b3c7b4f0bc36b6debe1406a72a>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
+startxref
+4893
+%%EOF
