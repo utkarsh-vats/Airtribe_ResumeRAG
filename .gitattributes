@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.pdf binary
+*.docx binary
+*.xlsx binary
+sample_data/edge_cases/** binary

@@ -1,0 +1,42 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Vector store
+.chroma/
+
+# Generated results (keep the folder)
+results/*.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Hugging Face model cache (if redirected into the project)
+.cache/
+hf_cache/
+.hf_cache/
+
+# Build / output folders
+build/
+dist/
+*.egg-info/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
