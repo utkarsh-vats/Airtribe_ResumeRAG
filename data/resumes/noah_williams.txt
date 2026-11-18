@@ -1,0 +1,36 @@
+Noah Williams
+Backend Engineer
+noah.williams@example.com | +1 555-0110 | Toronto, ON, Canada
+
+ABOUT ME
+========
+Backend engineer with 6 years on logistics and energy platforms: Python 3 services, Postgres, k8s, and the occasional ML model when the data supports one.
+
+SKILLS & TOOLS
+==============
+Python 3, FastAPI, Postgres, k8s, Docker, Amazon Web Services, JS, ML, sklearn, RESTful APIs
+
+EMPLOYMENT
+==========
+Senior Backend Engineer
+Harbourline Freight | 02/2023 - present
+- Rebuilt the shipment-tracking service in FastAPI on Python 3.12, now ingesting 40M carrier events a day.
+- Tuned Postgres indexes and partitioning, cutting p95 query latency from 900 ms to 85 ms.
+- Run 30 services on k8s with Kustomize overlays and horizontal pod autoscaling; zero unplanned downtime in 2025.
+- Shipped an ETA-prediction ML model built with sklearn and served it behind the tracking API.
+
+Backend Developer
+Maple Grid Energy | 11/2020 - 01/2023
+- Built RESTful APIs in Python 3 for smart-meter billing across 220,000 households.
+- Designed the Postgres schema for tariff versioning, removing a whole class of back-billing errors.
+- Wrote JS dashboards for the operations team on top of the billing APIs.
+- Containerised nightly reporting jobs with Docker and moved them from cron boxes to Amazon Web Services.
+
+QUALIFICATIONS
+==============
+B.Sc. in Computer Science
+Northshore University, 2016 - 2020 | Grade: GPA 3.5/4.0
+
+OUTSIDE WORK
+============
+Canoe tripping, Home espresso

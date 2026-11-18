@@ -1,0 +1,41 @@
+Tomas Novak
+Infrastructure Engineer
+tomas.novak@example.com | +420 555-0120 | Prague, Czech Republic
+
+ABOUT ME
+========
+Infrastructure engineer with 10 years running Linux estates for hosting, banking and the public sector. Strong on automation, monitoring and keeping older systems healthy.
+
+SKILLS & TOOLS
+==============
+Linux, Bash, Ansible, Nginx, Docker, Git, Prometheus, Grafana
+
+EMPLOYMENT
+==========
+Infrastructure Engineer
+Vltava Hosting | 04/2021 - present
+- Maintain 600 Linux servers across two data centres for a shared-hosting provider with 45,000 customers.
+- Rolled out Ansible playbooks for patching and hardening, cutting monthly maintenance windows from 8 hours to 2.
+- Tuned Nginx reverse proxies that handle 30,000 requests per second at peak.
+- Set up Prometheus and Grafana monitoring to replace a legacy Nagios installation.
+
+Linux System Administrator
+Moravia Bank | 09/2018 - 03/2021
+- Administered the Linux hosts behind internet banking, including quarterly disaster-recovery tests.
+- Automated user and certificate management with Bash scripts, saving 20 hours of manual work a month.
+- Piloted Docker for internal tools, the bank's first containerised workloads.
+
+Junior IT Administrator
+Brno City IT Services | 11/2016 - 08/2018
+- Supported 900 municipal staff on Windows desktops and Linux file servers.
+- Wrote Bash backup scripts for the file servers and tested restores every month.
+- Documented the network and server inventory in the team wiki.
+
+QUALIFICATIONS
+==============
+Diploma in Information Technology
+Brno Secondary School of Electrical Engineering, 2012 - 2016 | Grade: Excellent
+
+OUTSIDE WORK
+============
+Bouldering, Restoring old radios

@@ -102,6 +102,101 @@ English sense (for example "React quickly to…" at the start of a sentence, "Se
 - **Release years**: no role's `skills_used` (after `expand_implied`) may include a skill
   whose `first_release_year` in `rag/skills.py` is later than the role's start year.
   Projects carry no dates and aren't checked.
+- **Encoding**: every persona string encodes in cp1252, because the PDF renderer (step 3b)
+  uses reportlab's standard Helvetica. Write ASCII equivalents (`->`, `>=`) for anything
+  outside it.
+
+## Rendering variants
+
+`scripts/layouts.py` turns a persona into format-agnostic blocks (`scripts/resume_doc.py`);
+`scripts/render_txt.py` and `scripts/render_docx.py` draw them (PDF in step 3b). Regenerate
+with `python -m scripts.generate_resumes [--only <id>]`. Section detection and parsing in
+steps 5-6 parse against the contract below; `tests/test_generator.py` checks the rendered
+files against it and checks the layout table below against the code.
+
+### Section headings
+
+The base heading string comes from `render.header_variant` (`HEADER_VARIANTS` in
+`scripts/persona_schema.py`):
+
+| Section | `standard` | `professional` | `history` | `employment` |
+|---|---|---|---|---|
+| summary | Summary | Professional Summary | Profile | About Me |
+| experience | Experience | Professional Experience | Work History | Employment |
+| skills | Skills | Technical Skills | Core Competencies | Skills & Tools |
+| education | Education | Education | Academic Background | Qualifications |
+| coursework | Coursework | Relevant Coursework | Key Coursework | Study Modules |
+| projects | Projects | Selected Projects | Key Projects | Personal Projects |
+| certifications | Certifications | Certifications | Licenses & Certifications | Courses & Certifications |
+| hobbies | Interests | Hobbies | Interests | Outside Work |
+
+The layout then styles it: **caps** upper-cases the whole string (`WORK HISTORY`), **title**
+keeps it as above, and **colon** appends `:` (`SKILLS & TOOLS:`). A heading is always alone
+on its line. A section without content (no projects, no certifications, an empty skills
+section) emits no heading at all.
+
+### Layouts
+
+<!-- layout-table: parsed by tests/test_generator.py -->
+| Layout | Heading style | TXT underline | DOCX heading | Role header | Date separator | Ongoing | Skills | Section order |
+|---|---|---|---|---|---|---|---|---|
+| `classic` | caps | none | styled | stacked | en dash | Present | list | summary, experience, skills, education, coursework, projects, certifications, hobbies |
+| `modern` | title | none | styled | stacked | hyphen | Present | grouped | summary, skills, experience, projects, education, coursework, certifications, hobbies |
+| `compact` | caps + colon | none | bold | inline | en dash | Current | list | skills, summary, experience, education, coursework, projects, certifications, hobbies |
+| `sidebar` | title | none | styled | stacked | to | Present | list | [panel: skills, education, coursework], summary, experience, projects, certifications, hobbies |
+| `table-skills` | caps | none | styled | stacked | hyphen | Current | table | summary, skills, experience, education, coursework, projects, certifications, hobbies |
+| `academic` | title + colon | none | styled | stacked | to | present | grouped | education, coursework, summary, projects, experience, skills, certifications, hobbies |
+| `plain` | caps | = | bold | stacked | hyphen | present | list | summary, skills, experience, projects, education, coursework, certifications, hobbies |
+| `minimal` | title | - | bold | inline | to | Current | list | summary, experience, skills, education, coursework, projects, certifications, hobbies |
+
+- **TXT underline**: `=` or `-` means a row of that character, the same length as the heading,
+  on the next line; `none` means no underline (those layouts aren't used for TXT personas). Headings are preceded by one blank line.
+- **DOCX heading**: *styled* uses Word's `Heading 1` style (the name uses `Title`); *bold* is a
+  plain paragraph with a bold run (16 pt for the name, 12 pt for headings).
+- **Date separator**: en dash is `" – "` (U+2013 with spaces), hyphen is `" - "`, to is
+  `" to "`. Education years use the same separator. **Ongoing** is the word that replaces
+  the end date of a `present` role.
+
+### Dates (`render.date_format`)
+
+| `date_format` | Month | Example (classic) |
+|---|---|---|
+| `month_name` | `Jan 2020` (3-letter English month) | `Jan 2020 – Present` |
+| `iso` | `2020-01` | `2020-01 – Present` |
+| `numeric` | `01/2020` | `01/2020 – Present` |
+| `year_only` | `2020` | `2020 – Present` |
+
+### Blocks within sections
+
+- **Header**: the name on the first line, then the headline (every layout except `minimal`),
+  then `email | phone | location` on one line. In `sidebar` the email, phone and location are
+  three separate lines inside the panel.
+- **Role header**: *stacked* is the title on one line, then `Company | <date range>` (DOCX:
+  the title bold, the company line italic). *inline* is `Title | Company | <date range>` on
+  one line. Bullets follow: TXT `- ` (`minimal`: `* `), DOCX `List Bullet` paragraphs. Each
+  bullet is the persona text verbatim, one per line. Roles are separated by a blank line.
+- **Skills**: *list* is one comma-separated line in persona order; *grouped* is one
+  `Group: a, b, c` line per category; *table* is a real DOCX table (TXT: `Group | a, b, c`
+  lines) with one `Group | skills` row per category and no header row. Groups appear in
+  first-use order and are named Languages, Backend, Frontend, Mobile, Data, AI & Modelling,
+  Databases, Cloud, DevOps & Tooling, Testing, Practices, Business Tools (none of these is a
+  skill mention). Skills are shown through `render.skill_labels` where set.
+- **Education**: per entry, `Degree in Field` (bold), then `Institution, <start><sep><end>`
+  with ` | Grade: <grade>` when there is a grade.
+- **Coursework**: its own section after Education: one `Degree in Field: course, course` line
+  per entry that has coursework. Coursework is never a skill source.
+- **Projects**: the project name (bold), then the description verbatim.
+- **Certifications**: bullets. **Hobbies**: one comma-separated line.
+- **Summary**: one paragraph, verbatim.
+- **Sidebar panel** (`sidebar` only): contact lines plus the panel sections, as shaded
+  paragraphs in DOCX (and boxed with `+---` / `| ` in TXT). It is a visual treatment: the
+  content stays single-column, in the order shown above.
+- **DOCX extraction order**: `fs_tools.read_file` walks the body with
+  `iter_inner_content()`, so table rows come out in document order, as `cell | cell` lines,
+  at the table's position (for `table-skills`, between the skills heading and the next
+  section heading).
+- **DOCX metadata**: core properties are fixed (author and last-modified-by are the
+  candidate's name; created, modified and last printed are 2026-11-01T00:00:00Z; revision 1).
 
 ## Known limitations
 
@@ -129,6 +224,9 @@ English sense (for example "React quickly to…" at the start of a sentence, "Se
 - **Release years are coarse.** They are year-only and use the first public release (for
   example Spark 2010, before Apache Spark 1.0 in 2014; Kotlin 2011, before 1.0 in 2016), so
   the check catches anachronisms but not early-adopter edge cases within the release year.
+- **No real two-column layouts.** `sidebar` is a shaded single-column block followed by the
+  main column, not a true two-column page. Extracting text from genuine two-column PDFs
+  (where lines from both columns interleave) is out of scope for this dataset.
 - **Implications are fixed rules.** `Angular` implies `TypeScript`, but `Kotlin` and `Gradle`
   don't imply `Java`, and `Microservices` implies no language. An extractor that reads
   "JavaFX" or "Java Swing" sees `Java` only when the standalone token appears.

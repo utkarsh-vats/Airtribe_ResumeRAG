@@ -1,0 +1,35 @@
+Yuki Sato
+Senior Android Developer
+yuki.sato@example.com | +81 555-0129 | Fukuoka, Japan
+
+SUMMARY
+=======
+Android developer with 6 years building Kotlin apps for ride-hailing and mobile games. Focused on smooth UIs, small APKs and builds that stay fast as the codebase grows.
+
+SKILLS
+======
+Kotlin, Android, Gradle, Git, REST APIs, Figma
+
+EXPERIENCE
+==========
+Senior Android Developer
+Hakata Rides | Sep 2022 - present
+- Lead the Android app for a ride-hailing service with 2.5 million monthly riders, written entirely in Kotlin.
+- Rewrote the booking screens with Jetpack Compose, cutting crash-free session failures by 60%.
+- Split the app into 30 Gradle modules and brought clean build time from 11 minutes to 4.
+- Designed the offline-first sync between the app and the trip REST APIs.
+
+Android Developer
+Kanmon Games | Oct 2020 - Aug 2022
+- Built Kotlin features for two casual puzzle games on Android with 4 million installs between them.
+- Implemented in-app purchases and cut checkout drop-off by 18%.
+- Turned Figma designs into animated Android views with the art team, and introduced Git branching rules for releases.
+
+EDUCATION
+=========
+B.Eng. in Information Engineering
+Kyushu Institute of Information Science, 2016 - 2020 | Grade: GPA 3.4
+
+INTERESTS
+=========
+Pixel art, Long-distance cycling

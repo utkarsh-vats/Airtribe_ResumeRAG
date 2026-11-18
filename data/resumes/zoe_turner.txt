@@ -1,0 +1,22 @@
+Zoe Turner
+zoe.turner@example.com | +61 555-0125 | Brisbane, Australia
+
+Summary
+-------
+Junior frontend developer building React sites.
+
+Experience
+----------
+Junior Frontend Developer | Coral Coast Web | 2025-05 to Current
+* Build React pages for small-business websites, 14 launched so far.
+* Write JavaScript for booking widgets and contact forms.
+* Turn design mock-ups into responsive HTML and CSS, with every change reviewed in Git.
+
+Skills
+------
+JavaScript, React, HTML, CSS, Git
+
+Education
+---------
+Diploma in Website Development
+Moreton Bay TAFE, 2024 to 2025

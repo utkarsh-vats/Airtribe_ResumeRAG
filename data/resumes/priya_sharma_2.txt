@@ -1,0 +1,35 @@
+Priya Sharma
+Frontend Developer (Vue.js)
+priya.sharma.frontend@example.com | +65 555-0123 | Singapore
+
+ABOUT ME
+========
+Frontend developer with 4 years building customer-facing Vue apps for mobility and insurance. Strong on component design, forms and making complex flows feel simple.
+
+SKILLS & TOOLS
+==============
+Vue.js, TypeScript, JavaScript, HTML, CSS, Jest, Figma, Git
+
+EMPLOYMENT
+==========
+Frontend Developer
+Merlion Mobility | 2024-03 - present
+- Rebuilt the ride-booking web app in Vue 3 and TypeScript, cutting time to first booking by 25%.
+- Built a shared form library with validation and accessibility baked in, now used by four product squads.
+- Added Jest unit tests for the pricing and promo-code components, catching two pricing regressions before release.
+- Work from Figma prototypes with the design team and review interaction details before build.
+
+Junior Frontend Developer
+Straits Insure | 2022-08 - 2024-02
+- Built the motor-insurance quote journey with Vue.js and plain JavaScript.
+- Converted the legacy jQuery claims pages to responsive HTML and CSS templates.
+- Fixed 60 accessibility issues found in an external audit and tracked each fix in Git.
+
+QUALIFICATIONS
+==============
+B.Eng. in Information Systems
+Marina Bay Polytechnic University, 2018 - 2022 | Grade: Second Upper
+
+OUTSIDE WORK
+============
+Bharatanatyam dance, Bouldering

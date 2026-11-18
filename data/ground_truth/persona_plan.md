@@ -123,7 +123,7 @@ exact for the 8 carried over.
 | `table-skills` | Classic, but the Skills section is a DOCX table (category / skills) | docx |
 | `academic` | Education first, coursework and projects prominent; long-form | pdf, docx |
 | `plain` | Plain text, headings underlined with `=` / `-`, `-` bullets | txt |
-| `minimal` | Name, contact, experience and education only; no summary or extras | txt, pdf, docx |
+| `minimal` | Name and contact line, then summary, experience, skills and education; no headline | txt, pdf, docx |
 
 Section-heading variants (`render.header_variant`, defined in `scripts/persona_schema.py`):
 

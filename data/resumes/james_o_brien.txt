@@ -1,0 +1,35 @@
+James O'Brien
+Senior Account Executive
+james.obrien@example.com | +353 555-0135 | Dublin, Ireland
+
+SUMMARY
+=======
+Account executive with 7 years selling B2B software and office services. Consistently over quota, with a full pipeline built from outbound prospecting and referrals.
+
+SKILLS
+======
+Salesforce, HubSpot, Excel
+
+EXPERIENCE
+==========
+Senior Account Executive
+Corrib Logistics Software | Mar 2022 - present
+- Closed 2.1 million euro in new annual recurring revenue in 2025, 128% of quota.
+- Manage a pipeline of 60 mid-market freight and warehousing prospects in Salesforce.
+- Built the Excel deal-desk model the team uses to price multi-year contracts.
+- Mentor two new account executives through their first two quarters.
+
+Account Executive
+Wicklow Office Supplies | Aug 2019 - Feb 2022
+- Grew the Leinster territory from 80 to 210 business accounts in two and a half years.
+- Ran HubSpot email sequences that booked 30% of first meetings.
+- Kept every account and renewal date up to date in Salesforce and hit renewal targets nine quarters in a row.
+
+EDUCATION
+=========
+B.A. in Business and Economics
+Liffey University, 2015 - 2019 | Grade: 2:1
+
+INTERESTS
+=========
+Gaelic football, Pub quizzes

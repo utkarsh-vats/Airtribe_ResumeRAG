@@ -1,0 +1,33 @@
+Nina Kowalski
+Senior Data Engineer
+nina.kowalski@example.com | +48 555-0130 | Krakow, Poland
+
+PROFILE
+=======
+Data engineer with 6 years building batch and streaming pipelines for retail and telecoms. I like boring, well-tested pipelines that analysts can trust on Monday morning.
+
+WORK HISTORY
+============
+Senior Data Engineer
+Wawel Retail Group | 01/2022 - present
+- Run the Apache Spark platform that builds the sales and stock lake for 900 stores, about 4 TB a day on AWS.
+- Orchestrate 120 daily pipelines in Apache Airflow with SLAs, retries and data-quality gates.
+- Built a Kafka ingestion path for till events, cutting sales-data latency from a day to 15 minutes.
+- Wrote the SQL models behind the merchandising marts and the Python test harness that checks them.
+
+Data Engineer
+Vistula Telecom | 09/2020 - 12/2021
+- Built Spark jobs in Scala that aggregate 2 billion call-detail records a day for billing analytics.
+- Moved cron-scheduled scripts onto Apache Airflow, with alerting for the on-call team.
+- Rewrote slow SQL reports as incremental tables, cutting warehouse costs by 35%.
+
+ACADEMIC BACKGROUND
+===================
+M.Sc. in Computer Science
+Jagiellonian Technical University, 2018 - 2020 | Grade: 5.0
+B.Sc. in Applied Mathematics
+Jagiellonian Technical University, 2015 - 2018 | Grade: 4.5
+
+INTERESTS
+=========
+Tatra hiking, Sourdough baking
