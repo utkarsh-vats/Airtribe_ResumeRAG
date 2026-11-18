@@ -1,0 +1,58 @@
+{
+  "id": "elena_rodriguez",
+  "name": "Elena Rodriguez",
+  "email": "elena.rodriguez@example.com",
+  "phone": "+34 555-0104",
+  "location": "Madrid, Spain",
+  "headline": "Java / Spring Developer",
+  "summary": "Backend developer with 6 years of experience designing event-driven Java microservices with Spring Boot and Kafka for logistics and banking.",
+  "skills_section": [
+    "Java", "Kotlin", "SQL", "Spring Boot", "Spring Cloud", "Hibernate", "Kafka", "RabbitMQ",
+    "Maven", "Gradle", "Docker", "Jenkins", "JUnit"
+  ],
+  "experience": [
+    {
+      "title": "Senior Java Developer",
+      "company": "Meseta Logistics",
+      "employment_type": "full_time",
+      "start": "2023-03",
+      "end": "present",
+      "skills_used": ["Java", "Spring Boot", "Kafka", "Microservices"],
+      "bullets": [
+        "Designed event-driven order microservices with Spring Boot and Kafka handling 1,200 messages per second.",
+        "Reduced JVM memory footprint by 30% through garbage-collector tuning.",
+        "Led the upgrade of 15 services from Java 11 to Java 17."
+      ]
+    },
+    {
+      "title": "Java Developer",
+      "company": "Castilla Bank Systems",
+      "employment_type": "full_time",
+      "start": "2020-09",
+      "end": "2023-02",
+      "skills_used": ["Spring Cloud", "Microservices", "Hibernate", "SQL", "JUnit"],
+      "bullets": [
+        "Built Spring Cloud microservices for card transaction processing.",
+        "Mapped the card ledger schema with Hibernate and hand-tuned SQL.",
+        "Wrote integration tests with JUnit 5 and Testcontainers."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Eng.",
+      "field": "Software Engineering",
+      "institution": "Universidad del Norte",
+      "start_year": 2016,
+      "end_year": 2020,
+      "grade": "8.1/10"
+    }
+  ],
+  "render": {
+    "format": "docx",
+    "layout": "table-skills",
+    "header_variant": "employment",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["skills_table"]
+}

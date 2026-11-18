@@ -1,0 +1,83 @@
+{
+  "id": "john_doe",
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1 555-0101",
+  "location": "Austin, TX, USA",
+  "headline": "Senior Backend Python Developer",
+  "summary": "Senior backend engineer with 8+ years of experience building Python services and APIs. Specialises in Python web frameworks, PostgreSQL performance tuning and event-driven architectures.",
+  "skills_section": [
+    "Python", "SQL", "Bash", "Django", "FastAPI", "Flask", "Celery", "PostgreSQL", "Redis",
+    "Docker", "AWS Lambda", "GitHub Actions"
+  ],
+  "experience": [
+    {
+      "title": "Senior Backend Engineer",
+      "company": "Lonestar Payments",
+      "employment_type": "full_time",
+      "start": "2023-01",
+      "end": "present",
+      "skills_used": ["Python", "Django", "FastAPI", "Microservices", "Celery", "Redis"],
+      "bullets": [
+        "Led migration of a monolithic Django app to 12 FastAPI microservices, cutting p95 latency by 40%.",
+        "Designed an idempotent payment-webhook pipeline on Celery and Redis processing 3M events per day.",
+        "Mentored 4 engineers and introduced mypy type checking across all Python repositories."
+      ]
+    },
+    {
+      "title": "Backend Developer",
+      "company": "Bluebonnet Health",
+      "employment_type": "full_time",
+      "start": "2020-01",
+      "end": "2023-12",
+      "skills_used": ["Django REST Framework", "REST APIs", "PostgreSQL", "Docker", "GitHub Actions"],
+      "bullets": [
+        "Built HIPAA-compliant REST APIs with Django REST Framework.",
+        "Optimised PostgreSQL queries and indexes, reducing report generation from 9 minutes to 45 seconds.",
+        "Automated container deployments with Docker and GitHub Actions."
+      ]
+    },
+    {
+      "title": "Junior Software Engineer",
+      "company": "Prairie Logistics",
+      "employment_type": "full_time",
+      "start": "2018-01",
+      "end": "2020-12",
+      "skills_used": ["Python", "Flask"],
+      "bullets": [
+        "Wrote Python ETL scripts consolidating shipment data from 5 carriers.",
+        "Maintained internal Flask dashboards for the operations team."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Computer Science",
+      "institution": "Hill Country University",
+      "start_year": 2014,
+      "end_year": 2018,
+      "grade": "GPA 3.6/4.0"
+    }
+  ],
+  "projects": [
+    {
+      "name": "django-audit-lite",
+      "skills_used": ["Python", "Django"],
+      "description": "Maintainer of an open-source Python package for Django model change history."
+    },
+    {
+      "name": "Async Python in Production",
+      "skills_used": ["Python"],
+      "description": "Talk given at the Austin Python Meetup on running asyncio services."
+    }
+  ],
+  "certifications": ["AWS Certified Developer - Associate"],
+  "render": {
+    "format": "pdf",
+    "layout": "classic",
+    "header_variant": "standard",
+    "date_format": "year_only"
+  },
+  "edge_cases": ["two_page"]
+}

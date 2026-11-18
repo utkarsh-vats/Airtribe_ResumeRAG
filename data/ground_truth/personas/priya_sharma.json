@@ -1,0 +1,67 @@
+{
+  "id": "priya_sharma",
+  "name": "Priya Sharma",
+  "email": "priya.sharma@example.com",
+  "phone": "+91 555-0102",
+  "location": "Bengaluru, India",
+  "headline": "Data Scientist",
+  "summary": "Data scientist with 5 years of experience in demand forecasting, experimentation and customer analytics for retail and fintech.",
+  "skills_section": [
+    "Python", "SQL", "pandas", "scikit-learn", "XGBoost", "statsmodels", "A/B Testing",
+    "Airflow", "Tableau", "Jupyter"
+  ],
+  "experience": [
+    {
+      "title": "Data Scientist",
+      "company": "Monsoon Retail",
+      "employment_type": "full_time",
+      "start": "2023-04",
+      "end": "present",
+      "skills_used": ["XGBoost", "A/B Testing", "Airflow"],
+      "bullets": [
+        "Built XGBoost demand-forecasting models that reduced stock-outs by 18% across 300 stores.",
+        "Designed and analysed 25+ A/B tests on the checkout funnel.",
+        "Productionised feature pipelines with Airflow."
+      ]
+    },
+    {
+      "title": "Associate Data Scientist",
+      "company": "Ganga Fintech",
+      "employment_type": "full_time",
+      "start": "2021-07",
+      "end": "2023-03",
+      "skills_used": ["scikit-learn", "pandas", "Jupyter", "Tableau"],
+      "bullets": [
+        "Developed a credit-risk scorecard with scikit-learn using logistic regression and gradient boosting.",
+        "Cleaned five years of loan-application data with pandas.",
+        "Automated weekly KPI reporting with Jupyter notebooks and Tableau."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Sc.",
+      "field": "Statistics",
+      "institution": "Deccan Institute of Science",
+      "start_year": 2019,
+      "end_year": 2021,
+      "grade": "First Class"
+    },
+    {
+      "degree": "B.Sc.",
+      "field": "Mathematics",
+      "institution": "Mysore Arts and Science College",
+      "start_year": 2016,
+      "end_year": 2019,
+      "grade": "8.7 CGPA"
+    }
+  ],
+  "hobbies": ["Carnatic music", "Trail running"],
+  "render": {
+    "format": "pdf",
+    "layout": "modern",
+    "header_variant": "professional",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["implied_skill_evidence"]
+}

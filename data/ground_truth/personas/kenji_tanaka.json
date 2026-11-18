@@ -1,0 +1,66 @@
+{
+  "id": "kenji_tanaka",
+  "name": "Kenji Tanaka",
+  "email": "kenji.tanaka@example.com",
+  "phone": "+81 555-0108",
+  "location": "Tokyo, Japan",
+  "headline": "Staff Machine Learning Engineer",
+  "summary": "ML engineer with 10 years of experience taking computer-vision and ranking models from research to low-latency production on Kubernetes.",
+  "skills_section": [
+    "Python", "C++", "SQL", "PyTorch", "TensorFlow", "ONNX", "CUDA", "Kubernetes", "Kubeflow",
+    "MLflow", "Spark"
+  ],
+  "experience": [
+    {
+      "title": "Staff ML Engineer",
+      "company": "Sakura Vision",
+      "employment_type": "full_time",
+      "start": "2022-01",
+      "end": "present",
+      "skills_used": ["PyTorch", "Computer Vision", "Kubernetes", "ONNX"],
+      "bullets": [
+        "Lead a team of 6 deploying real-time PyTorch computer vision models on Kubernetes with Triton Inference Server.",
+        "Cut GPU serving cost by 35% through ONNX export and INT8 quantisation."
+      ]
+    },
+    {
+      "title": "ML Engineer",
+      "company": "Shibuya Ads",
+      "employment_type": "full_time",
+      "start": "2018-01",
+      "end": "2022-12",
+      "skills_used": ["Machine Learning", "Spark", "Kubeflow", "Python"],
+      "bullets": [
+        "Built a CTR-prediction machine learning pipeline on Spark and Kubeflow.",
+        "Wrote internal python libraries for feature validation."
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Kanda Systems",
+      "employment_type": "full_time",
+      "start": "2016-01",
+      "end": "2018-12",
+      "skills_used": ["C++"],
+      "bullets": ["Developed C++ image-processing modules for factory inspection cameras."]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Eng.",
+      "field": "Information Science",
+      "institution": "Kanto Institute of Technology",
+      "start_year": 2014,
+      "end_year": 2016,
+      "grade": null
+    }
+  ],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "history",
+    "date_format": "year_only",
+    "skill_labels": {"Python": "python"}
+  },
+  "edge_cases": ["lowercase_skill"]
+}

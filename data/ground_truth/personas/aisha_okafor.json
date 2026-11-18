@@ -1,0 +1,56 @@
+{
+  "id": "aisha_okafor",
+  "name": "Aisha Okafor",
+  "email": "aisha.okafor@example.com",
+  "phone": "+44 555-0105",
+  "location": "London, UK",
+  "headline": "Frontend Engineer (TypeScript / React)",
+  "summary": "Frontend engineer with 3 years of experience building accessible, fast web apps in TypeScript and React.",
+  "skills_section": [
+    "TypeScript", "JavaScript", "HTML", "CSS", "React", "Next.js", "Redux", "Tailwind CSS",
+    "Jest", "Storybook"
+  ],
+  "experience": [
+    {
+      "title": "Frontend Engineer",
+      "company": "Thames Digital",
+      "employment_type": "full_time",
+      "start": "2024-06",
+      "end": "present",
+      "skills_used": ["React", "TypeScript", "Storybook"],
+      "bullets": [
+        "Rebuilt the customer dashboard in React and TypeScript, raising the Lighthouse performance score from 62 to 94.",
+        "Created a shared component library in Storybook used by 5 product teams."
+      ]
+    },
+    {
+      "title": "Junior Frontend Developer",
+      "company": "Brixton Studio",
+      "employment_type": "full_time",
+      "start": "2023-07",
+      "end": "2024-05",
+      "skills_used": ["Next.js", "Jest"],
+      "bullets": [
+        "Implemented responsive marketing pages with Next.js.",
+        "Raised unit-test coverage from 35% to 80% with Jest."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Science",
+      "institution": "Southbank University",
+      "start_year": 2020,
+      "end_year": 2023,
+      "grade": "First Class Honours"
+    }
+  ],
+  "hobbies": ["Street photography"],
+  "render": {
+    "format": "docx",
+    "layout": "sidebar",
+    "header_variant": "standard",
+    "date_format": "iso"
+  }
+}

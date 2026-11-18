@@ -1,0 +1,52 @@
+{
+  "id": "liam_walsh",
+  "name": "Liam Walsh",
+  "email": "liam.walsh@example.com",
+  "phone": "+353 555-0106",
+  "location": "Dublin, Ireland",
+  "headline": "QA Automation Engineer",
+  "summary": "QA automation engineer with 4 years of experience building end-to-end and API test suites and wiring them into CI.",
+  "skills_section": ["Selenium", "Playwright", "Cypress", "Postman", "Jenkins", "Git", "Jira"],
+  "experience": [
+    {
+      "title": "QA Automation Engineer",
+      "company": "Liffey Software",
+      "employment_type": "full_time",
+      "start": "2024-02",
+      "end": "present",
+      "skills_used": ["Python", "pytest", "Playwright", "Jenkins"],
+      "bullets": [
+        "Built an end-to-end regression suite in Python with pytest and Playwright, reducing release testing from 3 days to 4 hours.",
+        "Integrated automated tests into Jenkins pipelines with parallel execution."
+      ]
+    },
+    {
+      "title": "QA Engineer",
+      "company": "Emerald Insurance",
+      "employment_type": "full_time",
+      "start": "2022-06",
+      "end": "2024-01",
+      "skills_used": ["Cypress", "Jira"],
+      "bullets": [
+        "Wrote Cypress tests for the customer policy portal.",
+        "Defined test plans and tracked defects in Jira and TestRail."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Software Development",
+      "institution": "Leinster Institute of Technology",
+      "start_year": 2018,
+      "end_year": 2022,
+      "grade": "Second Class Honours, Grade 1"
+    }
+  ],
+  "render": {
+    "format": "docx",
+    "layout": "modern",
+    "header_variant": "professional",
+    "date_format": "month_name"
+  }
+}

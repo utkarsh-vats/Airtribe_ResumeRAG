@@ -1,0 +1,58 @@
+{
+  "id": "marcus_chen",
+  "name": "Marcus Chen",
+  "email": "marcus.chen@example.com",
+  "phone": "+1 555-0103",
+  "location": "Seattle, WA, USA",
+  "headline": "DevOps / Platform Engineer",
+  "summary": "Platform engineer with 7 years of experience running Kubernetes at scale and writing infrastructure tooling in Go.",
+  "skills_section": [
+    "Go", "Bash", "Kubernetes", "Helm", "ArgoCD", "EKS", "Terraform", "Linux", "Nginx",
+    "Prometheus", "Grafana"
+  ],
+  "experience": [
+    {
+      "title": "Senior Platform Engineer",
+      "company": "Cascade Cloudworks",
+      "employment_type": "full_time",
+      "start": "2022-04",
+      "end": "present",
+      "skills_used": ["Kubernetes", "EKS", "Microservices", "Go", "ArgoCD", "Helm"],
+      "bullets": [
+        "Operated 40+ Kubernetes clusters on EKS serving 600 microservices.",
+        "Wrote a Go Kubernetes operator that automates certificate rotation, eliminating 95% of manual tickets.",
+        "Introduced GitOps with ArgoCD and Helm for all production deployments."
+      ]
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "Rainier Media",
+      "employment_type": "full_time",
+      "start": "2019-06",
+      "end": "2022-03",
+      "skills_used": ["AWS", "Terraform", "Prometheus", "Grafana"],
+      "bullets": [
+        "Migrated on-prem virtual machines to AWS using reusable Terraform modules.",
+        "Built Prometheus and Grafana alerting, cutting MTTR from 2 hours to 25 minutes."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Computer Engineering",
+      "institution": "Puget Sound Tech",
+      "start_year": 2015,
+      "end_year": 2019,
+      "grade": "GPA 3.4/4.0"
+    }
+  ],
+  "certifications": ["Certified Kubernetes Administrator (CKA)"],
+  "hobbies": ["Rock climbing"],
+  "render": {
+    "format": "pdf",
+    "layout": "compact",
+    "header_variant": "history",
+    "date_format": "numeric"
+  }
+}

@@ -6,9 +6,12 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **1. Scaffold + Milestone 1 reuse + docs + CI** – layout, pinned requirements,
       `pyproject.toml`, `.env.example`, `.gitignore`, `fs_tools.py` and its tests copied
       unmodified, DESIGN.md, this plan, GitHub Actions (CPU torch, ruff, pytest).
-- [ ] **2. Skill taxonomy + personas** – `rag/taxonomy.py` (canonical skills + aliases) and 35
-      personas (8 carried over from Milestone 1 + 27 new) as structured data, plus the
-      ground-truth manifest (`data/ground_truth/`).
+- [x] **2a. Skill taxonomy + persona schema + manifest** – `rag/skills.py` (canonical skills,
+      aliases, implications), `scripts/persona_schema.py`, `scripts/build_manifest.py`
+      (`data/ground_truth/manifest.json`), the 8 Milestone 1 personas carried over,
+      `data/ground_truth/persona_plan.md` (35 slots) and ground-truth conventions + tests.
+- [ ] **2b. Author the 27 new personas** from `persona_plan.md`; rebuild the manifest; the
+      full plan-coverage test stops skipping.
 - [ ] **3. Resume generator** – `scripts/` generator with several layouts, PDF/DOCX/TXT, and
       deliberate edge cases (overlapping roles, odd date formats, skills-list-only mentions,
       missing headers) → `data/resumes/`.

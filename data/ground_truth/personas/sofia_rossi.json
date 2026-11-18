@@ -1,0 +1,54 @@
+{
+  "id": "sofia_rossi",
+  "name": "Sofia Rossi",
+  "email": "sofia.rossi@example.com",
+  "phone": "+39 555-0107",
+  "location": "Milan, Italy",
+  "headline": "Data Analyst (SQL / R)",
+  "summary": "Data analyst with 2 years of experience turning sales and marketing data into dashboards and recommendations.",
+  "skills_section": [
+    "SQL", "R", "tidyverse", "ggplot2", "dplyr", "BigQuery", "Looker", "Power BI", "Excel"
+  ],
+  "experience": [
+    {
+      "title": "Data Analyst",
+      "company": "Navigli Commerce",
+      "employment_type": "full_time",
+      "start": "2025-01",
+      "end": "present",
+      "skills_used": ["SQL", "BigQuery", "Looker", "R"],
+      "bullets": [
+        "Built SQL models in BigQuery feeding weekly sales dashboards in Looker.",
+        "Ran cohort analyses in R that informed a loyalty programme redesign."
+      ]
+    },
+    {
+      "title": "Junior Analyst",
+      "company": "Duomo Marketing",
+      "employment_type": "full_time",
+      "start": "2024-01",
+      "end": "2025-12",
+      "skills_used": ["Excel", "ggplot2"],
+      "bullets": [
+        "Cleaned and merged campaign data from 6 advertising platforms in Excel.",
+        "Produced monthly ggplot2 reports for clients."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Statistics and Economics",
+      "institution": "Universita di Lombardia",
+      "start_year": 2021,
+      "end_year": 2024,
+      "grade": "108/110"
+    }
+  ],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "standard",
+    "date_format": "year_only"
+  }
+}

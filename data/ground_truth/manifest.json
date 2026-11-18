@@ -1,0 +1,351 @@
+{
+  "as_of": "2026-11-01",
+  "candidates": [
+    {
+      "candidate_id": "aisha_okafor",
+      "edge_cases": [],
+      "format": "docx",
+      "highest_education": {
+        "degree": "B.Sc.",
+        "end_year": 2023,
+        "field": "Computer Science",
+        "institution": "Southbank University"
+      },
+      "name": "Aisha Okafor",
+      "resume_path": "resumes/aisha_okafor.docx",
+      "skill_years": {
+        "CSS": 0.0,
+        "HTML": 0.0,
+        "JavaScript": 3.4,
+        "Jest": 0.9,
+        "Next.js": 0.9,
+        "React": 3.4,
+        "Redux": 0.0,
+        "Storybook": 2.5,
+        "Tailwind CSS": 0.0,
+        "TypeScript": 2.5
+      },
+      "skills": [
+        "CSS",
+        "HTML",
+        "JavaScript",
+        "Jest",
+        "Next.js",
+        "React",
+        "Redux",
+        "Storybook",
+        "Tailwind CSS",
+        "TypeScript"
+      ],
+      "total_years": 3.4
+    },
+    {
+      "candidate_id": "elena_rodriguez",
+      "edge_cases": [
+        "skills_table"
+      ],
+      "format": "docx",
+      "highest_education": {
+        "degree": "B.Eng.",
+        "end_year": 2020,
+        "field": "Software Engineering",
+        "institution": "Universidad del Norte"
+      },
+      "name": "Elena Rodriguez",
+      "resume_path": "resumes/elena_rodriguez.docx",
+      "skill_years": {
+        "Docker": 0.0,
+        "Gradle": 0.0,
+        "Hibernate": 2.5,
+        "JUnit": 2.5,
+        "Java": 6.2,
+        "Jenkins": 0.0,
+        "Kafka": 3.8,
+        "Kotlin": 0.0,
+        "Maven": 0.0,
+        "Microservices": 6.2,
+        "RabbitMQ": 0.0,
+        "SQL": 2.5,
+        "Spring Boot": 6.2,
+        "Spring Cloud": 2.5
+      },
+      "skills": [
+        "Docker",
+        "Gradle",
+        "Hibernate",
+        "JUnit",
+        "Java",
+        "Jenkins",
+        "Kafka",
+        "Kotlin",
+        "Maven",
+        "Microservices",
+        "RabbitMQ",
+        "SQL",
+        "Spring Boot",
+        "Spring Cloud"
+      ],
+      "total_years": 6.2
+    },
+    {
+      "candidate_id": "john_doe",
+      "edge_cases": [
+        "two_page"
+      ],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "B.S.",
+        "end_year": 2018,
+        "field": "Computer Science",
+        "institution": "Hill Country University"
+      },
+      "name": "John Doe",
+      "resume_path": "resumes/john_doe.pdf",
+      "skill_years": {
+        "AWS": 0.0,
+        "AWS Lambda": 0.0,
+        "Bash": 0.0,
+        "Celery": 3.9,
+        "Django": 6.9,
+        "Django REST Framework": 4.0,
+        "Docker": 4.0,
+        "FastAPI": 3.9,
+        "Flask": 3.0,
+        "GitHub Actions": 4.0,
+        "Microservices": 3.9,
+        "PostgreSQL": 4.0,
+        "Python": 8.9,
+        "REST APIs": 4.0,
+        "Redis": 3.9,
+        "SQL": 4.0
+      },
+      "skills": [
+        "AWS",
+        "AWS Lambda",
+        "Bash",
+        "Celery",
+        "Django",
+        "Django REST Framework",
+        "Docker",
+        "FastAPI",
+        "Flask",
+        "GitHub Actions",
+        "Microservices",
+        "PostgreSQL",
+        "Python",
+        "REST APIs",
+        "Redis",
+        "SQL"
+      ],
+      "total_years": 8.9
+    },
+    {
+      "candidate_id": "kenji_tanaka",
+      "edge_cases": [
+        "lowercase_skill"
+      ],
+      "format": "txt",
+      "highest_education": {
+        "degree": "M.Eng.",
+        "end_year": 2016,
+        "field": "Information Science",
+        "institution": "Kanto Institute of Technology"
+      },
+      "name": "Kenji Tanaka",
+      "resume_path": "resumes/kenji_tanaka.txt",
+      "skill_years": {
+        "C++": 3.0,
+        "CUDA": 0.0,
+        "Computer Vision": 4.9,
+        "Deep Learning": 4.9,
+        "Kubeflow": 5.0,
+        "Kubernetes": 8.9,
+        "MLflow": 0.0,
+        "Machine Learning": 8.9,
+        "ONNX": 4.9,
+        "PyTorch": 4.9,
+        "Python": 8.9,
+        "SQL": 0.0,
+        "Spark": 5.0,
+        "TensorFlow": 0.0
+      },
+      "skills": [
+        "C++",
+        "CUDA",
+        "Computer Vision",
+        "Deep Learning",
+        "Kubeflow",
+        "Kubernetes",
+        "MLflow",
+        "Machine Learning",
+        "ONNX",
+        "PyTorch",
+        "Python",
+        "SQL",
+        "Spark",
+        "TensorFlow"
+      ],
+      "total_years": 10.9
+    },
+    {
+      "candidate_id": "liam_walsh",
+      "edge_cases": [],
+      "format": "docx",
+      "highest_education": {
+        "degree": "B.Sc.",
+        "end_year": 2022,
+        "field": "Software Development",
+        "institution": "Leinster Institute of Technology"
+      },
+      "name": "Liam Walsh",
+      "resume_path": "resumes/liam_walsh.docx",
+      "skill_years": {
+        "Cypress": 1.7,
+        "Git": 0.0,
+        "Jenkins": 2.8,
+        "Jira": 1.7,
+        "Playwright": 2.8,
+        "Postman": 0.0,
+        "Python": 2.8,
+        "Selenium": 0.0,
+        "pytest": 2.8
+      },
+      "skills": [
+        "Cypress",
+        "Git",
+        "Jenkins",
+        "Jira",
+        "Playwright",
+        "Postman",
+        "Python",
+        "Selenium",
+        "pytest"
+      ],
+      "total_years": 4.5
+    },
+    {
+      "candidate_id": "marcus_chen",
+      "edge_cases": [],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "B.S.",
+        "end_year": 2019,
+        "field": "Computer Engineering",
+        "institution": "Puget Sound Tech"
+      },
+      "name": "Marcus Chen",
+      "resume_path": "resumes/marcus_chen.pdf",
+      "skill_years": {
+        "AWS": 7.5,
+        "ArgoCD": 4.7,
+        "Bash": 0.0,
+        "EKS": 4.7,
+        "Go": 4.7,
+        "Grafana": 2.8,
+        "Helm": 4.7,
+        "Kubernetes": 4.7,
+        "Linux": 0.0,
+        "Microservices": 4.7,
+        "Nginx": 0.0,
+        "Prometheus": 2.8,
+        "Terraform": 2.8
+      },
+      "skills": [
+        "AWS",
+        "ArgoCD",
+        "Bash",
+        "EKS",
+        "Go",
+        "Grafana",
+        "Helm",
+        "Kubernetes",
+        "Linux",
+        "Microservices",
+        "Nginx",
+        "Prometheus",
+        "Terraform"
+      ],
+      "total_years": 7.5
+    },
+    {
+      "candidate_id": "priya_sharma",
+      "edge_cases": [
+        "implied_skill_evidence"
+      ],
+      "format": "pdf",
+      "highest_education": {
+        "degree": "M.Sc.",
+        "end_year": 2021,
+        "field": "Statistics",
+        "institution": "Deccan Institute of Science"
+      },
+      "name": "Priya Sharma",
+      "resume_path": "resumes/priya_sharma.pdf",
+      "skill_years": {
+        "A/B Testing": 3.7,
+        "Airflow": 3.7,
+        "Jupyter": 1.8,
+        "Machine Learning": 5.4,
+        "Python": 5.4,
+        "SQL": 0.0,
+        "Tableau": 1.8,
+        "XGBoost": 3.7,
+        "pandas": 1.8,
+        "scikit-learn": 1.8,
+        "statsmodels": 0.0
+      },
+      "skills": [
+        "A/B Testing",
+        "Airflow",
+        "Jupyter",
+        "Machine Learning",
+        "Python",
+        "SQL",
+        "Tableau",
+        "XGBoost",
+        "pandas",
+        "scikit-learn",
+        "statsmodels"
+      ],
+      "total_years": 5.4
+    },
+    {
+      "candidate_id": "sofia_rossi",
+      "edge_cases": [],
+      "format": "txt",
+      "highest_education": {
+        "degree": "B.Sc.",
+        "end_year": 2024,
+        "field": "Statistics and Economics",
+        "institution": "Universita di Lombardia"
+      },
+      "name": "Sofia Rossi",
+      "resume_path": "resumes/sofia_rossi.txt",
+      "skill_years": {
+        "BigQuery": 1.9,
+        "Excel": 2.0,
+        "GCP": 1.9,
+        "Looker": 1.9,
+        "Power BI": 0.0,
+        "R": 2.9,
+        "SQL": 1.9,
+        "dplyr": 0.0,
+        "ggplot2": 2.0,
+        "tidyverse": 0.0
+      },
+      "skills": [
+        "BigQuery",
+        "Excel",
+        "GCP",
+        "Looker",
+        "Power BI",
+        "R",
+        "SQL",
+        "dplyr",
+        "ggplot2",
+        "tidyverse"
+      ],
+      "total_years": 2.9
+    }
+  ]
+}
