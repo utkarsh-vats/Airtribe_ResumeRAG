@@ -35,7 +35,9 @@ def collapse(text: str) -> str:
 # --- rag/ stays independent of dataset tooling ----------------------------------------------
 
 
-def test_rag_never_imports_scripts():
+def test_rag_never_imports_scripts_or_tests():
+    # Test helpers (skill_mentions, jd_sections, ...) are importable by bare name too.
+    forbidden = {"scripts", "tests"} | {p.stem for p in (ROOT / "tests").glob("*.py")}
     for path in (ROOT / "rag").rglob("*.py"):
         tree = ast.parse(path.read_text(encoding="utf-8"))
         for node in ast.walk(tree):
@@ -44,7 +46,7 @@ def test_rag_never_imports_scripts():
                 names = [alias.name for alias in node.names]
             elif isinstance(node, ast.ImportFrom):
                 names = [node.module or ""]
-            assert not any(n == "scripts" or n.startswith("scripts.") for n in names), path
+            assert not any(n.split(".")[0] in forbidden for n in names), (path, names)
 
 
 def test_heading_vocabulary_covers_every_rendered_variant():

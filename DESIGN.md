@@ -185,9 +185,21 @@ resume_path, parsed, as_of) -> CandidateMetadata`).
   `Node.js`), so **`Java` never matches `JavaScript`** and `Go` doesn't match `Google`.
   Skills that are also ordinary words (`Go`, `R`, `React`, `Spark`, `Excel`) are flagged
   ambiguous. Their canonical name counts only in its exact case, while their safe aliases
-  (`Golang`, `Apache Spark`) count in any case. Mentions count only in skills sections,
-  bullets and project descriptions, never in hobbies, coursework, titles, company names or
-  institution names. The full contract is in `data/ground_truth/README.md`.
+  (`Golang`, `Apache Spark`) count in any case. The full contract is in
+  `data/ground_truth/README.md`; `rag/skill_matcher.py` implements it independently of the
+  test-side reference matcher, and a test checks that they agree on every resume source and
+  every JD. A space inside a multi-word name matches any whitespace, so a name wrapped
+  across PDF lines (`GitHub` / `Actions`) still counts.
+  - **Sources** (`rag/metadata.py`): skills-section lines, experience role bodies (the
+    bullets, not the role header lines) and project sections. Never the header block,
+    summary, education, coursework, certifications, hobbies or `other` sections, so a
+    "Python" in a hobby, a role title or a company name gives nothing. Skills-table
+    category labels and skill-group names are never skills (the generator guarantees it and
+    a test confirms the extractor agrees).
+  - **Overlaps**: the longest match wins and, between equally long ones, the earlier;
+    matches never overlap. `Apache Spark` is one Spark mention, `AWS Lambda` isn't also
+    `AWS`, `React Native` isn't also `React`. Implications (`expand_implied`) are applied
+    afterwards, so `PySpark` gives Spark and Python.
 - **Experience entries**: a `RoleRecord` (`title`, `company`, `date_text`, parsed `dates`,
   `is_internship`) per role from `split_roles`. **Multi-format date parsing** covers `Jan
   2020`, `January 2020`, `01/2020`, `2020-01` and `2020`, with `Present` / `Current` / `Now`
@@ -207,9 +219,20 @@ resume_path, parsed, as_of) -> CandidateMetadata`).
   months / 12 rounded **half up** to one decimal with `Decimal` (`ROUND_HALF_UP`, so 75
   months is 6.3; Python's `round` would give 6.2). This is the same rule as the ground
   truth.
-- **Per-skill years**: a skill gets the duration of each role whose text mentions it (merged
-  the same way). A skill that only appears in the skills list gets **0 evidenced years**. It
-  still counts as "has the skill" for coverage, but not as experience.
+- **Per-skill months** (`skill_months`): every skill mentioned in a role's body, after
+  implications, gets that role's interval if the role counts towards experience (dates
+  parsed, not an internship). Intervals are merged per skill, so two overlapping roles that
+  both use Python count once. A skill seen only in the skills section, projects or an
+  internship gets **0 months**: it still counts as "has the skill" for coverage, but not as
+  experience. `skill_years` is the display form (half up, one decimal).
+- **Evidence** (`skill_evidence`): for each skill, where it was mentioned: `skills`,
+  `experience:<role index>` and/or `projects`. Step 12's reasoning uses it to say where a
+  skill came from.
+- **Warnings**: one line per problem a reviewer should see, naming the role: dates that
+  couldn't be parsed (the role counts 0 months) and end dates after `as_of` (clamped). The
+  corpus produces none.
+- **`CandidateMetadata.to_dict()` / `from_dict()`** round-trip through JSON; step 8 stores the
+  dicts next to the collection. They hold no contact details.
 - **`as_of` date is injected.** All "present" and duration maths takes an explicit
   `as_of: date`. The CLI reads `AS_OF_DATE` and uses today when it's blank. Tests and the ground
   truth use one fixed date, so results don't change with the calendar.

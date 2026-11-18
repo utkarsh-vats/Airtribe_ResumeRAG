@@ -43,8 +43,10 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       (`extract_metadata`: name, roles, total months/years, education, highest education) +
       tests against the manifest for all 35 resumes. Ground-truth rounding switched to
       `ROUND_HALF_UP`.
-- [ ] **6b. Skills** – skill mentions per the contract, per-skill evidenced months, and the
-      full metadata record + tests against the manifest.
+- [x] **6b. Skills** – `rag/skill_matcher.py` (the mention contract, cross-checked against
+      the reference matcher), skill sources, per-skill months and evidence, warnings and the
+      JSON round-trip in `rag/metadata.py` + tests matching the manifest for all 35 resumes,
+      and `tests/test_repo_hygiene.py`.
 - [ ] **7. Embedders** – `Embedder` ABC + lazy registry (`huggingface`, `gemini`, `fake`) + tests.
 - [ ] **8. Vector store + indexing** – Chroma `ResumeStore`, indexing pipeline, `resume_rag.py`
       CLI (`index`, `stats`) + tests, including one that pins the Chroma metadata-type
