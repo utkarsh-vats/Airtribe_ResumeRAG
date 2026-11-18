@@ -38,8 +38,13 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **5b. Chunkers** – `rag/chunking.py`: section-aware chunker (per-role experience chunks
       with contextual headers, oversize guard, `-noctx` ablation) and the fixed-size word-window
       baseline, a small registry, deterministic chunk ids + tests over all 35 resumes.
-- [ ] **6. Metadata extractor** – name, education, skills, roles, merged years, per-skill years
-      (injected `as_of`) + tests against the manifest.
+- [x] **6a. Dates, timeline, name, education** – `parse_date_range` (`rag/dates.py`),
+      `rag/timeline.py` (merged months, internships, `meets_min_years`), `rag/metadata.py`
+      (`extract_metadata`: name, roles, total months/years, education, highest education) +
+      tests against the manifest for all 35 resumes. Ground-truth rounding switched to
+      `ROUND_HALF_UP`.
+- [ ] **6b. Skills** – skill mentions per the contract, per-skill evidenced months, and the
+      full metadata record + tests against the manifest.
 - [ ] **7. Embedders** – `Embedder` ABC + lazy registry (`huggingface`, `gemini`, `fake`) + tests.
 - [ ] **8. Vector store + indexing** – Chroma `ResumeStore`, indexing pipeline, `resume_rag.py`
       CLI (`index`, `stats`) + tests, including one that pins the Chroma metadata-type

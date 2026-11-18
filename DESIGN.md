@@ -163,10 +163,22 @@ derive from it.
 Everything is deterministic and regex/taxonomy-driven. There are no LLM calls on the indexing
 path.
 
-- **Name**: first non-empty line that isn't a header, contact line (email, phone, URL) or
-  location. Falls back to the filename stem (`resume_priya_sharma` → `Priya Sharma`).
-- **Education**: degree keywords (B.Tech, BSc, MSc, MBA, PhD, …) + institution + year from the
-  `education` section.
+Implemented in `rag/dates.py`, `rag/timeline.py` and `rag/metadata.py` (`extract_metadata(
+resume_path, parsed, as_of) -> CandidateMetadata`).
+
+- **Name**: the first header-block line that isn't contact info (no `@`, no `|`, no
+  phone-like digit run). Falls back to the file stem (`priya_sharma_2` → `Priya Sharma 2`).
+- **No contact details in metadata.** Email and phone are deliberately not extracted: metadata
+  ends up in the vector store, and nothing in the brief's output needs them.
+- **Education**: each entry is a `Degree in Field` line followed by an institution line
+  carrying a date range (`Institution, 2014 – 2018 | Grade: …`). The degree's level comes from
+  its abbreviation, matched as a whole token with dots, spaces and `(Hons)` removed (`Ph.D.`,
+  `M.Sc.`, `M.S.`, `M.Tech`, `MBA`, `B.Sc.`, `B.S.`, `B.Eng.`, `B.Tech`, `B.A.`, …), or from a
+  spelled-out form at the start (`Bachelor of …`, `Master of …`, `Diploma`, `High School`).
+  Whole-token matching stops an institution such as "Marina Bay …" reading as `M.A.`. The
+  field is the text after ` in `, and the end year is the last year of the range. Highest
+  education: PhD > Masters > Bachelors > Diploma > School; a tie goes to the latest end year,
+  then to the first listed.
 - **Skills**: matched against a **taxonomy with aliases** (`rag/skills.py`). Each canonical
   skill (`JavaScript`, `Kubernetes`, `PostgreSQL`) has aliases (`JS`, `k8s`, `Postgres`).
   Matching uses token boundaries that handle punctuation in names (`C++`, `C#`, `.NET`,
@@ -176,11 +188,25 @@ path.
   (`Golang`, `Apache Spark`) count in any case. Mentions count only in skills sections,
   bullets and project descriptions, never in hobbies, coursework, titles, company names or
   institution names. The full contract is in `data/ground_truth/README.md`.
-- **Experience entries**: `{title, company, start, end, is_current, text}` for each role.
-  **Multi-format date parsing** covers `Jan 2020`, `January 2020`, `01/2020`, `2020-01`,
-  `2020`, and `Present` / `Current` / `Now`. Ranges use `-`, `–`, `—` or `to`.
-- **Total years**: role intervals are **merged when they overlap** (concurrent jobs aren't
-  double-counted). Gaps aren't counted. The result is rounded to one decimal place.
+- **Experience entries**: a `RoleRecord` (`title`, `company`, `date_text`, parsed `dates`,
+  `is_internship`) per role from `split_roles`. **Multi-format date parsing** covers `Jan
+  2020`, `January 2020`, `01/2020`, `2020-01` and `2020`, with `Present` / `Current` / `Now`
+  for an ongoing role, and `-`, `–`, `—` or `to` between the two ends. A year-only start is
+  January and a year-only end is December. An ongoing end is the `as_of` month, and an end
+  after `as_of` is **clamped** to it (and flagged). A start after the end raises
+  `DateRangeError`; such a role is kept but its months don't count.
+- **Months are the source of truth.** Role lengths are inclusive month counts
+  (`end - start + 1`) and every comparison is on months: `meets_min_years(months, years)` is
+  `months >= years * 12`, so 59 months never passes "5+ years".
+- **Internships** are detected from the title: `intern` or `internship` as a whole word,
+  case-insensitive ("Internal Tools Engineer" and "International Sales" don't match). A test
+  checks that this agrees with every persona's employment type. Internships keep their skills
+  but add no experience months.
+- **Total experience**: role intervals are **merged when they overlap or touch** (concurrent
+  jobs aren't double-counted) and gaps aren't counted. `total_years` is for display only:
+  months / 12 rounded **half up** to one decimal with `Decimal` (`ROUND_HALF_UP`, so 75
+  months is 6.3; Python's `round` would give 6.2). This is the same rule as the ground
+  truth.
 - **Per-skill years**: a skill gets the duration of each role whose text mentions it (merged
   the same way). A skill that only appears in the skills list gets **0 evidenced years**. It
   still counts as "has the skill" for coverage, but not as experience.

@@ -26,8 +26,12 @@ These are enforced in code (`scripts/build_manifest.py`, `tests/test_personas.py
 - **Role months are inclusive**: `(end - start) + 1`, so a role from `2020-01` to `2020-01`
   is 1 month. `"present"` means the `AS_OF` month (`2026-11`).
 - **Total years** = the merged (non-overlapping) months of all **non-internship** roles,
-  divided by 12 and rounded to 1 decimal place. Concurrent roles count once and gaps don't
-  count. A month count divided by 12 never lands exactly on a rounding tie.
+  divided by 12 and rounded to 1 decimal place **half up** (exact `Decimal` maths with
+  `ROUND_HALF_UP`, not Python's `round`, which rounds half to even). Ties do occur: a month
+  count with `months % 12 == 3` is x.25 and rounds up (75 months = 6.25 -> 6.3). Concurrent
+  roles count once and gaps don't count. Thresholds are whole years, so comparing the
+  rounded years gives the same answer as comparing months (59 months is 4.9, never 5.0);
+  `rag/` compares months directly (`months >= 12 * years`).
 - **Per-skill years** = the merged months of the non-internship roles whose `skills_used`,
   after `expand_implied`, include the skill. Every candidate skill appears in
   `skill_years`. A skill that's listed but used in no role gets `0.0`.

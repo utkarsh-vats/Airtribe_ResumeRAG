@@ -14,6 +14,7 @@ import json
 import sys
 from collections.abc import Iterable, Sequence
 from datetime import date
+from decimal import ROUND_HALF_UP, Decimal
 
 from rag.skills import expand_implied
 from scripts.persona_schema import (
@@ -59,8 +60,13 @@ def merged_months(intervals: Iterable[tuple[int, int]]) -> int:
 
 
 def months_to_years(months: int) -> float:
-    """Years rounded to one decimal (k/12 never lands on a .x5 tie, so rounding is exact)."""
-    return round(months / 12, 1)
+    """Years to one decimal, rounding half up (exact Decimal maths: 3 months is 0.25 -> 0.3).
+
+    Python's ``round`` would round half to even, and k/12 does land on ties (k % 12 == 3 gives
+    x.25, k % 12 == 9 gives x.75), so the rounding mode matters.
+    """
+    years = Decimal(months) / Decimal(12)
+    return float(years.quantize(Decimal("0.1"), rounding=ROUND_HALF_UP))
 
 
 def counted_roles(persona: Persona) -> list[Role]:

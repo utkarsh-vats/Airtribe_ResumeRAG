@@ -37,7 +37,7 @@ labelled strong or partial.
 | `john_doe` | Senior Python backend (M1) | senior | 8.9 | pdf | classic | year_only | two_page | strong | none | partial | none | none | none |
 | `priya_sharma` | Data scientist (M1) | mid | 5.4 | pdf | modern | month_name | implied_skill_evidence | none | partial | none | none | none | partial |
 | `marcus_chen` | DevOps / platform (M1) | senior | 7.5 | pdf | compact | numeric | - | none | none | strong | none | none | none |
-| `elena_rodriguez` | Java / Spring (M1) | mid | 6.2 | docx | table-skills | month_name | skills_table | none | none | none | none | strong | none |
+| `elena_rodriguez` | Java / Spring (M1) | mid | 6.3 | docx | table-skills | month_name | skills_table | none | none | none | none | strong | none |
 | `aisha_okafor` | Frontend TS / React (M1) | mid | 3.4 | docx | sidebar | iso | - | none | none | none | strong | none | none |
 | `liam_walsh` | QA automation (M1) | mid | 4.5 | docx | modern | month_name | - | none | none | distractor | distractor | none | none |
 | `sofia_rossi` | Data analyst SQL / R (M1) | junior | 2.9 | txt | plain | year_only | - | none | none | none | none | none | partial |

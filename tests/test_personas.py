@@ -558,7 +558,8 @@ def test_month_index_present_is_as_of_month():
 
 
 @pytest.mark.parametrize(
-    ("months", "years"), [(0, 0.0), (1, 0.1), (6, 0.5), (11, 0.9), (13, 1.1), (107, 8.9)]
+    ("months", "years"),
+    [(0, 0.0), (1, 0.1), (3, 0.3), (6, 0.5), (9, 0.8), (11, 0.9), (13, 1.1), (75, 6.3), (107, 8.9)],
 )
 def test_months_to_years(months, years):
     assert months_to_years(months) == years
