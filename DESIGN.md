@@ -79,32 +79,66 @@ covers everything Milestone 2 reads.
 
 ## 3. Chunking
 
-### Section detection
+### Text normalisation (`rag/text.py`)
 
-Lines are matched against a **header synonym map** after normalisation (case-folded, trailing
-`:` and decoration such as `====` or `---` stripped, length-limited so body lines don't match):
+Extracted text is cleaned into lines before anything else: PDF footers (`<Name> · Page N of
+M`) and form-feed page separators are dropped, as are TXT underline rows (`====`, `----`).
+Bullet glyphs (`•`, `- `, `* `) and indentation are stripped, tabs become ` | ` (so the modern
+DOCX role line looks like the inline form), runs of spaces are collapsed and blank lines go.
 
-| Canonical section | Synonyms (examples) |
+### Section detection (`rag/sections.py`)
+
+A line is a heading when the whole line, case-insensitive and with one optional trailing `:`,
+is in the heading vocabulary (`HEADINGS`). The vocabulary covers every heading variant the
+dataset renders, plus common real-world synonyms. A test keeps it in step with
+`scripts/persona_schema.py` and the README's rendering contract.
+
+| Section kind | Headings (examples) |
 |---|---|
-| `summary` | Summary, Profile, Professional Summary, About Me, Objective |
-| `experience` | Experience, Work Experience, Professional Experience, Employment History |
-| `skills` | Skills, Technical Skills, Core Competencies, Tech Stack |
+| `summary` | Summary, Professional Summary, Profile, About Me, Objective |
+| `experience` | Experience, Professional Experience, Work History, Employment, Work Experience |
+| `skills` | Skills, Technical Skills, Core Competencies, Skills & Tools, Tech Stack |
 | `education` | Education, Academic Background, Qualifications |
-| `projects` | Projects, Selected Projects, Personal Projects |
-| `certifications` | Certifications, Licenses & Certifications |
-| `other` | anything before the first header, or unrecognised headers |
+| `coursework` | Coursework, Relevant Coursework, Key Coursework, Study Modules |
+| `projects` | Projects, Selected Projects, Key Projects, Personal Projects |
+| `certifications` | Certifications, Licenses & Certifications, Courses & Certifications |
+| `hobbies` | Interests, Hobbies, Outside Work |
+| `other` | an unknown short ALL-CAPS line (at most 4 words, letters only), e.g. `VOLUNTEERING` |
+| `header` | everything before the first heading (name, headline, contact) |
+
+A document with no headings becomes a header (the name plus any contact lines just after it)
+and one `other` section.
+
+### Role splitting
+
+`split_roles` walks an experience section and recognises role headers by form, one small
+function per form, tried in order (`ROLE_HEADER_FORMS`). A date range is detected by
+`rag/dates.py`, which covers the month-name, ISO, numeric and year-only formats, the en dash,
+hyphen and `to` separators, and Present / present / Current:
+
+| Form | Lines |
+|---|---|
+| inline (and modern DOCX after tab normalisation) | `Title \| Company \| <dates>` |
+| stacked | `Title`, then `Company \| <dates>` |
+| split (modern PDF) | `Title \| Company`, then a line that is only `<dates>` |
+
+Lines after a header belong to that role until the next header.
 
 ### Section-aware chunker (default)
 
-- One chunk per section. **Experience is split per role.** A role starts at a line that
-  carries a date range (`Jan 2020 – Present`, `2019-2021`, `03/2018 - 06/2020`) or follows the
-  `Title | Company` pattern.
+- One chunk per section. **Experience is split per role.**
 - Long sections are split on paragraph or bullet boundaries to stay under a token budget, with
   a small overlap.
-- Before embedding, a **contextual header line** is prepended:
-  `Candidate: Priya Sharma | Section: Experience | Role: Data Scientist @ Acme (2021-Present)`.
-  This gives an isolated bullet enough context to be retrievable. The raw text (without the
-  header) is stored separately for excerpts.
+- Before embedding, a **contextual header line** is prepended: `Section: Experience | Role:
+  Data Scientist at Acme` for experience chunks and `Section: Skills` (the section kind)
+  otherwise. It gives an isolated bullet enough context to be retrievable. It deliberately
+  leaves out the candidate's name: a name carries no meaning for matching and only adds
+  similarity noise between unrelated chunks. The raw text (without the header) is stored
+  separately for excerpts.
+- **Every section except the header block is indexed**, including hobbies and coursework.
+  Low-signal sections are down-weighted at scoring time rather than excluded, so a hobby
+  mention can still be shown as context without counting as skill evidence (the mention
+  contract already ignores hobbies and coursework as skill sources).
 
 ### Fixed-size baseline (experiments)
 
