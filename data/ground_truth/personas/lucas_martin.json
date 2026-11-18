@@ -1,0 +1,81 @@
+{
+  "id": "lucas_martin",
+  "name": "Lucas Martin",
+  "email": "lucas.martin@example.com",
+  "phone": "+33 555-0121",
+  "location": "Lyon, France",
+  "headline": "Staff Frontend Engineer",
+  "summary": "Frontend engineer with 9 years building fast, accessible web products for media and travel. I care about design systems, performance budgets and helping product teams ship with confidence.",
+  "skills_section": [
+    "React", "TypeScript", "Next.js", "Redux", "JavaScript", "HTML", "CSS", "Storybook", "Jest",
+    "Git"
+  ],
+  "experience": [
+    {
+      "title": "Staff Frontend Engineer",
+      "company": "Brume Media",
+      "employment_type": "full_time",
+      "start": "2022-02",
+      "end": "present",
+      "skills_used": ["Next.js", "TypeScript", "Storybook", "Jest"],
+      "bullets": [
+        "Lead the move of four news sites from a legacy templating front end to Next.js, serving 9 million monthly readers.",
+        "Raised Core Web Vitals to 'good' on 92% of pages by moving rendering to the server and cutting the TypeScript bundle by 38%.",
+        "Built the shared design system in Storybook, now used by 11 teams and 140 components.",
+        "Set up Jest unit and snapshot suites that run on every pull request."
+      ]
+    },
+    {
+      "title": "Senior Frontend Engineer",
+      "company": "Ciel Voyages",
+      "employment_type": "full_time",
+      "start": "2019-01",
+      "end": "2022-01",
+      "skills_used": ["React", "TypeScript", "Redux", "Jest"],
+      "bullets": [
+        "Rebuilt the flight search and booking flow in React and TypeScript, lifting mobile conversion by 14%.",
+        "Replaced ad-hoc state handling with Redux Toolkit across the checkout, removing a class of double-booking bugs.",
+        "Introduced Jest component tests and raised front-end coverage from 20% to 75%.",
+        "Mentored three junior developers through their first year on the team."
+      ]
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "Atelier Numerique",
+      "employment_type": "full_time",
+      "start": "2018-01",
+      "end": "2018-12",
+      "skills_used": ["React", "JavaScript", "HTML", "CSS"],
+      "bullets": [
+        "Built marketing and e-commerce sites for agency clients in React and plain JavaScript.",
+        "Turned designers' mock-ups into responsive HTML and CSS that met WCAG AA.",
+        "Cut average page weight by half by introducing image pipelines and lazy loading."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Sc.",
+      "field": "Computer Science",
+      "institution": "Universite de Rhone-Alpes",
+      "start_year": 2015,
+      "end_year": 2017,
+      "grade": "Mention Bien"
+    },
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Science",
+      "institution": "Universite de Rhone-Alpes",
+      "start_year": 2012,
+      "end_year": 2015,
+      "grade": null
+    }
+  ],
+  "hobbies": ["Road cycling", "Film photography"],
+  "render": {
+    "format": "pdf",
+    "layout": "sidebar",
+    "header_variant": "standard",
+    "date_format": "month_name"
+  }
+}

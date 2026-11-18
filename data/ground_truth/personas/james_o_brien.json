@@ -1,0 +1,57 @@
+{
+  "id": "james_o_brien",
+  "name": "James O'Brien",
+  "email": "james.obrien@example.com",
+  "phone": "+353 555-0135",
+  "location": "Dublin, Ireland",
+  "headline": "Senior Account Executive",
+  "summary": "Account executive with 7 years selling B2B software and office services. Consistently over quota, with a full pipeline built from outbound prospecting and referrals.",
+  "skills_section": ["Salesforce", "HubSpot", "Excel"],
+  "experience": [
+    {
+      "title": "Senior Account Executive",
+      "company": "Corrib Logistics Software",
+      "employment_type": "full_time",
+      "start": "2022-03",
+      "end": "present",
+      "skills_used": ["Salesforce", "Excel"],
+      "bullets": [
+        "Closed 2.1 million euro in new annual recurring revenue in 2025, 128% of quota.",
+        "Manage a pipeline of 60 mid-market freight and warehousing prospects in Salesforce.",
+        "Built the Excel deal-desk model the team uses to price multi-year contracts.",
+        "Mentor two new account executives through their first two quarters."
+      ]
+    },
+    {
+      "title": "Account Executive",
+      "company": "Wicklow Office Supplies",
+      "employment_type": "full_time",
+      "start": "2019-08",
+      "end": "2022-02",
+      "skills_used": ["Salesforce", "HubSpot"],
+      "bullets": [
+        "Grew the Leinster territory from 80 to 210 business accounts in two and a half years.",
+        "Ran HubSpot email sequences that booked 30% of first meetings.",
+        "Kept every account and renewal date up to date in Salesforce and hit renewal targets nine quarters in a row."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.A.",
+      "field": "Business and Economics",
+      "institution": "Liffey University",
+      "start_year": 2015,
+      "end_year": 2019,
+      "grade": "2:1"
+    }
+  ],
+  "hobbies": ["Gaelic football", "Pub quizzes"],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "standard",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["non_tech"]
+}

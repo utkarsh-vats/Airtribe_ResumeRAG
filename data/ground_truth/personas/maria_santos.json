@@ -1,0 +1,66 @@
+{
+  "id": "maria_santos",
+  "name": "Maria Santos",
+  "email": "maria.santos@example.com",
+  "phone": "+351 555-0134",
+  "location": "Lisbon, Portugal",
+  "headline": "Senior HR Generalist",
+  "summary": "HR generalist with 9 years in hospitality and retail, covering recruitment, employee relations, payroll and onboarding for multi-site teams of up to 2,000 people.",
+  "skills_section": ["Excel", "Jira", "QuickBooks"],
+  "experience": [
+    {
+      "title": "Senior HR Generalist",
+      "company": "Tejo Hospitality Group",
+      "employment_type": "full_time",
+      "start": "2021-06",
+      "end": "present",
+      "skills_used": ["Excel", "Jira"],
+      "bullets": [
+        "Partner with managers at 14 hotels on hiring, performance reviews and employee relations for 1,800 staff.",
+        "Cut seasonal time-to-hire from 6 weeks to 3 with a rolling recruitment calendar and referral scheme.",
+        "Track HR requests in a Jira service desk, answering 90% within two working days.",
+        "Built Excel turnover and absence reports that the leadership team reviews every quarter."
+      ]
+    },
+    {
+      "title": "HR Generalist",
+      "company": "Atlantico Retail",
+      "employment_type": "full_time",
+      "start": "2017-10",
+      "end": "2021-05",
+      "skills_used": ["Excel", "QuickBooks"],
+      "bullets": [
+        "Ran monthly payroll for 600 store employees in QuickBooks with zero late payments over three years.",
+        "Rewrote the onboarding programme for new store managers, lifting 90-day retention by 12 points.",
+        "Kept the headcount and holiday planner in Excel for 22 stores."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.A.",
+      "field": "Human Resource Management",
+      "institution": "University of Lisbon Business School",
+      "start_year": 2015,
+      "end_year": 2017,
+      "grade": "17/20"
+    },
+    {
+      "degree": "B.A.",
+      "field": "Psychology",
+      "institution": "Coimbra Humanities University",
+      "start_year": 2012,
+      "end_year": 2015,
+      "grade": "15/20"
+    }
+  ],
+  "certifications": ["CIPD Level 5 Associate Diploma in People Management"],
+  "hobbies": ["Fado singing", "Surfing"],
+  "render": {
+    "format": "docx",
+    "layout": "sidebar",
+    "header_variant": "history",
+    "date_format": "iso"
+  },
+  "edge_cases": ["non_tech"]
+}

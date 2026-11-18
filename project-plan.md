@@ -15,8 +15,10 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       (`tests/skill_mentions.py`) with forward and reverse bullet checks,
       `data/ground_truth/jd_themes.json` + `scripts/jd_themes.py`, label-consistency tests
       (strong / distractor vs must-haves), and 12 personas authored from the plan.
-- [ ] **2c. Author the remaining 15 personas** from `persona_plan.md`; rebuild the manifest;
-      the full plan-coverage test stops skipping.
+- [x] **2c. Author the remaining 15 personas** from `persona_plan.md`; rebuild the manifest;
+      the full plan-coverage test stops skipping. Also adds `first_release_year` to the
+      taxonomy with a release-year realism check on every role, and the ground-truth "Known
+      limitations".
 - [ ] **3. Resume generator** – `scripts/` generator with several layouts, PDF/DOCX/TXT, and
       deliberate edge cases (overlapping roles, odd date formats, skills-list-only mentions,
       missing headers) → `data/resumes/`.

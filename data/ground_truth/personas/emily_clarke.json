@@ -1,0 +1,63 @@
+{
+  "id": "emily_clarke",
+  "name": "Emily Clarke",
+  "email": "emily.clarke@example.com",
+  "phone": "+44 555-0122",
+  "location": "Manchester, UK",
+  "headline": "Senior Full-Stack Engineer",
+  "summary": "Full-stack engineer with 5 years shipping JavaScript and TypeScript services and web apps for payments and retail. Comfortable from the database schema to the last pixel of the checkout page.",
+  "skills_section": [
+    "JavaScript", "TypeScript", "Node.js", "Express.js", "React", "Microservices", "PostgreSQL",
+    "MongoDB", "Docker", "Jest", "REST APIs"
+  ],
+  "experience": [
+    {
+      "title": "Senior Full-Stack Engineer",
+      "company": "Pennine Payments",
+      "employment_type": "full_time",
+      "start": "2023-01",
+      "end": "present",
+      "skills_used": [
+        "Node.js", "Express.js", "TypeScript", "Microservices", "PostgreSQL", "Docker", "React"
+      ],
+      "bullets": [
+        "Split the merchant monolith into nine Node.js microservices written in TypeScript, each owning its own PostgreSQL schema.",
+        "Built the refunds service on Express.js, handling 40,000 refunds a day with idempotent retries.",
+        "Packaged every service with Docker and cut local environment setup from a day to 20 minutes.",
+        "Own the React merchant dashboard used by 6,000 small businesses to track payouts."
+      ]
+    },
+    {
+      "title": "Full-Stack Developer",
+      "company": "Irwell Digital",
+      "employment_type": "full_time",
+      "start": "2021-10",
+      "end": "2022-12",
+      "skills_used": ["JavaScript", "React", "Node.js", "MongoDB", "Jest", "REST APIs"],
+      "bullets": [
+        "Built React storefronts and a Node.js order service for three fashion retailers.",
+        "Designed REST APIs over MongoDB for product catalogues of up to 50,000 items.",
+        "Wrote Jest tests for the shared JavaScript component library and the checkout flow."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Science",
+      "institution": "University of the Pennines",
+      "start_year": 2018,
+      "end_year": 2021,
+      "grade": "First Class Honours",
+      "coursework": ["Web Development", "Databases", "Distributed Systems"]
+    }
+  ],
+  "hobbies": ["Fell running", "Board-game design"],
+  "render": {
+    "format": "docx",
+    "layout": "compact",
+    "header_variant": "professional",
+    "date_format": "numeric"
+  },
+  "edge_cases": ["js_for_java_jd"]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "nina_kowalski",
+  "name": "Nina Kowalski",
+  "email": "nina.kowalski@example.com",
+  "phone": "+48 555-0130",
+  "location": "Krakow, Poland",
+  "headline": "Senior Data Engineer",
+  "summary": "Data engineer with 6 years building batch and streaming pipelines for retail and telecoms. I like boring, well-tested pipelines that analysts can trust on Monday morning.",
+  "skills_section": [],
+  "experience": [
+    {
+      "title": "Senior Data Engineer",
+      "company": "Wawel Retail Group",
+      "employment_type": "full_time",
+      "start": "2022-01",
+      "end": "present",
+      "skills_used": ["Spark", "Airflow", "SQL", "Python", "AWS", "Kafka"],
+      "bullets": [
+        "Run the Apache Spark platform that builds the sales and stock lake for 900 stores, about 4 TB a day on AWS.",
+        "Orchestrate 120 daily pipelines in Apache Airflow with SLAs, retries and data-quality gates.",
+        "Built a Kafka ingestion path for till events, cutting sales-data latency from a day to 15 minutes.",
+        "Wrote the SQL models behind the merchandising marts and the Python test harness that checks them."
+      ]
+    },
+    {
+      "title": "Data Engineer",
+      "company": "Vistula Telecom",
+      "employment_type": "full_time",
+      "start": "2020-09",
+      "end": "2021-12",
+      "skills_used": ["Spark", "Scala", "SQL", "Airflow"],
+      "bullets": [
+        "Built Spark jobs in Scala that aggregate 2 billion call-detail records a day for billing analytics.",
+        "Moved cron-scheduled scripts onto Apache Airflow, with alerting for the on-call team.",
+        "Rewrote slow SQL reports as incremental tables, cutting warehouse costs by 35%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Sc.",
+      "field": "Computer Science",
+      "institution": "Jagiellonian Technical University",
+      "start_year": 2018,
+      "end_year": 2020,
+      "grade": "5.0"
+    },
+    {
+      "degree": "B.Sc.",
+      "field": "Applied Mathematics",
+      "institution": "Jagiellonian Technical University",
+      "start_year": 2015,
+      "end_year": 2018,
+      "grade": "4.5"
+    }
+  ],
+  "hobbies": ["Tatra hiking", "Sourdough baking"],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "history",
+    "date_format": "numeric"
+  },
+  "edge_cases": ["no_skills_section"]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "yuki_sato",
+  "name": "Yuki Sato",
+  "email": "yuki.sato@example.com",
+  "phone": "+81 555-0129",
+  "location": "Fukuoka, Japan",
+  "headline": "Senior Android Developer",
+  "summary": "Android developer with 6 years building Kotlin apps for ride-hailing and mobile games. Focused on smooth UIs, small APKs and builds that stay fast as the codebase grows.",
+  "skills_section": ["Kotlin", "Android", "Gradle", "Git", "REST APIs", "Figma"],
+  "experience": [
+    {
+      "title": "Senior Android Developer",
+      "company": "Hakata Rides",
+      "employment_type": "full_time",
+      "start": "2022-09",
+      "end": "present",
+      "skills_used": ["Kotlin", "Android", "Gradle", "REST APIs"],
+      "bullets": [
+        "Lead the Android app for a ride-hailing service with 2.5 million monthly riders, written entirely in Kotlin.",
+        "Rewrote the booking screens with Jetpack Compose, cutting crash-free session failures by 60%.",
+        "Split the app into 30 Gradle modules and brought clean build time from 11 minutes to 4.",
+        "Designed the offline-first sync between the app and the trip REST APIs."
+      ]
+    },
+    {
+      "title": "Android Developer",
+      "company": "Kanmon Games",
+      "employment_type": "full_time",
+      "start": "2020-10",
+      "end": "2022-08",
+      "skills_used": ["Kotlin", "Android", "Git", "Figma"],
+      "bullets": [
+        "Built Kotlin features for two casual puzzle games on Android with 4 million installs between them.",
+        "Implemented in-app purchases and cut checkout drop-off by 18%.",
+        "Turned Figma designs into animated Android views with the art team, and introduced Git branching rules for releases."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Eng.",
+      "field": "Information Engineering",
+      "institution": "Kyushu Institute of Information Science",
+      "start_year": 2016,
+      "end_year": 2020,
+      "grade": "GPA 3.4"
+    }
+  ],
+  "hobbies": ["Pixel art", "Long-distance cycling"],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "standard",
+    "date_format": "month_name"
+  }
+}

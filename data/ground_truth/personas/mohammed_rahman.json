@@ -1,0 +1,58 @@
+{
+  "id": "mohammed_rahman",
+  "name": "Mohammed Rahman",
+  "email": "mohammed.rahman@example.com",
+  "phone": "+971 555-0124",
+  "location": "Dubai, UAE",
+  "headline": "Senior UI Engineer (Desktop)",
+  "summary": "UI engineer with 7 years designing and building desktop trading and logistics front ends in Java Swing and JavaFX. I focus on dense, keyboard-driven interfaces that traders and operators use all day.",
+  "skills_section": ["Java", "CSS", "SQL", "Maven", "JUnit", "Git"],
+  "experience": [
+    {
+      "title": "Senior Desktop UI Engineer",
+      "company": "Falcon Trading Systems",
+      "employment_type": "full_time",
+      "start": "2021-05",
+      "end": "present",
+      "skills_used": ["Java", "CSS", "Maven", "JUnit"],
+      "bullets": [
+        "Lead the user interface for a desktop order-entry terminal in JavaFX, used by 1,200 traders across the Gulf.",
+        "Rebuilt the blotter grid in Java to render 50,000 live rows at 60 frames per second.",
+        "Created a themeable component kit styled with JavaFX CSS, including dark and high-contrast themes.",
+        "Moved the build to Maven and added JUnit tests for the view models, cutting UI regressions by 40%."
+      ]
+    },
+    {
+      "title": "UI Developer",
+      "company": "Gulf Port Logistics",
+      "employment_type": "full_time",
+      "start": "2019-11",
+      "end": "2021-04",
+      "skills_used": ["Java", "SQL", "Git"],
+      "bullets": [
+        "Built Java Swing screens for berth planning and container tracking used in three ports.",
+        "Wrote the SQL behind the yard-occupancy views and took the slowest screen from 8 seconds to under 1.",
+        "Introduced Git and code review to a team of six that had been sharing code over network drives."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Software Engineering",
+      "institution": "Emirates Institute of Technology",
+      "start_year": 2015,
+      "end_year": 2019,
+      "grade": "3.6 GPA",
+      "coursework": ["Human-Computer Interaction", "Object-Oriented Design"]
+    }
+  ],
+  "hobbies": ["Desert camping", "Cricket"],
+  "render": {
+    "format": "docx",
+    "layout": "modern",
+    "header_variant": "history",
+    "date_format": "iso"
+  },
+  "edge_cases": ["java_for_frontend_jd"]
+}

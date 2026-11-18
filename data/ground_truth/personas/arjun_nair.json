@@ -1,0 +1,57 @@
+{
+  "id": "arjun_nair",
+  "name": "Arjun Nair",
+  "email": "arjun.nair@example.com",
+  "phone": "+91 555-0131",
+  "location": "Kochi, India",
+  "headline": "Lead Data Engineer",
+  "summary": "Big-data engineer with 8 years building PySpark and streaming platforms on AWS for media and fintech. I care about cost per terabyte as much as pipeline latency.",
+  "skills_section": ["PySpark", "Airflow", "Kafka", "AWS", "SQL", "Python", "Docker", "Git"],
+  "experience": [
+    {
+      "title": "Lead Data Engineer",
+      "company": "Malabar Streaming",
+      "employment_type": "full_time",
+      "start": "2021-08",
+      "end": "present",
+      "skills_used": ["PySpark", "Airflow", "Kafka", "AWS", "SQL", "Docker"],
+      "bullets": [
+        "Lead six engineers running the viewing-events platform: Kafka streams of 1.5 billion events a day landing in an AWS lake.",
+        "Rewrote the nightly recommendations feature build in PySpark on EMR, cutting runtime from 7 hours to 80 minutes and cost by 45%.",
+        "Standardised 200 Airflow DAGs on a shared Docker image with lineage and data-quality checks.",
+        "Own the SQL semantic layer that content and ad-sales analysts query every day."
+      ]
+    },
+    {
+      "title": "Data Engineer",
+      "company": "Periyar Fintech",
+      "employment_type": "full_time",
+      "start": "2018-11",
+      "end": "2021-07",
+      "skills_used": ["PySpark", "Airflow", "SQL", "AWS", "Git"],
+      "bullets": [
+        "Built PySpark pipelines for loan, repayment and bureau data feeding the risk models.",
+        "Introduced Airflow to replace 70 cron jobs and added SLA alerts for regulatory reports.",
+        "Wrote incremental SQL loads into the AWS warehouse and versioned every pipeline in Git."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech",
+      "field": "Information Technology",
+      "institution": "Malabar College of Engineering",
+      "start_year": 2014,
+      "end_year": 2018,
+      "grade": "8.2 CGPA"
+    }
+  ],
+  "certifications": ["AWS Certified Data Engineer - Associate"],
+  "hobbies": ["Kathakali", "Backwater kayaking"],
+  "render": {
+    "format": "pdf",
+    "layout": "modern",
+    "header_variant": "professional",
+    "date_format": "iso"
+  }
+}

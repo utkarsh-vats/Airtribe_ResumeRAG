@@ -1,0 +1,60 @@
+{
+  "id": "peter_hughes",
+  "name": "Peter Hughes",
+  "email": "peter.hughes@example.com",
+  "phone": "+44 555-0133",
+  "location": "Bristol, UK",
+  "headline": "Senior HVAC Design Engineer",
+  "summary": "Chartered building-services engineer with 11 years designing heating, ventilation and cooling for hospitals, schools and offices. I specialise in airflow and energy modelling for low-carbon refurbishments.",
+  "skills_section": ["Excel"],
+  "experience": [
+    {
+      "title": "Senior HVAC Design Engineer",
+      "company": "Spark Energy Ltd",
+      "employment_type": "full_time",
+      "start": "2020-01",
+      "end": "present",
+      "skills_used": ["Excel"],
+      "bullets": [
+        "Lead ventilation design for NHS hospital refurbishments worth 40 million pounds, including operating-theatre airflow and pressure cascades.",
+        "Modelled airflow and heat loads for 25 schools moving from gas boilers to heat pumps.",
+        "Built the team's Excel sizing workbooks for ductwork and fans, now the standard on every project.",
+        "Review contractors' commissioning results and sign off airflow rates against the design."
+      ]
+    },
+    {
+      "title": "HVAC Design Engineer",
+      "company": "Thames Building Services",
+      "employment_type": "full_time",
+      "start": "2016-01",
+      "end": "2019-12",
+      "skills_used": ["Excel"],
+      "bullets": [
+        "Designed heating and ventilation for office fit-outs from 2,000 to 30,000 square metres.",
+        "Ran airflow and thermal comfort checks in Excel and produced the schedules for tender packages.",
+        "Surveyed existing plant rooms and wrote condition reports for landlords."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Eng.",
+      "field": "Building Services Engineering",
+      "institution": "Severn University",
+      "start_year": 2012,
+      "end_year": 2015,
+      "grade": "First Class Honours"
+    }
+  ],
+  "certifications": ["Chartered Engineer (CEng), CIBSE"],
+  "hobbies": [
+    "Python scripting for a Raspberry Pi weather station", "Allotment gardening", "Five-a-side football"
+  ],
+  "render": {
+    "format": "pdf",
+    "layout": "classic",
+    "header_variant": "standard",
+    "date_format": "year_only"
+  },
+  "edge_cases": ["python_in_hobbies", "ambiguous_terms"]
+}

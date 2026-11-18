@@ -117,6 +117,18 @@ def test_ambiguous_flags():
         assert not get_skill(name).ambiguous, name
 
 
+def test_first_release_years_plausible():
+    for skill in SKILLS:
+        if skill.first_release_year is not None:
+            assert 1990 <= skill.first_release_year <= 2026, skill.name
+    assert get_skill("Kubernetes").first_release_year == 2014
+    assert get_skill("Python").first_release_year is None  # long-established language
+    assert get_skill("Angular").first_release_year == 2016
+    assert get_skill("AngularJS").first_release_year == 2010
+    assert canonicalize("Angular.js") == "AngularJS"
+    assert get_skill("Next.js").first_release_year >= get_skill("React").first_release_year
+
+
 @pytest.mark.parametrize(
     ("skills", "expected"),
     [

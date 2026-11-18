@@ -99,3 +99,36 @@ English sense (for example "React quickly to…" at the start of a sentence, "Se
   `layout: table-skills` comes with the tag `skills_table`. `internships_only` means every
   role is an internship.
 - Edge-case tags come from `EDGE_CASES` in `scripts/persona_schema.py`.
+- **Release years**: no role's `skills_used` (after `expand_implied`) may include a skill
+  whose `first_release_year` in `rag/skills.py` is later than the role's start year.
+  Projects carry no dates and aren't checked.
+
+## Known limitations
+
+- **Short aliases match in any case.** `ML`, `NLP`, `LLM`, `JS` and `TS` are safe aliases, so
+  on real resumes "500 ml", an LLM law degree or a "TS clearance" would false-match. This
+  dataset is protected only because the reverse-mention check rejects any persona text that
+  mentions a skill its `skills_used` doesn't cover.
+- **Single letters and unit-like tokens.** The exact-case rule for ambiguous names doesn't
+  help when the plain-English use is also capitalised: "21 °C", "Grade C", "C-suite" and
+  "Series C" all match `C`; "R-32 refrigerant" and "R&D" match `R`; "Go-live" at the start
+  of a sentence matches `Go`. The personas avoid these phrasings; a real-resume extractor
+  would need context rules.
+- **Capitalised sentence starts.** "Spark", "Airflow" or "React" opening a sentence in their
+  English sense count as the skill. Personas (notably `peter_hughes`) write the English word
+  in lowercase instead.
+- **Common words that are non-ambiguous skills.** `Hibernate`, `Azure`, `pandas`, `Tableau`,
+  `Bash` and `Looker` match case-insensitively, so "hibernate", "azure sea" or "giant pandas"
+  would count. None is flagged ambiguous because the skill name is the common
+  spelling; the personas just don't use those words otherwise.
+- **Version-suffixed names.** "Vue 3" matches `Vue.js` through the `Vue` alias, but
+  "Angular 17" matches `Angular` only because the canonical name is written in exact case;
+  "angular 17" would not match.
+- **No dates on projects**, so the release-year check covers roles only, and project skills
+  add no years.
+- **Release years are coarse.** They are year-only and use the first public release (for
+  example Spark 2010, before Apache Spark 1.0 in 2014; Kotlin 2011, before 1.0 in 2016), so
+  the check catches anachronisms but not early-adopter edge cases within the release year.
+- **Implications are fixed rules.** `Angular` implies `TypeScript`, but `Kotlin` and `Gradle`
+  don't imply `Java`, and `Microservices` implies no language. An extractor that reads
+  "JavaFX" or "Java Swing" sees `Java` only when the standalone token appears.

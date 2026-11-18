@@ -1,0 +1,57 @@
+{
+  "id": "grace_kim",
+  "name": "Grace Kim",
+  "email": "grace.kim@example.com",
+  "phone": "+82 555-0132",
+  "location": "Seoul, South Korea",
+  "headline": "Analytics Engineer",
+  "summary": "Analytics engineer with 4 years turning raw commerce and media data into tested, documented models that business teams actually use.",
+  "skills_section": ["dbt", "Snowflake", "SQL", "Spark", "Airflow", "Python", "Looker", "Git"],
+  "experience": [
+    {
+      "title": "Analytics Engineer",
+      "company": "Han River Commerce",
+      "employment_type": "full_time",
+      "start": "2024-02",
+      "end": "present",
+      "skills_used": ["dbt", "Snowflake", "SQL", "Airflow", "Spark", "Looker"],
+      "bullets": [
+        "Own 300 dbt models on Snowflake covering orders, returns and marketing spend, all with tests and docs.",
+        "Schedule the dbt and Spark jobs in Airflow, with freshness alerts that page the data team before the 9 a.m. trading meeting.",
+        "Rewrote the attribution logic in SQL and cut the marketing dashboard refresh from 40 minutes to 6.",
+        "Built the Looker explores that 120 merchandisers use for weekly reviews."
+      ]
+    },
+    {
+      "title": "Junior Data Engineer",
+      "company": "Namsan Media",
+      "employment_type": "full_time",
+      "start": "2022-10",
+      "end": "2024-01",
+      "skills_used": ["Spark", "Python", "SQL", "Airflow", "Git"],
+      "bullets": [
+        "Built Spark jobs in Python that sessionise 300 million streaming events a day.",
+        "Maintained Airflow DAGs for the audience-measurement pipeline and fixed its recurring backfill failures.",
+        "Wrote SQL quality checks for the subscriptions tables and kept the pipeline code in Git."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Statistics",
+      "institution": "Hanyang Metropolitan University",
+      "start_year": 2018,
+      "end_year": 2022,
+      "grade": "3.9 / 4.5"
+    }
+  ],
+  "hobbies": ["Film club", "Bouldering"],
+  "render": {
+    "format": "docx",
+    "layout": "table-skills",
+    "header_variant": "standard",
+    "date_format": "month_name"
+  },
+  "edge_cases": ["skills_table"]
+}

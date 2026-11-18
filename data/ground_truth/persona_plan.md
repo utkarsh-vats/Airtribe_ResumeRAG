@@ -1,9 +1,9 @@
 # Persona plan (35 slots)
 
-Design for the synthetic resume corpus: 8 personas carried over from Milestone 1 (already in
-`personas/`) plus 27 to author in step 2b. `tests/test_personas.py` parses the **Slots** table
-below. It checks the coverage rules against this table now, and checks each persona file
-against its row as personas are added.
+Design for the synthetic resume corpus: 8 personas carried over from Milestone 1 plus 27
+authored in steps 2b (12) and 2c (15). All 35 are in `personas/`. `tests/test_personas.py`
+parses the **Slots** table below, checks the coverage rules against it, and checks each
+persona file against its row.
 
 ## JD themes and intended must-haves
 
@@ -134,7 +134,7 @@ Section-heading variants (`render.header_variant`, defined in `scripts/persona_s
 | `history` | Profile | Work History | Core Competencies | Academic Background | Key Projects | Licenses & Certifications | Interests |
 | `employment` | About Me | Employment | Skills & Tools | Qualifications | Personal Projects | Courses & Certifications | Outside Work |
 
-## Notes for step 2c
+## Notes for step 2c (applied)
 
 - `peter_hughes`: put "Spark Energy Ltd" in the `company` field only (company names never
   count). Write "airflow" in lowercase in bullets; a capitalised "Airflow" at the start of a

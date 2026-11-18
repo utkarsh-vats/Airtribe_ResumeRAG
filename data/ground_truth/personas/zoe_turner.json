@@ -1,0 +1,42 @@
+{
+  "id": "zoe_turner",
+  "name": "Zoe Turner",
+  "email": "zoe.turner@example.com",
+  "phone": "+61 555-0125",
+  "location": "Brisbane, Australia",
+  "headline": "Junior Frontend Developer",
+  "summary": "Junior frontend developer building React sites.",
+  "skills_section": ["JavaScript", "React", "HTML", "CSS", "Git"],
+  "experience": [
+    {
+      "title": "Junior Frontend Developer",
+      "company": "Coral Coast Web",
+      "employment_type": "full_time",
+      "start": "2025-05",
+      "end": "present",
+      "skills_used": ["React", "JavaScript", "HTML", "CSS", "Git"],
+      "bullets": [
+        "Build React pages for small-business websites, 14 launched so far.",
+        "Write JavaScript for booking widgets and contact forms.",
+        "Turn design mock-ups into responsive HTML and CSS, with every change reviewed in Git."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Diploma",
+      "field": "Website Development",
+      "institution": "Moreton Bay TAFE",
+      "start_year": 2024,
+      "end_year": 2025,
+      "grade": null
+    }
+  ],
+  "render": {
+    "format": "txt",
+    "layout": "minimal",
+    "header_variant": "standard",
+    "date_format": "iso"
+  },
+  "edge_cases": ["minimal"]
+}

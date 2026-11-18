@@ -300,6 +300,59 @@ def test_aliases_only_persona_never_writes_canonical_names(path: Path):
 
 
 @persona_file
+def test_skills_released_before_role_start(path: Path):
+    # Projects carry no dates, so only roles can be checked.
+    for role in load_persona(path).experience:
+        start_year = int(role.start[:4])
+        early = {
+            name: released
+            for name in expand_implied(role.skills_used)
+            if (released := get_skill(name).first_release_year) and released > start_year
+        }
+        assert early == {}, f"{role.company} starts {role.start} but uses {early}"
+
+
+def persona_strings(persona: Persona) -> list[str]:
+    """Every free-text string in the persona file (for whole-resume token checks)."""
+
+    def walk(value):
+        if isinstance(value, str):
+            yield value
+        elif isinstance(value, dict):
+            for item in value.values():
+                yield from walk(item)
+        elif isinstance(value, (list, tuple)):
+            for item in value:
+                yield from walk(item)
+
+    return list(walk(json.loads((PERSONA_DIR / f"{persona.id}.json").read_text("utf-8"))))
+
+
+def test_js_heavy_persona_never_writes_java(personas):
+    java = re.compile(r"(?<!\w)java(?!\w)", re.IGNORECASE)
+    for persona in personas:
+        if "js_for_java_jd" in persona.edge_cases:
+            hits = [s for s in persona_strings(persona) if java.search(s)]
+            assert hits == [], f"{persona.id}: {hits}"
+
+
+def test_peter_hughes_traps_stay_where_planned(personas):
+    peter = next(p for p in personas if p.id == "peter_hughes")
+    python = re.compile(r"(?<!\w)python(?!\w)", re.IGNORECASE)
+    spark = re.compile(r"(?<!\w)spark(?!\w)", re.IGNORECASE)
+    hobby_text = set(peter.hobbies)
+    company_text = {r.company for r in peter.experience}
+    strings = persona_strings(peter)
+    assert any(python.search(h) for h in hobby_text)
+    assert [s for s in strings if python.search(s) and s not in hobby_text] == []
+    assert any(spark.search(c) for c in company_text)
+    assert [s for s in strings if spark.search(s) and s not in company_text] == []
+    bullets = "\n".join(b for r in peter.experience for b in r.bullets)
+    assert "airflow" in bullets and "Airflow" not in bullets
+    assert not re.search(r"(?<!\w)ml(?!\w)", bullets, re.IGNORECASE)
+
+
+@persona_file
 def test_edge_case_tags_consistent(path: Path):
     persona = load_persona(path)
     tags = set(persona.edge_cases)
@@ -453,6 +506,16 @@ def test_every_plan_slot_has_a_persona(personas, plan, manifest):
     if len(personas) < PLAN_SIZE:
         pytest.skip(f"{len(personas)}/{PLAN_SIZE} personas authored; the rest arrive in step 2c")
     assert {p.id for p in personas} == set(plan)
+    assert Counter(p.render.format.value for p in personas) == {"pdf": 14, "docx": 12, "txt": 9}
+    assert Counter(p.render.date_format.value for p in personas) == {
+        "month_name": 13,
+        "iso": 8,
+        "numeric": 7,
+        "year_only": 7,
+    }
+    for jd in JDS:
+        counts = Counter(plan[p.id].relevance[jd] for p in personas)
+        assert counts["strong"] >= 3 and counts["partial"] >= 3 and counts["distractor"] >= 2, jd
     by_id = {p.id: p for p in personas}
     years = [c["total_years"] for c in manifest.values()]
     assert max(years) >= 15

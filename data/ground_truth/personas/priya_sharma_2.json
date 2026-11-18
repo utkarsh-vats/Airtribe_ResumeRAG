@@ -1,0 +1,57 @@
+{
+  "id": "priya_sharma_2",
+  "name": "Priya Sharma",
+  "email": "priya.sharma.frontend@example.com",
+  "phone": "+65 555-0123",
+  "location": "Singapore",
+  "headline": "Frontend Developer (Vue.js)",
+  "summary": "Frontend developer with 4 years building customer-facing Vue apps for mobility and insurance. Strong on component design, forms and making complex flows feel simple.",
+  "skills_section": ["Vue.js", "TypeScript", "JavaScript", "HTML", "CSS", "Jest", "Figma", "Git"],
+  "experience": [
+    {
+      "title": "Frontend Developer",
+      "company": "Merlion Mobility",
+      "employment_type": "full_time",
+      "start": "2024-03",
+      "end": "present",
+      "skills_used": ["Vue.js", "TypeScript", "Jest", "Figma"],
+      "bullets": [
+        "Rebuilt the ride-booking web app in Vue 3 and TypeScript, cutting time to first booking by 25%.",
+        "Built a shared form library with validation and accessibility baked in, now used by four product squads.",
+        "Added Jest unit tests for the pricing and promo-code components, catching two pricing regressions before release.",
+        "Work from Figma prototypes with the design team and review interaction details before build."
+      ]
+    },
+    {
+      "title": "Junior Frontend Developer",
+      "company": "Straits Insure",
+      "employment_type": "full_time",
+      "start": "2022-08",
+      "end": "2024-02",
+      "skills_used": ["Vue.js", "JavaScript", "HTML", "CSS", "Git"],
+      "bullets": [
+        "Built the motor-insurance quote journey with Vue.js and plain JavaScript.",
+        "Converted the legacy jQuery claims pages to responsive HTML and CSS templates.",
+        "Fixed 60 accessibility issues found in an external audit and tracked each fix in Git."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Eng.",
+      "field": "Information Systems",
+      "institution": "Marina Bay Polytechnic University",
+      "start_year": 2018,
+      "end_year": 2022,
+      "grade": "Second Upper"
+    }
+  ],
+  "hobbies": ["Bharatanatyam dance", "Bouldering"],
+  "render": {
+    "format": "txt",
+    "layout": "plain",
+    "header_variant": "employment",
+    "date_format": "iso"
+  },
+  "edge_cases": ["duplicate_name"]
+}

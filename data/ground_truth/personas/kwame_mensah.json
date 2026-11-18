@@ -1,0 +1,60 @@
+{
+  "id": "kwame_mensah",
+  "name": "Kwame Mensah",
+  "email": "kwame.mensah@example.com",
+  "phone": "+233 555-0128",
+  "location": "Accra, Ghana",
+  "headline": "Senior Software Engineer (.NET / Angular)",
+  "summary": "Full-stack engineer with 8 years building C# services and Angular front ends for health and mobile-money platforms. Happiest owning a feature from the API contract to the screen.",
+  "skills_section": [
+    "C#", ".NET", "Microservices", "Angular", "TypeScript", "SQL Server", "Azure", "Docker",
+    "REST APIs"
+  ],
+  "experience": [
+    {
+      "title": "Senior Software Engineer",
+      "company": "Volta Health Systems",
+      "employment_type": "full_time",
+      "start": "2021-03",
+      "end": "present",
+      "skills_used": ["C#", ".NET", "Microservices", "Angular", "Azure", "Docker"],
+      "bullets": [
+        "Designed ASP.NET Core microservices for patient records and lab results, serving 140 clinics.",
+        "Built the clinician portal in Angular with offline support for clinics on unreliable connections.",
+        "Moved the platform to Azure with Docker containers, cutting hosting costs by 30%.",
+        "Wrote the C# integration layer for HL7 feeds from six laboratory systems."
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Ashanti Mobile Money",
+      "employment_type": "full_time",
+      "start": "2018-06",
+      "end": "2021-02",
+      "skills_used": ["C#", ".NET", "SQL Server", "Angular", "TypeScript", "REST APIs"],
+      "bullets": [
+        "Built REST APIs in C# on .NET for agent float management across 9,000 agents.",
+        "Developed the agent back-office in Angular and TypeScript, replacing a desktop client.",
+        "Tuned SQL Server stored procedures behind daily settlement, cutting the run from 3 hours to 25 minutes."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Engineering",
+      "institution": "Gold Coast University of Science and Technology",
+      "start_year": 2014,
+      "end_year": 2018,
+      "grade": "First Class"
+    }
+  ],
+  "certifications": ["Microsoft Certified: Azure Developer Associate"],
+  "hobbies": ["Highlife drumming", "Football"],
+  "render": {
+    "format": "pdf",
+    "layout": "classic",
+    "header_variant": "employment",
+    "date_format": "numeric"
+  }
+}

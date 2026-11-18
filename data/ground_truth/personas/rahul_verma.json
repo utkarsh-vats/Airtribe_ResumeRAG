@@ -1,0 +1,75 @@
+{
+  "id": "rahul_verma",
+  "name": "Rahul Verma",
+  "email": "rahul.verma@example.com",
+  "phone": "+91 555-0126",
+  "location": "Hyderabad, India",
+  "headline": "Lead Java Backend Engineer",
+  "summary": "Backend engineer with 9 years building high-volume Java services for payments, insurance and telecoms. I design for failure first: idempotency, back-pressure and clear ownership between services.",
+  "skills_section": [
+    "Java", "Spring Boot", "Spring Cloud", "Microservices", "Kafka", "Hibernate", "PostgreSQL",
+    "MySQL", "Docker", "Kubernetes", "JUnit", "Maven"
+  ],
+  "experience": [
+    {
+      "title": "Lead Software Engineer",
+      "company": "Charminar Payments",
+      "employment_type": "full_time",
+      "start": "2022-04",
+      "end": "present",
+      "skills_used": ["Java", "Spring Boot", "Microservices", "Kafka", "Kubernetes", "PostgreSQL"],
+      "bullets": [
+        "Lead a team of eight building the UPI settlement platform: 14 Spring Boot microservices processing 3 million transactions a day.",
+        "Designed the Kafka event backbone with exactly-once settlement, removing nightly reconciliation breaks.",
+        "Moved the services onto Kubernetes with autoscaling, cutting peak-hour latency from 900 ms to 180 ms.",
+        "Partitioned the PostgreSQL ledger by month and brought month-end reporting from hours to minutes.",
+        "Upgraded the codebase from Java 11 to Java 21 and adopted virtual threads for the I/O-heavy services."
+      ]
+    },
+    {
+      "title": "Senior Software Engineer",
+      "company": "Godavari Insurance Tech",
+      "employment_type": "full_time",
+      "start": "2019-02",
+      "end": "2022-03",
+      "skills_used": ["Spring Boot", "Spring Cloud", "Microservices", "MySQL", "Docker"],
+      "bullets": [
+        "Broke the policy-administration monolith into Spring Cloud microservices with service discovery and circuit breakers.",
+        "Built the premium-calculation service in Spring Boot, serving 200 partner brokers.",
+        "Tuned MySQL indexes and connection pools, halving p95 response times on quote APIs.",
+        "Containerised all services with Docker for the move to a shared platform."
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Deccan Telecom Solutions",
+      "employment_type": "full_time",
+      "start": "2017-07",
+      "end": "2019-01",
+      "skills_used": ["Java", "Hibernate", "JUnit", "Maven"],
+      "bullets": [
+        "Built Java modules for a prepaid-recharge platform used by 12 million subscribers.",
+        "Mapped the subscriber and tariff model with Hibernate and removed N+1 queries from the hot paths.",
+        "Wrote JUnit suites and Maven build profiles that let the team release weekly instead of monthly."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech",
+      "field": "Computer Science and Engineering",
+      "institution": "Krishna Valley Institute of Technology",
+      "start_year": 2013,
+      "end_year": 2017,
+      "grade": "8.4 CGPA"
+    }
+  ],
+  "certifications": ["Oracle Certified Professional: Java SE 17 Developer"],
+  "hobbies": ["Badminton", "Hindustani classical music"],
+  "render": {
+    "format": "pdf",
+    "layout": "compact",
+    "header_variant": "standard",
+    "date_format": "month_name"
+  }
+}
