@@ -109,3 +109,26 @@ def unmet_must_haves(theme: JDTheme, candidate: dict) -> list[str]:
         ):
             unmet.append(req.describe())
     return unmet
+
+
+def unmet_details(theme: JDTheme, candidate: dict) -> list[str]:
+    """``unmet_must_haves`` with the candidate's evidence, for humans reading ``qrels.json``.
+
+    Same rule and order, e.g. ``"Python 5+ yrs (has 4.3)"``, ``"Django or FastAPI (missing)"``,
+    ``"4+ total yrs (has 3.9)"``.
+    """
+    details = []
+    if theme.min_total_years is not None and candidate["total_years"] < theme.min_total_years:
+        details.append(f"{theme.min_total_years}+ total yrs (has {candidate['total_years']})")
+    for req in theme.must_have:
+        present = [s for s in req.any_of if s in candidate["skills"]]
+        best = max((candidate["skill_years"][s] for s in present), default=None)
+        skills = " or ".join(req.any_of)
+        if req.min_years is None:
+            if not present:
+                details.append(f"{skills} (missing)")
+        elif best is None:
+            details.append(f"{skills} {req.min_years}+ yrs (missing)")
+        elif best < req.min_years:
+            details.append(f"{skills} {req.min_years}+ yrs (has {best})")
+    return details

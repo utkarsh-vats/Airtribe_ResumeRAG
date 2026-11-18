@@ -11,7 +11,7 @@ circular.
 | `persona_plan.md` | 35 slots, intended JD relevance, edge-case placement, layouts | hand |
 | `jd_themes.json` | The six JD themes as structured must-haves / nice-to-haves (`scripts/jd_themes.py`) | hand |
 | `manifest.json` | Per-candidate skills, years and education | `python -m scripts.build_manifest` |
-| `qrels.json` (step 4) | Graded relevance (0/1/2) per JD × candidate | hand |
+| `qrels.json` | Grade, label, eligibility and unmet must-haves per JD × candidate | `python -m scripts.build_qrels` (labels from `persona_plan.md`) |
 
 After editing any persona, run `python -m scripts.build_manifest`. The test suite fails if
 `manifest.json` is stale; `python -m scripts.build_manifest --check` gives the same check
@@ -236,6 +236,38 @@ no output may depend on compressed bytes:
 - **PDF**: reportlab invariant mode (creation and modification dates fixed at
   2000-01-01, deterministic document ID), page compression off, fixed metadata,
   written from memory so no file path is embedded.
+
+## Relevance semantics
+
+`qrels.json` holds one judgement per JD × candidate (6 × 35). It is built by
+`python -m scripts.build_qrels` (`--check` exits 1 if stale; a test does the same):
+
+- **`label`** and **`grade`** are the relevance labels assigned by judgement in
+  `persona_plan.md` (step 2a), never anything computed by `rag/`:
+  - **grade 2 (`S`)**: meets every must-have, including the years, and is a direct fit;
+  - **grade 1 (`P`)**: a recruiter would consider them, but something is missing (years, one
+    must-have, an adjacent stack);
+  - **grade 0 (`D` or `none`)**: not relevant. `D` marks a *convincing non-fit*: a candidate
+    built to share keywords or a title with the JD (JavaScript for Java, "airflow" in HVAC,
+    skills listed but never used) who still fails a must-have. `none` is simply unrelated.
+- **`eligible`**: meets every must-have per `manifest.json` + `jd_themes.json`, using the same
+  rule as the label-consistency tests (`scripts.jd_themes.unmet_must_haves`): one skill of each
+  `any_of` group present, with at least `min_years` evidenced years for that same skill, and
+  `min_total_years` where set.
+- **`unmet`**: the failed must-haves with the evidence, in the same order, e.g.
+  `"Python 5+ yrs (has 4.3)"`, `"Django or FastAPI (missing)"`, `"4+ total yrs (has 3.9)"`.
+
+**Dataset property: `eligible == (label == S)` for every JD** (3 per JD; enforced by
+`tests/test_qrels.py`). Every strong candidate passes the must-have filter, and every partial
+candidate fails it by design. A system that applied the must-have filter before ranking would
+therefore drop every grade-1 candidate, so ranking metrics computed after the filter would
+hide how well grade-1 candidates rank. Evaluation (step 13) reports two things separately:
+
+1. **Ranking quality before the must-have filter**: graded nDCG@10 (gains 2/1/0); binary
+   P@5, R@10 and MRR in a *strict* form (relevant = grade 2) and a *lenient* form (relevant =
+   grade >= 1); and **distractor intrusion@10**, the share of the top 10 labelled `D`.
+2. **Filter accuracy**: the system's keep/drop decision per candidate compared with
+   `eligible` (precision, recall and the list of disagreements).
 
 ## Known limitations
 

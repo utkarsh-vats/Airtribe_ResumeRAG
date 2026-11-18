@@ -1,0 +1,2412 @@
+{
+  "as_of": "2026-11-01",
+  "grades": {
+    "S": 2,
+    "P": 1,
+    "D": 0,
+    "none": 0
+  },
+  "jds": [
+    {
+      "jd_id": "python_backend",
+      "title": "Senior Python Backend Engineer",
+      "jd_path": "job_descriptions/python_backend.txt",
+      "judgements": [
+        {
+          "candidate_id": "aisha_okafor",
+          "resume_path": "resumes/aisha_okafor.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ananya_iyer",
+          "resume_path": "resumes/ananya_iyer.docx",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "arjun_nair",
+          "resume_path": "resumes/arjun_nair.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "daniel_osei",
+          "resume_path": "resumes/daniel_osei.docx",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (has 2.7)"
+          ]
+        },
+        {
+          "candidate_id": "david_okonkwo",
+          "resume_path": "resumes/david_okonkwo.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "elena_rodriguez",
+          "resume_path": "resumes/elena_rodriguez.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "emily_clarke",
+          "resume_path": "resumes/emily_clarke.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)"
+          ]
+        },
+        {
+          "candidate_id": "fatima_al_sayed",
+          "resume_path": "resumes/fatima_al_sayed.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (has 4.2)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "grace_kim",
+          "resume_path": "resumes/grace_kim.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (has 4.2)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hannah_berg",
+          "resume_path": "resumes/hannah_berg.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hans_mueller",
+          "resume_path": "resumes/hans_mueller.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ishaan_gupta",
+          "resume_path": "resumes/ishaan_gupta.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (has 0.0)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "james_o_brien",
+          "resume_path": "resumes/james_o_brien.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "john_doe",
+          "resume_path": "resumes/john_doe.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "kenji_tanaka",
+          "resume_path": "resumes/kenji_tanaka.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kwame_mensah",
+          "resume_path": "resumes/kwame_mensah.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "liam_walsh",
+          "resume_path": "resumes/liam_walsh.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (has 2.8)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "lucas_martin",
+          "resume_path": "resumes/lucas_martin.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "marcus_chen",
+          "resume_path": "resumes/marcus_chen.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "maria_santos",
+          "resume_path": "resumes/maria_santos.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mateo_garcia",
+          "resume_path": "resumes/mateo_garcia.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (has 4.3)"
+          ]
+        },
+        {
+          "candidate_id": "mohammed_rahman",
+          "resume_path": "resumes/mohammed_rahman.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "nina_kowalski",
+          "resume_path": "resumes/nina_kowalski.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "noah_williams",
+          "resume_path": "resumes/noah_williams.txt",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "olga_petrova",
+          "resume_path": "resumes/olga_petrova.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "omar_haddad",
+          "resume_path": "resumes/omar_haddad.pdf",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (has 0.0)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "peter_hughes",
+          "resume_path": "resumes/peter_hughes.pdf",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma",
+          "resume_path": "resumes/priya_sharma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma_2",
+          "resume_path": "resumes/priya_sharma_2.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "rahul_verma",
+          "resume_path": "resumes/rahul_verma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)"
+          ]
+        },
+        {
+          "candidate_id": "sofia_rossi",
+          "resume_path": "resumes/sofia_rossi.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "tomas_novak",
+          "resume_path": "resumes/tomas_novak.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "wei_zhang",
+          "resume_path": "resumes/wei_zhang.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "yuki_sato",
+          "resume_path": "resumes/yuki_sato.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        },
+        {
+          "candidate_id": "zoe_turner",
+          "resume_path": "resumes/zoe_turner.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 5+ yrs (missing)",
+            "Django or FastAPI (missing)",
+            "PostgreSQL (missing)"
+          ]
+        }
+      ]
+    },
+    {
+      "jd_id": "ml_engineer",
+      "title": "Machine Learning Engineer",
+      "jd_path": "job_descriptions/ml_engineer.txt",
+      "judgements": [
+        {
+          "candidate_id": "aisha_okafor",
+          "resume_path": "resumes/aisha_okafor.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ananya_iyer",
+          "resume_path": "resumes/ananya_iyer.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "arjun_nair",
+          "resume_path": "resumes/arjun_nair.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "daniel_osei",
+          "resume_path": "resumes/daniel_osei.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (has 2.7)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "david_okonkwo",
+          "resume_path": "resumes/david_okonkwo.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "elena_rodriguez",
+          "resume_path": "resumes/elena_rodriguez.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "emily_clarke",
+          "resume_path": "resumes/emily_clarke.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "fatima_al_sayed",
+          "resume_path": "resumes/fatima_al_sayed.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "grace_kim",
+          "resume_path": "resumes/grace_kim.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hannah_berg",
+          "resume_path": "resumes/hannah_berg.docx",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hans_mueller",
+          "resume_path": "resumes/hans_mueller.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ishaan_gupta",
+          "resume_path": "resumes/ishaan_gupta.docx",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (has 0.0)"
+          ]
+        },
+        {
+          "candidate_id": "james_o_brien",
+          "resume_path": "resumes/james_o_brien.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "john_doe",
+          "resume_path": "resumes/john_doe.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kenji_tanaka",
+          "resume_path": "resumes/kenji_tanaka.txt",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "kwame_mensah",
+          "resume_path": "resumes/kwame_mensah.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "liam_walsh",
+          "resume_path": "resumes/liam_walsh.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (has 2.8)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "lucas_martin",
+          "resume_path": "resumes/lucas_martin.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "marcus_chen",
+          "resume_path": "resumes/marcus_chen.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "maria_santos",
+          "resume_path": "resumes/maria_santos.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mateo_garcia",
+          "resume_path": "resumes/mateo_garcia.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mohammed_rahman",
+          "resume_path": "resumes/mohammed_rahman.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "nina_kowalski",
+          "resume_path": "resumes/nina_kowalski.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "noah_williams",
+          "resume_path": "resumes/noah_williams.txt",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)"
+          ]
+        },
+        {
+          "candidate_id": "olga_petrova",
+          "resume_path": "resumes/olga_petrova.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "omar_haddad",
+          "resume_path": "resumes/omar_haddad.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (has 0.0)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "peter_hughes",
+          "resume_path": "resumes/peter_hughes.pdf",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma",
+          "resume_path": "resumes/priya_sharma.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "PyTorch (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma_2",
+          "resume_path": "resumes/priya_sharma_2.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "rahul_verma",
+          "resume_path": "resumes/rahul_verma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "sofia_rossi",
+          "resume_path": "resumes/sofia_rossi.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "tomas_novak",
+          "resume_path": "resumes/tomas_novak.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "wei_zhang",
+          "resume_path": "resumes/wei_zhang.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "yuki_sato",
+          "resume_path": "resumes/yuki_sato.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        },
+        {
+          "candidate_id": "zoe_turner",
+          "resume_path": "resumes/zoe_turner.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Python 3+ yrs (missing)",
+            "PyTorch (missing)",
+            "Machine Learning (missing)"
+          ]
+        }
+      ]
+    },
+    {
+      "jd_id": "devops_sre",
+      "title": "DevOps / Site Reliability Engineer",
+      "jd_path": "job_descriptions/devops_sre.txt",
+      "judgements": [
+        {
+          "candidate_id": "aisha_okafor",
+          "resume_path": "resumes/aisha_okafor.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "4+ total yrs (has 3.4)",
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ananya_iyer",
+          "resume_path": "resumes/ananya_iyer.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)"
+          ]
+        },
+        {
+          "candidate_id": "arjun_nair",
+          "resume_path": "resumes/arjun_nair.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)"
+          ]
+        },
+        {
+          "candidate_id": "daniel_osei",
+          "resume_path": "resumes/daniel_osei.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "david_okonkwo",
+          "resume_path": "resumes/david_okonkwo.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "elena_rodriguez",
+          "resume_path": "resumes/elena_rodriguez.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "emily_clarke",
+          "resume_path": "resumes/emily_clarke.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "fatima_al_sayed",
+          "resume_path": "resumes/fatima_al_sayed.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "grace_kim",
+          "resume_path": "resumes/grace_kim.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hannah_berg",
+          "resume_path": "resumes/hannah_berg.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hans_mueller",
+          "resume_path": "resumes/hans_mueller.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ishaan_gupta",
+          "resume_path": "resumes/ishaan_gupta.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "4+ total yrs (has 0.0)",
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "james_o_brien",
+          "resume_path": "resumes/james_o_brien.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "john_doe",
+          "resume_path": "resumes/john_doe.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kenji_tanaka",
+          "resume_path": "resumes/kenji_tanaka.txt",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kwame_mensah",
+          "resume_path": "resumes/kwame_mensah.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "liam_walsh",
+          "resume_path": "resumes/liam_walsh.docx",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "lucas_martin",
+          "resume_path": "resumes/lucas_martin.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "marcus_chen",
+          "resume_path": "resumes/marcus_chen.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "maria_santos",
+          "resume_path": "resumes/maria_santos.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mateo_garcia",
+          "resume_path": "resumes/mateo_garcia.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mohammed_rahman",
+          "resume_path": "resumes/mohammed_rahman.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "nina_kowalski",
+          "resume_path": "resumes/nina_kowalski.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)"
+          ]
+        },
+        {
+          "candidate_id": "noah_williams",
+          "resume_path": "resumes/noah_williams.txt",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Terraform (missing)"
+          ]
+        },
+        {
+          "candidate_id": "olga_petrova",
+          "resume_path": "resumes/olga_petrova.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "omar_haddad",
+          "resume_path": "resumes/omar_haddad.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "peter_hughes",
+          "resume_path": "resumes/peter_hughes.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma",
+          "resume_path": "resumes/priya_sharma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma_2",
+          "resume_path": "resumes/priya_sharma_2.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "rahul_verma",
+          "resume_path": "resumes/rahul_verma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "sofia_rossi",
+          "resume_path": "resumes/sofia_rossi.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "4+ total yrs (has 2.9)",
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "tomas_novak",
+          "resume_path": "resumes/tomas_novak.txt",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "wei_zhang",
+          "resume_path": "resumes/wei_zhang.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "yuki_sato",
+          "resume_path": "resumes/yuki_sato.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        },
+        {
+          "candidate_id": "zoe_turner",
+          "resume_path": "resumes/zoe_turner.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "4+ total yrs (has 1.6)",
+            "Kubernetes (missing)",
+            "Terraform (missing)",
+            "AWS (missing)"
+          ]
+        }
+      ]
+    },
+    {
+      "jd_id": "frontend",
+      "title": "Frontend Engineer (React)",
+      "jd_path": "job_descriptions/frontend.txt",
+      "judgements": [
+        {
+          "candidate_id": "aisha_okafor",
+          "resume_path": "resumes/aisha_okafor.docx",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "ananya_iyer",
+          "resume_path": "resumes/ananya_iyer.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "arjun_nair",
+          "resume_path": "resumes/arjun_nair.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "daniel_osei",
+          "resume_path": "resumes/daniel_osei.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "david_okonkwo",
+          "resume_path": "resumes/david_okonkwo.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "elena_rodriguez",
+          "resume_path": "resumes/elena_rodriguez.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "emily_clarke",
+          "resume_path": "resumes/emily_clarke.docx",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "fatima_al_sayed",
+          "resume_path": "resumes/fatima_al_sayed.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "grace_kim",
+          "resume_path": "resumes/grace_kim.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hannah_berg",
+          "resume_path": "resumes/hannah_berg.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hans_mueller",
+          "resume_path": "resumes/hans_mueller.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ishaan_gupta",
+          "resume_path": "resumes/ishaan_gupta.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "james_o_brien",
+          "resume_path": "resumes/james_o_brien.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "john_doe",
+          "resume_path": "resumes/john_doe.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kenji_tanaka",
+          "resume_path": "resumes/kenji_tanaka.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kwame_mensah",
+          "resume_path": "resumes/kwame_mensah.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)"
+          ]
+        },
+        {
+          "candidate_id": "liam_walsh",
+          "resume_path": "resumes/liam_walsh.docx",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "lucas_martin",
+          "resume_path": "resumes/lucas_martin.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "marcus_chen",
+          "resume_path": "resumes/marcus_chen.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "maria_santos",
+          "resume_path": "resumes/maria_santos.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mateo_garcia",
+          "resume_path": "resumes/mateo_garcia.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mohammed_rahman",
+          "resume_path": "resumes/mohammed_rahman.docx",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "nina_kowalski",
+          "resume_path": "resumes/nina_kowalski.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "noah_williams",
+          "resume_path": "resumes/noah_williams.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "olga_petrova",
+          "resume_path": "resumes/olga_petrova.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "omar_haddad",
+          "resume_path": "resumes/omar_haddad.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "peter_hughes",
+          "resume_path": "resumes/peter_hughes.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma",
+          "resume_path": "resumes/priya_sharma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma_2",
+          "resume_path": "resumes/priya_sharma_2.txt",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)"
+          ]
+        },
+        {
+          "candidate_id": "rahul_verma",
+          "resume_path": "resumes/rahul_verma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "sofia_rossi",
+          "resume_path": "resumes/sofia_rossi.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "tomas_novak",
+          "resume_path": "resumes/tomas_novak.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "wei_zhang",
+          "resume_path": "resumes/wei_zhang.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "yuki_sato",
+          "resume_path": "resumes/yuki_sato.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (missing)",
+            "TypeScript (missing)"
+          ]
+        },
+        {
+          "candidate_id": "zoe_turner",
+          "resume_path": "resumes/zoe_turner.txt",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "React 3+ yrs (has 1.6)",
+            "TypeScript (missing)"
+          ]
+        }
+      ]
+    },
+    {
+      "jd_id": "java_backend",
+      "title": "Java Backend Engineer",
+      "jd_path": "job_descriptions/java_backend.txt",
+      "judgements": [
+        {
+          "candidate_id": "aisha_okafor",
+          "resume_path": "resumes/aisha_okafor.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ananya_iyer",
+          "resume_path": "resumes/ananya_iyer.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "arjun_nair",
+          "resume_path": "resumes/arjun_nair.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "daniel_osei",
+          "resume_path": "resumes/daniel_osei.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "david_okonkwo",
+          "resume_path": "resumes/david_okonkwo.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "elena_rodriguez",
+          "resume_path": "resumes/elena_rodriguez.docx",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "emily_clarke",
+          "resume_path": "resumes/emily_clarke.docx",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)"
+          ]
+        },
+        {
+          "candidate_id": "fatima_al_sayed",
+          "resume_path": "resumes/fatima_al_sayed.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "grace_kim",
+          "resume_path": "resumes/grace_kim.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hannah_berg",
+          "resume_path": "resumes/hannah_berg.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hans_mueller",
+          "resume_path": "resumes/hans_mueller.docx",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "ishaan_gupta",
+          "resume_path": "resumes/ishaan_gupta.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "james_o_brien",
+          "resume_path": "resumes/james_o_brien.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "john_doe",
+          "resume_path": "resumes/john_doe.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kenji_tanaka",
+          "resume_path": "resumes/kenji_tanaka.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kwame_mensah",
+          "resume_path": "resumes/kwame_mensah.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)"
+          ]
+        },
+        {
+          "candidate_id": "liam_walsh",
+          "resume_path": "resumes/liam_walsh.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "lucas_martin",
+          "resume_path": "resumes/lucas_martin.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "marcus_chen",
+          "resume_path": "resumes/marcus_chen.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)"
+          ]
+        },
+        {
+          "candidate_id": "maria_santos",
+          "resume_path": "resumes/maria_santos.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mateo_garcia",
+          "resume_path": "resumes/mateo_garcia.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mohammed_rahman",
+          "resume_path": "resumes/mohammed_rahman.docx",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "nina_kowalski",
+          "resume_path": "resumes/nina_kowalski.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "noah_williams",
+          "resume_path": "resumes/noah_williams.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "olga_petrova",
+          "resume_path": "resumes/olga_petrova.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "omar_haddad",
+          "resume_path": "resumes/omar_haddad.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "peter_hughes",
+          "resume_path": "resumes/peter_hughes.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma",
+          "resume_path": "resumes/priya_sharma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma_2",
+          "resume_path": "resumes/priya_sharma_2.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "rahul_verma",
+          "resume_path": "resumes/rahul_verma.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "sofia_rossi",
+          "resume_path": "resumes/sofia_rossi.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "tomas_novak",
+          "resume_path": "resumes/tomas_novak.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "wei_zhang",
+          "resume_path": "resumes/wei_zhang.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "yuki_sato",
+          "resume_path": "resumes/yuki_sato.txt",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        },
+        {
+          "candidate_id": "zoe_turner",
+          "resume_path": "resumes/zoe_turner.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Java 5+ yrs (missing)",
+            "Spring Boot (missing)",
+            "Microservices (missing)"
+          ]
+        }
+      ]
+    },
+    {
+      "jd_id": "data_engineer",
+      "title": "Data Engineer",
+      "jd_path": "job_descriptions/data_engineer.txt",
+      "judgements": [
+        {
+          "candidate_id": "aisha_okafor",
+          "resume_path": "resumes/aisha_okafor.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ananya_iyer",
+          "resume_path": "resumes/ananya_iyer.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "arjun_nair",
+          "resume_path": "resumes/arjun_nair.pdf",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "daniel_osei",
+          "resume_path": "resumes/daniel_osei.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "david_okonkwo",
+          "resume_path": "resumes/david_okonkwo.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "elena_rodriguez",
+          "resume_path": "resumes/elena_rodriguez.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "emily_clarke",
+          "resume_path": "resumes/emily_clarke.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "fatima_al_sayed",
+          "resume_path": "resumes/fatima_al_sayed.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "grace_kim",
+          "resume_path": "resumes/grace_kim.docx",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "hannah_berg",
+          "resume_path": "resumes/hannah_berg.docx",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "hans_mueller",
+          "resume_path": "resumes/hans_mueller.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "ishaan_gupta",
+          "resume_path": "resumes/ishaan_gupta.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "james_o_brien",
+          "resume_path": "resumes/james_o_brien.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "john_doe",
+          "resume_path": "resumes/john_doe.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kenji_tanaka",
+          "resume_path": "resumes/kenji_tanaka.txt",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "kwame_mensah",
+          "resume_path": "resumes/kwame_mensah.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "liam_walsh",
+          "resume_path": "resumes/liam_walsh.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "lucas_martin",
+          "resume_path": "resumes/lucas_martin.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "marcus_chen",
+          "resume_path": "resumes/marcus_chen.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "maria_santos",
+          "resume_path": "resumes/maria_santos.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mateo_garcia",
+          "resume_path": "resumes/mateo_garcia.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "mohammed_rahman",
+          "resume_path": "resumes/mohammed_rahman.docx",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "nina_kowalski",
+          "resume_path": "resumes/nina_kowalski.txt",
+          "label": "S",
+          "grade": 2,
+          "eligible": true,
+          "unmet": []
+        },
+        {
+          "candidate_id": "noah_williams",
+          "resume_path": "resumes/noah_williams.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "olga_petrova",
+          "resume_path": "resumes/olga_petrova.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "omar_haddad",
+          "resume_path": "resumes/omar_haddad.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "peter_hughes",
+          "resume_path": "resumes/peter_hughes.pdf",
+          "label": "D",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma",
+          "resume_path": "resumes/priya_sharma.pdf",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)"
+          ]
+        },
+        {
+          "candidate_id": "priya_sharma_2",
+          "resume_path": "resumes/priya_sharma_2.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "rahul_verma",
+          "resume_path": "resumes/rahul_verma.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "sofia_rossi",
+          "resume_path": "resumes/sofia_rossi.txt",
+          "label": "P",
+          "grade": 1,
+          "eligible": false,
+          "unmet": [
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "tomas_novak",
+          "resume_path": "resumes/tomas_novak.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "wei_zhang",
+          "resume_path": "resumes/wei_zhang.pdf",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "yuki_sato",
+          "resume_path": "resumes/yuki_sato.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        },
+        {
+          "candidate_id": "zoe_turner",
+          "resume_path": "resumes/zoe_turner.txt",
+          "label": "none",
+          "grade": 0,
+          "eligible": false,
+          "unmet": [
+            "SQL (missing)",
+            "Spark (missing)",
+            "Airflow (missing)"
+          ]
+        }
+      ]
+    }
+  ]
+}

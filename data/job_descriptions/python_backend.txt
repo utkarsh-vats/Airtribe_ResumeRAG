@@ -1,0 +1,33 @@
+Senior Python Backend Engineer
+Tidewater Freight Labs - Rotterdam, Netherlands (hybrid)
+
+About us
+Tidewater Freight Labs builds the booking and tracking platform behind 1,200 European freight forwarders. Our services move 9 million shipment events a day, and our 60 engineers care about calm on-call rotations, small pull requests and clear code reviews.
+
+The role
+You'll join the Shipments squad as a senior engineer, owning the services that turn raw carrier messages into the timeline our customers see. You'll work alongside our React frontend team, and with the data platform group, who run our analytics on BigQuery. Expect to spend most of your time on design and delivery, with a steady share of mentoring.
+
+What you'll do
+- Design and build backend services and public APIs used by thousands of forwarders.
+- Own the shipment data model and keep it fast at our scale.
+- Review code, mentor two mid-level engineers and help shape the technical roadmap.
+- Write design documents that the rest of the squad can challenge and build on.
+- Join a light on-call rotation, one week in eight.
+
+Requirements
+- 5+ years of professional Python experience, ideally building backend services.
+- Production experience with Django or FastAPI.
+- Solid PostgreSQL skills: schema design, indexing and query tuning.
+- Comfortable owning a service end to end, from design document to production.
+
+Nice to have
+- Docker for local development and deployment.
+- Redis for caching or rate limiting.
+- Background jobs with Celery.
+- Running services on AWS.
+
+Location and benefits
+- Hybrid: two days a week in our Rotterdam office, a short walk from the harbour.
+- 30 days of paid holiday and a yearly learning budget of 2,000 euros.
+- Relocation support for anyone moving to the Netherlands.
+- Salary bands are published internally, and we share yours in the first call.

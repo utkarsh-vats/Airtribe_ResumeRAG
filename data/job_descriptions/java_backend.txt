@@ -1,0 +1,32 @@
+Java Backend Engineer
+Halden Mutual - Leeds, UK (hybrid)
+
+About us
+Halden Mutual insures 900,000 homes and cars across the UK. Our engineering team of 80 is replacing a 20-year-old policy system one service at a time, and we would rather do it carefully than quickly.
+
+The team
+You'll join the Claims team, which owns everything from the first notification of loss to the final payout. Our services run on a shared Kubernetes platform looked after by the platform team, and claims handlers work in an internal tool built with Angular. We plan in Jira, but we keep the process light.
+
+Responsibilities
+- Design and build services that replace parts of the legacy claims system.
+- Own the APIs and events shared with the policy and payments teams.
+- Sit with claims handlers to understand their work before changing it.
+- Keep services observable, documented and easy to operate.
+- Help interview and onboard new engineers as the team grows.
+
+What we're looking for
+- 5 or more years of Java development.
+- Commercial experience with Spring Boot.
+- Experience designing and running microservices.
+- A habit of writing tests and readable code.
+
+Nice to have
+- Event streaming with Kafka.
+- Persistence with Hibernate.
+- Building and shipping images with Docker.
+- Deploying to Kubernetes.
+
+Benefits
+- Hybrid: two days a week in our Leeds office.
+- 28 days of holiday, a 10% pension contribution and discounted home insurance.
+- Paid volunteering days and a well-stocked training budget.

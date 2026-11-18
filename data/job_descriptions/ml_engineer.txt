@@ -1,0 +1,31 @@
+Machine Learning Engineer
+Northlight Diagnostics - Remote (UK or EU time zones)
+
+Who we are
+Northlight Diagnostics helps radiology teams triage scans faster. Our models review 40,000 chest X-rays a week across 30 hospitals, and a clinician checks every prediction before it reaches a patient record.
+
+About the role
+You'll train, evaluate and ship the models clinicians rely on, working closely with our radiologists and the platform team. Our clinician dashboards are written in TypeScript, and the platform team runs everything on Kubernetes, so you'll spend your time on models rather than on servers.
+
+Responsibilities
+- Turn research prototypes into reliable, monitored production models.
+- Design evaluation sets with clinicians and track model quality over time.
+- Make training pipelines faster, so experiments take hours rather than days.
+- Write up results so that doctors and regulators can follow them.
+
+What you'll need:
+- At least 3 years' experience writing production Python.
+- Hands-on experience training models with PyTorch.
+- A solid grounding in machine learning, including validation, bias and failure analysis.
+- Clear writing: you'll explain model behaviour to doctors.
+
+Bonus points:
+- Experiment tracking with MLflow.
+- Computer vision, especially medical imaging.
+- Natural language processing for radiology reports.
+- Packaging models with Docker.
+
+Benefits:
+- Fully remote, with a team week in Edinburgh twice a year.
+- Private health cover and a home-office budget.
+- A four-day working week every August.

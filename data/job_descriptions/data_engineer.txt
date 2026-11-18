@@ -1,0 +1,26 @@
+Data Engineer
+Saltmarsh Grocers - Bristol, UK
+
+About us
+Saltmarsh Grocers runs 210 neighbourhood food shops and a fast-growing delivery service across the South West. Data decides what lands on our shelves each morning, and how much of it ends up wasted.
+
+The role
+You'll build and run the pipelines that feed forecasting, pricing and supplier reporting. Our analysts live in Tableau and Excel, and today they wait too long for fresh numbers; your work will change that. You'll be the third engineer in a small data team that reports to the Chief Operating Officer.
+
+What you'll do
+- Build reliable batch pipelines for sales, stock and supplier data.
+- Model data so analysts can answer their own questions.
+- Monitor data quality and fix problems before stores notice them.
+
+Requirements
+You write SQL fluently and can explain a query plan to a colleague. You have built and tuned batch jobs on Apache Spark, and you have scheduled and monitored production pipelines with Apache Airflow. You care about data quality, you test your transformations, and you document what you build so the next person doesn't have to guess.
+
+Preferred qualifications
+- Python for pipeline code and tests.
+- Streaming ingestion with Kafka.
+- Data modelling with dbt.
+- Warehousing on Snowflake.
+
+Where you'll work
+- Hybrid from our Bristol office near Temple Meads, two days a week.
+- 20% staff discount in every shop and 27 days of holiday.

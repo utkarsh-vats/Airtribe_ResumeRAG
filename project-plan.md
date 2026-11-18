@@ -28,8 +28,10 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       the two-page `john_doe`; byte-deterministic PDF and DOCX output; all 35 resumes in
       `data/resumes/`, with `python -m scripts.generate_resumes --check` and a byte-identity
       test.
-- [ ] **4. Job descriptions + qrels** – 6 JDs in `data/job_descriptions/` and
-      `data/ground_truth/qrels.json` (hand-authored, reviewed, 0/1/2 per JD × candidate).
+- [x] **4. Job descriptions + qrels** – 6 JDs in `data/job_descriptions/` with their parsing
+      contract (`README.md`) and tests, and `data/ground_truth/qrels.json` built by
+      `python -m scripts.build_qrels` (labels and 0/1/2 grades from `persona_plan.md`,
+      eligibility and unmet must-haves from the manifest).
 - [ ] **5. Chunking** – section detection + section-aware and fixed-size chunkers + tests.
 - [ ] **6. Metadata extractor** – name, education, skills, roles, merged years, per-skill years
       (injected `as_of`) + tests against the manifest.

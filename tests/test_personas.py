@@ -4,7 +4,7 @@ import json
 import re
 import unicodedata
 from collections import Counter
-from dataclasses import dataclass, replace
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -24,11 +24,11 @@ from scripts.build_manifest import (
     total_years,
 )
 from scripts.jd_themes import load_jd_themes, unmet_must_haves
+from scripts.persona_plan import RELEVANCE, Slot, load_plan
 from scripts.persona_schema import (
     AS_OF,
     EDGE_CASES,
     FORMAT_LAYOUTS,
-    GROUND_TRUTH_DIR,
     LAYOUTS,
     PERSONA_DIR,
     PRESENT,
@@ -46,11 +46,9 @@ from scripts.persona_schema import (
 )
 
 PERSONA_FILES = sorted(PERSONA_DIR.glob("*.json"))
-PLAN_PATH = GROUND_TRUTH_DIR / "persona_plan.md"
 PLAN_SIZE = 35
 THEMES = {theme.id: theme for theme in load_jd_themes()}
 JDS = tuple(THEMES)
-RELEVANCE = ("strong", "partial", "distractor", "none")
 REQUIRED_EDGE_CASES = (
     "python_in_hobbies",
     "js_for_java_jd",
@@ -102,59 +100,6 @@ def all_skill_refs(persona: Persona) -> list[str]:
     for project in persona.projects:
         refs.extend(project.skills_used)
     return refs
-
-
-@dataclass(frozen=True)
-class Slot:
-    id: str
-    archetype: str
-    seniority: str
-    years: float
-    format: str
-    layout: str
-    date_format: str
-    edge_cases: frozenset[str]
-    relevance: dict[str, str]
-
-
-def load_plan() -> dict[str, Slot]:
-    """Parse the Slots table of persona_plan.md."""
-    section = PLAN_PATH.read_text(encoding="utf-8").split("## Slots", 1)[1]
-    rows: list[list[str]] = []
-    for line in section.splitlines():
-        if not line.startswith("|"):
-            if rows:
-                break
-            continue
-        rows.append([cell.strip().strip("`") for cell in line.strip().strip("|").split("|")])
-    header, _separator, *body = rows
-    assert header[:8] == [
-        "id",
-        "archetype",
-        "seniority",
-        "years",
-        "format",
-        "layout",
-        "date_format",
-        "edge_cases",
-    ]
-    assert tuple(header[8:]) == JDS
-    slots = {}
-    for row in body:
-        assert len(row) == len(header), row
-        tags = frozenset() if row[7] == "-" else frozenset(t.strip() for t in row[7].split(","))
-        slot = Slot(
-            row[0],
-            row[1],
-            row[2],
-            float(row[3]),
-            *row[4:7],
-            tags,
-            dict(zip(JDS, row[8:], strict=True)),
-        )
-        assert slot.id not in slots, f"duplicate plan id {slot.id}"
-        slots[slot.id] = slot
-    return slots
 
 
 @pytest.fixture(scope="module")

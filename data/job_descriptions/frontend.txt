@@ -1,0 +1,28 @@
+Frontend Engineer (React)
+Fernleaf Learning - Lisbon, Portugal (hybrid)
+
+About us
+Fernleaf builds reading apps for primary schools. Two million children practise reading with us every week, most of them on shared classroom laptops that are older than they are.
+
+The role
+You'll be one of four frontend engineers on the product team, owning the student and teacher web apps. We ship small changes every day, talk to teachers every week and sit in on a lesson at least once a term. You'll have real influence over how the product looks and feels, and you'll help us decide what not to build.
+
+What you'll do
+- Build features from component design to release, and measure whether they helped.
+- Keep our interfaces fast and accessible on low-end hardware.
+- Work with our designers in Figma and with the Node.js team that owns our APIs.
+
+You have
+- React (3+ yrs) in production apps.
+- Strong TypeScript skills.
+- An eye for accessibility, layout and detail.
+
+Nice to have
+- Next.js or another server-rendering framework.
+- State management with Redux.
+- Testing with Jest.
+- Styling with Tailwind CSS.
+
+Perks
+- Hybrid: three days a week in our Lisbon studio.
+- A learning budget, and one free week each year to build something you choose.
