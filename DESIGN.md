@@ -50,7 +50,7 @@ Planned module layout (built slice by slice, see [project-plan.md](project-plan.
 | `rag/embedders/` | `Embedder` ABC, registry, `huggingface`, `gemini`, `fake` |
 | `rag/store.py` | Chroma repository (`ResumeStore`) |
 | `rag/keyword_index.py` | BM25 keyword index over the same chunks |
-| `rag/jd_parser.py` | Rule-based JD requirement parser |
+| `rag/jd_parser.py` | Rule-based JD parser: sections, must-haves, years, query text |
 | `rag/retrieval.py` | Hybrid retrieval, RRF, candidate aggregation |
 | `rag/scoring.py` | Score components, must-have filter, reasoning, excerpts |
 | `rag/evaluation.py` | qrels loading, IR metrics, latency |
@@ -566,15 +566,63 @@ score = 100 × ( w_sem · semantic + w_must · must_cov + w_nice · nice_cov + w
 
 ## 9. JD parsing (rule-based)
 
-- Detect sections by headers: *Requirements*, *Must have* / *Required*, *Nice to have* /
-  *Preferred* / *Bonus*, *Responsibilities*. A bullet's section decides whether its skills are
-  must-have or nice-to-have. Skills outside any section default to nice-to-have.
-- **Years patterns**: `N+ years (of) X`, `N-M years`, `at least N years`, `minimum N years`.
-  When X resolves to a taxonomy skill it becomes a per-skill requirement. Otherwise (e.g.
-  "5+ years of backend development") it's total experience.
-- Skills are matched with the same taxonomy and alias rules as resumes (§4), so JD and resume
-  vocabularies line up.
-- Output: `JobRequirements(title, must_have, nice_to_have, min_years, skill_years, raw_text)`.
+`rag/jd_parser.py` implements the JD contract in `data/job_descriptions/README.md`.
+`parse_job_description(text)` returns `JobRequirements`, and `load_job_description(source)`
+returns `(text, origin)`.
+
+- **Sections**: a heading is a whole line equal to a known heading (case-insensitive, one
+  optional trailing colon). Each section has a kind: `about`, `overview`, `responsibilities`,
+  `requirements`, `nice_to_have`, `benefits` or `other`. The lines before the first heading
+  (title, company line) are an `other` section with no heading. The vocabulary (`HEADINGS`)
+  is rag's own copy of the README table plus a few common synonyms (*Qualifications*,
+  *Desirable*, *What we offer*, …). A test checks that it covers every README variant, and that
+  the splits agree with the reference splitter in `tests/jd_sections.py`.
+- **Title**: the first non-empty line.
+- **Sources**: only the requirements and nice-to-have sections. Skills and years anywhere else
+  are context. This includes the planted noise skills (React in python_backend, Java and Python
+  in devops_sre, …), "profitable for three years" in an about section and "30 days of paid
+  holiday" in benefits.
+- **Units**: each bullet is one unit (a wrapped continuation line joins its bullet). Prose,
+  such as data_engineer's requirements paragraph, is split into sentences. A unit's skills come
+  from `rag.skill_matcher` over the whole unit, so aliases, exact-case ambiguous names
+  (`Apache Spark`, `Some Go`) and symbol-aware boundaries work as for resumes. **JD skills
+  are not implication-expanded**, because candidate skills already are: requiring Django
+  doesn't also require Python, and a candidate with Django already has Python.
+- **Years**: a number (digits or one to twelve in words) followed by an optional `+` or
+  `or more`, then `years`, `year` or `yrs`. This covers "5+ years", "at least 3 years",
+  "5 or more years", "a minimum of 4 years", "(3+ yrs)" and "3 years' experience". A range
+  ("3-5 years") gives its lower bound.
+  - In a unit that names skills, the phrase is the `min_years` of that unit's requirement(s).
+  - In a unit with no skill, it is `min_total_years`.
+  - Several figures in one unit: the largest is used, with a warning.
+- **Grouping**: a run of skills joined by `or` or `/` (commas allowed, as in `A, B or C`)
+  is one `Requirement(any_of=[…])`, satisfied by any one of them. Otherwise each skill in the
+  unit is its own must-have, and the unit's `min_years` applies to each one: "4+ years with
+  Kubernetes and Terraform" gives two requirements of 4 years. Requirements with the same
+  skill set merge, keeping the largest years.
+- **Unparsed requirements**: requirement units with neither a skill nor years, such as
+  "Comfortable owning a service end to end", are kept in `unparsed_requirements` for
+  visibility and reasoning. They are never scored.
+- **Nice-to-haves** contribute skills only, ignoring years and words that aren't skills.
+  "Next.js or another server-rendering framework" gives Next.js. The result is sorted, and
+  any skill that is already a must-have is dropped. A nice-to-have unit with no known skill
+  is reported as a warning.
+- **No requirements section**: no must-haves and no `min_total_years`, so hard filters are
+  off. Every skill mentioned outside about and benefits sections becomes a nice-to-have, and
+  the warning `no requirements section found; hard filters disabled` is added. Must-haves are
+  never invented from context. Text with no headings at all also warns `no section headings
+  found`.
+- **`critical_skills`**: the must-have skills flattened, in order. Step 11 uses them as the
+  keyword `search_skills` query.
+- **`query_text`** (what step 11 embeds) is the title, then the overview, responsibilities,
+  requirements and nice-to-have sections, separated by blank lines. It never includes the
+  company line, about text or benefits (§7). Text with no such sections falls back to the whole
+  text. `full_text` keeps the original.
+- **`load_job_description(source)`**: a single line ending in `.txt`, `.pdf` or `.docx` (or a
+  space-free line containing a path separator) is read through `fs_tools.read_file` relative
+  to `WORKSPACE_ROOT`, with the sandbox in force, and `origin` is the path. Anything else is the
+  JD text itself, with `origin` `"<text>"`. Read failures raise `JobDescriptionError` carrying
+  the fs_tools code.
 
 ## 10. Output format
 

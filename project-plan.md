@@ -64,7 +64,9 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **9. BM25 keyword index** – `Chunk.body_start` (pipeline v2), `rag/keyword_index.py`
       (`words` / `skills` / `words+skills` tokenizers, `search`, `search_skills`, filters,
       timings) + synthetic and corpus tests; step 10 query-text decision recorded.
-- [ ] **10. JD requirement parser** + tests.
+- [x] **10. JD requirement parser** – `rag/jd_parser.py` (sections, units, years, any_of grouping,
+      no-requirements fallback, `query_text`, `load_job_description`) + tests; smoke script
+      prints query_text token counts.
 - [ ] **11. Hybrid retrieval** – semantic + BM25 + RRF + candidate aggregation + tests.
 - [ ] **12. Scoring + output** – score components, must-have filter, reasoning/excerpts, JSON
       output, `job_matcher.py` CLI + tests.

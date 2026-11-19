@@ -4,8 +4,8 @@ Not run by the tests or CI: with ``huggingface`` it downloads the model on first
 with ``gemini`` it calls the API using ``GEMINI_API_KEY`` / ``GEMINI_EMBEDDING_MODEL`` /
 ``GEMINI_EMBEDDING_DIM`` from the environment or ``.env`` (``--model`` and ``--dim``
 override them). It prints the embedder id and dimension, each JD's token count against
-``max_tokens`` (an offline estimate for Gemini), and a cosine-similarity matrix for three
-short strings.
+``max_tokens`` (an offline estimate for Gemini) for the whole file and for its parsed
+``query_text``, and a cosine-similarity matrix for three short strings.
 """
 
 import argparse
@@ -15,6 +15,7 @@ import time
 from dotenv import load_dotenv
 
 from rag.embedders import available_embedders, from_env, get_embedder
+from rag.jd_parser import parse_job_description
 from scripts.persona_schema import ROOT
 
 JD_DIR = ROOT / "data" / "job_descriptions"
@@ -55,11 +56,14 @@ def main(argv: list[str] | None = None) -> int:
     print(f"max_tokens:  {embedder.max_tokens}")
     print(f"first embed: {elapsed:.2f}s (includes model load)")
 
-    print("\nJD token counts:")
+    print(f"\nJD token counts (max_tokens {embedder.max_tokens}):")
+    print(f"  {'file':<22} {'whole':>6} {'query_text':>11}")
     for path in sorted(JD_DIR.glob("*.txt")):
-        count = embedder.token_count(path.read_text(encoding="utf-8"))
-        flag = "  OVER max_tokens" if count > embedder.max_tokens else ""
-        print(f"  {path.name:<22} {count:>5} / {embedder.max_tokens}{flag}")
+        text = path.read_text(encoding="utf-8")
+        whole = embedder.token_count(text)
+        query = embedder.token_count(parse_job_description(text).query_text)
+        flag = "  OVER max_tokens" if max(whole, query) > embedder.max_tokens else ""
+        print(f"  {path.name:<22} {whole:>6} {query:>11}{flag}")
 
     print("\nCosine similarity (documents):")
     for i, a in enumerate(vectors):
