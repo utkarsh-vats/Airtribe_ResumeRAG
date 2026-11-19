@@ -97,6 +97,12 @@ def _retryable(status: int | None) -> bool:
     return status == 429 or (status is not None and 500 <= status < 600)
 
 
+def gemini_embedder_id(model: str, dim: int) -> str:
+    """``<model>-d<dim>``, prefixed with ``gemini-`` only if the model name lacks it."""
+    base = model if model.startswith("gemini-") else f"gemini-{model}"
+    return f"{base}-d{dim}"
+
+
 def _make_client(api_key: str) -> Any:
     from google import genai
 
@@ -178,7 +184,7 @@ class GeminiEmbedder(Embedder):
     @property
     @override
     def embedder_id(self) -> str:
-        return f"gemini-{self._model}-d{self._dim}"
+        return gemini_embedder_id(self._model, self._dim)
 
     @override
     def token_count(self, text: str) -> int:

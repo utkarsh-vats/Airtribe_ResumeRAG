@@ -13,6 +13,7 @@ from rag.embedders.gemini import (
     EmbeddingError,
     GeminiConfigError,
     GeminiEmbedder,
+    gemini_embedder_id,
 )
 
 
@@ -117,17 +118,24 @@ def test_output_dimensionality_passed_through_and_in_id():
         "task_type": "RETRIEVAL_QUERY",
         "output_dimensionality": 768,
     }
-    assert (embedder.dim, embedder.embedder_id) == (768, "gemini-gemini-embedding-001-d768")
+    assert (embedder.dim, embedder.embedder_id) == (768, "gemini-embedding-001-d768")
     two, two_models, _ = make("gemini-embedding-2", output_dimensionality=1536)
     two.embed_documents(["y"])
     assert two_models.calls[0]["config"] == {"output_dimensionality": 1536}
-    assert two.embedder_id == "gemini-gemini-embedding-2-d1536"
+    assert two.embedder_id == "gemini-embedding-2-d1536"
+
+
+def test_embedder_id_never_doubles_the_prefix():
+    assert gemini_embedder_id("gemini-embedding-001", 768) == "gemini-embedding-001-d768"
+    assert gemini_embedder_id("gemini-embedding-2", 3072) == "gemini-embedding-2-d3072"
+    assert gemini_embedder_id("text-embedding-x", 256) == "gemini-text-embedding-x-d256"
+    assert make("gemini-embedding-2")[0].embedder_id == "gemini-embedding-2-d3072"
 
 
 def test_default_dimension_and_properties():
     embedder, _, _ = make()
     assert (embedder.name, embedder.model, embedder.dim) == ("gemini", "gemini-embedding-001", 3072)
-    assert embedder.embedder_id == "gemini-gemini-embedding-001-d3072"
+    assert embedder.embedder_id == "gemini-embedding-001-d3072"
     assert embedder.max_tokens == 2048
     assert make("models/gemini-embedding-2")[0].max_tokens == 8192  # "models/" prefix accepted
 
@@ -287,7 +295,7 @@ def test_registry_and_from_env():
         "GEMINI_EMBEDDING_DIM": "768",
     }
     configured = from_env(env)
-    assert configured.embedder_id == "gemini-gemini-embedding-001-d768"
+    assert configured.embedder_id == "gemini-embedding-001-d768"
     assert from_env({**env, "GEMINI_EMBEDDING_DIM": ""}).dim == 3072
     with pytest.raises(ValueError, match="GEMINI_EMBEDDING_MODEL is required"):
         from_env({**env, "GEMINI_EMBEDDING_MODEL": ""})

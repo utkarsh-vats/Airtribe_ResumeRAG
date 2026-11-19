@@ -55,9 +55,11 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       batched) and `gemini-embedding-2` (task prefixes, one input per request), retries with
       backoff, optional throttle, `from_env` + `.env.example`, smoke script support + tests
       against a fake client.
-- [ ] **8. Vector store + indexing** – Chroma `ResumeStore`, indexing pipeline, `resume_rag.py`
-      CLI (`index`, `stats`) + tests, including one that pins the Chroma metadata-type
-      behaviour.
+- [x] **8a. Vector store + indexing** – `rag/store.py` (`VectorStore`, collection naming,
+      dimension checks, atomic JSON sidecar), `rag/indexer.py` (`index_directory` with
+      content-hash change detection, `PIPELINE_VERSION`, pruning, per-file failures and stage
+      timings) + tests, including a full-corpus run with `FakeEmbedder`.
+- [ ] **8b. Indexing CLI** – `resume_rag.py` (`index`, `stats`) + tests.
 - [ ] **9. BM25 keyword index** + tests.
 - [ ] **10. JD requirement parser** + tests.
 - [ ] **11. Hybrid retrieval** – semantic + BM25 + RRF + candidate aggregation + tests.

@@ -264,7 +264,7 @@ class Embedder(ABC):  # rag/embedders/base.py
 | Backend | `embedder_id` | Documents | Queries |
 |---|---|---|---|
 | `huggingface` (default, local) | `hf-<model name>` | raw text | model's query prefix (below) |
-| `gemini` (`GEMINI_EMBEDDING_MODEL`) | `gemini-<model>-d<dims>` | see the Gemini table below | see below |
+| `gemini` (`GEMINI_EMBEDDING_MODEL`) | `<model>-d<dims>` | see the Gemini table below | see below |
 | `fake` (tests, CI) | `fake-d<dim>` | feature hashing | same |
 
 ### HuggingFace models (`MODEL_CONFIGS` in `rag/embedders/huggingface.py`)
@@ -340,40 +340,91 @@ them.
 - **Config**: `from_env()` reads `GEMINI_API_KEY`, `GEMINI_EMBEDDING_MODEL` (required when
   `EMBEDDER=gemini`) and `GEMINI_EMBEDDING_DIM` (blank = 3072). A missing key fails when the
   embedder is constructed. `google.genai` is imported only when the first request is made.
-  `embedder_id` is `gemini-<model>-d<dims>`, e.g. `gemini-gemini-embedding-001-d768`.
+  `embedder_id` is `<model>-d<dims>`, e.g. `gemini-embedding-001-d768` or
+  `gemini-embedding-2-d3072` (`gemini-` is added only to a model name that lacks it).
 
-## 6. Vector store (Chroma)
+## 6. Vector store (Chroma) and indexing
 
-- `ResumeStore` wraps a `chromadb.PersistentClient(path=CHROMA_DIR)` (**repository pattern**).
-  Nothing outside `rag/store.py` imports `chromadb`. Telemetry is off via
-  `Settings(anonymized_telemetry=False)`.
-- **Collection name** comes from the embedder plus the chunker config, e.g.
-  `resumes__hf-bge-small-en-v1-5__section-v1` (sanitised to Chroma's naming rules: 3-512 chars,
-  `[a-zA-Z0-9._-]`, alphanumeric at both ends). Vectors from different models or chunkers never
-  mix, and the notebook can keep several configurations side by side. Distance is cosine
-  (`configuration={"hnsw": {"space": "cosine"}}`).
-- **Chunk ids are content hashes**: `sha256(resume_path + chunker_config + embed_text)`.
-  Upserts are idempotent. A file-level hash is stored on each chunk, so **unchanged files are
-  skipped** without re-embedding, and chunks of a changed or removed file are deleted before
-  re-upserting.
-- **Metadata value types** (checked against the installed `chromadb==1.5.9`, 2026-11-18):
-  - Accepted: `str`, `int`, `float`, `bool`, and **homogeneous, non-empty lists** of one of
-    those types.
-  - Rejected: nested dicts, mixed-type lists (`[1, "a"]`) and **empty lists**. Each raises
-    `ValueError`.
-  - `None` values are accepted but the key is dropped (a `{"x": None}` metadata reads back as
-    `None`).
-  - Lists filter with `{"skills": {"$contains": "python"}}`. `$not_contains` also matches
-    records that **lack the key**.
-- **How skills are stored**: `skills` is a native `list[str]` of canonical taxonomy ids on every
-  chunk. The key is **omitted** when a candidate has no skills (empty lists are rejected).
-  Pre-filtering on must-haves combines one `$contains` per skill under `$and`. The scorer
-  re-checks coverage against the sidecar anyway, so the filter is an optimisation rather than
-  the source of truth. Structured metadata that Chroma can't hold (roles, per-skill years,
-  education) is kept in a JSON sidecar per collection
-  (`.chroma/<collection>/candidates.json`). Chunk metadata only carries flat fields
-  (`candidate_name`, `resume_path`, `section`, `file_hash`, `total_years`, `skills`).
-  A store test pins this behaviour, so a Chroma upgrade that changes it fails loudly.
+### Verified Chroma facts (installed `chromadb==1.5.9`, checked 2026-11-19)
+
+- **Collection names**: 3-512 characters from `[a-zA-Z0-9._-]`, starting and ending with a
+  letter or digit, no `..`, and not an IPv4 address (each case raises
+  `InvalidArgumentError`).
+- **Cosine distance**: `configuration={"hnsw": {"space": "cosine"}}`, the 1.x collection
+  configuration. The old `metadata={"hnsw:space": "cosine"}` still works but is the legacy
+  form. A query with the same unit vector returns distance ~0.
+- **No embedding function**: pass `embedding_function=None` on *every* `create_collection`,
+  `get_collection` and `get_or_create_collection` call. Leaving it out of `get_collection`
+  attaches Chroma's default ONNX MiniLM embedding function to the handle even for a
+  collection created without one. With `None` everywhere, Chroma never constructs or calls
+  it (a test patches both the default and the ONNX class to raise and runs a full index,
+  reopen, query and rebuild).
+- **`get_or_create_collection` keeps existing metadata**: passing different metadata for an
+  existing collection doesn't overwrite it, so the stored `dim` check below is reliable.
+- **Dimension**: Chroma itself rejects a vector of the wrong length on add.
+- **Metadata values**: `str`, `int`, `float`, `bool`, or homogeneous **non-empty** lists of
+  one of those. Empty lists raise `ValueError`; a `None` value drops the key. So keys whose
+  value is `None` or `[]` are omitted. Lists filter with `{"skills": {"$contains": "Python"}}`;
+  `$not_contains` also matches records that lack the key.
+- Telemetry is off: `PersistentClient(path=CHROMA_DIR, settings=Settings(anonymized_telemetry=False))`.
+
+### Collections (`rag/store.py`, `VectorStore`)
+
+- **One collection per (chunker, embedder)**: `resumes__<chunker_id>__<embedder_id>`, e.g.
+  `resumes__section-v1__hf-bge-small-en-v1.5`. Characters outside the allowed set become `-`
+  and runs of dots collapse. Only a name over 512 characters is cut and given a 12-character
+  hash of the full name. Vectors from different models or chunkers never mix, and the
+  notebook can keep several configurations side by side.
+- **Collection metadata**: `schema_version`, `chunker_id`, `embedder_id`, `dim`. Opening an
+  existing collection with a different `dim` raises `DimensionMismatchError`; another
+  schema version or another configuration raises `StoreError`.
+- **Per-chunk metadata** (flat, Chroma-safe): `candidate_id`, `resume_path`, `name`,
+  `section`, `role_index`, `role_title`, `role_company`, `chunker_id`, `total_months`,
+  `highest_degree_level` (1-5) and `skills` (canonical names). Keys with `None` or an empty
+  list are left out. Chunk ids are the chunkers' content hashes (§3), so upserts are
+  idempotent.
+- **Document**: `chunk.text` (BM25 in step 9 and excerpts in step 12 read it). `embed_text`,
+  with its contextual header, is only embedded, never stored.
+- Methods: `upsert_chunks`, `delete_candidate`, `chunk_ids`, `update_candidate_metadata`,
+  `count`, `list_candidates`, `query(vector, n, where)` (a thin wrapper step 11 builds on),
+  `drop`, `reset`. Nothing outside `rag/store.py` imports `chromadb`.
+
+### Sidecar
+
+`<CHROMA_DIR>/sidecar/<collection>.json` holds what Chroma metadata can't: `schema_version`,
+`chunker_id`, `embedder_id`, `as_of` (the date durations were computed with),
+`pipeline_version`, and per candidate `CandidateMetadata.to_dict()` (roles, per-skill months
+and evidence, education), the file's `content_hash` and `indexed_at` (UTC). It's written
+atomically (temp file in the same folder, then `os.replace`) and loading checks the schema
+version and the configuration.
+
+### Indexing (`rag/indexer.py`, `index_directory`)
+
+- **Loading** goes through `fs_tools.list_files` and `fs_tools.read_file` only, sandbox in
+  force. `fs_tools` reads `WORKSPACE_ROOT` on every call (not at import) and falls back to
+  its Milestone 1 default `./sample_data` when it's unset, so `index_directory` sets an unset
+  or blank `WORKSPACE_ROOT` to `./data` for the duration of the run and restores it after.
+- **Per file**: read -> clean / parse -> `extract_metadata(as_of)` -> chunk ->
+  `embed_documents(embed_texts)` -> upsert. Only `.pdf`, `.docx` and `.txt` are indexed;
+  anything else is reported as skipped (`UNSUPPORTED_FORMAT`), not failed.
+- **Change detection**: `content_hash = sha256(PIPELINE_VERSION + extracted text)`.
+  `PIPELINE_VERSION` (in `rag/indexer.py`) **must be bumped whenever parsing, metadata or
+  chunking output changes for the same text**; a bump re-indexes every file.
+  - unchanged (same hash and path, same chunk ids in the store) -> skipped with no embedding.
+    Its metadata is still recomputed, and if it differs (a new `as_of` changes durations)
+    the chunk metadata is updated in place and the sidecar refreshed (`metadata_refreshed`).
+  - changed -> the candidate's old chunks are deleted, then the new ones upserted;
+  - a file no longer listed -> its chunks and sidecar entry are pruned (`removed`). Chunks in
+    the store with no sidecar entry (an interrupted run) are pruned or replaced the same way.
+- **Failures**: a file that fails is recorded with a code and message, and the run continues:
+  fs_tools' own codes (`EXTRACTION_FAILED`, `UNSUPPORTED_FORMAT`, …), `EMPTY_TEXT` (fs_tools
+  returns success with a "File is empty." warning, which becomes the message), `NO_SECTIONS`,
+  `NO_CHUNKS`, `DUPLICATE_CANDIDATE` (two files with the same stem) or the exception type
+  (for example an embedding error). A failed file keeps whatever it had indexed before.
+- **`IndexReport`**: `added`, `updated`, `unchanged`, `removed`, `skipped`, `failed`,
+  `metadata_refreshed`, `chunks_written`, and per-stage timings (`read`, `parse_extract`,
+  `chunk`, `embed`, `upsert`) as totals and per file. Step 13's latency metrics reuse them.
+- **`rebuild=True`** drops and recreates the collection and the sidecar first.
 
 ## 7. Hybrid retrieval
 
