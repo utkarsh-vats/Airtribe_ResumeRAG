@@ -119,6 +119,11 @@ def test_walk_only_without_git(tmp_path: Path):
 def test_git_failure_fails_with_stderr(tmp_path: Path):
     # A .git file pointing nowhere: git errors at once instead of searching parent folders.
     (tmp_path / ".git").write_text("gitdir: does-not-exist\n", encoding="utf-8")
-    with pytest.raises(pytest.fail.Exception, match=r"failed in .*\(exit \d+\):\n.+") as info:
+    with pytest.raises(pytest.fail.Exception) as info:
         candidate_files(tmp_path)
-    assert "not a git repository" in str(info.value)
+    # Check that git's stderr is surfaced, not git's wording (it differs between versions).
+    command_line, _, stderr = str(info.value).partition("\n")
+    assert command_line.startswith(f"`{' '.join(GIT_LS_FILES)}` failed in ")
+    assert re.search(r"\(exit [1-9]\d*\):$", command_line), command_line
+    assert stderr.strip(), "git's stderr is missing from the failure message"
+    assert any(line.startswith("fatal:") for line in stderr.splitlines()), stderr
