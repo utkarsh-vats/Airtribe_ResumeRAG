@@ -47,7 +47,12 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       the reference matcher), skill sources, per-skill months and evidence, warnings and the
       JSON round-trip in `rag/metadata.py` + tests matching the manifest for all 35 resumes,
       and `tests/test_repo_hygiene.py`.
-- [ ] **7. Embedders** – `Embedder` ABC + lazy registry (`huggingface`, `gemini`, `fake`) + tests.
+- [x] **7a. Embedders: base, fake, HuggingFace** – `Embedder` ABC (normalised vectors,
+      batching, `embedder_id`), `FakeEmbedder`, lazy `HuggingFaceEmbedder` with a model
+      config table and truncation warnings, registry + `from_env`, `scripts/embedder_smoke.py`
+      + offline tests.
+- [ ] **7b. Gemini embedder** – `GeminiEmbedder` (`gemini-embedding-2` vs `-001` branching)
+      registered as `gemini` + mocked tests.
 - [ ] **8. Vector store + indexing** – Chroma `ResumeStore`, indexing pipeline, `resume_rag.py`
       CLI (`index`, `stats`) + tests, including one that pins the Chroma metadata-type
       behaviour.

@@ -9,6 +9,8 @@ rules independently. Don't import this module from ``rag/``.
 - Matches are bounded by non-word characters (so ``C++``, ``C#``, ``.NET`` and ``Node.js``
   work, and ``Java`` never matches inside ``JavaScript``). When matches overlap, the longest
   wins (``React Native`` beats ``React``, ``AWS Lambda`` beats ``AWS``).
+- A space inside a multi-word name or alias matches any run of whitespace, including a line
+  break (``GitHub`` / ``Actions`` in wrapped PDF text).
 
 The caller decides which text to scan: skills sections, bullets and project descriptions.
 Hobbies, coursework, titles, company and institution names are never passed in.
@@ -31,7 +33,9 @@ class Mention:
 
 
 def _compile(form: str, flags: int) -> re.Pattern[str]:
-    return re.compile(rf"(?<!\w){re.escape(form)}(?!\w)", flags)
+    # A space in a name matches any whitespace run, so a name wrapped across lines counts.
+    body = r"\s+".join(re.escape(word) for word in form.split(" "))
+    return re.compile(rf"(?<!\w){body}(?!\w)", flags)
 
 
 @cache

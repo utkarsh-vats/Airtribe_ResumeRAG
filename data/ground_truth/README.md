@@ -64,7 +64,10 @@ with the rules.
 3. **Non-ambiguous skills** match by canonical name or any alias, case-insensitively. The
    match must sit on word boundaries: no letter, digit or `_` directly before or after it.
    This boundary rule has to work for names with symbols (`C++`, `C#`, `.NET`, `Node.js`,
-   `CI/CD`, `A/B tests`), so `Java` never matches inside `JavaScript`.
+   `CI/CD`, `A/B tests`), so `Java` never matches inside `JavaScript`. A space inside a
+   multi-word skill name or alias matches any run of whitespace, including line breaks (PDF
+   lines wrap mid-name: `GitHub` / `Actions` is still GitHub Actions). This applies to
+   ambiguous skills too.
 4. **Ambiguous skills** (`ambiguous=True` in `rag/skills.py`; ordinary words or very short
    names such as `Spark`, `Airflow`, `React`, `Go`, `R`, `Excel`):
    - *Safe aliases* (`Apache Spark`, `Golang`, `ReactJS`, `Microsoft Excel`) match

@@ -19,8 +19,6 @@ convention = "google"
 "tests/**" = ["D1"]
 "scripts/**" = ["D1"]
 "notebooks/**" = ["D1"]
-# Empty scaffold package; drop this once it gains content (registry lands in step 7).
-"rag/embedders/__init__.py" = ["D104"]
 
 [tool.ruff.format]
 quote-style = "double"

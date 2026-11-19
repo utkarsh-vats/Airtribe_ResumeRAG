@@ -18,10 +18,6 @@ PERSONAS = load_personas()
 any_persona = pytest.mark.parametrize("persona", PERSONAS, ids=[p.id for p in PERSONAS])
 
 
-def collapse(text: str) -> str:
-    return " ".join(text.split())
-
-
 def extract(doc: str, as_of: date = AS_OF) -> CandidateMetadata:
     return extract_metadata("resumes/test_person.txt", parse_resume(doc), as_of)
 
@@ -81,9 +77,15 @@ def test_overlap_policy_longest_then_earliest():
 
 
 def test_names_match_across_line_wraps():
-    # A space in a multi-word name matches any whitespace, so a PDF line wrap inside
-    # "GitHub Actions" still counts (the reference matcher sees only single-line text).
-    assert mentioned_skills("Docker, GitHub\nActions") == {"Docker", "GitHub Actions"}
+    # Contract: a space in a multi-word name matches any whitespace run, so a PDF line wrap
+    # inside "GitHub Actions" still counts. Both matchers implement it.
+    for text, expected in [
+        ("Docker, GitHub\nActions", {"Docker", "GitHub Actions"}),
+        ("Machine\n  Learning", {"Machine Learning"}),
+        ("Apache\nSpark", {"Spark"}),
+        ("AWS\nLambda", {"AWS Lambda"}),
+    ]:
+        assert mentioned_skills(text) == reference_mentions(text) == expected
 
 
 # --- Metadata: skills, months, evidence, warnings -----------------------------------------
@@ -243,16 +245,23 @@ def source_units(parsed) -> list[tuple[str, str, str]]:
 
 
 def test_cross_check_with_reference_matcher_on_resumes(parsed):
-    # The reference matcher was only ever run on single-line persona text, so both sides get
-    # the text with whitespace collapsed (line wraps undone).
+    # Raw extracted text, line wraps included: both sides must agree with no exceptions.
     units = source_units(parsed)
     assert len(units) == 117  # 79 role bodies + 34 skills sections + 4 project sections
     disagreements = [
-        (pid, where, mentioned_skills(text) ^ reference_mentions(collapse(text)))
+        (pid, where, mentioned_skills(text) ^ reference_mentions(text))
         for pid, where, text in units
-        if mentioned_skills(text) != reference_mentions(collapse(text))
+        if mentioned_skills(text) != reference_mentions(text)
     ]
     assert disagreements == []
+    # The wrapped names that motivated the whitespace rule are found by both.
+    wrapped = {(pid, where): text for pid, where, text in units if where == "skills"}
+    assert "GitHub\nActions" in wrapped["john_doe", "skills"]
+    assert "Machine\nLearning" in wrapped["fatima_al_sayed", "skills"]
+    for pid, skill in (("john_doe", "GitHub Actions"), ("fatima_al_sayed", "Machine Learning")):
+        assert skill in reference_mentions(wrapped[pid, "skills"]) & mentioned_skills(
+            wrapped[pid, "skills"]
+        )
 
 
 def test_cross_check_with_reference_matcher_on_jds():
@@ -261,20 +270,6 @@ def test_cross_check_with_reference_matcher_on_jds():
         assert mentioned_skills(text) == reference_mentions(text), path.name
         for line in text.splitlines():
             assert mentioned_skills(line) == reference_mentions(line), (path.name, line)
-
-
-def test_raw_wrap_cases_are_the_only_raw_differences(parsed):
-    # Documents the one known difference: on raw PDF text the reference matcher misses a
-    # multi-word name wrapped across lines. Collapsing whitespace removes it.
-    raw = sorted(
-        (pid, where, tuple(sorted(mentioned_skills(text) - reference_mentions(text))))
-        for pid, where, text in source_units(parsed)
-        if mentioned_skills(text) != reference_mentions(text)
-    )
-    assert raw == [
-        ("fatima_al_sayed", "skills", ("Machine Learning",)),
-        ("john_doe", "skills", ("GitHub Actions",)),
-    ]
 
 
 # --- Corpus against the manifest ----------------------------------------------------------

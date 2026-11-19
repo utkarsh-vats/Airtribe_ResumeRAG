@@ -240,33 +240,72 @@ resume_path, parsed, as_of) -> CandidateMetadata`).
 ## 5. Embedders
 
 ```python
-class Embedder(ABC):
-    name: str  # "huggingface:BAAI/bge-small-en-v1.5"
-    dimension: int
+class Embedder(ABC):  # rag/embedders/base.py
+    name: str  # registry name: "huggingface", "fake", "gemini"
+    model: str  # model id within the backend
+    dim: int
+    max_tokens: int  # longest input before the backend truncates
+    embedder_id: str  # "hf-bge-small-en-v1.5", "fake-d64"
 
-    def embed_documents(self, texts: list[str]) -> list[list[float]]: ...
+    def embed_documents(self, texts: list[str]) -> list[list[float]]: ...  # batched
     def embed_query(self, text: str) -> list[float]: ...
+    def token_count(self, text: str) -> int: ...
 ```
 
-Documents and queries are embedded differently, so the two methods stay separate:
+- **Contract**: every returned vector is **L2-normalised**, so cosine similarity is the dot
+  product. The base class normalises whatever a backend returns, so a backend can't break
+  this. Documents and queries may be encoded differently (prefixes, task types), so the two
+  methods stay separate. `embed_documents` sends texts to the backend in batches of
+  `batch_size` (default 32).
+- **`embedder_id`** encodes everything that changes the vectors: backend, model and
+  dimension. Step 8 derives collection names from it (with the chunker id), so vectors
+  from different embedders or models never share a collection.
 
-| Backend | Documents | Queries |
-|---|---|---|
-| `huggingface` (default, `BAAI/bge-small-en-v1.5`, 384-d, local) | raw text, normalised | prefixed `"Represent this sentence for searching relevant passages: "` |
-| `gemini` (`GEMINI_EMBEDDING_MODEL`) | `gemini-embedding-001`: `task_type=RETRIEVAL_DOCUMENT` | `task_type=RETRIEVAL_QUERY` |
-| `fake` (tests only) | deterministic hash-based vectors | same |
+| Backend | `embedder_id` | Documents | Queries |
+|---|---|---|---|
+| `huggingface` (default, local) | `hf-<model name>` | raw text | model's query prefix (below) |
+| `gemini` (step 7b, `GEMINI_EMBEDDING_MODEL`) | `gemini-<model>` | `gemini-embedding-001`: `task_type=RETRIEVAL_DOCUMENT` | `task_type=RETRIEVAL_QUERY` |
+| `fake` (tests, CI) | `fake-d<dim>` | feature hashing | same |
 
-- **Gemini note:** the current model is `gemini-embedding-2`. It doesn't accept `task_type`;
-  the task instruction goes in the input text. It also returns *one aggregated* embedding when
-  given several inputs in a single content, so batches must be sent as separate contents.
-  `gemini-embedding-001` (text-only) still supports `task_type`. The Gemini embedder branches
-  on the model id.
-- **Registry** (`rag/embedders/__init__.py`): `get_embedder(name, **config)`. Backends are
-  **imported lazily**, so `fake` never imports `torch` or `google-genai`.
-- **FakeEmbedder**: tokens are hashed (stable `hashlib` hash, not Python's salted `hash()`)
-  into a fixed-dimension bag-of-words vector and L2-normalised. It's deterministic, needs no
-  network, and texts that share words come out similar, which is enough for meaningful
-  retrieval tests.
+### HuggingFace models (`MODEL_CONFIGS` in `rag/embedders/huggingface.py`)
+
+| Model | Dim | Max tokens | Query prefix | Use |
+|---|---|---|---|---|
+| `BAAI/bge-small-en-v1.5` | 384 | 512 | `Represent this sentence for searching relevant passages: ` | default |
+| `sentence-transformers/all-MiniLM-L6-v2` | 384 | 256 | none | notebook comparison |
+| `BAAI/bge-base-en-v1.5` | 768 | 512 | same as bge-small | notebook comparison |
+
+Documents are never prefixed. Any other sentence-transformers model works with no prefix,
+and a warning is logged so a missing instruction isn't silent. Vectors are requested with
+`normalize_embeddings=True`. The device is auto-selected (CUDA, then MPS, then CPU) unless
+overridden. `torch` and `sentence_transformers` are imported only when the model is first
+used: importing `rag` or `rag.embedders` never loads them (a test checks this in a
+subprocess).
+
+- **Truncation warning**: sentence-transformers silently truncates inputs longer than the
+  model's `max_seq_length`. Before encoding, every text (with its prefix) is counted with the
+  model's own tokenizer, special tokens included; anything over the limit is logged with
+  its token count and overflow. Section chunks are at most 300 words, comfortably under 512
+  tokens, but whole JDs can come close.
+- **FakeEmbedder** (`rag/embedders/fake.py`): lowercased word tokens are hashed with SHA-256
+  (never Python's salted `hash()`) to a bucket and a sign; the signed counts in `dim`
+  buckets (default 64) are L2-normalised. A text with no words hashes the empty token, so it
+  still gets a unit vector. It's deterministic across processes and platforms, needs no
+  network, and texts that share words come out closer, which is enough for meaningful
+  retrieval tests. `token_count` is the word count.
+- **Registry** (`rag/embedders/__init__.py`): `get_embedder(name, **params)` and
+  `available_embedders()`. Backends are imported by name only when requested, so `fake`
+  never imports `torch` or `google-genai`. `from_env()` reads `EMBEDDER` (default
+  `huggingface`) and `HF_EMBEDDING_MODEL` (default `BAAI/bge-small-en-v1.5`), as in
+  `.env.example`.
+- **Smoke test**: `python -m scripts.embedder_smoke --embedder huggingface` (manual, not in
+  CI) downloads the model, prints the dimension, each JD's token count against
+  `max_tokens`, and a similarity matrix.
+- **Gemini note (step 7b):** the current model is `gemini-embedding-2`. It doesn't accept
+  `task_type`; the task instruction goes in the input text. It also returns *one aggregated*
+  embedding when given several inputs in a single content, so batches must be sent as
+  separate contents. `gemini-embedding-001` (text-only) still supports `task_type`. The
+  Gemini embedder branches on the model id.
 
 ## 6. Vector store (Chroma)
 
