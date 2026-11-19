@@ -1,14 +1,20 @@
 """Manual embedder smoke test (``python -m scripts.embedder_smoke --embedder huggingface``).
 
-Not run by the tests or CI: with ``huggingface`` it downloads the model on first use. It
-prints the embedder id and dimension, each JD's token count against ``max_tokens``, and a
-cosine-similarity matrix for three short strings.
+Not run by the tests or CI: with ``huggingface`` it downloads the model on first use, and
+with ``gemini`` it calls the API using ``GEMINI_API_KEY`` / ``GEMINI_EMBEDDING_MODEL`` /
+``GEMINI_EMBEDDING_DIM`` from the environment or ``.env`` (``--model`` and ``--dim``
+override them). It prints the embedder id and dimension, each JD's token count against
+``max_tokens`` (an offline estimate for Gemini), and a cosine-similarity matrix for three
+short strings.
 """
 
 import argparse
+import os
 import time
 
-from rag.embedders import available_embedders, get_embedder
+from dotenv import load_dotenv
+
+from rag.embedders import available_embedders, from_env, get_embedder
 from scripts.persona_schema import ROOT
 
 JD_DIR = ROOT / "data" / "job_descriptions"
@@ -22,13 +28,23 @@ SAMPLES = (
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--embedder", default="huggingface", choices=available_embedders())
-    parser.add_argument("--model", help="model id (huggingface only)")
+    parser.add_argument("--model", help="model id (huggingface or gemini)")
     parser.add_argument("--device", help="cuda, mps or cpu (huggingface only; default auto)")
+    parser.add_argument("--dim", type=int, help="output dimensions (gemini only)")
     args = parser.parse_args(argv)
-    params = {}
-    if args.embedder == "huggingface":
-        params = {k: v for k, v in (("model", args.model), ("device", args.device)) if v}
-    embedder = get_embedder(args.embedder, **params)
+    if args.embedder == "gemini":
+        load_dotenv(ROOT / ".env")
+        env = dict(os.environ, EMBEDDER="gemini")
+        if args.model:
+            env["GEMINI_EMBEDDING_MODEL"] = args.model
+        if args.dim:
+            env["GEMINI_EMBEDDING_DIM"] = str(args.dim)
+        embedder = from_env(env)
+    else:
+        params = {}
+        if args.embedder == "huggingface":
+            params = {k: v for k, v in (("model", args.model), ("device", args.device)) if v}
+        embedder = get_embedder(args.embedder, **params)
 
     started = time.perf_counter()
     vectors = embedder.embed_documents(list(SAMPLES))

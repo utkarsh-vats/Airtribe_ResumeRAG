@@ -51,8 +51,10 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       batching, `embedder_id`), `FakeEmbedder`, lazy `HuggingFaceEmbedder` with a model
       config table and truncation warnings, registry + `from_env`, `scripts/embedder_smoke.py`
       + offline tests.
-- [ ] **7b. Gemini embedder** – `GeminiEmbedder` (`gemini-embedding-2` vs `-001` branching)
-      registered as `gemini` + mocked tests.
+- [x] **7b. Gemini embedder** – `GeminiEmbedder` for `gemini-embedding-001` (task types,
+      batched) and `gemini-embedding-2` (task prefixes, one input per request), retries with
+      backoff, optional throttle, `from_env` + `.env.example`, smoke script support + tests
+      against a fake client.
 - [ ] **8. Vector store + indexing** – Chroma `ResumeStore`, indexing pipeline, `resume_rag.py`
       CLI (`index`, `stats`) + tests, including one that pins the Chroma metadata-type
       behaviour.

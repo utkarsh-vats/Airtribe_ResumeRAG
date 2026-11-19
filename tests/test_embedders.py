@@ -270,10 +270,12 @@ def test_model_config_table():
 def test_importing_rag_does_not_import_torch():
     script = (
         "import sys, rag, rag.embedders, rag.embedders.huggingface, rag.embedders.fake\n"
+        "import rag.embedders.gemini\n"
         "from rag.embedders import get_embedder, from_env\n"
         "get_embedder('huggingface', device='cpu'); from_env({}); get_embedder('fake')\n"
-        "print(sorted(m for m in ('torch', 'sentence_transformers', 'google.genai') "
-        "if m in sys.modules))"
+        "get_embedder('gemini', model='gemini-embedding-001', api_key='k')\n"
+        "print(sorted(m for m in ('torch', 'sentence_transformers', 'google.genai', 'google')"
+        " if m in sys.modules))"
     )
     result = subprocess.run(
         [sys.executable, "-c", script], cwd=ROOT, capture_output=True, text=True, check=True
@@ -282,13 +284,13 @@ def test_importing_rag_does_not_import_torch():
 
 
 def test_registry_round_trip():
-    assert available_embedders() == ["fake", "huggingface"]
+    assert available_embedders() == ["fake", "gemini", "huggingface"]
     fake = get_embedder("fake", dim=32)
     assert isinstance(fake, FakeEmbedder) and fake.embedder_id == "fake-d32"
     hf = get_embedder("huggingface", model="sentence-transformers/all-MiniLM-L6-v2", device="cpu")
     assert isinstance(hf, HuggingFaceEmbedder) and hf.embedder_id == "hf-all-MiniLM-L6-v2"
     with pytest.raises(ValueError, match="available"):
-        get_embedder("gemini")
+        get_embedder("openai")
 
 
 def test_from_env():

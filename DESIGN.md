@@ -264,7 +264,7 @@ class Embedder(ABC):  # rag/embedders/base.py
 | Backend | `embedder_id` | Documents | Queries |
 |---|---|---|---|
 | `huggingface` (default, local) | `hf-<model name>` | raw text | model's query prefix (below) |
-| `gemini` (step 7b, `GEMINI_EMBEDDING_MODEL`) | `gemini-<model>` | `gemini-embedding-001`: `task_type=RETRIEVAL_DOCUMENT` | `task_type=RETRIEVAL_QUERY` |
+| `gemini` (`GEMINI_EMBEDDING_MODEL`) | `gemini-<model>-d<dims>` | see the Gemini table below | see below |
 | `fake` (tests, CI) | `fake-d<dim>` | feature hashing | same |
 
 ### HuggingFace models (`MODEL_CONFIGS` in `rag/embedders/huggingface.py`)
@@ -301,11 +301,46 @@ subprocess).
 - **Smoke test**: `python -m scripts.embedder_smoke --embedder huggingface` (manual, not in
   CI) downloads the model, prints the dimension, each JD's token count against
   `max_tokens`, and a similarity matrix.
-- **Gemini note (step 7b):** the current model is `gemini-embedding-2`. It doesn't accept
-  `task_type`; the task instruction goes in the input text. It also returns *one aggregated*
-  embedding when given several inputs in a single content, so batches must be sent as
-  separate contents. `gemini-embedding-001` (text-only) still supports `task_type`. The
-  Gemini embedder branches on the model id.
+### Gemini (`rag/embedders/gemini.py`)
+
+Source: the Gemini API "Embeddings" page (ai.google.dev/gemini-api/docs/embeddings, which
+redirects to aistudio.google.com/docs/embeddings) and the two model pages, read in November
+2026. Two families are supported; any other model name is refused with an error listing
+them.
+
+| | `gemini-embedding-001` | `gemini-embedding-2` |
+|---|---|---|
+| Input | text, 2,048 tokens | text (also image, audio, video, PDF), 8,192 tokens |
+| Dimensions | 3072 default; 128-3072 via `output_dimensionality` | same |
+| Task handling | `task_type`: `RETRIEVAL_DOCUMENT` / `RETRIEVAL_QUERY` ("Task types with Embeddings 1") | no `task_type`; the task goes in the text ("Task types with Embeddings 2", asymmetric retrieval format) |
+| Document text | as is | `title: none \| text: {content}` |
+| Query text | as is | `task: search result \| query: {content}` |
+| Inputs per request | a list of texts, up to `batch_size` (default 100) | **one**: several inputs in one request are aggregated into a single embedding ("Embedding aggregation") |
+| Reduced dimensions | the caller must normalise | renormalised by the API |
+
+- **Normalisation**: the base class L2-normalises every vector anyway, which is what makes
+  reduced `gemini-embedding-001` dimensions usable for cosine similarity.
+- **Batch size**: the embeddings page doesn't state a per-request limit for the list form,
+  so 100 is a conservative default and `batch_size` can lower it. The docs also describe
+  wrapping each input in its own `Content` object to get separate embeddings from one
+  `gemini-embedding-2` request; the embedder sends one request per input instead, which is
+  simpler and can't aggregate by accident.
+- **`token_count`** is an offline estimate (about 4 characters per token), with no API
+  call. Texts estimated over the family's input limit are logged, since the API may
+  truncate them.
+- **Retries**: 429 and 5xx responses are retried up to `max_retries` (default 5) with
+  exponential backoff and jitter: the delay for retry *n* is drawn from [c/2, c], where
+  c = min(`max_delay`, `base_delay` · 2ⁿ) (defaults 1 s and 60 s). Other 4xx errors, and
+  errors without an HTTP status, fail at once. A final failure raises `EmbeddingError` with
+  the model, the status and the attempt count. The sleep function, random source and clock
+  are injectable, so tests never wait. The embeddings page gives no rate-limit or retry
+  guidance; these defaults are ordinary practice.
+- **Throttle**: `requests_per_minute` (off by default) spaces requests at least
+  60 / rpm seconds apart.
+- **Config**: `from_env()` reads `GEMINI_API_KEY`, `GEMINI_EMBEDDING_MODEL` (required when
+  `EMBEDDER=gemini`) and `GEMINI_EMBEDDING_DIM` (blank = 3072). A missing key fails when the
+  embedder is constructed. `google.genai` is imported only when the first request is made.
+  `embedder_id` is `gemini-<model>-d<dims>`, e.g. `gemini-gemini-embedding-001-d768`.
 
 ## 6. Vector store (Chroma)
 
