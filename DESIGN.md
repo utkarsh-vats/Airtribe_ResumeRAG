@@ -426,6 +426,46 @@ version and the configuration.
   `chunk`, `embed`, `upsert`) as totals and per file. Step 13's latency metrics reuse them.
 - **`rebuild=True`** drops and recreates the collection and the sidecar first.
 
+### CLI (`resume_rag.py`, Part A)
+
+```text
+python resume_rag.py index [--dir resumes] [--chunker section|fixed] [--chunker-opt KEY=VALUE ...]
+                           [--embedder fake|huggingface|gemini] [--model ID] [--rebuild]
+                           [--as-of YYYY-MM-DD] [--json]
+python resume_rag.py stats
+python resume_rag.py candidates [--chunker ...] [--embedder ...] [--model ID]
+python resume_rag.py show CANDIDATE_ID [--chunker ...] [--embedder ...] [--model ID] [--json]
+```
+
+- **Settings**: CLI flags, then the environment (`.env` is loaded with python-dotenv and never
+  overrides variables that are already set), then defaults. `WORKSPACE_ROOT` defaults to
+  `./data` and `CHROMA_DIR` to `./.chroma`. `--chunker-opt` passes chunker parameters
+  (`max_words=200`, `contextual_header=false`, `size=200`, `overlap=50`); `--model` sets
+  `HF_EMBEDDING_MODEL` or `GEMINI_EMBEDDING_MODEL` for the chosen embedder.
+- **`as_of`**: `--as-of`, else `AS_OF_DATE`, else today. The CLI is the only place that
+  reads today's date (injectable in tests); everything below it takes `as_of` as an argument,
+  and the sidecar records the date used.
+- **`index`** prints the collection, a counts table (added / updated / unchanged / removed /
+  skipped / failed / chunks written), a table of failed and skipped files (path, code,
+  message), the files whose metadata was refreshed and the per-stage timings. `--json`
+  prints the `IndexReport` (plus `as_of`) instead.
+- **`stats`** lists every collection under `CHROMA_DIR` with its chunker, embedder,
+  dimension, chunk and candidate counts, chunks by section, and the sidecar's `as_of` and
+  pipeline version. It needs no embedder and creates nothing.
+- **`candidates`** and **`show`** read the sidecar of the collection for the chosen chunker
+  and embedder (no model is loaded): a table of id, name, total years, highest degree and
+  skill count; or one candidate's education, roles (dates, months, internship flag), skills
+  with years and evidence, and warnings. `show --json` prints the stored metadata dict.
+- **Exit codes**: 0 success; 1 indexing finished but some files failed; 2 usage or
+  configuration errors (bad date, unknown embedder or chunker, bad chunker option, missing
+  Gemini settings, missing directory, unknown candidate, no index yet), reported as one line
+  on stderr with no traceback.
+- Rendering lives in `rag/console.py` (rich) so `job_matcher.py` can reuse it.
+
+First real run on this machine (bge-small on CPU, 35 resumes): section chunker 228 chunks in
+32 s of pipeline time (embedding 23 s, including the first model load), fixed chunker 86
+chunks in 28 s; a second run finds all 35 unchanged in 0.7 s of pipeline time.
+
 ## 7. Hybrid retrieval
 
 1. **Query text** = the JD's requirement summary (title + must-haves + nice-to-haves +

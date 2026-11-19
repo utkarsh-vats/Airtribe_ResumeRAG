@@ -59,7 +59,8 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       dimension checks, atomic JSON sidecar), `rag/indexer.py` (`index_directory` with
       content-hash change detection, `PIPELINE_VERSION`, pruning, per-file failures and stage
       timings) + tests, including a full-corpus run with `FakeEmbedder`.
-- [ ] **8b. Indexing CLI** – `resume_rag.py` (`index`, `stats`) + tests.
+- [x] **8b. Indexing CLI** – `resume_rag.py` (`index`, `stats`, `candidates`, `show`), settings
+      precedence and exit codes, rendering in `rag/console.py` + tests; first real bge run.
 - [ ] **9. BM25 keyword index** + tests.
 - [ ] **10. JD requirement parser** + tests.
 - [ ] **11. Hybrid retrieval** – semantic + BM25 + RRF + candidate aggregation + tests.

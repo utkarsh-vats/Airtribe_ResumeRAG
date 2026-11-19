@@ -169,6 +169,19 @@ def write_json_atomic(path: Path, data: dict) -> None:
         raise
 
 
+def sidecar_path(chroma_dir: str | Path, name: str) -> Path:
+    """Where the sidecar of collection ``name`` lives."""
+    return Path(chroma_dir) / "sidecar" / f"{name}.json"
+
+
+def read_sidecar(chroma_dir: str | Path, name: str) -> Sidecar | None:
+    """The sidecar of collection ``name``, or None if it doesn't exist (nothing is created)."""
+    path = sidecar_path(chroma_dir, name)
+    if not path.exists():
+        return None
+    return Sidecar.from_dict(json.loads(path.read_text(encoding="utf-8")))
+
+
 # --- Store --------------------------------------------------------------------------------
 
 
@@ -204,7 +217,7 @@ class VectorStore:
     @property
     def sidecar_path(self) -> Path:
         """``<CHROMA_DIR>/sidecar/<collection>.json``."""
-        return self.chroma_dir / "sidecar" / f"{self.name}.json"
+        return sidecar_path(self.chroma_dir, self.name)
 
     def _open(self) -> Any:
         collection = self._client.get_or_create_collection(
@@ -317,9 +330,9 @@ class VectorStore:
 
     def load_sidecar(self) -> Sidecar | None:
         """The sidecar, or None if there isn't one yet."""
-        if not self.sidecar_path.exists():
+        sidecar = read_sidecar(self.chroma_dir, self.name)
+        if sidecar is None:
             return None
-        sidecar = Sidecar.from_dict(json.loads(self.sidecar_path.read_text(encoding="utf-8")))
         if (sidecar.chunker_id, sidecar.embedder_id) != (self.chunker_id, self.embedder_id):
             raise SidecarError(f"{self.sidecar_path} belongs to another configuration")
         return sidecar
@@ -327,3 +340,58 @@ class VectorStore:
     def save_sidecar(self, sidecar: Sidecar) -> None:
         """Write the sidecar atomically."""
         write_json_atomic(self.sidecar_path, sidecar.to_dict())
+
+
+# --- Inspection ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class CollectionStats:
+    """A summary of one collection and its sidecar."""
+
+    name: str
+    chunker_id: str | None
+    embedder_id: str | None
+    dim: int | None
+    schema_version: int | None
+    chunks: int
+    candidates: int
+    chunks_by_section: dict[str, int]
+    as_of: str | None  # from the sidecar
+    pipeline_version: str | None  # from the sidecar
+
+
+def collection_stats(chroma_dir: str | Path, client: Any = None) -> list[CollectionStats]:
+    """Every collection under ``chroma_dir``, sorted by name (nothing is created)."""
+    if client is None and not Path(chroma_dir).exists():
+        return []
+    client = client or _client(Path(chroma_dir))
+    stats = []
+    for listed in sorted(client.list_collections(), key=lambda c: c.name):
+        collection = client.get_collection(listed.name, embedding_function=None)
+        meta = collection.metadata or {}
+        found = collection.get(include=["metadatas"])
+        sections: dict[str, int] = {}
+        candidates = set()
+        for item in found["metadatas"]:
+            sections[item.get("section", "?")] = sections.get(item.get("section", "?"), 0) + 1
+            candidates.add(item.get("candidate_id"))
+        try:
+            sidecar = read_sidecar(chroma_dir, listed.name)
+        except SidecarError:
+            sidecar = None
+        stats.append(
+            CollectionStats(
+                name=listed.name,
+                chunker_id=meta.get("chunker_id"),
+                embedder_id=meta.get("embedder_id"),
+                dim=meta.get("dim"),
+                schema_version=meta.get("schema_version"),
+                chunks=len(found["ids"]),
+                candidates=len(candidates - {None}),
+                chunks_by_section=dict(sorted(sections.items())),
+                as_of=sidecar.as_of if sidecar else None,
+                pipeline_version=sidecar.pipeline_version if sidecar else None,
+            )
+        )
+    return stats
