@@ -61,7 +61,9 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       timings) + tests, including a full-corpus run with `FakeEmbedder`.
 - [x] **8b. Indexing CLI** – `resume_rag.py` (`index`, `stats`, `candidates`, `show`), settings
       precedence and exit codes, rendering in `rag/console.py` + tests; first real bge run.
-- [ ] **9. BM25 keyword index** + tests.
+- [x] **9. BM25 keyword index** – `Chunk.body_start` (pipeline v2), `rag/keyword_index.py`
+      (`words` / `skills` / `words+skills` tokenizers, `search`, `search_skills`, filters,
+      timings) + synthetic and corpus tests; step 10 query-text decision recorded.
 - [ ] **10. JD requirement parser** + tests.
 - [ ] **11. Hybrid retrieval** – semantic + BM25 + RRF + candidate aggregation + tests.
 - [ ] **12. Scoring + output** – score components, must-have filter, reasoning/excerpts, JSON

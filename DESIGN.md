@@ -49,7 +49,7 @@ Planned module layout (built slice by slice, see [project-plan.md](project-plan.
 | `rag/dates.py` | Multi-format date parsing + interval merging |
 | `rag/embedders/` | `Embedder` ABC, registry, `huggingface`, `gemini`, `fake` |
 | `rag/store.py` | Chroma repository (`ResumeStore`) |
-| `rag/bm25.py` | Keyword index over the same chunks |
+| `rag/keyword_index.py` | BM25 keyword index over the same chunks |
 | `rag/jd_parser.py` | Rule-based JD requirement parser |
 | `rag/retrieval.py` | Hybrid retrieval, RRF, candidate aggregation |
 | `rag/scoring.py` | Score components, must-have filter, reasoning, excerpts |
@@ -138,6 +138,10 @@ Lines after a header belong to that role until the next header.
   leaves out the candidate's name: a name carries no meaning for matching and only adds
   similarity noise between unrelated chunks. The raw text (without the header) is stored
   separately for excerpts.
+- `Chunk.body_start` is the line offset in the chunk text where the body begins: the number
+  of role-header lines (1 for inline headers, 2 for stacked or split ones) at the top of a
+  role chunk's first part, 0 everywhere else (fixed-size chunks included). It isn't part of
+  the chunk id. The keyword index (§7) uses it to take skill tokens from role bodies only.
 - **Every section except the header block is indexed**, including hobbies and coursework.
   Low-signal sections are down-weighted at scoring time rather than excluded, so a hobby
   mention can still be shown as context without counting as skill evidence (the mention
@@ -379,7 +383,8 @@ them.
   existing collection with a different `dim` raises `DimensionMismatchError`; another
   schema version or another configuration raises `StoreError`.
 - **Per-chunk metadata** (flat, Chroma-safe): `candidate_id`, `resume_path`, `name`,
-  `section`, `role_index`, `role_title`, `role_company`, `chunker_id`, `total_months`,
+  `section`, `role_index`, `role_title`, `role_company`, `body_start`, `chunker_id`,
+  `total_months`,
   `highest_degree_level` (1-5) and `skills` (canonical names). Keys with `None` or an empty
   list are left out. Chunk ids are the chunkers' content hashes (§3), so upserts are
   idempotent.
@@ -409,7 +414,10 @@ version and the configuration.
   anything else is reported as skipped (`UNSUPPORTED_FORMAT`), not failed.
 - **Change detection**: `content_hash = sha256(PIPELINE_VERSION + extracted text)`.
   `PIPELINE_VERSION` (in `rag/indexer.py`) **must be bumped whenever parsing, metadata or
-  chunking output changes for the same text**; a bump re-indexes every file.
+  chunking output changes for the same text**; a bump re-indexes every file. Version 2 added
+  `body_start` to the chunk metadata. The store's `SCHEMA_VERSION` stays 1: an added key
+  doesn't change how a collection is read, and a schema bump would make old collections
+  refuse to open instead of re-indexing.
   - unchanged (same hash and path, same chunk ids in the store) -> skipped with no embedding.
     Its metadata is still recomputed, and if it differs (a new `as_of` changes durations)
     the chunk metadata is updated in place and the sidecar refreshed (`metadata_refreshed`).
@@ -468,18 +476,67 @@ chunks in 28 s; a second run finds all 35 unchanged in 0.7 s of pipeline time.
 
 ## 7. Hybrid retrieval
 
-1. **Query text** = the JD's requirement summary (title + must-haves + nice-to-haves +
-   responsibilities), embedded with `embed_query`.
+1. **Query text** = the JD's title, overview, responsibilities, requirements and
+   nice-to-have sections, embedded with `embed_query` (decision below).
 2. **Semantic**: top-N chunks (default N=50) from Chroma by cosine distance.
-3. **Keyword**: top-N chunks from a `rank_bm25.BM25Okapi` index built over the same chunk
-   texts. It's tokenised with the same taxonomy normalisation, so `k8s` and `Kubernetes`
-   collide, and it's rebuilt from the store on load.
+3. **Keyword**: top-N chunks from the BM25 index over the same chunks (below).
 4. **Reciprocal Rank Fusion**: `rrf(d) = Σ 1 / (k + rank_i(d))`, with `k = 60` (configurable).
    It only uses ranks, so the two incomparable score scales never get mixed.
 5. **Candidate aggregation**: chunks are grouped by `resume_path`. A candidate's retrieval
    score is the max chunk RRF plus a damped sum of the rest, so one strong chunk counts but
    breadth also helps. The **matched sections** (and chunk ids) for each candidate are recorded
    for excerpts and reasoning.
+
+### Query text for the semantic side (step 10 decision)
+
+The query embeds the JD's title, overview, responsibilities, requirements and nice-to-have
+sections, not the whole JD. The whole of `devops_sre.txt` is 513 bge tokens against bge-small's
+512 limit (step 8b smoke run), so its tail would be silently truncated; and the benefits and
+location text (pension, holidays, laptops) only adds noise that pulls every JD towards every
+resume. The whole-JD variant stays available so the notebook can compare the two.
+
+### Keyword index (`rag/keyword_index.py`)
+
+- **Built from the store**: `KeywordIndex.from_store(store)` reads every chunk's document
+  (`chunk.text`) and metadata from the collection and builds a `rank_bm25.BM25Okapi` model in
+  memory (`k1` 1.5 and `b` 0.75 by default, both configurable). Nothing is persisted, so the
+  index can never drift from the collection; on the real section collection (228 chunks) the
+  build takes milliseconds. Build time and per-query latency are recorded (`build_seconds`,
+  `query_seconds`) for step 13. A collection written before `body_start` existed is rejected
+  with "re-index it".
+- **Tokenizer modes**:
+  - `words`: case-folded word tokens over the whole chunk text. Names with symbols stay whole
+    (`c++`, `c#`, `.net`, `node.js`, `asp.net`); a small English stopword list (function words
+    only, never `c`, `r` or `go`) is dropped; no stemming.
+  - `skills`: only canonical skill tokens (`skill:kubernetes`, `skill:rest_apis`), one per
+    mention found by `rag.skill_matcher`.
+  - `words+skills` (default): both in one bag.
+  Queries use the same mode; for a query's skill tokens the whole query text is a source.
+  `search_skills(names)` builds the query from canonical names directly (step 11 uses it for
+  the critical skills): word tokens of the names, the skill tokens, or both.
+- **Skill tokens follow the extraction contract** (§4): only chunks from skill-source sections
+  (skills, experience, projects) get them, only from the text after `body_start`, with the
+  same alias, case and boundary rules and no implications. So `k8s` and `Kubernetes` become one
+  token, a lowercase `spark` or `airflow` is not a mention, `JavaScript` never yields
+  `skill:java`, Peter Hughes's employer "Spark Energy Ltd" (a role-header line) yields no
+  `skill:spark`, and a Python hobby gets word tokens but no skill token. The keyword side then
+  agrees with what metadata extraction counts as evidence, instead of rewarding a word that
+  happens to look like a skill. Words still catch what the taxonomy doesn't know.
+- **Search**: `search(text, n, where)` and `search_skills(skills, n, where)` return
+  `(chunk_id, score)` pairs, best first, ties broken by chunk id, zero scores dropped. `where`
+  filters by `candidate_ids` and/or `sections` after scoring (IDF stays corpus-wide).
+- **Length normalisation favours tiny chunks**. BM25's `b` term divides by chunk length over
+  the average, so a 3-word chunk that contains a query term outscores a 56-word role chunk
+  with the same term. Hobbies chunks have a median of 3.5 words (summary 24, experience 56),
+  so in `words` mode a hobby line such as "Python scripting for a Raspberry Pi weather station"
+  can rank near the top for "python". Step 11 offsets this with per-section weights when it
+  aggregates chunks into candidates; `skills` mode avoids it for skill queries because
+  non-source sections carry no skill tokens.
+- **rank-bm25 quirk**: `BM25Okapi` floors the IDF of a term found in more than half the chunks at
+  `0.25 × average IDF`, so a term that is everywhere contributes almost nothing (and in a tiny
+  corpus can make every score non-positive, which is then dropped).
+- **Fixed-size chunks** have `body_start` 0, so their role-header lines do count for skill
+  tokens. That is part of what the notebook's chunker comparison measures.
 
 ## 8. Scoring (0-100)
 

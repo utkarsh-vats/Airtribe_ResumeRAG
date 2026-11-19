@@ -1,5 +1,6 @@
 """rag.chunking: the section-aware chunker, the fixed-size baseline and the registry."""
 
+import hashlib
 import itertools
 import json
 from dataclasses import replace
@@ -357,3 +358,62 @@ def test_fixed_chunk_ids_unique_across_corpus(corpus):
     chunker = FixedSizeChunker()
     ids = [c.chunk_id for path, parsed in corpus.values() for c in chunker.chunk(path, parsed)]
     assert len(ids) == len(set(ids))
+
+
+# --- body_start ---------------------------------------------------------------------------
+
+
+def test_body_start_counts_role_header_lines():
+    chunks = SectionChunker().chunk(PATH, parse_resume(DOC))
+    starts = {(c.section, c.role_index): c.body_start for c in chunks}
+    assert starts == {
+        ("summary", None): 0,
+        ("experience", None): 0,  # the preamble
+        ("experience", 0): 2,  # stacked header: title, then company | dates
+        ("experience", 1): 1,  # inline header
+        ("skills", None): 0,
+    }
+    role = next(c for c in chunks if c.role_index == 0)
+    assert role.text.split("\n")[role.body_start :] == ["Led the team.", "Shipped the product."]
+
+
+def test_body_start_is_zero_after_the_first_part():
+    bullets = [f"bullet {i} has five words" for i in range(4)]
+    doc = "Ann\nEXPERIENCE\nEngineer | Acme | 2020 - 2021\n" + "\n".join(bullets) + "\n"
+    chunks = SectionChunker(max_words=12).chunk(PATH, parse_resume(doc))
+    assert [(c.part, c.body_start) for c in chunks] == [(0, 1), (1, 0), (2, 0)]
+
+
+def test_fixed_chunks_have_body_start_zero(corpus):
+    path, parsed = corpus["john_doe"]
+    assert {c.body_start for c in FixedSizeChunker().chunk(path, parsed)} == {0}
+
+
+@any_persona
+def test_role_chunk_body_is_the_role_body(persona, corpus, section_chunks):
+    _, parsed = corpus[persona.id]
+    roles = [r for s in parsed.of_kind(SectionKind.EXPERIENCE) for r in split_roles(s)]
+    for chunk in section_chunks[persona.id]:
+        if chunk.role_index is not None:
+            body = tuple(chunk.text.split("\n")[chunk.body_start :])
+            assert body == roles[chunk.role_index].lines
+
+
+# Sorted chunk ids of every resume under both default chunkers, from the chunker before
+# body_start existed: adding the field must not change any id.
+CORPUS_CHUNK_IDS_SHA256 = "2575c7092cab435525e013f2f8416f968a2cc2f95b8f86e78c27d317dc843252"
+
+
+def test_body_start_does_not_change_chunk_ids(corpus):
+    ids = sorted(
+        c.chunk_id
+        for path, parsed in corpus.values()
+        for chunker in (SectionChunker(), FixedSizeChunker())
+        for c in chunker.chunk(path, parsed)
+    )
+    assert len(ids) == 314
+    assert hashlib.sha256("\n".join(ids).encode()).hexdigest() == CORPUS_CHUNK_IDS_SHA256
+    chunk = SectionChunker().chunk(PATH, parse_resume(DOC))[2]
+    assert replace(chunk, body_start=0).chunk_id == chunk_id(
+        PATH, chunk.chunker_id, chunk.section, chunk.role_index, chunk.part, chunk.text
+    )

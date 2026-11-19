@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 # Bump whenever parsing, metadata extraction or chunking output changes for the same input
 # text: it is part of every content hash, so a bump re-indexes every file.
-PIPELINE_VERSION = "1"
+PIPELINE_VERSION = "2"  # 2: chunk metadata gained body_start
 INDEXED_EXTENSIONS = frozenset({".pdf", ".docx", ".txt"})
 DEFAULT_WORKSPACE_ROOT = "./data"
 

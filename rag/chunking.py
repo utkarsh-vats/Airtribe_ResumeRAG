@@ -7,6 +7,10 @@
 - ``FixedSizeChunker``: the naive baseline. Overlapping word windows over the whole cleaned
   text, header included, with no context.
 
+``Chunk.body_start`` is the line offset in ``text`` where the body begins: a role chunk starts
+with its role-header lines (title, company, dates), everything else starts with body. The
+keyword index uses it to take skill tokens from role bodies only, as metadata extraction does.
+
 Chunkers do no file IO: they take the resume's path (relative to the workspace root, e.g.
 ``resumes/john_doe.pdf``) and its ``ParsedResume``. ``chunker_id`` encodes every parameter
 that changes the output, so step 8 can derive a collection name from it.
@@ -44,6 +48,9 @@ class Chunk:
     embed_text: str  # what gets embedded: text, optionally after a contextual header
     start_line: int  # span in ParsedResume.lines (end exclusive)
     end_line: int
+    # Line offset in ``text`` where the body starts: the number of role-header lines at the
+    # top of a role chunk's first part, else 0. Not part of the chunk id.
+    body_start: int = 0
 
 
 class Chunker(Protocol):
@@ -85,6 +92,7 @@ class _Piece:
     role_company: str | None
     start_line: int
     end_line: int
+    header_lines: int = 0  # role-header lines at the start of a role piece
 
 
 class SectionChunker:
@@ -120,6 +128,7 @@ class SectionChunker:
                         role.company,
                         role.start_line,
                         role.end_line,
+                        role.end_line - role.start_line - len(role.lines),
                     )
                 )
                 role_index += 1
@@ -169,6 +178,7 @@ class SectionChunker:
             if not any(line.strip() for line in lines):
                 continue
             context = self.context(piece.section, piece.role_title, piece.role_company)
+            body_line = piece.start_line + piece.header_lines
             for part, (part_lines, start, end) in enumerate(self._parts(lines, piece.start_line)):
                 text = "\n".join(part_lines)
                 embed_text = f"{context}\n{text}" if self.contextual_header else text
@@ -194,6 +204,7 @@ class SectionChunker:
                         embed_text=embed_text,
                         start_line=start,
                         end_line=end,
+                        body_start=max(0, min(len(part_lines), body_line - start)),
                     )
                 )
         return chunks

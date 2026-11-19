@@ -82,6 +82,7 @@ def chunk_metadata(chunk: Chunk, candidate: CandidateMetadata) -> dict[str, Any]
         "role_index": chunk.role_index,
         "role_title": chunk.role_title,
         "role_company": chunk.role_company,
+        "body_start": chunk.body_start,
         "chunker_id": chunk.chunker_id,
         "total_months": candidate.total_months,
         "highest_degree_level": int(highest.level) if highest and highest.level else None,
