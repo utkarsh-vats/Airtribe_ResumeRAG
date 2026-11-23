@@ -120,6 +120,7 @@ class KeywordDoc:
     candidate_id: str
     section: str
     body_start: int = 0
+    role_index: int | None = None
 
 
 class KeywordIndex:
@@ -141,6 +142,7 @@ class KeywordIndex:
         ids = [d.chunk_id for d in self.docs]
         if len(set(ids)) != len(ids):
             raise ValueError("duplicate chunk ids")
+        self._by_id = {d.chunk_id: i for i, d in enumerate(self.docs)}
         self._tokens = [
             document_tokens(d.text, d.section, d.body_start, self.mode) for d in self.docs
         ]
@@ -170,7 +172,12 @@ class KeywordIndex:
                 )
             docs.append(
                 KeywordDoc(
-                    chunk_id, text or "", meta["candidate_id"], meta["section"], meta["body_start"]
+                    chunk_id,
+                    text or "",
+                    meta["candidate_id"],
+                    meta["section"],
+                    meta["body_start"],
+                    meta.get("role_index"),
                 )
             )
         return cls(docs, mode=mode, k1=k1, b=b)
@@ -179,12 +186,13 @@ class KeywordIndex:
         """Number of indexed chunks."""
         return len(self.docs)
 
+    def doc(self, chunk_id: str) -> KeywordDoc:
+        """One indexed chunk; raises ``KeyError`` if unknown."""
+        return self.docs[self._by_id[chunk_id]]
+
     def tokens(self, chunk_id: str) -> list[str]:
-        """The tokens indexed for one chunk."""
-        for doc, tokens in zip(self.docs, self._tokens, strict=True):
-            if doc.chunk_id == chunk_id:
-                return list(tokens)
-        raise KeyError(chunk_id)
+        """The tokens indexed for one chunk; raises ``KeyError`` if unknown."""
+        return list(self._tokens[self._by_id[chunk_id]])
 
     @property
     def last_query_seconds(self) -> float | None:

@@ -51,7 +51,7 @@ Planned module layout (built slice by slice, see [project-plan.md](project-plan.
 | `rag/store.py` | Chroma repository (`ResumeStore`) |
 | `rag/keyword_index.py` | BM25 keyword index over the same chunks |
 | `rag/jd_parser.py` | Rule-based JD parser: sections, must-haves, years, query text |
-| `rag/retrieval.py` | Hybrid retrieval, RRF, candidate aggregation |
+| `rag/retrieval.py` | Hybrid retrieval: section-weighted aggregation, RRF, backfill |
 | `rag/scoring.py` | Score components, must-have filter, reasoning, excerpts |
 | `rag/evaluation.py` | qrels loading, IR metrics, latency |
 | `resume_rag.py` / `job_matcher.py` | CLIs (thin: argument parsing + rendering) |
@@ -476,16 +476,67 @@ chunks in 28 s; a second run finds all 35 unchanged in 0.7 s of pipeline time.
 
 ## 7. Hybrid retrieval
 
-1. **Query text** = the JD's title, overview, responsibilities, requirements and
-   nice-to-have sections, embedded with `embed_query` (decision below).
-2. **Semantic**: top-N chunks (default N=50) from Chroma by cosine distance.
-3. **Keyword**: top-N chunks from the BM25 index over the same chunks (below).
-4. **Reciprocal Rank Fusion**: `rrf(d) = Σ 1 / (k + rank_i(d))`, with `k = 60` (configurable).
-   It only uses ranks, so the two incomparable score scales never get mixed.
-5. **Candidate aggregation**: chunks are grouped by `resume_path`. A candidate's retrieval
-   score is the max chunk RRF plus a damped sum of the rest, so one strong chunk counts but
-   breadth also helps. The **matched sections** (and chunk ids) for each candidate are recorded
-   for excerpts and reasoning.
+`rag/retrieval.py`: `retrieve(job, store, keyword_index, embedder, config) -> RetrievalResult`.
+It runs a semantic list and a BM25 list over the same chunks, turns each into a candidate
+ranking, and fuses the two rankings with RRF. Must-have filtering and the 0-100 score are
+step 12.
+
+1. **Semantic list**: `embed_query` on the configured query source (`query_text` by default,
+   see below; `full_text` for comparison), then the `n_semantic` (100) nearest chunks from
+   Chroma. Chroma's cosine distance is `1 - cos` (range 0-2; checked against chromadb 1.5.9,
+   including for an unnormalised stored vector), so similarity is `1 - distance`.
+2. **Keyword list**: `keyword_index.search_skills` over the JD's `critical_skills` (its
+   must-have skills), or critical plus nice-to-have skills with
+   `keyword_skills="critical+nice"`, taking `n_keyword` (100) chunks. A JD with no critical
+   skills (no requirements section) uses its nice-to-haves instead, and the result notes it.
+3. **Section weights, per list**: each chunk score is multiplied by its section's weight
+   (experience 1.0, projects 0.8, skills 0.7, summary 0.6, certifications 0.5, other 0.5,
+   education 0.4, coursework 0.2, hobbies 0.1; `header` and anything unlisted use the
+   `other` weight). A negative cosine counts as 0. The weights counter BM25's preference for
+   tiny chunks (a 3-word hobby line that says "Python") and say where evidence should count:
+   a skill used in a role beats one listed under hobbies.
+4. **Candidate aggregation, per list**: a candidate's list score is its best weighted chunk
+   plus `second_chunk_weight` (0.3) times its second best. One strong chunk carries most of
+   the score, and evidence in a second place (a skills list *and* a role) adds a bonus without
+   letting many weak chunks outweigh one strong one. Candidates are ranked by this score
+   (a zero score is not ranked); ties go to the smaller candidate id.
+5. **Fusion**: weighted Reciprocal Rank Fusion over the two candidate rankings,
+   `fused(c) = sum_l w_l / (rrf_k + rank_l(c))` with 1-based ranks, `rrf_k` 60 and both
+   `list_weights` 1.0. A candidate absent from a list gets nothing from it. RRF only uses
+   ranks, so BM25 scores (unbounded, query-dependent) and cosine similarities never have to
+   be put on one scale. `semantic` and `keyword` modes use only their own list. The top
+   `pool_size` (20) candidates by fused score, ties by candidate id, form the pool.
+6. **Backfill**: step 12 needs both signals for every pool candidate, so after fusion
+   - a pool candidate with no semantic score gets one from a store query filtered to that
+     `candidate_id` (all of its chunks);
+   - one with no keyword score gets one from a BM25 search filtered to that candidate. If it
+     has nothing (the usual case) it gets an explicit 0.0; if it does (only possible when more
+     than `n_keyword` chunks matched), the result notes that.
+   Backfilled scores are flagged (`backfilled=True`, `rank=None`) and never change the
+   ranking. Keyword mode still embeds the query, for this backfill.
+7. **Result**: `RetrievalResult` holds the hits (pool order), the config, the query text
+   used, the keyword skills used, notes, the number of candidates ranked per list and the
+   timings (`embed_query`, `semantic_search`, `keyword_search`, `aggregate_fuse`,
+   `backfill`). Each `CandidateHit` has its `fused_score`; per list the best raw score, the
+   best weighted score, the aggregate and the rank (or None); up to three top chunks (id,
+   section, role, which lists found it, raw and weighted scores per list, chunk text); and
+   `matched_sections`. The chunks that contribute are the ones in the list scores: each list's
+   best chunk and, when `second_chunk_weight > 0`, its second. Top chunks are those, ordered by
+   a chunk-level RRF over their position within the candidate in each list. `matched_sections`
+   are their sections.
+
+**Knobs for the notebook** (`RetrievalConfig`, frozen, validated: unknown sections or lists,
+negative weights, `rrf_k <= 0`, a pool or list size below 1, or a mode whose lists all weigh
+0 raise `ValueError`):
+- `mode`: `hybrid`, `semantic` or `keyword`;
+- `query_source`: `query_text` or `full_text`;
+- `n_semantic` and `n_keyword`: chunks per list;
+- `keyword_skills`: `critical` or `critical+nice`;
+- `section_weights`: merged over the defaults, so `{"hobbies": 0}` changes just one;
+- `second_chunk_weight`, `rrf_k`, `list_weights` and `pool_size`.
+Together with the chunker, the embedder and the keyword tokenizer mode, these are the
+experiment axes. `scripts/retrieval_report.py` prints, per JD and mode, the top 10 with qrels
+labels and where each S candidate ranks.
 
 ### Query text for the semantic side (step 10 decision)
 

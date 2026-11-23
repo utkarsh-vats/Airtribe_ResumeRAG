@@ -67,7 +67,9 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **10. JD requirement parser** – `rag/jd_parser.py` (sections, units, years, any_of grouping,
       no-requirements fallback, `query_text`, `load_job_description`) + tests; smoke script
       prints query_text token counts.
-- [ ] **11. Hybrid retrieval** – semantic + BM25 + RRF + candidate aggregation + tests.
+- [x] **11. Hybrid retrieval** – `rag/retrieval.py` (semantic + BM25 lists, section weights,
+      best + second-chunk aggregation, weighted RRF, backfill, timings) +
+      `scripts/retrieval_report.py` + tests.
 - [ ] **12. Scoring + output** – score components, must-have filter, reasoning/excerpts, JSON
       output, `job_matcher.py` CLI + tests.
 - [ ] **13. Evaluation** – metrics (P@5, R@10, MRR, nDCG@10) + latency, eval CLI + tests.
