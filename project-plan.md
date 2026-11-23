@@ -70,8 +70,11 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **11. Hybrid retrieval** – `rag/retrieval.py` (semantic + BM25 lists, section weights,
       best + second-chunk aggregation, weighted RRF, backfill, timings) +
       `scripts/retrieval_report.py` + tests.
-- [ ] **12. Scoring + output** – score components, must-have filter, reasoning/excerpts, JSON
-      output, `job_matcher.py` CLI + tests.
+- [x] **12a. Matching + scoring** – `rag/requirements_check.py` (qrels-identical must-have
+      checks), `rag/calibration.py` + `resume_rag.py calibrate`, `rag/scoring.py`,
+      `rag/reasoning.py`, `rag/matcher.py` (strict filter-then-retrieve, soft), retrieval
+      `keyword_mode` and `candidate_ids` + tests.
+- [ ] **12b. Output** – excerpts, JSON output, `job_matcher.py` CLI + tests.
 - [ ] **13. Evaluation** – metrics (P@5, R@10, MRR, nDCG@10) + latency, eval CLI + tests.
 - [ ] **14. Experiments notebook** – chunkers, retrieval modes, embedders (package code only).
 - [ ] **15. README + docs polish.**

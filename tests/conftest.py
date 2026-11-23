@@ -64,3 +64,38 @@ def make_docx(workspace: Path) -> Callable[..., Path]:
         return path
 
     return build
+
+
+@pytest.fixture(scope="session")
+def fake_corpus(tmp_path_factory):
+    """All 35 resumes indexed once with FakeEmbedder (section chunker), plus a skills index.
+
+    Shared by several modules; tests must not write to its store or sidecar.
+    """
+    from datetime import date
+    from types import SimpleNamespace
+
+    from rag.chunking import SectionChunker
+    from rag.embedders.fake import FakeEmbedder
+    from rag.indexer import index_directory
+    from rag.keyword_index import KeywordIndex
+    from rag.store import VectorStore
+    from scripts.persona_schema import ROOT
+
+    chunker, embedder = SectionChunker(), FakeEmbedder()
+    store = VectorStore(
+        tmp_path_factory.mktemp("fake_corpus") / "chroma",
+        chunker.chunker_id,
+        embedder.embedder_id,
+        embedder.dim,
+    )
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setenv("WORKSPACE_ROOT", str(ROOT / "data"))
+        report = index_directory("resumes", chunker, embedder, store, date(2026, 11, 1))
+    assert len(report.added) == 35 and not report.failed
+    return SimpleNamespace(
+        store=store,
+        sidecar=store.load_sidecar(),
+        embedder=embedder,
+        keyword_index=KeywordIndex.from_store(store, mode="skills"),
+    )

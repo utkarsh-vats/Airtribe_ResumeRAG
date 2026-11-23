@@ -121,6 +121,7 @@ class Sidecar:
     pipeline_version: str
     candidates: dict[str, CandidateRecord] = field(default_factory=dict)
     schema_version: int = SCHEMA_VERSION
+    calibration: dict | None = None  # rag.calibration.Calibration.to_dict(); optional key
 
     def to_dict(self) -> dict:
         """JSON form of the sidecar, candidates sorted by id."""
@@ -131,7 +132,7 @@ class Sidecar:
             "as_of": self.as_of,
             "pipeline_version": self.pipeline_version,
             "candidates": {cid: r.to_dict() for cid, r in sorted(self.candidates.items())},
-        }
+        } | ({"calibration": self.calibration} if self.calibration is not None else {})
 
     @classmethod
     def from_dict(cls, data: dict) -> Sidecar:
@@ -151,6 +152,7 @@ class Sidecar:
                     cid: CandidateRecord(r["metadata"], r["content_hash"], r["indexed_at"])
                     for cid, r in data["candidates"].items()
                 },
+                calibration=data.get("calibration"),
             )
         except (KeyError, TypeError) as exc:
             raise SidecarError(f"malformed sidecar: {exc!r}") from exc

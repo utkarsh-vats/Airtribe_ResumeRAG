@@ -28,6 +28,7 @@ import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from enum import StrEnum
+from functools import cached_property
 from pathlib import PurePosixPath
 
 import fs_tools
@@ -167,6 +168,21 @@ class JobRequirements:
     def has_requirements_section(self) -> bool:
         """Whether hard filters apply (a requirements section was found)."""
         return any(s.kind is _K.REQUIREMENTS for s in self.sections)
+
+    def nice_to_have_in_jd_order(self) -> tuple[str, ...]:
+        """``nice_to_have`` in the order the JD first mentions them (nice-to-have section first)."""
+        return self._nice_to_have_order
+
+    @cached_property
+    def _nice_to_have_order(self) -> tuple[str, ...]:
+        wanted = set(self.nice_to_have)
+        order: list[str] = []
+        ordered = sorted(self.sections, key=lambda s: s.kind is not _K.NICE_TO_HAVE)  # stable
+        for section in ordered:
+            for mention in find_mentions(section.text):
+                if mention.canonical in wanted and mention.canonical not in order:
+                    order.append(mention.canonical)
+        return tuple(order + [s for s in self.nice_to_have if s not in order])
 
     def to_dict(self, include_text: bool = False) -> dict:
         """JSON form; the section lines and full text only with ``include_text``."""

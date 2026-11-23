@@ -31,10 +31,14 @@ class ModelConfig:
     document_prefix: str = ""
     dim: int | None = None
     max_seq_length: int | None = None
+    # Fallback semantic calibration (rag.calibration) for a collection that has none: the
+    # floor and ceiling of candidate-level semantic aggregates. None = generic fallback.
+    semantic_floor: float | None = None
+    semantic_ceiling: float | None = None
 
 
 MODEL_CONFIGS: dict[str, ModelConfig] = {
-    "BAAI/bge-small-en-v1.5": ModelConfig(BGE_QUERY_PREFIX, "", 384, 512),
+    "BAAI/bge-small-en-v1.5": ModelConfig(BGE_QUERY_PREFIX, "", 384, 512, 0.82, 0.97),
     "BAAI/bge-base-en-v1.5": ModelConfig(BGE_QUERY_PREFIX, "", 768, 512),
     "sentence-transformers/all-MiniLM-L6-v2": ModelConfig("", "", 384, 256),
 }

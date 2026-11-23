@@ -52,7 +52,11 @@ Planned module layout (built slice by slice, see [project-plan.md](project-plan.
 | `rag/keyword_index.py` | BM25 keyword index over the same chunks |
 | `rag/jd_parser.py` | Rule-based JD parser: sections, must-haves, years, query text |
 | `rag/retrieval.py` | Hybrid retrieval: section-weighted aggregation, RRF, backfill |
-| `rag/scoring.py` | Score components, must-have filter, reasoning, excerpts |
+| `rag/requirements_check.py` | Must-have checks against extracted metadata |
+| `rag/calibration.py` | Label-free semantic floor and ceiling per collection |
+| `rag/scoring.py` | Score components and the 0-100 match score |
+| `rag/reasoning.py` | Templated reasoning |
+| `rag/matcher.py` | Filter, retrieve, score, reason |
 | `rag/evaluation.py` | qrels loading, IR metrics, latency |
 | `resume_rag.py` / `job_matcher.py` | CLIs (thin: argument parsing + rendering) |
 
@@ -532,8 +536,15 @@ negative weights, `rrf_k <= 0`, a pool or list size below 1, or a mode whose lis
 - `query_source`: `query_text` or `full_text`;
 - `n_semantic` and `n_keyword`: chunks per list;
 - `keyword_skills`: `critical` or `critical+nice`;
+- `keyword_mode`: the `KeywordIndex` tokenizer mode `search_skills` runs on, default
+  `skills`. Plain word tokens let "Spark Energy Ltd" and an HVAC engineer's "airflow"
+  bullets score for data_engineer (peter_hughes was 6th in step 11's keyword list);
+  `words+skills` stays available for comparison. `retrieve` refuses an index built in
+  another mode;
 - `section_weights`: merged over the defaults, so `{"hobbies": 0}` changes just one;
 - `second_chunk_weight`, `rrf_k`, `list_weights` and `pool_size`.
+`retrieve(..., candidate_ids=...)` restricts both lists and the backfills to those
+candidates (an empty set gives an empty result with a note); the matcher (section 8) uses it.
 Together with the chunker, the embedder and the keyword tokenizer mode, these are the
 experiment axes. `scripts/retrieval_report.py` prints, per JD and mode, the top 10 with qrels
 labels and where each S candidate ranks.
@@ -589,31 +600,108 @@ resume. The whole-JD variant stays available so the notebook can compare the two
 - **Fixed-size chunks** have `body_start` 0, so their role-header lines do count for skill
   tokens. That is part of what the notebook's chunker comparison measures.
 
-## 8. Scoring (0-100)
+## 8. Matching and scoring (0-100)
+
+`rag/matcher.py`: `match(job, store, keyword_index, embedder, sidecar, config, filter_mode,
+k, as_of=, weights=) -> MatchResult`. It runs filter -> retrieve -> score -> reason.
+
+### Filter, then retrieve
+
+- **Must-have check** (`rag/requirements_check.py`, `check_candidate(meta, job)`): a
+  must-have is met when one skill in its `any_of` is among the candidate's skills
+  (implications included) and, with `min_years`, that same skill has at least
+  `min_years x 12` evidenced months. `min_total_years` is checked against `total_months`.
+  `eligible` means all are met. Each requirement records the satisfying skill (else the best
+  present one), have vs need months and a partial credit: 1 for a present skill without a
+  year minimum, `min(1, have/need)` with one, 0 when absent. `unmet` uses qrels' wording
+  (`"Python 5+ yrs (has 4.3)"`, `"Django or FastAPI (missing)"`, `"4+ total yrs (has 3.9)"`).
+  A test checks `eligible` *and* the `unmet` strings against `qrels.json` for all 210 pairs.
+- **strict** (default): every sidecar candidate is checked first. Retrieval then runs with
+  `candidate_ids = eligible` (a Chroma `where` on `candidate_id` with `$in`, plus the keyword
+  index's own filter, applied to both lists and the backfills). This is the brief's metadata
+  filtering done *before* ranking, and it means no eligible candidate can fall outside the
+  retrieval pool: the pool is sized to the eligible set and the semantic list is widened to
+  every chunk. `filtered_count` and each filtered candidate's `unmet` list are reported.
+- **soft**: retrieval over every candidate. All of them are scored, and unmet requirements
+  stay on each match and in its reasoning (`Misses: ...`). This is for the notebook and for
+  near misses.
+- **A JD with no must-haves and no total-years minimum** has nothing to filter on, so strict
+  behaves like soft, with a note.
+- **Warnings**: the sidecar's `as_of` differs from the `as_of` passed in; the collection has
+  no calibration (a fallback is used); the calibration was computed with other retrieval
+  settings.
+- **Result**: `MatchResult` holds the top `k` matches (ties broken by retrieval rank, then
+  candidate id), `candidates_total`, `filtered_count` and `filtered`, `scored_count`,
+  `not_assessed` (the JD's `unparsed_requirements`, once per result, because no candidate is
+  checked against them), the calibration used, notes, warnings, and timings (`filter`,
+  `retrieval` with its sub-timings, `scoring`).
+
+### Score components (`rag/scoring.py`)
 
 ```
-score = 100 × ( w_sem · semantic + w_must · must_cov + w_nice · nice_cov + w_exp · exp_fit )
-        default weights: 0.40 / 0.30 / 0.15 / 0.15 (sum to 1, configurable)
+match_score = round_half_up(100 x (w_sem * semantic + w_must * must_have
+                                   + w_nice * nice_to_have + w_exp * experience))
+default weights 0.40 / 0.30 / 0.15 / 0.15
 ```
 
-- **semantic**: the candidate's best chunk cosine similarity, **rescaled over a fixed
-  per-model range** `[lo, hi]` (e.g. bge-small ≈ `[0.30, 0.85]`, calibrated once in the
-  notebook) and clamped to `[0, 1]`. Per-query min-max is deliberately *not* used: it would
-  always give the top candidate 1.0 and the bottom 0.0, even when nobody fits, and scores
-  wouldn't be comparable across JDs.
-- **must_cov / nice_cov**: the fraction of must-have / nice-to-have skills found in the
-  candidate's extracted skills (taxonomy-normalised). Empty lists count as 1.0.
-- **exp_fit**: `min(1, candidate_years / required_years)` for total years, averaged with
-  per-skill year requirements ("5+ years of Python" uses *evidenced* Python years).
-- **Must-haves are hard filters.** A candidate missing any must-have skill is removed before
-  ranking, whatever their score. The output reports how many were filtered (and, at debug
-  verbosity, why).
-- **Reasoning is templated** from the score components, e.g. *"Has 4/4 must-haves and 2/3
-  nice-to-haves (missing: Terraform). 6.5 years of experience vs 5 required. Strongest match
-  in Experience (Senior Data Engineer @ Acme)."* It's deterministic and testable, and every
-  claim traces back to a component. LLM-written reasoning is an optional bonus.
-- **relevant_excerpts**: the top 2-3 matched chunks' raw text (without the contextual header),
-  trimmed around the matched terms.
+- **semantic** = `clamp((semantic_aggregate - floor) / (ceiling - floor))`, where the
+  aggregate is retrieval's per-candidate semantic score (best weighted chunk + 0.3 x the
+  second) and floor and ceiling come from the calibration below. Per-query min-max is
+  deliberately not used: it would always give someone 1.0 and someone 0.0, even when nobody
+  fits, and scores wouldn't be comparable across JDs.
+- **must_have** = mean partial credit over the must-haves and the total-years minimum. In
+  strict mode every returned candidate has 1.0; in soft mode it ranks near misses.
+- **nice_to_have** = the fraction of nice-to-haves present.
+- **experience** = mean over every year requirement (per-skill and total) of
+  `min(1, have/need)`. Years count twice on purpose: in must_have as part of a requirement,
+  and here as depth.
+- **Components that don't apply are dropped**: no must-haves (and no total minimum), no
+  nice-to-haves, or no year requirements. The remaining weights are renormalised to sum to
+  1, so a JD without nice-to-haves isn't capped at 85.
+- **Rounding**: half up to an integer, after rounding to 9 decimals so float noise
+  (`0.725 x 100 = 72.49999999999999`) doesn't turn a half into a round-down.
+- **`ScoredMatch`**: id, name, resume path, `match_score`, the component values, the weights
+  used, `matched_skills` (the JD's must-have skills the candidate has, then nice-to-haves, in
+  JD order), `unmet`, `matched_sections`, top chunks, the full check and the reasoning.
+
+### Semantic calibration (`rag/calibration.py`)
+
+- `resume_rag.py calibrate [--jd-dir job_descriptions]` runs semantic-mode retrieval over
+  every candidate for every JD in the folder. It takes each (JD, candidate) semantic
+  aggregate and stores **floor = median** and **ceiling = 95th percentile** (linear
+  interpolation) in the sidecar under `calibration`, with the JD files, the pair count,
+  `computed_at` (an injected clock) and the retrieval settings the aggregates depend on.
+- **Label-free, but not independent**: calibration reads only the JDs and the indexed
+  resumes, never `qrels.json` (a test makes reading it fail). It does use the *same* corpus
+  and JDs that evaluation runs on, so its floor and ceiling are fitted to this dataset, and
+  the evaluation numbers carry that optimism. A real deployment would calibrate on a held-out
+  JD set.
+- Re-indexing that adds, updates or removes a file clears the calibration
+  (`IndexReport.calibration_cleared`), since it described the old chunks.
+- **Without a calibration**, scoring uses a per-model fallback from `MODEL_CONFIGS`
+  (`semantic_floor` / `semantic_ceiling`; bge-small 0.82 / 0.97, the rounded values of the
+  real calibration below), or a generic 0.0 / 1.0, and the result warns.
+- Real run (bge-small, section chunker, 6 JDs x 35 candidates = 210 pairs): floor 0.8208,
+  ceiling 0.9691. Relevant (S) candidates mostly sit above the ceiling, so the semantic
+  component saturates at 1.0 for them and the must-have, nice-to-have and experience
+  components separate the top of the list. The notebook can compare higher ceilings.
+
+### Reasoning (`rag/reasoning.py`)
+
+A deterministic template, no LLM. Every clause comes from the match:
+
+> Meets all 3 must-haves: Python 6.1 yrs (5+ required), FastAPI 3.8 yrs (Django or FastAPI),
+> PostgreSQL 6.1 yrs. Has 2 of 4 nice-to-haves (Docker, AWS). 6.1 years' total experience.
+> Strongest evidence in Experience (Senior Backend Engineer at Harbourline Freight, Backend
+> Developer at Maple Grid Energy).
+
+- Must-haves list the satisfying skill with its evidenced years, plus the alternative group
+  and the minimum. A skill with 0 counted months (listed only, or internships only) says
+  `(no counted experience)`.
+- Soft mode adds `Misses: <unmet>; ...` for an ineligible candidate.
+- The nice-to-have and total-experience sentences follow; a JD without nice-to-haves drops
+  that sentence. The evidence sentence names the sections of the top chunks and up to two
+  roles from them.
 
 ## 9. JD parsing (rule-based)
 

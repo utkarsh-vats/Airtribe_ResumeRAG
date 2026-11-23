@@ -8,6 +8,8 @@ Flow for one ``JobRequirements``:
    ``1 - distance``.
 2. **Keyword list**: ``keyword_index.search_skills`` over the JD's critical skills (optionally
    plus its nice-to-haves); a JD with no critical skills uses its nice-to-haves, with a note.
+   The index must use ``keyword_mode`` (default ``skills``: skill tokens only, so a word that
+   merely looks like a skill, such as "Spark Energy Ltd", earns nothing).
 3. **Per list**: each chunk score is multiplied by its section weight (a negative cosine
    counts as 0), chunks are grouped by candidate, and a candidate's list score is its best
    weighted chunk plus ``second_chunk_weight`` times its second best. Candidates are ranked by
@@ -21,7 +23,9 @@ Flow for one ``JobRequirements``:
    explicit 0.0 when BM25 finds nothing. Backfilled scores never change the ranking; they
    give step 12 both signals for every pool candidate.
 
-No must-have filtering or final scoring happens here (step 12).
+``candidate_ids`` restricts both lists and the backfills to those candidates; the matcher
+uses it to retrieve over must-have-eligible candidates only. Final scoring is in
+``rag.scoring``.
 """
 
 import math
@@ -35,6 +39,7 @@ from typing import Any
 
 from rag.embedders.base import Embedder
 from rag.jd_parser import JobRequirements
+from rag.keyword_index import TokenizerMode
 from rag.sections import SectionKind
 
 SEMANTIC = "semantic"
@@ -111,6 +116,7 @@ class RetrievalConfig:
     n_semantic: int = 100  # chunks
     n_keyword: int = 100  # chunks
     keyword_skills: KeywordSkills | str = KeywordSkills.CRITICAL
+    keyword_mode: TokenizerMode | str = TokenizerMode.SKILLS  # of the KeywordIndex used
     section_weights: Mapping[str, float] = DEFAULT_SECTION_WEIGHTS
     second_chunk_weight: float = 0.3
     rrf_k: float = 60
@@ -123,6 +129,7 @@ class RetrievalConfig:
         set_(self, "mode", _enum(RetrievalMode, self.mode, "mode"))
         set_(self, "query_source", _enum(QuerySource, self.query_source, "query_source"))
         set_(self, "keyword_skills", _enum(KeywordSkills, self.keyword_skills, "keyword_skills"))
+        set_(self, "keyword_mode", _enum(TokenizerMode, self.keyword_mode, "keyword_mode"))
         sections = [k.value for k in SectionKind]
         set_(
             self,
@@ -418,17 +425,37 @@ def retrieve(
     keyword_index: Any,
     embedder: Embedder,
     config: RetrievalConfig | None = None,
+    candidate_ids: Iterable[str] | None = None,
 ) -> RetrievalResult:
-    """The top ``pool_size`` candidates for ``job``, with both lists' scores for each."""
+    """The top ``pool_size`` candidates for ``job``, with both lists' scores for each.
+
+    ``candidate_ids``, when given, restricts everything to those candidates; an empty set
+    gives an empty result with a note.
+    """
     config = config or RetrievalConfig()
     store_embedder = getattr(store, "embedder_id", None)
     if store_embedder is not None and store_embedder != embedder.embedder_id:
         raise ValueError(f"store holds {store_embedder} vectors, not {embedder.embedder_id}")
+    index_mode = getattr(keyword_index, "mode", None)
+    if index_mode is not None and index_mode != config.keyword_mode:
+        raise ValueError(
+            f"keyword index uses {index_mode.value!r} tokens; the config asks for "
+            f"{config.keyword_mode.value!r} (build it with KeywordIndex.from_store(store, "
+            "mode=config.keyword_mode))"
+        )
     timings = RetrievalTimings()
     notes: list[str] = []
     query = job.query_text if config.query_source is QuerySource.QUERY_TEXT else job.full_text
     skills, skill_notes = keyword_query_skills(job, config)
     notes += skill_notes
+    semantic_where = keyword_where = None
+    if candidate_ids is not None:
+        ids = sorted(set(candidate_ids))
+        if not ids:
+            notes.append("no candidates to retrieve from")
+            return RetrievalResult((), config, query, tuple(skills), tuple(notes), timings)
+        semantic_where = {"candidate_id": {"$in": ids}}
+        keyword_where = {"candidate_ids": ids}
 
     with _Timer(timings, "embed_query"):  # also needed in keyword mode, for the backfill
         vector = embedder.embed_query(query)
@@ -438,11 +465,13 @@ def retrieve(
     if SEMANTIC in config.lists:
         with _Timer(timings, "semantic_search"):
             raw_hits[SEMANTIC] = _semantic_hits(
-                store, vector, max(1, min(config.n_semantic, store.count()))
+                store, vector, max(1, min(config.n_semantic, store.count())), semantic_where
             )
     if KEYWORD in config.lists and skills:
         with _Timer(timings, "keyword_search"):
-            raw_hits[KEYWORD] = _keyword_hits(keyword_index, skills, config.n_keyword)
+            raw_hits[KEYWORD] = _keyword_hits(
+                keyword_index, skills, config.n_keyword, keyword_where
+            )
 
     with _Timer(timings, "aggregate_fuse"):
         for name in config.lists:

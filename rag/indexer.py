@@ -10,7 +10,8 @@ Change detection: a file's content hash covers its extracted text and ``PIPELINE
 An unchanged file is not re-chunked or re-embedded (its metadata is still recomputed, so a new
 ``as_of`` refreshes durations in place). A changed file's old chunks are deleted before the
 new ones are stored. Candidates whose file is gone are pruned. A file that fails is recorded
-with an error code and the run carries on.
+with an error code and the run carries on. Any added, updated or removed file clears the
+sidecar's semantic calibration (``rag.calibration``), which described the old chunks.
 """
 
 import hashlib
@@ -104,6 +105,7 @@ class IndexReport:
     failed: list[FileIssue] = field(default_factory=list)
     metadata_refreshed: list[str] = field(default_factory=list)  # unchanged, new metadata
     chunks_written: int = 0
+    calibration_cleared: bool = False  # the sidecar's semantic calibration was stale
     timings: StageTimings = field(default_factory=StageTimings)
     file_timings: dict[str, StageTimings] = field(default_factory=dict)
 
@@ -194,6 +196,9 @@ def index_directory(
         store.delete_candidate(candidate_id)
         sidecar.candidates.pop(candidate_id, None)
         report.removed.append(candidate_id)
+    if sidecar.calibration is not None and (report.added or report.updated or report.removed):
+        sidecar.calibration = None  # the chunks changed; `resume_rag.py calibrate` again
+        report.calibration_cleared = True
     store.save_sidecar(sidecar)
     return report
 

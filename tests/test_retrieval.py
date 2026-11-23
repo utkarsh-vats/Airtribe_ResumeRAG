@@ -1,12 +1,8 @@
 """rag.retrieval: section weighting, aggregation, RRF fusion, backfill and the corpus smoke."""
 
-from datetime import date
-
 import pytest
 
-from rag.chunking import SectionChunker
 from rag.embedders.fake import FakeEmbedder
-from rag.indexer import index_directory
 from rag.jd_parser import NO_REQUIREMENTS_WARNING, parse_job_description
 from rag.keyword_index import KeywordDoc, KeywordIndex
 from rag.retrieval import (
@@ -22,7 +18,6 @@ from rag.retrieval import (
     rrf_fuse,
     weight_chunks,
 )
-from rag.store import VectorStore
 from scripts.persona_schema import ROOT
 
 K = 60
@@ -53,7 +48,12 @@ class StubStore:
         items = [
             (i, s)
             for i, s in self.scored
-            if where is None or i.candidate_id == where["candidate_id"]
+            if where is None
+            or (
+                i.candidate_id in where["candidate_id"]["$in"]
+                if isinstance(where["candidate_id"], dict)
+                else i.candidate_id == where["candidate_id"]
+            )
         ]
         items = sorted(items, key=lambda x: (-x[1], x[0].chunk_id))[:n]
         return {
@@ -368,19 +368,9 @@ def test_embedder_must_match_the_store():
 # --- Corpus smoke (FakeEmbedder, real Chroma) ---------------------------------------------
 
 
-@pytest.fixture(scope="module")
-def corpus(tmp_path_factory):
-    chunker, embedder = SectionChunker(), FakeEmbedder()
-    store = VectorStore(
-        tmp_path_factory.mktemp("retrieval") / "chroma",
-        chunker.chunker_id,
-        embedder.embedder_id,
-        embedder.dim,
-    )
-    with pytest.MonkeyPatch.context() as mp:
-        mp.setenv("WORKSPACE_ROOT", str(ROOT / "data"))
-        index_directory("resumes", chunker, embedder, store, date(2026, 11, 1))
-    return store, KeywordIndex.from_store(store), embedder
+@pytest.fixture
+def corpus(fake_corpus):
+    return fake_corpus.store, fake_corpus.keyword_index, fake_corpus.embedder
 
 
 JDS = sorted((ROOT / "data" / "job_descriptions").glob("*.txt"))
@@ -405,3 +395,55 @@ def test_corpus_smoke(corpus, path, mode):
     if mode is RetrievalMode.KEYWORD:
         assert all(h.keyword.rank is not None for h in result.hits)
         assert all(h.semantic.backfilled for h in result.hits)
+
+
+def test_skills_keyword_mode_drops_peter_from_data_engineer(fake_corpus):
+    job = parse_job_description(
+        (ROOT / "data" / "job_descriptions" / "data_engineer.txt").read_text("utf-8")
+    )
+    store, embedder = fake_corpus.store, fake_corpus.embedder
+
+    def keyword_list(mode):
+        index = KeywordIndex.from_store(store, mode=mode)
+        config = RetrievalConfig(mode="keyword", keyword_mode=mode, pool_size=35)
+        return [h.candidate_id for h in retrieve(job, store, index, embedder, config).hits]
+
+    assert "peter_hughes" in keyword_list("words+skills")  # "airflow", "Spark Energy Ltd"
+    assert "peter_hughes" not in keyword_list("skills")
+    assert RetrievalConfig().keyword_mode.value == "skills"
+
+
+def test_keyword_mode_must_match_the_index(fake_corpus):
+    index = KeywordIndex.from_store(fake_corpus.store, mode="words")
+    with pytest.raises(ValueError, match="keyword index uses 'words'"):
+        retrieve(JD, fake_corpus.store, index, fake_corpus.embedder, RetrievalConfig())
+
+
+# --- candidate_ids ------------------------------------------------------------------------
+
+
+def test_candidate_ids_restrict_both_lists_and_backfills():
+    sem = [(info("a1", "a"), 0.9), (info("b1", "b"), 0.8), (info("c1", "c"), 0.7)]
+    kw = [(info("c1", "c"), 5.0), (info("a1", "a"), 1.0), (info("d1", "d"), 9.0)]
+    store, keyword = StubStore(sem), StubKeyword(kw)
+    result = retrieve(JD, store, keyword, SpyEmbedder(), candidate_ids=["c", "b", "c"])
+    assert {h.candidate_id for h in result.hits} == {"b", "c"}
+    assert store.wheres[0] == {"candidate_id": {"$in": ["b", "c"]}}
+    assert keyword.calls[0] == (["Python", "Django"], {"candidate_ids": ["b", "c"]})
+    assert by_id(result)["b"].keyword.backfilled  # backfill stayed inside the set
+
+
+def test_empty_candidate_ids():
+    store, keyword = StubStore([(info("a1", "a"), 0.9)]), StubKeyword([])
+    result = retrieve(JD, store, keyword, SpyEmbedder(), candidate_ids=[])
+    assert result.hits == () and "no candidates to retrieve from" in result.notes
+    assert store.wheres == [] and keyword.calls == []
+
+
+def test_candidate_ids_on_a_real_store(fake_corpus):
+    ids = ["john_doe", "noah_williams", "ananya_iyer"]
+    config = RetrievalConfig(pool_size=35)
+    result = retrieve(
+        JD, fake_corpus.store, fake_corpus.keyword_index, fake_corpus.embedder, config, ids
+    )
+    assert {h.candidate_id for h in result.hits} == set(ids)

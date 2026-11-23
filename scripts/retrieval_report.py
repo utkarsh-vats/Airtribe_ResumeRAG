@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 from rag.chunking import available_chunkers, get_chunker
 from rag.embedders import available_embedders, from_env, get_embedder
 from rag.jd_parser import parse_job_description
-from rag.keyword_index import KeywordIndex
+from rag.keyword_index import KeywordIndex, TokenizerMode
 from rag.retrieval import RetrievalConfig, RetrievalMode, retrieve
 from rag.store import VectorStore, collection_name, read_sidecar
 from scripts.persona_schema import ROOT
@@ -61,6 +61,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--embedder", default="huggingface", choices=available_embedders())
     parser.add_argument("--model", help="embedding model id (huggingface or gemini)")
     parser.add_argument("--query-source", default="query_text", choices=["query_text", "full_text"])
+    parser.add_argument(
+        "--keyword-mode",
+        default=RetrievalConfig().keyword_mode.value,
+        choices=[m.value for m in TokenizerMode],
+        help="KeywordIndex tokenizer mode for search_skills",
+    )
     parser.add_argument("--chroma-dir", default=os.environ.get("CHROMA_DIR") or "./.chroma")
     parser.add_argument("--jd", action="append", help="only these JD ids (repeatable)")
     args = parser.parse_args(argv)
@@ -73,7 +79,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"no index for {name} in {args.chroma_dir}; run resume_rag.py index", file=sys.stderr)
         return 2
     store = VectorStore(args.chroma_dir, chunker.chunker_id, embedder.embedder_id, embedder.dim)
-    keyword_index = KeywordIndex.from_store(store)
+    keyword_index = KeywordIndex.from_store(store, mode=args.keyword_mode)
     qrels = labels()
     pool = len(sidecar.candidates)
     print(f"collection: {name}  ({store.count()} chunks, {pool} candidates)")
@@ -96,7 +102,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"\n=== {jd_id}: {job.title}")
         print(f"    keyword skills: {', '.join(job.critical_skills) or '-'}")
         for mode in MODES:
-            config = RetrievalConfig(mode=mode, query_source=args.query_source, pool_size=pool)
+            config = RetrievalConfig(
+                mode=mode,
+                query_source=args.query_source,
+                keyword_mode=args.keyword_mode,
+                pool_size=pool,
+            )
             result = retrieve(job, store, keyword_index, embedder, config)
             print(f"  -- {mode.value}  ({result.timings.total * 1000:.0f} ms)")
             print(

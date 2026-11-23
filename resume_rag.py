@@ -8,6 +8,8 @@ Usage::
     python resume_rag.py stats
     python resume_rag.py candidates [--chunker ...] [--embedder ...] [--model ID]
     python resume_rag.py show CANDIDATE_ID [--chunker ...] [--embedder ...] [--model ID] [--json]
+    python resume_rag.py calibrate [--jd-dir job_descriptions] [--chunker ...] [--embedder ...]
+                                   [--model ID] [--json]
 
 Settings come from CLI flags, then the environment (``.env`` is loaded), then defaults:
 ``WORKSPACE_ROOT`` (./data), ``CHROMA_DIR`` (./.chroma), ``EMBEDDER`` and its model settings,
@@ -28,7 +30,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+import fs_tools
 from fs_tools import FsToolError
+from rag.calibration import compute_calibration, save_calibration
 from rag.chunking import available_chunkers, get_chunker
 from rag.console import (
     make_console,
@@ -40,12 +44,21 @@ from rag.console import (
 from rag.embedders import available_embedders, from_env, get_embedder
 from rag.embedders.base import Embedder
 from rag.indexer import DEFAULT_WORKSPACE_ROOT, index_directory
+from rag.jd_parser import (
+    JD_EXTENSIONS,
+    JobDescriptionError,
+    load_job_description,
+    parse_job_description,
+)
+from rag.keyword_index import KeywordIndex
 from rag.metadata import CandidateMetadata
+from rag.retrieval import RetrievalConfig
 from rag.store import StoreError, VectorStore, collection_name, collection_stats, read_sidecar
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_CHROMA_DIR = "./.chroma"
 DEFAULT_DIRECTORY = "resumes"
+DEFAULT_JD_DIRECTORY = "job_descriptions"
 CHUNKER_DEFAULT = "section"
 
 
@@ -91,6 +104,15 @@ def build_parser() -> argparse.ArgumentParser:
     show.add_argument("candidate_id")
     configuration(show)
     show.add_argument("--json", action="store_true", help="print the metadata as JSON")
+
+    calibrate = commands.add_parser(
+        "calibrate", help="compute the semantic floor/ceiling from a folder of JDs (no labels)"
+    )
+    calibrate.add_argument(
+        "--jd-dir", default=DEFAULT_JD_DIRECTORY, help="workspace-relative folder of JDs"
+    )
+    configuration(calibrate)
+    calibrate.add_argument("--json", action="store_true", help="print the calibration as JSON")
     return parser
 
 
@@ -202,6 +224,42 @@ def cmd_candidates(args, console) -> int:
     return 0
 
 
+def cmd_calibrate(args, console) -> int:
+    """Calibrate the collection's semantic scores against every JD in ``--jd-dir``."""
+    chunker = make_chunker(args.chunker, args.chunker_opt)
+    embedder = make_embedder(args.embedder, args.model)
+    name = collection_name(chunker.chunker_id, embedder.embedder_id)
+    if read_sidecar(chroma_dir(), name) is None:
+        raise UsageError(f"no index for collection {name!r} in {chroma_dir()}; run index first")
+    entries = sorted(fs_tools.list_files(args.jd_dir), key=lambda e: e["path"])
+    jobs = {}
+    for entry in entries:
+        if entry["extension"] in JD_EXTENSIONS:
+            try:
+                text, origin = load_job_description(entry["path"])
+            except JobDescriptionError as exc:
+                raise UsageError(f"{entry['path']}: {exc}") from None
+            jobs[origin] = parse_job_description(text)
+    if not jobs:
+        raise UsageError(f"no .txt, .pdf or .docx job descriptions in {args.jd_dir!r}")
+    store = VectorStore(chroma_dir(), chunker.chunker_id, embedder.embedder_id, embedder.dim)
+    config = RetrievalConfig()
+    keyword_index = KeywordIndex.from_store(store, mode=config.keyword_mode)
+    calibration = compute_calibration(jobs, store, keyword_index, embedder, config)
+    save_calibration(store, calibration)
+    if args.json:
+        console.file.write(json.dumps(calibration.to_dict(), indent=2) + "\n")
+    else:
+        console.print(f"[bold]Collection:[/bold] {name}")
+        console.print(
+            f"Semantic calibration from {calibration.pairs} JD x candidate pairs "
+            f"({len(jobs)} JDs): floor (median) {calibration.floor:.4f}, "
+            f"ceiling (95th percentile) {calibration.ceiling:.4f}"
+        )
+        console.print("JDs: " + ", ".join(calibration.jd_files))
+    return 0
+
+
 def cmd_show(args, console) -> int:
     """One candidate's metadata from the sidecar."""
     _, records = _load_records(args)
@@ -231,9 +289,13 @@ def main(
         args = build_parser().parse_args(argv)
         if args.command == "index":
             return cmd_index(args, console, today)
-        return {"stats": cmd_stats, "candidates": cmd_candidates, "show": cmd_show}[args.command](
-            args, console
-        )
+        commands = {
+            "stats": cmd_stats,
+            "candidates": cmd_candidates,
+            "show": cmd_show,
+            "calibrate": cmd_calibrate,
+        }
+        return commands[args.command](args, console)
     except (UsageError, StoreError, FsToolError) as exc:
         print(f"resume_rag.py: error: {exc}", file=sys.stderr)
         return 2
