@@ -20,7 +20,13 @@ from datetime import date
 from enum import StrEnum
 from typing import Any
 
-from rag.calibration import Calibration, calibration_settings, load_calibration
+from rag.calibration import (
+    DEFAULT_CEILING_PCT,
+    DEFAULT_FLOOR_PCT,
+    Calibration,
+    calibration_settings,
+    load_calibration,
+)
 from rag.embedders.base import Embedder
 from rag.jd_parser import JobRequirements
 from rag.metadata import CandidateMetadata
@@ -88,6 +94,8 @@ def match(
     *,
     as_of: date | None = None,
     weights: ScoreWeights | None = None,
+    floor_pct: float = DEFAULT_FLOOR_PCT,
+    ceiling_pct: float = DEFAULT_CEILING_PCT,
 ) -> MatchResult:
     """The top ``k`` candidates for ``job``; see the module docstring."""
     filter_mode = FilterMode(filter_mode)
@@ -104,14 +112,18 @@ def match(
         )
     calibration, calibration_warnings = load_calibration(sidecar, embedder)
     warnings += calibration_warnings
-    if (
-        calibration.source == "collection"
-        and calibration.retrieval
-        and (calibration.retrieval != calibration_settings(config))
-    ):
-        warnings.append(
-            "the calibration was computed with other retrieval settings; re-run calibrate"
-        )
+    if calibration.source == "collection":
+        if calibration.retrieval and calibration.retrieval != calibration_settings(config):
+            warnings.append(
+                "the calibration was computed with other retrieval settings; re-run calibrate"
+            )
+        stored = (calibration.floor_pct, calibration.ceiling_pct)
+        if stored != (float(floor_pct), float(ceiling_pct)):
+            shown = "unrecorded" if None in stored else f"{stored[0]:g}/{stored[1]:g}"
+            warnings.append(
+                f"the calibration used percentiles {shown}, not {floor_pct:g}/{ceiling_pct:g}; "
+                "re-run calibrate"
+            )
 
     start = time.perf_counter()
     checks: dict[str, RequirementCheck] = {

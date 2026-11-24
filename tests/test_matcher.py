@@ -130,3 +130,37 @@ def test_result_details(fake_corpus):
     first = result.matches[0]
     assert first.reasoning.startswith("Meets all 3 must-haves: ")
     assert 0 <= first.match_score <= 100
+
+
+def test_warning_when_calibration_percentiles_differ(fake_corpus):
+    from rag.calibration import Calibration, calibration_settings
+    from rag.retrieval import RetrievalConfig
+
+    def sidecar_with(floor_pct, ceiling_pct):
+        cal = Calibration(
+            0.0,
+            1.0,
+            "collection",
+            retrieval=calibration_settings(RetrievalConfig()),
+            floor_pct=floor_pct,
+            ceiling_pct=ceiling_pct,
+        )
+        return replace(fake_corpus.sidecar, calibration=cal.to_dict())
+
+    def warnings(sidecar, **kwargs):
+        return match(
+            jd("frontend"),
+            fake_corpus.store,
+            fake_corpus.keyword_index,
+            fake_corpus.embedder,
+            sidecar,
+            as_of=AS_OF,
+            **kwargs,
+        ).warnings
+
+    assert warnings(sidecar_with(50.0, 99.0)) == ()
+    assert warnings(sidecar_with(50.0, 95.0)) == (
+        "the calibration used percentiles 50/95, not 50/99; re-run calibrate",
+    )
+    assert warnings(sidecar_with(50.0, 95.0), ceiling_pct=95) == ()
+    assert "unrecorded" in warnings(sidecar_with(None, None))[0]

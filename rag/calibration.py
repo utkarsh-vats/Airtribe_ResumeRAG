@@ -8,10 +8,12 @@ Calibration fixes a **floor** and a **ceiling** per collection, and scoring uses
 - for every JD in a set and every candidate in the collection, run retrieval in semantic mode
   over all candidates and take the candidate-level semantic aggregate (best weighted chunk +
   ``second_chunk_weight`` x second best);
-- floor = the median of those values, ceiling = the 95th percentile (linear interpolation).
+- floor = the ``floor_pct`` percentile of those values (default 50, the median), ceiling =
+  the ``ceiling_pct`` percentile (default 99), with linear interpolation.
 
 The median floor means a candidate no closer than the typical (mostly unrelated) pair scores
-0 on this component; the 95th percentile ceiling leaves room above it for the best matches.
+0 on this component. The ceiling sits near the top of all pairs, so the best matches still
+differ from each other: at the 95th percentile most strong pairs saturated at 1.0.
 **No labels are read**: only JDs and the indexed resumes. It does use the same corpus the
 evaluation runs on, so it is fitted to this dataset (see DESIGN.md).
 
@@ -29,8 +31,8 @@ from rag.embedders.base import Embedder
 from rag.jd_parser import JobRequirements
 from rag.retrieval import RetrievalConfig, RetrievalMode, retrieve
 
-FLOOR_PERCENTILE = 50
-CEILING_PERCENTILE = 95
+DEFAULT_FLOOR_PCT = 50.0
+DEFAULT_CEILING_PCT = 99.0
 GENERIC_FALLBACK = (0.0, 1.0)
 
 
@@ -58,6 +60,8 @@ class Calibration:
     pairs: int = 0
     computed_at: str | None = None
     retrieval: dict = field(default_factory=dict)  # the settings the aggregates depend on
+    floor_pct: float | None = None  # percentiles used; None for fallbacks and old sidecars
+    ceiling_pct: float | None = None
 
     def __post_init__(self):
         """Reject a range that can't be used."""
@@ -82,6 +86,8 @@ class Calibration:
             "pairs": self.pairs,
             "computed_at": self.computed_at,
             "retrieval": dict(self.retrieval),
+            "floor_pct": self.floor_pct,
+            "ceiling_pct": self.ceiling_pct,
         }
 
     @classmethod
@@ -96,6 +102,8 @@ class Calibration:
             pairs=int(data.get("pairs", 0)),
             computed_at=data.get("computed_at"),
             retrieval=dict(data.get("retrieval", {})),
+            floor_pct=data.get("floor_pct"),
+            ceiling_pct=data.get("ceiling_pct"),
         )
 
 
@@ -108,6 +116,14 @@ def calibration_settings(config: RetrievalConfig) -> dict:
     }
 
 
+def check_percentiles(floor_pct: float, ceiling_pct: float) -> None:
+    """Require ``0 <= floor_pct < ceiling_pct <= 100``."""
+    if not (0 <= floor_pct < ceiling_pct <= 100):
+        raise ValueError(
+            f"need 0 <= floor_pct < ceiling_pct <= 100, got {floor_pct} and {ceiling_pct}"
+        )
+
+
 def compute_calibration(
     jobs: Mapping[str, JobRequirements],
     store: Any,
@@ -115,8 +131,11 @@ def compute_calibration(
     embedder: Embedder,
     config: RetrievalConfig | None = None,
     now: Callable[[], datetime] = lambda: datetime.now(UTC),
+    floor_pct: float = DEFAULT_FLOOR_PCT,
+    ceiling_pct: float = DEFAULT_CEILING_PCT,
 ) -> Calibration:
     """Calibrate over every (JD, candidate) pair; ``jobs`` maps a JD's file to its parse."""
+    check_percentiles(floor_pct, ceiling_pct)
     if not jobs:
         raise ValueError("calibration needs at least one JD")
     base = config or RetrievalConfig()
@@ -135,14 +154,16 @@ def compute_calibration(
         result = retrieve(job, store, keyword_index, embedder, semantic)
         values += [hit.semantic.aggregate for hit in result.hits]
     return Calibration(
-        floor=percentile(values, FLOOR_PERCENTILE),
-        ceiling=percentile(values, CEILING_PERCENTILE),
+        floor=percentile(values, floor_pct),
+        ceiling=percentile(values, ceiling_pct),
         source="collection",
         embedder_id=embedder.embedder_id,
         jd_files=tuple(sorted(jobs)),
         pairs=len(values),
         computed_at=now().isoformat(timespec="seconds"),
         retrieval=calibration_settings(base),
+        floor_pct=float(floor_pct),
+        ceiling_pct=float(ceiling_pct),
     )
 
 

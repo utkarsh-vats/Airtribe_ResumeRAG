@@ -9,7 +9,7 @@ Usage::
     python resume_rag.py candidates [--chunker ...] [--embedder ...] [--model ID]
     python resume_rag.py show CANDIDATE_ID [--chunker ...] [--embedder ...] [--model ID] [--json]
     python resume_rag.py calibrate [--jd-dir job_descriptions] [--chunker ...] [--embedder ...]
-                                   [--model ID] [--json]
+                                   [--model ID] [--floor-pct 50] [--ceiling-pct 99] [--json]
 
 Settings come from CLI flags, then the environment (``.env`` is loaded), then defaults:
 ``WORKSPACE_ROOT`` (./data), ``CHROMA_DIR`` (./.chroma), ``EMBEDDER`` and its model settings,
@@ -32,7 +32,13 @@ from dotenv import load_dotenv
 
 import fs_tools
 from fs_tools import FsToolError
-from rag.calibration import compute_calibration, save_calibration
+from rag.calibration import (
+    DEFAULT_CEILING_PCT,
+    DEFAULT_FLOOR_PCT,
+    check_percentiles,
+    compute_calibration,
+    save_calibration,
+)
 from rag.chunking import available_chunkers, get_chunker
 from rag.console import (
     make_console,
@@ -112,6 +118,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--jd-dir", default=DEFAULT_JD_DIRECTORY, help="workspace-relative folder of JDs"
     )
     configuration(calibrate)
+    calibrate.add_argument(
+        "--floor-pct", type=float, default=DEFAULT_FLOOR_PCT, help="floor percentile (50)"
+    )
+    calibrate.add_argument(
+        "--ceiling-pct", type=float, default=DEFAULT_CEILING_PCT, help="ceiling percentile (99)"
+    )
     calibrate.add_argument("--json", action="store_true", help="print the calibration as JSON")
     return parser
 
@@ -226,6 +238,10 @@ def cmd_candidates(args, console) -> int:
 
 def cmd_calibrate(args, console) -> int:
     """Calibrate the collection's semantic scores against every JD in ``--jd-dir``."""
+    try:
+        check_percentiles(args.floor_pct, args.ceiling_pct)
+    except ValueError as exc:
+        raise UsageError(str(exc)) from None
     chunker = make_chunker(args.chunker, args.chunker_opt)
     embedder = make_embedder(args.embedder, args.model)
     name = collection_name(chunker.chunker_id, embedder.embedder_id)
@@ -245,7 +261,15 @@ def cmd_calibrate(args, console) -> int:
     store = VectorStore(chroma_dir(), chunker.chunker_id, embedder.embedder_id, embedder.dim)
     config = RetrievalConfig()
     keyword_index = KeywordIndex.from_store(store, mode=config.keyword_mode)
-    calibration = compute_calibration(jobs, store, keyword_index, embedder, config)
+    calibration = compute_calibration(
+        jobs,
+        store,
+        keyword_index,
+        embedder,
+        config,
+        floor_pct=args.floor_pct,
+        ceiling_pct=args.ceiling_pct,
+    )
     save_calibration(store, calibration)
     if args.json:
         console.file.write(json.dumps(calibration.to_dict(), indent=2) + "\n")
@@ -253,8 +277,8 @@ def cmd_calibrate(args, console) -> int:
         console.print(f"[bold]Collection:[/bold] {name}")
         console.print(
             f"Semantic calibration from {calibration.pairs} JD x candidate pairs "
-            f"({len(jobs)} JDs): floor (median) {calibration.floor:.4f}, "
-            f"ceiling (95th percentile) {calibration.ceiling:.4f}"
+            f"({len(jobs)} JDs): floor (p{args.floor_pct:g}) {calibration.floor:.4f}, "
+            f"ceiling (p{args.ceiling_pct:g}) {calibration.ceiling:.4f}"
         )
         console.print("JDs: " + ", ".join(calibration.jd_files))
     return 0

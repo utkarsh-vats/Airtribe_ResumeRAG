@@ -176,7 +176,8 @@ def test_calibrate_command(small_store, monkeypatch, capsys):
     assert len(data["jd_files"]) == 6 and data["source"] == "collection"
     assert store.load_sidecar().calibration == data
     code = resume_rag.main(["calibrate", "--embedder", "fake"], load_env=False)
-    assert code == 0 and "floor (median)" in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert code == 0 and "floor (p50)" in out and "ceiling (p99)" in out
 
 
 @pytest.mark.parametrize(
@@ -191,3 +192,52 @@ def test_calibrate_errors(small_store, monkeypatch, capsys, argv, message):
     monkeypatch.setenv("CHROMA_DIR", str(store.chroma_dir))
     assert resume_rag.main(argv, load_env=False) == 2
     assert message in capsys.readouterr().err
+
+
+# --- Percentile parameters ----------------------------------------------------------------
+
+
+def test_percentiles_are_parameters(fake_corpus):
+    args = (jobs(), fake_corpus.store, fake_corpus.keyword_index, fake_corpus.embedder)
+    default = compute_calibration(*args)
+    assert (default.floor_pct, default.ceiling_pct) == (50.0, 99.0)
+    p95 = compute_calibration(*args, ceiling_pct=95)
+    top = compute_calibration(*args, floor_pct=25, ceiling_pct=100)
+    assert p95.floor == default.floor and p95.ceiling <= default.ceiling <= top.ceiling
+    assert top.floor <= default.floor and (top.floor_pct, top.ceiling_pct) == (25.0, 100.0)
+
+
+@pytest.mark.parametrize(("floor_pct", "ceiling_pct"), [(50, 50), (99, 50), (-1, 99), (50, 101)])
+def test_invalid_percentiles(fake_corpus, floor_pct, ceiling_pct):
+    with pytest.raises(ValueError, match="floor_pct < ceiling_pct"):
+        compute_calibration(
+            jobs(),
+            fake_corpus.store,
+            fake_corpus.keyword_index,
+            fake_corpus.embedder,
+            floor_pct=floor_pct,
+            ceiling_pct=ceiling_pct,
+        )
+
+
+def test_percentiles_persist_and_old_blocks_load():
+    cal = Calibration(0.8, 0.99, "collection", floor_pct=50.0, ceiling_pct=99.0)
+    data = json.loads(json.dumps(cal.to_dict()))
+    assert (data["floor_pct"], data["ceiling_pct"]) == (50.0, 99.0)
+    assert Calibration.from_dict(data) == cal
+    old = {k: v for k, v in data.items() if not k.endswith("_pct")}
+    assert Calibration.from_dict(old).ceiling_pct is None
+
+
+def test_calibrate_percentile_flags(small_store, monkeypatch, capsys):
+    _, store, _, _ = small_store
+    monkeypatch.setenv("CHROMA_DIR", str(store.chroma_dir))
+    argv = ["calibrate", "--embedder", "fake", "--floor-pct", "40", "--ceiling-pct", "95"]
+    assert resume_rag.main([*argv, "--json"], load_env=False) == 0
+    data = json.loads(capsys.readouterr().out)
+    assert (data["floor_pct"], data["ceiling_pct"]) == (40.0, 95.0)
+    saved = store.load_sidecar().calibration
+    assert (saved["floor_pct"], saved["ceiling_pct"]) == (40.0, 95.0)
+    bad = ["calibrate", "--embedder", "fake", "--floor-pct", "99", "--ceiling-pct", "50"]
+    assert resume_rag.main(bad, load_env=False) == 2
+    assert "floor_pct < ceiling_pct" in capsys.readouterr().err

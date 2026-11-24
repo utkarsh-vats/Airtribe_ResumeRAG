@@ -38,7 +38,7 @@ class ModelConfig:
 
 
 MODEL_CONFIGS: dict[str, ModelConfig] = {
-    "BAAI/bge-small-en-v1.5": ModelConfig(BGE_QUERY_PREFIX, "", 384, 512, 0.82, 0.97),
+    "BAAI/bge-small-en-v1.5": ModelConfig(BGE_QUERY_PREFIX, "", 384, 512, 0.82, 1.01),
     "BAAI/bge-base-en-v1.5": ModelConfig(BGE_QUERY_PREFIX, "", 768, 512),
     "sentence-transformers/all-MiniLM-L6-v2": ModelConfig("", "", 384, 256),
 }

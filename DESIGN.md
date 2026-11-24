@@ -666,11 +666,20 @@ default weights 0.40 / 0.30 / 0.15 / 0.15
 
 ### Semantic calibration (`rag/calibration.py`)
 
-- `resume_rag.py calibrate [--jd-dir job_descriptions]` runs semantic-mode retrieval over
-  every candidate for every JD in the folder. It takes each (JD, candidate) semantic
-  aggregate and stores **floor = median** and **ceiling = 95th percentile** (linear
-  interpolation) in the sidecar under `calibration`, with the JD files, the pair count,
-  `computed_at` (an injected clock) and the retrieval settings the aggregates depend on.
+- `resume_rag.py calibrate [--jd-dir job_descriptions] [--floor-pct 50] [--ceiling-pct 99]`
+  runs semantic-mode retrieval over every candidate for every JD in the folder. It takes each
+  (JD, candidate) semantic aggregate and stores **floor = the `floor_pct` percentile** (default
+  50, the median) and **ceiling = the `ceiling_pct` percentile** (default 99), with linear
+  interpolation, in the sidecar under `calibration`. The block also records both
+  percentiles, the JD files, the pair count, `computed_at` (an injected clock) and the
+  retrieval settings the aggregates depend on. The matcher warns when the stored percentiles
+  or settings differ from the ones it is asked to use.
+- **Why a 99th-percentile ceiling**: with the first default, 95, most S pairs sat above the
+  ceiling, so their semantic component saturated at 1.0 and stopped separating the top of
+  the list (john_doe and ananya_iyer both scored 100 for python_backend). Each JD has 3 S
+  candidates out of 35 (about 9% of pairs), so a ceiling at the 99th percentile leaves room
+  above most of them. The choice is still label-free: it is a property of the score
+  distribution, not of the qrels. The notebook compares 95, 99 and max.
 - **Label-free, but not independent**: calibration reads only the JDs and the indexed
   resumes, never `qrels.json` (a test makes reading it fail). It does use the *same* corpus
   and JDs that evaluation runs on, so its floor and ceiling are fitted to this dataset, and
@@ -679,12 +688,11 @@ default weights 0.40 / 0.30 / 0.15 / 0.15
 - Re-indexing that adds, updates or removes a file clears the calibration
   (`IndexReport.calibration_cleared`), since it described the old chunks.
 - **Without a calibration**, scoring uses a per-model fallback from `MODEL_CONFIGS`
-  (`semantic_floor` / `semantic_ceiling`; bge-small 0.82 / 0.97, the rounded values of the
+  (`semantic_floor` / `semantic_ceiling`; bge-small 0.82 / 1.01, the rounded values of the
   real calibration below), or a generic 0.0 / 1.0, and the result warns.
-- Real run (bge-small, section chunker, 6 JDs x 35 candidates = 210 pairs): floor 0.8208,
-  ceiling 0.9691. Relevant (S) candidates mostly sit above the ceiling, so the semantic
-  component saturates at 1.0 for them and the must-have, nice-to-have and experience
-  components separate the top of the list. The notebook can compare higher ceilings.
+- Real run (bge-small, section chunker, 6 JDs x 35 candidates = 210 pairs): floor (p50)
+  0.8208, ceiling (p99) 1.0118. The p95 ceiling was 0.9691. A ceiling above 1 is possible
+  because the aggregate adds 0.3 x the second-best chunk to the best one.
 
 ### Reasoning (`rag/reasoning.py`)
 
