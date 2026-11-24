@@ -79,7 +79,9 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       committed `results/samples/` + tests.
 - [x] **13a. Evaluation API** – `rag/evaluation/` (metrics, ground-truth loading, ranking /
       filter / extraction / end-to-end layers, label isolation) + tests.
-- [ ] **13b. Evaluation CLI + latency** – eval CLI, latency p50/p95 + tests.
+- [x] **13b. Evaluation CLI + latency** – `rag/evaluation/latency.py` (per-stage query p50/p95,
+      index latency in a temp dir, environment), `job_matcher.py evaluate`, committed
+      `results/eval/` reports + tests.
 - [ ] **14. Experiments notebook** – chunkers, retrieval modes, embedders (package code only).
 - [ ] **15. README + docs polish.**
 

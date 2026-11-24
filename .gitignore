@@ -19,10 +19,12 @@ htmlcov/
 # Vector store
 .chroma/
 
-# Generated results (keep the folder). The sample outputs under results/samples/ are
-# committed for graders to read; every other results JSON stays local.
+# Generated results (keep the folder). The sample outputs under results/samples/ and the
+# evaluation reports under results/eval/ are committed for graders to read; every other
+# results JSON stays local.
 results/**/*.json
 !results/samples/**/*.json
+!results/eval/**/*.json
 
 # Jupyter
 .ipynb_checkpoints/

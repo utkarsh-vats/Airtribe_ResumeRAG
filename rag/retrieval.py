@@ -31,7 +31,7 @@ uses it to retrieve over must-have-eligible candidates only. Final scoring is in
 import math
 import time
 from collections import defaultdict
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import asdict, dataclass, field, fields
 from enum import StrEnum
 from types import MappingProxyType
@@ -425,14 +425,19 @@ def keyword_query_skills(
 
 
 class _Timer:
-    def __init__(self, timings: RetrievalTimings, stage: str):
-        self.timings, self.stage = timings, stage
+    def __init__(
+        self,
+        timings: RetrievalTimings,
+        stage: str,
+        clock: Callable[[], float] = time.perf_counter,
+    ):
+        self.timings, self.stage, self.clock = timings, stage, clock
 
     def __enter__(self):
-        self.start = time.perf_counter()
+        self.start = self.clock()
 
     def __exit__(self, *exc):
-        elapsed = time.perf_counter() - self.start
+        elapsed = self.clock() - self.start
         setattr(self.timings, self.stage, getattr(self.timings, self.stage) + elapsed)
 
 
@@ -443,6 +448,7 @@ def retrieve(
     embedder: Embedder,
     config: RetrievalConfig | None = None,
     candidate_ids: Iterable[str] | None = None,
+    clock: Callable[[], float] = time.perf_counter,
 ) -> RetrievalResult:
     """The top ``pool_size`` candidates for ``job``, with both lists' scores for each.
 
@@ -474,23 +480,23 @@ def retrieve(
         semantic_where = {"candidate_id": {"$in": ids}}
         keyword_where = {"candidate_ids": ids}
 
-    with _Timer(timings, "embed_query"):  # also needed in keyword mode, for the backfill
+    with _Timer(timings, "embed_query", clock):  # also needed in keyword mode, for the backfill
         vector = embedder.embed_query(query)
 
     lists: dict[str, dict[str, CandidateListScore]] = {SEMANTIC: {}, KEYWORD: {}}
     raw_hits: dict[str, list[tuple[ChunkInfo, float]]] = {SEMANTIC: [], KEYWORD: []}
     if SEMANTIC in config.lists:
-        with _Timer(timings, "semantic_search"):
+        with _Timer(timings, "semantic_search", clock):
             raw_hits[SEMANTIC] = _semantic_hits(
                 store, vector, max(1, min(config.n_semantic, store.count())), semantic_where
             )
     if KEYWORD in config.lists and skills:
-        with _Timer(timings, "keyword_search"):
+        with _Timer(timings, "keyword_search", clock):
             raw_hits[KEYWORD] = _keyword_hits(
                 keyword_index, skills, config.n_keyword, keyword_where
             )
 
-    with _Timer(timings, "aggregate_fuse"):
+    with _Timer(timings, "aggregate_fuse", clock):
         for name in config.lists:
             lists[name] = aggregate(
                 weight_chunks(raw_hits[name], config), config.second_chunk_weight
@@ -504,7 +510,7 @@ def retrieve(
         pool = order_by_score(fused)[: config.pool_size]
 
     backfilled: dict[str, set[str]] = {SEMANTIC: set(), KEYWORD: set()}
-    with _Timer(timings, "backfill"):
+    with _Timer(timings, "backfill", clock):
         for candidate_id in pool:
             if candidate_id not in lists[SEMANTIC]:
                 hits = _semantic_hits(

@@ -8,6 +8,9 @@ Usage::
                                 [--out PATH] [--json]
     python job_matcher.py batch [--jd-dir job_descriptions] [--out-dir results] [same options]
     python job_matcher.py parse (--jd PATH | --jd-text TEXT)
+    python job_matcher.py evaluate [--chunker ...] [--embedder ...] [--model ID]
+                                   [--modes semantic,keyword,hybrid] [--repeat 5]
+                                   [--measure-indexing] [--out PATH] [--json]
 
 ``--jd`` and ``--jd-dir`` are relative to ``WORKSPACE_ROOT`` (./data), read through
 ``fs_tools`` (.txt, .pdf or .docx); ``--out`` and ``--out-dir`` are ordinary paths. Settings
@@ -44,6 +47,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 from fs_tools import FsToolError
+from rag.calibration import load_calibration
 from rag.cli import (
     DEFAULT_JD_DIRECTORY,
     ArgumentParser,
@@ -57,8 +61,10 @@ from rag.cli import (
     require_index,
     resolve_as_of,
 )
-from rag.console import make_console, render_batch_summary, render_match
+from rag.console import make_console, render_batch_summary, render_evaluation, render_match
 from rag.embedders.base import Embedder
+from rag.evaluation.ground_truth import GroundTruthError, load_manifest, load_qrels
+from rag.evaluation.report import run_evaluation
 from rag.jd_parser import JobDescriptionError, parse_job_description, read_job_description
 from rag.keyword_index import KeywordIndex
 from rag.matcher import DEFAULT_K, FilterMode, match
@@ -118,6 +124,24 @@ def build_parser() -> ArgumentParser:
     )
     batch.add_argument("--out-dir", default=DEFAULT_OUT_DIR, help="folder for the JSON files")
     _match_options(batch)
+
+    evaluate = commands.add_parser(
+        "evaluate", help="evaluate against the ground truth (ranking, filter, latency, ...)"
+    )
+    add_configuration(evaluate)
+    evaluate.add_argument(
+        "--modes",
+        default=",".join(m.value for m in RetrievalMode),
+        help="comma-separated retrieval modes (default: semantic,keyword,hybrid)",
+    )
+    evaluate.add_argument("--repeat", type=int, default=5, help="timed runs per query (5)")
+    evaluate.add_argument(
+        "--measure-indexing",
+        action="store_true",
+        help="also time indexing from scratch, in a temporary Chroma directory",
+    )
+    evaluate.add_argument("--out", help="write the full report JSON here")
+    evaluate.add_argument("--json", action="store_true", help="print the report JSON")
 
     parse = commands.add_parser("parse", help="print a JD's parsed requirements")
     _jd_source(parse)
@@ -255,6 +279,67 @@ def cmd_batch(args, console, today: Callable[[], date]) -> int:
     return 0
 
 
+def _modes(text: str) -> list[str]:
+    allowed = [m.value for m in RetrievalMode]
+    modes = [m.strip() for m in text.split(",") if m.strip()]
+    unknown = [m for m in modes if m not in allowed]
+    if not modes or unknown:
+        raise UsageError(f"--modes takes a comma-separated subset of {allowed}, got {text!r}")
+    return list(dict.fromkeys(modes))
+
+
+def cmd_evaluate(args, console) -> int:
+    """Run every evaluation layer and the latency measurements against the ground truth."""
+    modes = _modes(args.modes)
+    if args.repeat < 1:
+        raise UsageError(f"--repeat must be at least 1, not {args.repeat}")
+    try:
+        qrels, manifest = load_qrels(), load_manifest()
+    except GroundTruthError as exc:
+        raise UsageError(f"ground truth: {exc}") from None
+    chunker = make_chunker(args.chunker, args.chunker_opt)
+    embedder = make_embedder(args.embedder, args.model)
+    name, sidecar = require_index(chunker, embedder)
+    texts = {}
+    for jd_id, truth in sorted(qrels.jds.items()):
+        try:
+            texts[jd_id], _ = read_job_description(truth.jd_path)
+        except JobDescriptionError as exc:
+            raise UsageError(f"{truth.jd_path}: {exc}") from None
+    store = VectorStore(chroma_dir(), chunker.chunker_id, embedder.embedder_id, embedder.dim)
+    config = RetrievalConfig()
+    keyword_index = KeywordIndex.from_store(store, mode=config.keyword_mode)
+    calibration, warnings = load_calibration(sidecar, embedder)
+    _warn(warnings)
+    index_latency = None
+    if args.measure_indexing:
+        index_latency = ("resumes", chunker, date.fromisoformat(sidecar.as_of))
+    report = run_evaluation(
+        texts,
+        qrels,
+        manifest,
+        store,
+        keyword_index,
+        embedder,
+        calibration,
+        collection=name,
+        config=config,
+        modes=modes,
+        repeat=args.repeat,
+        index_latency=index_latency,
+        warnings=warnings,
+    )
+    if args.out:
+        write_json_atomic(Path(args.out), report)
+    if args.json:
+        console.file.write(_dumps(report, ascii_only=not _stdout_is_utf8(console)))
+    else:
+        render_evaluation(report, console)
+        if args.out:
+            console.print(f"Wrote {args.out}")
+    return 0
+
+
 def cmd_parse(args, console) -> int:
     """Print the parsed requirements as JSON."""
     text, source = read_jd(args)
@@ -276,6 +361,8 @@ def main(
         args = build_parser().parse_args(argv)
         if args.command == "match":
             return cmd_match(args, console, today)
+        if args.command == "evaluate":
+            return cmd_evaluate(args, console)
         if args.command == "batch":
             return cmd_batch(args, console, today)
         return cmd_parse(args, console)

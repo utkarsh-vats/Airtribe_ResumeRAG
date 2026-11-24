@@ -15,6 +15,7 @@ by retrieval rank and then candidate id.
 """
 
 import time
+from collections.abc import Callable
 from dataclasses import dataclass, field, replace
 from datetime import date
 from enum import StrEnum
@@ -100,6 +101,7 @@ def match(
     floor_pct: float = DEFAULT_FLOOR_PCT,
     ceiling_pct: float = DEFAULT_CEILING_PCT,
     calibration: Calibration | None = None,
+    clock: Callable[[], float] = time.perf_counter,  # injectable for latency tests
 ) -> MatchResult:
     """The top ``k`` candidates for ``job``; see the module docstring."""
     filter_mode = FilterMode(filter_mode)
@@ -130,7 +132,7 @@ def match(
                 "re-run calibrate"
             )
 
-    start = time.perf_counter()
+    start = clock()
     checks: dict[str, RequirementCheck] = {
         cid: check_candidate(CandidateMetadata.from_dict(record.metadata), job)
         for cid, record in sorted(sidecar.candidates.items())
@@ -141,7 +143,7 @@ def match(
         strict = False
     filtered = {cid: c.unmet for cid, c in checks.items() if strict and not c.eligible}
     pool_ids = [cid for cid in checks if cid not in filtered]
-    timings.filter = time.perf_counter() - start
+    timings.filter = clock() - start
 
     retrieval = None
     scored: list[ScoredMatch] = []
@@ -159,10 +161,11 @@ def match(
                 n_semantic=max(config.n_semantic, store.count()),
             ),
             candidate_ids=pool_ids,
+            clock=clock,
         )
         timings.retrieval = retrieval.timings
         notes += retrieval.notes
-        start = time.perf_counter()
+        start = clock()
         for rank, hit in enumerate(retrieval.hits, start=1):
             scored.append(
                 score_candidate(hit, checks[hit.candidate_id], job, calibration, weights, rank)
@@ -176,7 +179,7 @@ def match(
             )
             for m in scored[:k]
         ]
-        timings.scoring = time.perf_counter() - start
+        timings.scoring = clock() - start
     else:
         notes.append("no candidate meets every must-have")
 

@@ -59,8 +59,15 @@ def _ratio(numerator: float, denominator: float) -> float | None:
     return numerator / denominator if denominator else None
 
 
-def load_jobs(jd_paths: Iterable[str | Path]) -> dict[str, JobRequirements]:
-    """``{jd_id: JobRequirements}`` for JD files on disk; the id is the file stem."""
+def load_jobs(
+    jd_paths: Iterable[str | Path] | Mapping[str, JobRequirements],
+) -> dict[str, JobRequirements]:
+    """``{jd_id: JobRequirements}`` for JD files on disk (the id is the file stem).
+
+    An already parsed ``{jd_id: JobRequirements}`` mapping is passed through.
+    """
+    if isinstance(jd_paths, Mapping):
+        return dict(sorted(jd_paths.items()))
     return {
         Path(p).stem: parse_job_description(Path(p).read_text(encoding="utf-8"))
         for p in sorted(jd_paths, key=lambda p: Path(p).stem)
@@ -118,7 +125,7 @@ class RankingEvaluation:
 
 
 def evaluate_ranking(
-    jd_paths: Iterable[str | Path],
+    jd_paths: Iterable[str | Path] | Mapping[str, JobRequirements],
     qrels: Qrels,
     store: Any,
     keyword_index: Any,
@@ -452,7 +459,7 @@ class EndToEndEvaluation:
 
 
 def evaluate_end_to_end(
-    jd_paths: Iterable[str | Path],
+    jd_paths: Iterable[str | Path] | Mapping[str, JobRequirements],
     qrels: Qrels,
     store: Any,
     keyword_index: Any,

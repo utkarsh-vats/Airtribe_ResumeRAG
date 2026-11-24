@@ -267,3 +267,138 @@ def render_batch_summary(rows: list[dict], console: Console) -> None:
             row["output"],
         )
     console.print(table)
+
+
+# --- job_matcher.py evaluate --------------------------------------------------------------
+
+RANKING_COLUMNS = (
+    "P@5_strict",
+    "P@5_lenient",
+    "R@10_strict",
+    "R@10_lenient",
+    "MRR_strict",
+    "MRR_lenient",
+    "nDCG@10",
+    "intrusion@10",
+)
+
+
+def _num(value, digits: int = 3) -> str:
+    return "-" if value is None else f"{value:.{digits}f}"
+
+
+def render_evaluation(report: dict, console: Console) -> None:
+    """Ranking, filter, extraction, end-to-end and latency tables for an evaluation report."""
+    config, env = report["config"], report["environment"]
+    console.print(
+        f"[bold]Evaluation[/bold]: {config['collection']} "
+        f"({env['model']}, {env['torch_device'] or 'n/a'}; git {env['git_commit'] or 'n/a'})"
+    )
+    cal = report["calibration"]
+    console.print(
+        f"Calibration: {cal['source']} floor {cal['floor']:.4f} ceiling {cal['ceiling']:.4f}"
+    )
+
+    ranking = Table(title="Ranking before the filter (macro over JDs)")
+    ranking.add_column("mode")
+    ranking.add_column("order")
+    for column in RANKING_COLUMNS:
+        ranking.add_column(column, justify="right")
+    for key, values in report["ranking"]["macro"].items():
+        mode, order = key.split("/")
+        ranking.add_row(mode, order, *(_num(values[c]) for c in RANKING_COLUMNS))
+    console.print(ranking)
+    for note in report["notes"]:
+        console.print(f"Note: {note}")
+
+    f = report["filter"]["overall"]
+    console.print(
+        f"[bold]Filter[/bold]: {f['agreements']}/{f['pairs']} pairs agree "
+        f"(TP {f['tp']}, FP {f['fp']}, FN {f['fn']}, TN {f['tn']}); precision "
+        f"{_num(f['precision'])}, recall {_num(f['recall'])}, accuracy {_num(f['accuracy'])}"
+    )
+    for d in report["filter"]["disagreements"]:
+        console.print(
+            f"  {d['jd_id']} / {d['candidate_id']}: system "
+            f"{'eligible' if d['system_eligible'] else 'not eligible'} "
+            f"({'; '.join(d['system_unmet']) or 'nothing unmet'}), qrels "
+            f"{'eligible' if d['qrels_eligible'] else 'not eligible'} "
+            f"({'; '.join(d['qrels_unmet']) or 'nothing unmet'})"
+        )
+    e = report["extraction"]
+    console.print(
+        f"[bold]Extraction[/bold] ({e['candidates']} candidates): name {_num(e['name_exact'])}, "
+        f"skills F1 micro {_num(e['skills_micro']['f1'])} / macro "
+        f"{_num(e['skills_macro']['f1'])}, total years exact {_num(e['total_years_exact'])} "
+        f"(MAE {_num(e['total_years_mae'])}), skill years MAE {_num(e['skill_years_mae'])} over "
+        f"{e['skill_years_pairs']} pairs, education {_num(e['education_exact'])}"
+    )
+    for cid, notes in e["mismatches"].items():
+        console.print(f"  {cid}: {'; '.join(notes)}")
+
+    end = Table(title=f"End to end (strict, top {report['end_to_end']['k']})")
+    for column in (
+        "JD",
+        "eligible",
+        "returned",
+        "S returned",
+        "S total",
+        "precision S",
+        "recall S",
+    ):
+        end.add_column(column, justify="left" if column == "JD" else "right")
+    for row in report["end_to_end"]["rows"]:
+        end.add_row(
+            row["jd_id"],
+            str(row["eligible"]),
+            str(row["returned"]),
+            str(row["returned_s"]),
+            str(row["s_total"]),
+            _num(row["precision_s"]),
+            _num(row["recall_s"]),
+        )
+    console.print(end)
+
+    query = report["latency"]["query"]
+    by_mode: dict[str, list[str]] = {}
+    for key in query["macro"]:  # "mode/filter"
+        by_mode.setdefault(key.split("/")[0], []).append(key)
+    for mode, keys in by_mode.items():
+        latency = Table(
+            title=f"Query latency, {mode}, ms (macro over JDs; {query['repeat']} runs after "
+            f"{query['warmup']} warm-up)"
+        )
+        latency.add_column("stage")
+        for key in keys:
+            latency.add_column(f"{key.split('/')[1]} p50", justify="right")
+            latency.add_column(f"{key.split('/')[1]} p95", justify="right")
+        for stage in query["macro"][keys[0]]:
+            latency.add_row(
+                stage,
+                *(
+                    _num(query["macro"][key][stage][stat], 1)
+                    for key in keys
+                    for stat in ("p50", "p95")
+                ),
+            )
+        console.print(latency)
+    console.print(f"Model load (not in any query): {query['model_load_ms'] / 1000:.1f} s")
+
+    index = report["latency"]["index"]
+    if index:
+        table = Table(
+            title=f"Index latency: {index['files']} files, {index['chunks']} chunks, from scratch"
+        )
+        for column in ("stage", "total ms", "per-file p50", "per-file p95"):
+            table.add_column(column, justify="left" if column == "stage" else "right")
+        for stage, total in index["totals_ms"].items():
+            per_file = index["per_file"].get(stage, {})
+            table.add_row(
+                stage, _num(total, 1), _num(per_file.get("p50"), 1), _num(per_file.get("p95"), 1)
+            )
+        console.print(table)
+        console.print(
+            f"First run {index['first_run_ms'] / 1000:.2f} s wall; unchanged re-run "
+            f"{index['rerun_ms'] / 1000:.2f} s ({index['rerun_unchanged']} unchanged); embedding "
+            f"{_num(index['embed_chunks_per_second'], 1)} chunks/s"
+        )

@@ -241,3 +241,74 @@ def test_guarded_scripts_parse_on_older_pythons(script):
     assert ast.unparse(first_imports[0]) == "import sys"  # nothing else before the guard
     guard = next(n for n in tree.body if isinstance(n, ast.If))
     assert tree.body.index(guard) < tree.body.index(first_imports[1])
+
+
+# --- evaluate -----------------------------------------------------------------------------
+
+
+def test_evaluate_tables_out_and_indexing(env, capsys, tmp_path):
+    out_path = tmp_path / "eval" / "report.json"
+    argv = ["evaluate", "--repeat", "1", "--modes", "semantic,hybrid", "--measure-indexing"]
+    code, out, err = cli(capsys, *argv, "--out", str(out_path))
+    assert code == 0
+    assert "Ranking before the filter" in out and "strict P@5 is at most 0.6" in out
+    assert "Filter: 210/210 pairs agree" in out
+    assert "Extraction (35 candidates): name 1.000" in out
+    assert "End to end (strict, top 10)" in out
+    assert "Query latency, hybrid, ms" in out and "strict p50" in out
+    assert "Index latency: 35 files" in out
+    assert "unchanged re-run" in out and f"Wrote {out_path}" in out
+    assert "no semantic calibration" in err
+    report = json.loads(out_path.read_text("utf-8"))
+    assert set(report) == {
+        "environment",
+        "config",
+        "calibration",
+        "warnings",
+        "notes",
+        "ranking",
+        "filter",
+        "extraction",
+        "end_to_end",
+        "latency",
+    }
+    assert len(report["ranking"]["rows"]) == 6 * 2 * 2  # JDs x modes x orders
+    assert set(report["ranking"]["macro"]) == {
+        "semantic/retrieval",
+        "semantic/scored",
+        "hybrid/retrieval",
+        "hybrid/scored",
+    }
+    assert report["config"]["collection"] == "resumes__section-v1__fake-d64"
+    assert report["calibration"]["source"] == "generic"
+    assert report["latency"]["index"]["rerun_unchanged"] == 35
+    assert set(report["latency"]["query"]["macro"]) == {
+        "semantic/strict",
+        "semantic/soft",
+        "hybrid/strict",
+        "hybrid/soft",
+    }
+    assert report["environment"]["embedder_id"] == "fake-d64"
+
+
+def test_evaluate_json(env, capsys):
+    code, out, _ = cli(capsys, "evaluate", "--repeat", "1", "--modes", "keyword", "--json")
+    assert code == 0
+    report = json.loads(out)
+    assert report["latency"]["index"] is None
+    assert report["filter"]["overall"]["accuracy"] == 1.0
+    assert report["end_to_end"]["macro"]["recall_s"] <= 1.0
+
+
+@pytest.mark.parametrize(
+    ("argv", "message"),
+    [
+        (["evaluate", "--modes", "dense"], "--modes takes a comma-separated subset"),
+        (["evaluate", "--modes", ","], "--modes takes a comma-separated subset"),
+        (["evaluate", "--repeat", "0"], "--repeat must be at least 1"),
+        (["evaluate", "--chunker", "fixed"], "no index for collection"),
+    ],
+)
+def test_evaluate_exit_2(env, capsys, argv, message):
+    code, _, err = cli(capsys, *argv)
+    assert code == 2 and message in err

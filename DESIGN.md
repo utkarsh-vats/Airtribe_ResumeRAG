@@ -891,8 +891,8 @@ other `results/**/*.json` is git-ignored.
 
 ## 11. Evaluation
 
-`rag/evaluation/` (`metrics.py`, `ground_truth.py`, `evaluate.py`) is a Python API; the CLI and
-latency measurement come in step 13b.
+`rag/evaluation/` (`metrics.py`, `ground_truth.py`, `evaluate.py`, `latency.py`, `report.py`)
+is the Python API; `job_matcher.py evaluate` runs all of it.
 
 - **Ground truth** (`data/ground_truth/qrels.json`) holds graded relevance (`0` not relevant,
   `1` partial, `2` strong) for every JD × candidate pair. The grades are the labels assigned
@@ -959,9 +959,46 @@ Pure functions over a ranked list of candidate ids and `{candidate_id: grade}`:
   returned.
 - Every result has `to_dict()`, and `to_dataframe()` for the notebook. pandas is imported
   lazily there, so `rag` stays pandas-free at import.
-- **Latency** (13b): index build time (total and per document), and per-query p50/p95 split
-  into embed / search (semantic + BM25 + RRF) / score, measured with `time.perf_counter` over
-  repeated runs after one warm-up.
+### Latency (`latency.py`)
+
+- **Query latency**: for each JD x retrieval mode x filter mode (strict, soft), one query is
+  `parse_job_description` + `match()` + `build_output`, with excerpts and reasoning. Stages:
+  `parse`, `filter`, `embed_query`, `semantic_search`, `keyword_search`, `aggregate_fuse`,
+  `backfill`, `scoring`, `output` and `total`.
+  - One warm-up run per combination is discarded, then `--repeat` runs (default 5) are timed
+    with `time.perf_counter`.
+  - Each stage gets p50 / p95 / mean / max in ms per JD. The macro figure is the mean of the
+    per-JD figures.
+  - The timer is injectable (`match(..., clock=)` and `retrieve(..., clock=)`), so a test
+    with a fake timer checks every stage number exactly.
+- **Model load is never inside a query**: it is measured once, before the first query
+  (`model_load_ms`), and the evaluate command measures query latency first so that number
+  is the real load.
+- **Percentiles**: linear interpolation between closest ranks (numpy's default `linear`
+  method), pure Python. For sorted values v and p in 0-100, take position
+  `(n - 1) * p / 100` and interpolate between its neighbours. A single sample is every
+  percentile.
+- **Index latency** (`--measure-indexing`): the resumes are indexed from scratch into a
+  temporary Chroma directory, never the real `CHROMA_DIR`, then again with every file
+  unchanged. Reported: per-stage totals (read, parse_extract, chunk, embed, upsert), per-file
+  p50 / p95 per stage, both runs' wall times, and chunks per second for the embed stage. The
+  temporary directory is removed afterwards, also when indexing raises.
+  - On Windows a persistent Chroma client keeps its HNSW files open, so
+    `VectorStore.close()` stops that client's own system (and only that one) before the
+    directory is deleted.
+- **Environment** (`environment_info`): Python, platform, processor, torch device, model,
+  chromadb and sentence-transformers versions, the short git commit (None without git) and a
+  timestamp.
+
+### Where results live
+
+`job_matcher.py evaluate [--chunker ...] [--embedder ...] [--modes ...] [--repeat 5]
+[--measure-indexing] [--out PATH] [--json]` prints the ranking table (with the note that
+strict P@5 is at most 0.6), the filter and extraction headlines with any disagreements, the
+end-to-end table, and query and index latency. `--out` writes the full report: every per-JD
+row, environment, config, the calibration used, warnings and latency. Reports for the
+committed configurations are in `results/eval/` (tracked in git, like `results/samples/`):
+`section-v1__hf-bge-small.json` (with index latency) and `fixed-w120-o30__hf-bge-small.json`.
 - **Notebook** (`notebooks/experiments.ipynb`) only calls package code (`rag.evaluation`,
   `rag.retrieval`, …) and holds no logic of its own. It compares section-aware vs fixed-size
   chunking, semantic-only vs BM25-only vs hybrid, huggingface vs gemini, and calibration

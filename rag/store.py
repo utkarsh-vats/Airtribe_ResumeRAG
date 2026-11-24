@@ -21,6 +21,7 @@ Chroma can't hold lives in a JSON sidecar at ``<CHROMA_DIR>/sidecar/<collection>
 written atomically.
 """
 
+import gc
 import hashlib
 import json
 import os
@@ -318,6 +319,24 @@ class VectorStore:
             where=where,
             include=["documents", "metadatas", "distances"],
         )
+
+    def close(self) -> None:
+        """Release this store's Chroma client so its files can be deleted (needed on Windows).
+
+        A persistent Chroma client keeps its HNSW index files open until the client's system
+        stops. This stops only this client's system (chromadb 1.5.9 keeps systems in
+        ``SharedSystemClient._identifier_to_system``, keyed by path), so other open stores in
+        the process keep working. The store can't be used afterwards.
+        """
+        from chromadb.api.shared_system_client import SharedSystemClient
+
+        identifier = getattr(self._client, "_identifier", None)
+        system = SharedSystemClient._identifier_to_system.pop(identifier, None)
+        self._collection = None
+        self._client = None
+        if system is not None:
+            system.stop()
+        gc.collect()
 
     def drop(self) -> None:
         """Delete the collection and its sidecar. The store can't be used afterwards."""
