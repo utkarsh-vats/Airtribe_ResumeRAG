@@ -57,7 +57,7 @@ Planned module layout (built slice by slice, see [project-plan.md](project-plan.
 | `rag/scoring.py` | Score components and the 0-100 match score |
 | `rag/reasoning.py` | Templated reasoning |
 | `rag/matcher.py` | Filter, retrieve, score, reason |
-| `rag/evaluation/` | Metrics, ground-truth loading, the three evaluation layers |
+| `rag/evaluation/` | Metrics, ground truth, evaluation layers, latency, experiment runners |
 | `rag/excerpts.py` | Relevant excerpts from the top chunks |
 | `rag/output.py` | The JSON output (brief and full formats) |
 | `rag/cli.py` | Shared CLI plumbing (settings, errors, index lookup) |
@@ -1004,7 +1004,72 @@ committed configurations are in `results/eval/` (tracked in git, like `results/s
   chunking, semantic-only vs BM25-only vs hybrid, huggingface vs gemini, and calibration
   ceilings.
 
-## 12. Testing
+## 12. Experiments
+
+**Rule: the notebooks only call package code.** They hold no metrics, retrieval or scoring
+logic of their own. Every number comes from a runner in `rag/evaluation/experiments.py` and
+every table from `rag/evaluation/display.py`, so a result in the notebook is reproducible
+from a test-covered API.
+
+### Collections (`scripts/build_experiment_collections.py`)
+
+`python -m scripts.build_experiment_collections [--only NAME ...] [--as-of 2026-11-01]`
+builds, one after another, every collection the notebooks compare. It loads one model at a
+time and releases it before the next. It is idempotent: indexing skips unchanged files, and
+it calibrates only a collection with no calibration (re-indexing a changed file clears it).
+
+| `--only` name | Chunker | Embedder | Question it answers |
+|---|---|---|---|
+| `section-bge-small` | section-v1 | bge-small-en-v1.5 (384) | the default |
+| `fixed-bge-small` | fixed-w120-o30 | bge-small | section-aware vs naive chunking |
+| `section-noctx-bge-small` | section-v1-noctx | bge-small | does the contextual header help? |
+| `section-minilm` | section-v1 | all-MiniLM-L6-v2 (384) | a smaller, older model |
+| `section-bge-base` | section-v1 | bge-base-en-v1.5 (768) | a bigger model of the same family |
+| `section-gemini` | section-v1 | gemini-embedding-001 at 768 | an API model (only with `GEMINI_API_KEY`; otherwise skipped with a one-line message) |
+
+### Runners (`rag/evaluation/experiments.py`)
+
+Each runner returns `Rows`, a list of dicts with `to_dataframe()` (pandas imported lazily) and
+`text()`. An `ExperimentCollection` (`open_collection(label, chunker_id, embedder)`) is an
+indexed collection plus its embedder; it builds one keyword index per tokenizer mode on
+demand.
+
+- `compare_collections(collections, modes, orders)`: layer-(a) macro ranking metrics per
+  collection, mode and order (`evaluate_ranking`).
+- `recall_curve(collection, modes, ks=1..15, threshold)`: retrieval-order recall@k per mode,
+  macro over JDs, strict or lenient.
+- `compare_retrieval_configs(collection, {name: RetrievalConfig})`: ranking metrics per
+  variant, for keyword mode, query source and section weights.
+- `compare_scoring(collection, {name: ScoreWeights})`: scored-order metrics, plus each
+  variant's soft top 10 per JD with labels.
+- `calibration_variants(collection, [(50, 95), (50, 99), (50, 100)])`: floor and ceiling per
+  percentile pair, computed in memory from one pass of semantic aggregates
+  (`rag.calibration.semantic_aggregates`) and never written to the sidecar. For each pair it
+  reports how many eligible (JD, candidate) pairs saturate the semantic component at 1.0, and
+  the spread (min / max / std) of strict-mode scores.
+- `trap_cases(collection, {name: RetrievalConfig})`: rank, score and detail for each known
+  hard case, per variant:
+  - peter_hughes (HVAC) in data_engineer's keyword retrieval;
+  - his "Python scripting" hobbies chunk;
+  - noah_williams's aliases for python_backend;
+  - hannah_berg's coursework-only ML;
+  - emily_clarke (JavaScript is not Java);
+  - omar_haddad's listed-but-unused skills;
+  - mateo_garcia's merged Python years.
+- `chunk_stats(collection)`: chunks and words per chunk (min / median / mean / max) by
+  section.
+
+Labels reach the runners only through `rag.evaluation.ground_truth`. The pipeline modules stay
+label-free, which the isolation test from step 13a still checks. Runners are deterministic for
+a given collection and configuration.
+
+### Display (`rag/evaluation/display.py`)
+
+`to_frame` (a rounded DataFrame), `text_table` and `pivot_text` (plain text). They never use
+rich and never emit ANSI escape codes, so notebook outputs read cleanly anywhere, including
+in git diffs.
+
+## 13. Testing
 
 - Unit tests use the **FakeEmbedder** and `tmp_path` workspaces and Chroma dirs. **No network
   calls or model downloads** happen in tests or CI. The `huggingface` and `gemini` embedders are

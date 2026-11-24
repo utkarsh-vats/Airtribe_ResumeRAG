@@ -124,18 +124,14 @@ def check_percentiles(floor_pct: float, ceiling_pct: float) -> None:
         )
 
 
-def compute_calibration(
+def semantic_aggregates(
     jobs: Mapping[str, JobRequirements],
     store: Any,
     keyword_index: Any,
     embedder: Embedder,
     config: RetrievalConfig | None = None,
-    now: Callable[[], datetime] = lambda: datetime.now(UTC),
-    floor_pct: float = DEFAULT_FLOOR_PCT,
-    ceiling_pct: float = DEFAULT_CEILING_PCT,
-) -> Calibration:
-    """Calibrate over every (JD, candidate) pair; ``jobs`` maps a JD's file to its parse."""
-    check_percentiles(floor_pct, ceiling_pct)
+) -> dict[tuple[str, str], float]:
+    """``{(jd key, candidate id): semantic aggregate}`` for every pair, label-free."""
     if not jobs:
         raise ValueError("calibration needs at least one JD")
     base = config or RetrievalConfig()
@@ -149,21 +145,56 @@ def compute_calibration(
         n_semantic=max(1, store.count()),  # every chunk, so every candidate is ranked
         pool_size=len(candidates),
     )
-    values: list[float] = []
-    for job in jobs.values():
+    values: dict[tuple[str, str], float] = {}
+    for key, job in jobs.items():
         result = retrieve(job, store, keyword_index, embedder, semantic)
-        values += [hit.semantic.aggregate for hit in result.hits]
+        for hit in result.hits:
+            values[(key, hit.candidate_id)] = hit.semantic.aggregate
+    return values
+
+
+def compute_calibration(
+    jobs: Mapping[str, JobRequirements],
+    store: Any,
+    keyword_index: Any,
+    embedder: Embedder,
+    config: RetrievalConfig | None = None,
+    now: Callable[[], datetime] = lambda: datetime.now(UTC),
+    floor_pct: float = DEFAULT_FLOOR_PCT,
+    ceiling_pct: float = DEFAULT_CEILING_PCT,
+) -> Calibration:
+    """Calibrate over every (JD, candidate) pair; ``jobs`` maps a JD's file to its parse."""
+    check_percentiles(floor_pct, ceiling_pct)
+    base = config or RetrievalConfig()
+    values = list(semantic_aggregates(jobs, store, keyword_index, embedder, base).values())
+    return calibration_from_values(
+        values,
+        floor_pct,
+        ceiling_pct,
+        embedder_id=embedder.embedder_id,
+        jd_files=tuple(sorted(jobs)),
+        computed_at=now().isoformat(timespec="seconds"),
+        retrieval=calibration_settings(base),
+    )
+
+
+def calibration_from_values(
+    values: Sequence[float],
+    floor_pct: float = DEFAULT_FLOOR_PCT,
+    ceiling_pct: float = DEFAULT_CEILING_PCT,
+    source: str = "collection",
+    **details: Any,
+) -> Calibration:
+    """A calibration from already computed semantic aggregates."""
+    check_percentiles(floor_pct, ceiling_pct)
     return Calibration(
         floor=percentile(values, floor_pct),
         ceiling=percentile(values, ceiling_pct),
-        source="collection",
-        embedder_id=embedder.embedder_id,
-        jd_files=tuple(sorted(jobs)),
+        source=source,
         pairs=len(values),
-        computed_at=now().isoformat(timespec="seconds"),
-        retrieval=calibration_settings(base),
         floor_pct=float(floor_pct),
         ceiling_pct=float(ceiling_pct),
+        **details,
     )
 
 

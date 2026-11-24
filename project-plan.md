@@ -82,7 +82,11 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **13b. Evaluation CLI + latency** – `rag/evaluation/latency.py` (per-stage query p50/p95,
       index latency in a temp dir, environment), `job_matcher.py evaluate`, committed
       `results/eval/` reports + tests.
-- [ ] **14. Experiments notebook** – chunkers, retrieval modes, embedders (package code only).
+- [x] **14a. Experiment runners** – `scripts/build_experiment_collections.py`,
+      `rag/evaluation/experiments.py` (collections, recall curves, retrieval/scoring/calibration
+      variants, trap cases, chunk stats), `rag/evaluation/display.py` + tests.
+- [ ] **14b. Experiments notebook, part 1** (package code only).
+- [ ] **14c. Experiments notebook, part 2** (package code only).
 - [ ] **15. README + docs polish.**
 
 **Bonus (cut if needed):** Gemini-based JD parser / LLM-written reasoning; a `match_jobs` tool
