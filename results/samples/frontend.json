@@ -1,0 +1,439 @@
+{
+  "job_description": "Frontend Engineer (React)\nFernleaf Learning - Lisbon, Portugal (hybrid)\n\nAbout us\nFernleaf builds reading apps for primary schools. Two million children practise reading with us every week, most of them on shared classroom laptops that are older than they are.\n\nThe role\nYou'll be one of four frontend engineers on the product team, owning the student and teacher web apps. We ship small changes every day, talk to teachers every week and sit in on a lesson at least once a term. You'll have real influence over how the product looks and feels, and you'll help us decide what not to build.\n\nWhat you'll do\n- Build features from component design to release, and measure whether they helped.\n- Keep our interfaces fast and accessible on low-end hardware.\n- Work with our designers in Figma and with the Node.js team that owns our APIs.\n\nYou have\n- React (3+ yrs) in production apps.\n- Strong TypeScript skills.\n- An eye for accessibility, layout and detail.\n\nNice to have\n- Next.js or another server-rendering framework.\n- State management with Redux.\n- Testing with Jest.\n- Styling with Tailwind CSS.\n\nPerks\n- Hybrid: three days a week in our Lisbon studio.\n- A learning budget, and one free week each year to build something you choose.\n",
+  "top_matches": [
+    {
+      "candidate_name": "Aisha Okafor",
+      "resume_path": "resumes/aisha_okafor.docx",
+      "match_score": 95,
+      "matched_skills": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Redux",
+        "Jest",
+        "Tailwind CSS"
+      ],
+      "relevant_excerpts": [
+        "TypeScript, JavaScript, HTML, CSS, React, Next.js, Redux, Tailwind CSS, Jest, Storybook",
+        "Rebuilt the customer dashboard in React and TypeScript, raising the Lighthouse performance score from 62 to 94.",
+        "Implemented responsive marketing pages with Next.js."
+      ],
+      "reasoning": "Meets all 2 must-haves: React 3.4 yrs (3+ required), TypeScript 2.5 yrs. Has 4 of 4 nice-to-haves (Next.js, Redux, Jest, Tailwind CSS). 3.4 years' total experience. Strongest evidence in Experience (Frontend Engineer at Thames Digital, Junior Frontend Developer at Brixton Studio) and Skills.",
+      "candidate_id": "aisha_okafor",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.884,
+          "must_have": 1.0,
+          "nice_to_have": 1.0,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "Lucas Martin",
+      "resume_path": "resumes/lucas_martin.pdf",
+      "match_score": 93,
+      "matched_skills": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Redux",
+        "Jest"
+      ],
+      "relevant_excerpts": [
+        "Rebuilt the flight search and booking flow in React and TypeScript, lifting mobile conversion by 14%.",
+        "Raised Core Web Vitals to 'good' on 92% of pages by moving rendering to the server and cutting the TypeScript bundle by 38%.",
+        "Built marketing and e-commerce sites for agency clients in React and plain JavaScript."
+      ],
+      "reasoning": "Meets all 2 must-haves: React 8.9 yrs (3+ required), TypeScript 7.9 yrs. Has 3 of 4 nice-to-haves (Next.js, Redux, Jest). 8.9 years' total experience. Strongest evidence in Experience (Senior Frontend Engineer at Ciel Voyages, Staff Frontend Engineer at Brume Media).",
+      "candidate_id": "lucas_martin",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.91,
+          "must_have": 1.0,
+          "nice_to_have": 0.75,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "Emily Clarke",
+      "resume_path": "resumes/emily_clarke.docx",
+      "match_score": 69,
+      "matched_skills": [
+        "React",
+        "TypeScript",
+        "Jest"
+      ],
+      "relevant_excerpts": [
+        "Split the merchant monolith into nine Node.js microservices written in TypeScript, each owning its own PostgreSQL schema.",
+        "Own the React merchant dashboard used by 6,000 small businesses to track payouts.",
+        "Built React storefronts and a Node.js order service for three fashion retailers."
+      ],
+      "reasoning": "Meets all 2 must-haves: React 5.2 yrs (3+ required), TypeScript 3.9 yrs. Has 1 of 4 nice-to-haves (Jest). 5.2 years' total experience. Strongest evidence in Experience (Senior Full-Stack Engineer at Pennine Payments, Full-Stack Developer at Irwell Digital).",
+      "candidate_id": "emily_clarke",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.4997,
+          "must_have": 1.0,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    }
+  ],
+  "job": {
+    "title": "Frontend Engineer (React)",
+    "source": "job_descriptions/frontend.txt",
+    "must_have": [
+      {
+        "any_of": [
+          "React"
+        ],
+        "min_years": 3
+      },
+      {
+        "any_of": [
+          "TypeScript"
+        ],
+        "min_years": null
+      }
+    ],
+    "nice_to_have": [
+      "Jest",
+      "Next.js",
+      "Redux",
+      "Tailwind CSS"
+    ],
+    "min_total_years": null,
+    "not_assessed": [
+      "An eye for accessibility, layout and detail."
+    ]
+  },
+  "filter": {
+    "mode": "strict",
+    "candidates_total": 35,
+    "eligible_count": 3,
+    "filtered_count": 32,
+    "scored_count": 3,
+    "filtered": [
+      {
+        "candidate_id": "ananya_iyer",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "arjun_nair",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "daniel_osei",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "david_okonkwo",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "elena_rodriguez",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "fatima_al_sayed",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "grace_kim",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "hannah_berg",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "hans_mueller",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "ishaan_gupta",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "james_o_brien",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "john_doe",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "kenji_tanaka",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "kwame_mensah",
+        "unmet": [
+          "React 3+ yrs (missing)"
+        ]
+      },
+      {
+        "candidate_id": "liam_walsh",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "marcus_chen",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "maria_santos",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mateo_garcia",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mohammed_rahman",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "nina_kowalski",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "noah_williams",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "olga_petrova",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "omar_haddad",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "peter_hughes",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma_2",
+        "unmet": [
+          "React 3+ yrs (missing)"
+        ]
+      },
+      {
+        "candidate_id": "rahul_verma",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "sofia_rossi",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "tomas_novak",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "wei_zhang",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "yuki_sato",
+        "unmet": [
+          "React 3+ yrs (missing)",
+          "TypeScript (missing)"
+        ]
+      },
+      {
+        "candidate_id": "zoe_turner",
+        "unmet": [
+          "React 3+ yrs (has 1.6)",
+          "TypeScript (missing)"
+        ]
+      }
+    ]
+  },
+  "config": {
+    "collection": "resumes__section-v1__hf-bge-small-en-v1.5",
+    "retrieval": {
+      "mode": "hybrid",
+      "query_source": "query_text",
+      "n_semantic": 228,
+      "n_keyword": 100,
+      "keyword_skills": "critical",
+      "keyword_mode": "skills",
+      "section_weights": {
+        "experience": 1.0,
+        "projects": 0.8,
+        "skills": 0.7,
+        "summary": 0.6,
+        "certifications": 0.5,
+        "other": 0.5,
+        "education": 0.4,
+        "coursework": 0.2,
+        "hobbies": 0.1
+      },
+      "second_chunk_weight": 0.3,
+      "rrf_k": 60,
+      "list_weights": {
+        "semantic": 1.0,
+        "keyword": 1.0
+      },
+      "pool_size": 3
+    },
+    "calibration": {
+      "floor": 0.8208460479974746,
+      "ceiling": 1.0117829240560532,
+      "source": "collection",
+      "embedder_id": "hf-bge-small-en-v1.5",
+      "jd_files": [
+        "job_descriptions/data_engineer.txt",
+        "job_descriptions/devops_sre.txt",
+        "job_descriptions/frontend.txt",
+        "job_descriptions/java_backend.txt",
+        "job_descriptions/ml_engineer.txt",
+        "job_descriptions/python_backend.txt"
+      ],
+      "pairs": 210,
+      "computed_at": "2026-11-24T04:12:27+00:00",
+      "retrieval": {
+        "query_source": "query_text",
+        "second_chunk_weight": 0.3,
+        "section_weights": {
+          "experience": 1.0,
+          "projects": 0.8,
+          "skills": 0.7,
+          "summary": 0.6,
+          "certifications": 0.5,
+          "other": 0.5,
+          "education": 0.4,
+          "coursework": 0.2,
+          "hobbies": 0.1
+        }
+      },
+      "floor_pct": 50.0,
+      "ceiling_pct": 99.0
+    }
+  },
+  "notes": [],
+  "warnings": [],
+  "timings_ms": {
+    "filter": 1.0,
+    "retrieval": {
+      "embed_query": 74.3,
+      "semantic_search": 3.8,
+      "keyword_search": 0.2,
+      "aggregate_fuse": 0.1,
+      "backfill": 0.0,
+      "total": 78.4
+    },
+    "scoring": 21.4,
+    "total": 100.8
+  }
+}

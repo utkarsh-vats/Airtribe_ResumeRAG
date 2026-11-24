@@ -129,6 +129,16 @@ def _total_requirement(years: int, meta: CandidateMetadata) -> RequirementResult
     )
 
 
+SELF_EMPLOYED = frozenset({"self-employed", "self employed", "freelance", "freelancer"})
+
+
+def role_label(title: str, company: str) -> str:
+    """``Title at Company``, or ``Title (self-employed)`` for freelance work."""
+    if " ".join(company.split()).casefold() in SELF_EMPLOYED:
+        return f"{title} (self-employed)"
+    return f"{title} at {company}"
+
+
 def check_candidate(meta: CandidateMetadata, job: JobRequirements) -> RequirementCheck:
     """Check ``meta`` against ``job``'s must-haves, total-years minimum and nice-to-haves."""
     results = []
@@ -145,5 +155,5 @@ def check_candidate(meta: CandidateMetadata, job: JobRequirements) -> Requiremen
         nice_missing=tuple(s for s in job.nice_to_have if s not in meta.skills),
         skills=tuple(meta.skills),
         skill_months=dict(meta.skill_months),
-        role_labels=tuple(f"{r.title} at {r.company}" for r in meta.roles),
+        role_labels=tuple(role_label(r.title, r.company) for r in meta.roles),
     )

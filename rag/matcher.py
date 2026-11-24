@@ -28,6 +28,7 @@ from rag.calibration import (
     load_calibration,
 )
 from rag.embedders.base import Embedder
+from rag.excerpts import select_excerpts
 from rag.jd_parser import JobRequirements
 from rag.metadata import CandidateMetadata
 from rag.reasoning import reasoning
@@ -67,6 +68,7 @@ class MatchResult:
     filter_mode: FilterMode
     matches: tuple[ScoredMatch, ...]
     candidates_total: int  # candidates in the collection
+    eligible_count: int  # candidates meeting every must-have (in either mode)
     filtered_count: int  # removed by the must-have filter (strict only)
     filtered: dict[str, tuple[str, ...]]  # candidate id -> unmet requirements
     scored_count: int  # candidates retrieved and scored
@@ -76,6 +78,7 @@ class MatchResult:
     warnings: tuple[str, ...]
     timings: MatchTimings
     retrieval: RetrievalResult | None
+    config: RetrievalConfig | None = None  # as requested (retrieval.config is as run)
 
 
 def _has_hard_filters(job: JobRequirements) -> bool:
@@ -164,7 +167,12 @@ def match(
             )
         scored.sort(key=lambda m: (-m.match_score, m.retrieval_rank, m.candidate_id))
         scored = [
-            replace(m, reasoning=reasoning(m, job, show_misses=not strict)) for m in scored[:k]
+            replace(
+                m,
+                reasoning=reasoning(m, job, show_misses=not strict),
+                relevant_excerpts=tuple(select_excerpts(m, job)),
+            )
+            for m in scored[:k]
         ]
         timings.scoring = time.perf_counter() - start
     else:
@@ -175,6 +183,7 @@ def match(
         filter_mode=filter_mode,
         matches=tuple(scored),
         candidates_total=len(checks),
+        eligible_count=sum(1 for c in checks.values() if c.eligible),
         filtered_count=len(filtered),
         filtered=filtered,
         scored_count=len(retrieval.hits) if retrieval else 0,
@@ -184,4 +193,5 @@ def match(
         warnings=tuple(warnings),
         timings=timings,
         retrieval=retrieval,
+        config=config,
     )

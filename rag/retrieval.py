@@ -187,6 +187,7 @@ class ChunkInfo:
     section: str
     role_index: int | None
     text: str
+    body_start: int = 0  # lines of ``text`` before the body (role-header lines)
 
 
 @dataclass(frozen=True)
@@ -298,6 +299,7 @@ class TopChunk:
     keyword_raw: float | None
     keyword_weighted: float | None
     text: str
+    body_start: int = 0  # lines of ``text`` before the body (role-header lines)
 
 
 @dataclass(frozen=True)
@@ -373,7 +375,12 @@ def _semantic_hits(store: Any, vector: Sequence[float], n: int, where: dict | No
         strict=True,
     ):
         info = ChunkInfo(
-            chunk_id, meta["candidate_id"], meta["section"], meta.get("role_index"), text or ""
+            chunk_id,
+            meta["candidate_id"],
+            meta["section"],
+            meta.get("role_index"),
+            text or "",
+            meta.get("body_start", 0),
         )
         hits.append((info, 1.0 - float(distance)))
     return hits
@@ -384,7 +391,17 @@ def _keyword_hits(keyword_index: Any, skills: Sequence[str], n: int, where: dict
     for chunk_id, score in keyword_index.search_skills(skills, n, where=where):
         doc = keyword_index.doc(chunk_id)
         hits.append(
-            (ChunkInfo(chunk_id, doc.candidate_id, doc.section, doc.role_index, doc.text), score)
+            (
+                ChunkInfo(
+                    chunk_id,
+                    doc.candidate_id,
+                    doc.section,
+                    doc.role_index,
+                    doc.text,
+                    doc.body_start,
+                ),
+                score,
+            )
         )
     return hits
 
@@ -562,6 +579,7 @@ def _hit(
             keyword_raw=e[KEYWORD].raw if KEYWORD in e else None,
             keyword_weighted=e[KEYWORD].weighted if KEYWORD in e else None,
             text=e["info"].text,
+            body_start=e["info"].body_start,
         )
         for e in ordered[:3]
     )

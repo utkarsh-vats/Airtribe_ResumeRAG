@@ -1,0 +1,478 @@
+{
+  "job_description": "Java Backend Engineer\nHalden Mutual - Leeds, UK (hybrid)\n\nAbout us\nHalden Mutual insures 900,000 homes and cars across the UK. Our engineering team of 80 is replacing a 20-year-old policy system one service at a time, and we would rather do it carefully than quickly.\n\nThe team\nYou'll join the Claims team, which owns everything from the first notification of loss to the final payout. Our services run on a shared Kubernetes platform looked after by the platform team, and claims handlers work in an internal tool built with Angular. We plan in Jira, but we keep the process light.\n\nResponsibilities\n- Design and build services that replace parts of the legacy claims system.\n- Own the APIs and events shared with the policy and payments teams.\n- Sit with claims handlers to understand their work before changing it.\n- Keep services observable, documented and easy to operate.\n- Help interview and onboard new engineers as the team grows.\n\nWhat we're looking for\n- 5 or more years of Java development.\n- Commercial experience with Spring Boot.\n- Experience designing and running microservices.\n- A habit of writing tests and readable code.\n\nNice to have\n- Event streaming with Kafka.\n- Persistence with Hibernate.\n- Building and shipping images with Docker.\n- Deploying to Kubernetes.\n\nBenefits\n- Hybrid: two days a week in our Leeds office.\n- 28 days of holiday, a 10% pension contribution and discounted home insurance.\n- Paid volunteering days and a well-stocked training budget.\n",
+  "top_matches": [
+    {
+      "candidate_name": "Rahul Verma",
+      "resume_path": "resumes/rahul_verma.pdf",
+      "match_score": 95,
+      "matched_skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "Kafka",
+        "Hibernate",
+        "Docker",
+        "Kubernetes"
+      ],
+      "relevant_excerpts": [
+        "Lead a team of eight building the UPI settlement platform: 14 Spring Boot microservices processing 3 million transactions a day.",
+        "Upgraded the codebase from Java 11 to Java 21 and adopted virtual threads for the I/O-heavy services.",
+        "Broke the policy-administration monolith into Spring Cloud microservices with service discovery and circuit breakers."
+      ],
+      "reasoning": "Meets all 3 must-haves: Java 9.4 yrs (5+ required), Spring Boot 7.8 yrs, Microservices 7.8 yrs. Has 4 of 4 nice-to-haves (Kafka, Hibernate, Docker, Kubernetes). 9.4 years' total experience. Strongest evidence in Experience (Lead Software Engineer at Charminar Payments, Senior Software Engineer at Godavari Insurance Tech).",
+      "candidate_id": "rahul_verma",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.8626,
+          "must_have": 1.0,
+          "nice_to_have": 1.0,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "Hans Mueller",
+      "resume_path": "resumes/hans_mueller.docx",
+      "match_score": 81,
+      "matched_skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "Kafka",
+        "Hibernate",
+        "Kubernetes"
+      ],
+      "relevant_excerpts": [
+        "Own the target architecture for claims and policy systems: 60 Spring Boot microservices run by nine teams.",
+        "Built the shipment-tracking backend in Java 8, later moving its services onto Spring Boot.",
+        "Run the architecture review board and coach senior engineers on domain-driven design in Java."
+      ],
+      "reasoning": "Meets all 3 must-haves: Java 15.9 yrs (5+ required), Spring Boot 12.9 yrs, Microservices 7.9 yrs. Has 3 of 4 nice-to-haves (Kafka, Hibernate, Kubernetes). 15.9 years' total experience. Strongest evidence in Experience (Principal Software Architect at Isar Versicherung, Senior Java Engineer at Alpen Logistik).",
+      "candidate_id": "hans_mueller",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.6307,
+          "must_have": 1.0,
+          "nice_to_have": 0.75,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "Elena Rodriguez",
+      "resume_path": "resumes/elena_rodriguez.docx",
+      "match_score": 76,
+      "matched_skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "Kafka",
+        "Hibernate",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Designed event-driven order microservices with Spring Boot and Kafka handling 1,200 messages per second.",
+        "Led the upgrade of 15 services from Java 11 to Java 17.",
+        "Built Spring Cloud microservices for card transaction processing."
+      ],
+      "reasoning": "Meets all 3 must-haves: Java 6.3 yrs (5+ required), Spring Boot 6.3 yrs, Microservices 6.3 yrs. Has 3 of 4 nice-to-haves (Kafka, Hibernate, Docker). 6.3 years' total experience. Strongest evidence in Experience (Senior Java Developer at Meseta Logistics, Java Developer at Castilla Bank Systems).",
+      "candidate_id": "elena_rodriguez",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.5045,
+          "must_have": 1.0,
+          "nice_to_have": 0.75,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    }
+  ],
+  "job": {
+    "title": "Java Backend Engineer",
+    "source": "job_descriptions/java_backend.txt",
+    "must_have": [
+      {
+        "any_of": [
+          "Java"
+        ],
+        "min_years": 5
+      },
+      {
+        "any_of": [
+          "Spring Boot"
+        ],
+        "min_years": null
+      },
+      {
+        "any_of": [
+          "Microservices"
+        ],
+        "min_years": null
+      }
+    ],
+    "nice_to_have": [
+      "Docker",
+      "Hibernate",
+      "Kafka",
+      "Kubernetes"
+    ],
+    "min_total_years": null,
+    "not_assessed": [
+      "A habit of writing tests and readable code."
+    ]
+  },
+  "filter": {
+    "mode": "strict",
+    "candidates_total": 35,
+    "eligible_count": 3,
+    "filtered_count": 32,
+    "scored_count": 3,
+    "filtered": [
+      {
+        "candidate_id": "aisha_okafor",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "ananya_iyer",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "arjun_nair",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "daniel_osei",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "david_okonkwo",
+        "unmet": [
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "emily_clarke",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)"
+        ]
+      },
+      {
+        "candidate_id": "fatima_al_sayed",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "grace_kim",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "hannah_berg",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "ishaan_gupta",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "james_o_brien",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "john_doe",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)"
+        ]
+      },
+      {
+        "candidate_id": "kenji_tanaka",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "kwame_mensah",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)"
+        ]
+      },
+      {
+        "candidate_id": "liam_walsh",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "lucas_martin",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "marcus_chen",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)"
+        ]
+      },
+      {
+        "candidate_id": "maria_santos",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mateo_garcia",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mohammed_rahman",
+        "unmet": [
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "nina_kowalski",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "noah_williams",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "olga_petrova",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "omar_haddad",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "peter_hughes",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma_2",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "sofia_rossi",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "tomas_novak",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "wei_zhang",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "yuki_sato",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      },
+      {
+        "candidate_id": "zoe_turner",
+        "unmet": [
+          "Java 5+ yrs (missing)",
+          "Spring Boot (missing)",
+          "Microservices (missing)"
+        ]
+      }
+    ]
+  },
+  "config": {
+    "collection": "resumes__section-v1__hf-bge-small-en-v1.5",
+    "retrieval": {
+      "mode": "hybrid",
+      "query_source": "query_text",
+      "n_semantic": 228,
+      "n_keyword": 100,
+      "keyword_skills": "critical",
+      "keyword_mode": "skills",
+      "section_weights": {
+        "experience": 1.0,
+        "projects": 0.8,
+        "skills": 0.7,
+        "summary": 0.6,
+        "certifications": 0.5,
+        "other": 0.5,
+        "education": 0.4,
+        "coursework": 0.2,
+        "hobbies": 0.1
+      },
+      "second_chunk_weight": 0.3,
+      "rrf_k": 60,
+      "list_weights": {
+        "semantic": 1.0,
+        "keyword": 1.0
+      },
+      "pool_size": 3
+    },
+    "calibration": {
+      "floor": 0.8208460479974746,
+      "ceiling": 1.0117829240560532,
+      "source": "collection",
+      "embedder_id": "hf-bge-small-en-v1.5",
+      "jd_files": [
+        "job_descriptions/data_engineer.txt",
+        "job_descriptions/devops_sre.txt",
+        "job_descriptions/frontend.txt",
+        "job_descriptions/java_backend.txt",
+        "job_descriptions/ml_engineer.txt",
+        "job_descriptions/python_backend.txt"
+      ],
+      "pairs": 210,
+      "computed_at": "2026-11-24T04:12:27+00:00",
+      "retrieval": {
+        "query_source": "query_text",
+        "second_chunk_weight": 0.3,
+        "section_weights": {
+          "experience": 1.0,
+          "projects": 0.8,
+          "skills": 0.7,
+          "summary": 0.6,
+          "certifications": 0.5,
+          "other": 0.5,
+          "education": 0.4,
+          "coursework": 0.2,
+          "hobbies": 0.1
+        }
+      },
+      "floor_pct": 50.0,
+      "ceiling_pct": 99.0
+    }
+  },
+  "notes": [],
+  "warnings": [],
+  "timings_ms": {
+    "filter": 1.0,
+    "retrieval": {
+      "embed_query": 72.0,
+      "semantic_search": 4.0,
+      "keyword_search": 0.4,
+      "aggregate_fuse": 0.1,
+      "backfill": 0.0,
+      "total": 76.4
+    },
+    "scoring": 24.5,
+    "total": 101.9
+  }
+}

@@ -64,6 +64,7 @@ class ScoredMatch:
     fused_score: float
     retrieval_rank: int  # position in the retrieval pool, 1-based
     reasoning: str = ""
+    relevant_excerpts: tuple[str, ...] = ()  # filled by the matcher (rag.excerpts)
 
 
 def round_half_up(value: float) -> int:

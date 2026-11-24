@@ -19,6 +19,9 @@ convention = "google"
 "tests/**" = ["D1"]
 "scripts/**" = ["D1"]
 "notebooks/**" = ["D1"]
+# The Python-version guard (UP036 calls it outdated) must run before any other import.
+"resume_rag.py" = ["E402", "UP036"]
+"job_matcher.py" = ["E402", "UP036"]
 
 [tool.ruff.format]
 quote-style = "double"

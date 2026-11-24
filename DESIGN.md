@@ -58,6 +58,9 @@ Planned module layout (built slice by slice, see [project-plan.md](project-plan.
 | `rag/reasoning.py` | Templated reasoning |
 | `rag/matcher.py` | Filter, retrieve, score, reason |
 | `rag/evaluation.py` | qrels loading, IR metrics, latency |
+| `rag/excerpts.py` | Relevant excerpts from the top chunks |
+| `rag/output.py` | The JSON output (brief and full formats) |
+| `rag/cli.py` | Shared CLI plumbing (settings, errors, index lookup) |
 | `resume_rag.py` / `job_matcher.py` | CLIs (thin: argument parsing + rendering) |
 
 ## 2. Loading through `fs_tools` (sandbox stays in force)
@@ -472,7 +475,8 @@ python resume_rag.py show CANDIDATE_ID [--chunker ...] [--embedder ...] [--model
   configuration errors (bad date, unknown embedder or chunker, bad chunker option, missing
   Gemini settings, missing directory, unknown candidate, no index yet), reported as one line
   on stderr with no traceback.
-- Rendering lives in `rag/console.py` (rich) so `job_matcher.py` can reuse it.
+- Rendering lives in `rag/console.py` (rich) and the shared plumbing in `rag/cli.py`, so
+  `job_matcher.py` (section 8) reuses both.
 
 First real run on this machine (bge-small on CPU, 35 resumes): section chunker 228 chunks in
 32 s of pipeline time (embedding 23 s, including the first model load), fixed chunker 86
@@ -711,6 +715,62 @@ A deterministic template, no LLM. Every clause comes from the match:
   that sentence. The evidence sentence names the sections of the top chunks and up to two
   roles from them.
 
+### Relevant excerpts (`rag/excerpts.py`)
+
+`select_excerpts(match, job, max_excerpts=3, max_chars=220)` picks short verbatim sentences
+from the match's top chunks (the matcher stores them on each `ScoredMatch`):
+
+- Only the chunk body is used, i.e. the lines after `body_start`, so role-header lines
+  (title, company, dates) never appear. Lines are joined with spaces and split into
+  sentences, not at `e.g.`, `i.e.` or decimals. A project title without a full stop can
+  therefore run into the next sentence.
+- A sentence scores 2 per distinct JD must-have skill and 1 per distinct nice-to-have it
+  mentions (`rag.skill_matcher`). Ties go to chunk order, then sentence order.
+- Experience, projects and skills chunks come first. Summary, education, certifications and
+  other sections are used only when none of those mentions a JD skill. Hobbies and
+  coursework are never used.
+- With no skill mention at all, the excerpt is the first body sentence of the chunk with the
+  best semantic score.
+- Duplicates are dropped, and a long sentence is cut at a word boundary with `…`.
+- A skills-list chunk mentions many skills in one "sentence", so it often ranks first. That
+  is honest evidence (it is the candidate's own list); role sentences follow it.
+
+### CLI (`job_matcher.py`, Part B)
+
+```text
+python job_matcher.py match (--jd PATH | --jd-text TEXT) [-k 10] [--filter strict|soft]
+                            [--mode hybrid|semantic|keyword] [--chunker ...] [--embedder ...]
+                            [--model ID] [--as-of YYYY-MM-DD] [--format full|brief]
+                            [--out PATH] [--json]
+python job_matcher.py batch [--jd-dir job_descriptions] [--out-dir results] [same options]
+python job_matcher.py parse (--jd PATH | --jd-text TEXT)
+```
+
+- It follows the same conventions as `resume_rag.py`, with the shared plumbing in
+  `rag/cli.py`:
+  - `.env` is loaded and never overrides real variables;
+  - flags beat the environment, which beats defaults;
+  - `AS_OF_DATE` blank means today, and a date that differs from the index's `as_of` only
+    warns.
+- `--jd` and `--jd-dir` are relative to `WORKSPACE_ROOT` and read through `fs_tools`, so
+  .txt, .pdf and .docx JDs all work under the sandbox. `--out` and `--out-dir` are ordinary
+  paths; missing directories are created, and files are written atomically.
+- **match** prints a rich summary by default: the JD's must-haves and nice-to-haves, filter
+  counts, the requirements not assessed, then a table (rank, name, score, matched skills,
+  reasoning) and each match's excerpts. `--json` prints the output dict, and `--out` writes it.
+- **batch** writes `<out-dir>/<jd>.json` for every JD and prints a summary table (JD,
+  eligible, returned, top candidate, top score, latency). Repeated warnings, such as a
+  missing calibration, are printed once.
+- **parse** prints the parsed `JobRequirements` as JSON.
+- **Exit codes**: 0 success. 2 for no index for the chosen chunker/embedder, an unreadable
+  or empty JD, a bad option (including `-k` < 1), missing Gemini settings, or Python older
+  than 3.14. A missing calibration is a warning on stderr, not an error.
+- **Python-version guard**: both CLIs check `sys.version_info >= (3, 14)` right after
+  `import sys`, before any other import, and otherwise exit 2 naming the Python that was
+  found and saying to activate `.venv`. The files avoid newer syntax so an older Python can
+  parse them and show the message. Ruff's E402 and UP036 are switched off for these two
+  files only.
+
 ## 9. JD parsing (rule-based)
 
 `rag/jd_parser.py` implements the JD contract in `data/job_descriptions/README.md`.
@@ -773,27 +833,50 @@ returns `(text, origin)`.
 
 ## 10. Output format
 
-Exactly as the brief specifies, one JSON object per JD (written to `results/<jd>.json` and
-printed with `rich` on request):
+`rag/output.py`, `build_output(result, job, format)`, with one JSON object per JD.
+
+**`brief`** has exactly the brief's structure: the full JD text, then the matches with exactly
+these keys in this order:
 
 ```json
 {
-  "job_description": "Senior Python Backend Engineer ...",
+  "job_description": "Senior Python Backend Engineer\nTidewater Freight Labs - ...",
   "top_matches": [
     {
-      "candidate_name": "John Doe",
-      "resume_path": "resumes/resume_john_doe.pdf",
-      "match_score": 87,
-      "matched_skills": ["python", "django", "postgresql"],
-      "relevant_excerpts": ["Led migration of the billing service to Django 5 ..."],
-      "reasoning": "Has 4/4 must-haves and 2/3 nice-to-haves ..."
+      "candidate_name": "Ananya Iyer",
+      "resume_path": "resumes/ananya_iyer.docx",
+      "match_score": 100,
+      "matched_skills": ["Python", "Django", "FastAPI", "PostgreSQL", "Docker", "Redis",
+                         "Celery", "AWS"],
+      "relevant_excerpts": ["Moved 14 Python services from hand-managed EC2 hosts to ..."],
+      "reasoning": "Meets all 3 must-haves: ..."
     }
   ]
 }
 ```
 
-Diagnostics (filtered count, score components, timing) go to stderr or a `--debug` field,
-**never** into the brief's schema.
+- `matched_skills` uses canonical taxonomy names. The JD's must-have skills the candidate
+  has come first, then its nice-to-haves, both in JD order.
+- `match_score` is an integer from 0 to 100.
+
+**`full`** (the default) starts with the same two keys and adds diagnostics after them, so a
+reader of the brief's fields sees nothing different:
+
+- per match: `candidate_id`, `score_breakdown` {`components`, `weights`}, and in soft mode
+  `unmet`;
+- `job`: title, source (path or `<text>`), must-haves (`any_of`, `min_years`),
+  nice-to-haves, `min_total_years`, `not_assessed`;
+- `filter`: mode, `candidates_total`, `eligible_count`, `filtered_count`, `scored_count`, and
+  `filtered` (each candidate id with its unmet requirements);
+- `config`: collection, the retrieval config as run, the calibration used;
+- `notes`, `warnings`, and `timings_ms` (filter, retrieval with its stages, scoring, total).
+
+Scores in the extras are rounded to 4 decimals and timings to 0.1 ms.
+
+`results/samples/` (strict) and `results/samples/soft/` hold full-format outputs for the six
+JDs on the bge section collection, committed for graders. They are regenerated with
+`job_matcher.py batch ... --out-dir results/samples` and not checked for staleness. Every
+other `results/**/*.json` is git-ignored.
 
 ## 11. Evaluation
 

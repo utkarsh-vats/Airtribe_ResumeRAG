@@ -1,0 +1,475 @@
+{
+  "job_description": "DevOps / Site Reliability Engineer\nKestrel Payments - Dublin, Ireland (or remote within Ireland)\n\nAbout us\nKestrel Payments processes card payments for 18,000 independent shops, cafes and market stalls. When our platform is down, small businesses can't take money, so reliability is the product. We are 90 people, a third of them engineers, and we have been profitable for three years.\n\nThe role\nOur platform team of seven keeps 140 services running across three regions. You'll improve how we provision, deploy and observe them, and you'll be the reliability partner for two product squads. Most of our services are written in Java and Python, and our deploy pipeline runs on GitHub Actions. You won't need to write application code, but you'll read plenty of it.\n\nWe are halfway through moving the last of our older virtual machines into containers, and we want someone who enjoys finishing migrations as much as starting them. You'll also own our disaster-recovery exercises, which we run every quarter with the whole engineering team watching.\n\nYour day-to-day\n- Run and upgrade our production clusters and the networking around them.\n- Turn manual runbooks into code and remove toil from on-call.\n- Define service-level objectives with product teams and build the alerting that protects them.\n- Lead incident reviews that focus on systems, not blame.\n- Plan capacity for seasonal peaks such as Black Friday and the Christmas markets.\n- Keep our cloud bill honest by finding and removing waste.\n- Share what you learn: we run a short internal talk every other Friday.\n\nMust have\n- A minimum of 4 years in DevOps, SRE or infrastructure roles.\n- Running Kubernetes in production, including upgrades and troubleshooting.\n- Infrastructure as code with Terraform.\n- Deep, hands-on AWS experience, especially networking, IAM and managed databases.\n\nPreferred\n- Packaging applications with Helm.\n- Monitoring and alerting with Prometheus.\n- GitOps delivery with ArgoCD.\n- Some Go, for operators or small internal tools.\n\nLocation and benefits\n- Office in Dublin's Docklands; fully remote within Ireland also works.\n- On-call is paid, and rotations are one week in six.\n- Pension matching up to 8%, 25 days of holiday plus public holidays, and a cycle-to-work scheme.\n- A yearly budget for conferences, books and certifications.\n- A new laptop of your choice, and a home-office allowance in your first month.\n",
+  "top_matches": [
+    {
+      "candidate_name": "Olga Petrova",
+      "resume_path": "resumes/olga_petrova.pdf",
+      "match_score": 96,
+      "matched_skills": [
+        "Kubernetes",
+        "Terraform",
+        "AWS",
+        "Helm",
+        "Prometheus",
+        "Go"
+      ],
+      "relevant_excerpts": [
+        "Run 12 production Kubernetes clusters on AWS for a freight-booking platform with a 99.95% availability target.",
+        "Led the move of the first workloads to AWS, writing the Terraform for networking and IAM.",
+        "Rewrote the infrastructure as Terraform modules shared by six teams, removing 2,000 lines of copy-pasted config."
+      ],
+      "reasoning": "Meets all 3 must-haves: Kubernetes 4.8 yrs, Terraform 9.4 yrs, AWS 9.4 yrs. Has 3 of 4 nice-to-haves (Helm, Prometheus, Go). 9.4 years' total experience (4+ required). Strongest evidence in Experience (Senior Site Reliability Engineer at Baltic Freightways, Site Reliability Engineer at Neva Telecom).",
+      "candidate_id": "olga_petrova",
+      "score_breakdown": {
+        "components": {
+          "semantic": 1.0,
+          "must_have": 1.0,
+          "nice_to_have": 0.75,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "Marcus Chen",
+      "resume_path": "resumes/marcus_chen.pdf",
+      "match_score": 90,
+      "matched_skills": [
+        "Kubernetes",
+        "Terraform",
+        "AWS",
+        "Helm",
+        "Prometheus",
+        "ArgoCD",
+        "Go"
+      ],
+      "relevant_excerpts": [
+        "Migrated on-prem virtual machines to AWS using reusable Terraform modules.",
+        "Wrote a Go Kubernetes operator that automates certificate rotation, eliminating 95% of manual tickets.",
+        "Operated 40+ Kubernetes clusters on EKS serving 600 microservices."
+      ],
+      "reasoning": "Meets all 3 must-haves: Kubernetes 4.7 yrs, Terraform 2.8 yrs, AWS 7.5 yrs. Has 4 of 4 nice-to-haves (Helm, Prometheus, ArgoCD, Go). 7.5 years' total experience (4+ required). Strongest evidence in Experience (DevOps Engineer at Rainier Media, Senior Platform Engineer at Cascade Cloudworks).",
+      "candidate_id": "marcus_chen",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.7526,
+          "must_have": 1.0,
+          "nice_to_have": 1.0,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "David Okonkwo",
+      "resume_path": "resumes/david_okonkwo.pdf",
+      "match_score": 79,
+      "matched_skills": [
+        "Kubernetes",
+        "Terraform",
+        "AWS",
+        "ArgoCD"
+      ],
+      "relevant_excerpts": [
+        "Designed the landing-zone Terraform used for 220 AWS accounts, with policy-as-code guardrails signed off by the regulator.",
+        "Chair the Kubernetes architecture forum and set the bank's container security baseline.",
+        "Moved the e-commerce platform from a co-located data centre to AWS with a zero-downtime cut-over before peak season."
+      ],
+      "reasoning": "Meets all 3 must-haves: Kubernetes 6.9 yrs, Terraform 11.9 yrs, AWS 11.9 yrs. Has 1 of 4 nice-to-haves (ArgoCD). 16.9 years' total experience (4+ required). Strongest evidence in Experience (Principal Cloud Engineer at Meridian Bank Group, Lead DevOps Engineer at Atlas Retail).",
+      "candidate_id": "david_okonkwo",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.7453,
+          "must_have": 1.0,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    }
+  ],
+  "job": {
+    "title": "DevOps / Site Reliability Engineer",
+    "source": "job_descriptions/devops_sre.txt",
+    "must_have": [
+      {
+        "any_of": [
+          "Kubernetes"
+        ],
+        "min_years": null
+      },
+      {
+        "any_of": [
+          "Terraform"
+        ],
+        "min_years": null
+      },
+      {
+        "any_of": [
+          "AWS"
+        ],
+        "min_years": null
+      }
+    ],
+    "nice_to_have": [
+      "ArgoCD",
+      "Go",
+      "Helm",
+      "Prometheus"
+    ],
+    "min_total_years": 4,
+    "not_assessed": []
+  },
+  "filter": {
+    "mode": "strict",
+    "candidates_total": 35,
+    "eligible_count": 3,
+    "filtered_count": 32,
+    "scored_count": 3,
+    "filtered": [
+      {
+        "candidate_id": "aisha_okafor",
+        "unmet": [
+          "4+ total yrs (has 3.4)",
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "ananya_iyer",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)"
+        ]
+      },
+      {
+        "candidate_id": "arjun_nair",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)"
+        ]
+      },
+      {
+        "candidate_id": "daniel_osei",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "elena_rodriguez",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "emily_clarke",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "fatima_al_sayed",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "grace_kim",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "hannah_berg",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "hans_mueller",
+        "unmet": [
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "ishaan_gupta",
+        "unmet": [
+          "4+ total yrs (has 0.0)",
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "james_o_brien",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "john_doe",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)"
+        ]
+      },
+      {
+        "candidate_id": "kenji_tanaka",
+        "unmet": [
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "kwame_mensah",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "liam_walsh",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "lucas_martin",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "maria_santos",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mateo_garcia",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mohammed_rahman",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "nina_kowalski",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)"
+        ]
+      },
+      {
+        "candidate_id": "noah_williams",
+        "unmet": [
+          "Terraform (missing)"
+        ]
+      },
+      {
+        "candidate_id": "omar_haddad",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "peter_hughes",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma_2",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "rahul_verma",
+        "unmet": [
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "sofia_rossi",
+        "unmet": [
+          "4+ total yrs (has 2.9)",
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "tomas_novak",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "wei_zhang",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "yuki_sato",
+        "unmet": [
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      },
+      {
+        "candidate_id": "zoe_turner",
+        "unmet": [
+          "4+ total yrs (has 1.6)",
+          "Kubernetes (missing)",
+          "Terraform (missing)",
+          "AWS (missing)"
+        ]
+      }
+    ]
+  },
+  "config": {
+    "collection": "resumes__section-v1__hf-bge-small-en-v1.5",
+    "retrieval": {
+      "mode": "hybrid",
+      "query_source": "query_text",
+      "n_semantic": 228,
+      "n_keyword": 100,
+      "keyword_skills": "critical",
+      "keyword_mode": "skills",
+      "section_weights": {
+        "experience": 1.0,
+        "projects": 0.8,
+        "skills": 0.7,
+        "summary": 0.6,
+        "certifications": 0.5,
+        "other": 0.5,
+        "education": 0.4,
+        "coursework": 0.2,
+        "hobbies": 0.1
+      },
+      "second_chunk_weight": 0.3,
+      "rrf_k": 60,
+      "list_weights": {
+        "semantic": 1.0,
+        "keyword": 1.0
+      },
+      "pool_size": 3
+    },
+    "calibration": {
+      "floor": 0.8208460479974746,
+      "ceiling": 1.0117829240560532,
+      "source": "collection",
+      "embedder_id": "hf-bge-small-en-v1.5",
+      "jd_files": [
+        "job_descriptions/data_engineer.txt",
+        "job_descriptions/devops_sre.txt",
+        "job_descriptions/frontend.txt",
+        "job_descriptions/java_backend.txt",
+        "job_descriptions/ml_engineer.txt",
+        "job_descriptions/python_backend.txt"
+      ],
+      "pairs": 210,
+      "computed_at": "2026-11-24T04:12:27+00:00",
+      "retrieval": {
+        "query_source": "query_text",
+        "second_chunk_weight": 0.3,
+        "section_weights": {
+          "experience": 1.0,
+          "projects": 0.8,
+          "skills": 0.7,
+          "summary": 0.6,
+          "certifications": 0.5,
+          "other": 0.5,
+          "education": 0.4,
+          "coursework": 0.2,
+          "hobbies": 0.1
+        }
+      },
+      "floor_pct": 50.0,
+      "ceiling_pct": 99.0
+    }
+  },
+  "notes": [],
+  "warnings": [],
+  "timings_ms": {
+    "filter": 1.4,
+    "retrieval": {
+      "embed_query": 114.5,
+      "semantic_search": 4.9,
+      "keyword_search": 0.4,
+      "aggregate_fuse": 0.1,
+      "backfill": 0.0,
+      "total": 119.9
+    },
+    "scoring": 34.4,
+    "total": 155.7
+  }
+}

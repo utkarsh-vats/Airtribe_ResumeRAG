@@ -195,3 +195,75 @@ def render_candidate(metadata: CandidateMetadata, console: Console) -> None:
             console.print(f"  - {warning}")
     else:
         console.print("Warnings: none")
+
+
+# --- job_matcher.py -----------------------------------------------------------------------
+
+
+def render_match(output: dict, console: Console) -> None:
+    """A full-format match output: header, ranked table, then each match's excerpts."""
+    job, filt = output["job"], output["filter"]
+    console.print(f"[bold]{job['title']}[/bold] ({job['source']})")
+    must = "; ".join(
+        " or ".join(r["any_of"]) + (f" {r['min_years']}+ yrs" if r["min_years"] is not None else "")
+        for r in job["must_have"]
+    )
+    console.print(f"Must-haves: {must or 'none'}")
+    if job["min_total_years"] is not None:
+        console.print(f"Total experience: {job['min_total_years']}+ yrs")
+    console.print(f"Nice-to-haves: {', '.join(job['nice_to_have']) or 'none'}")
+    console.print(
+        f"Filter: {filt['mode']} - {filt['eligible_count']} of {filt['candidates_total']} "
+        f"candidates meet every must-have; {filt['filtered_count']} filtered, "
+        f"{filt['scored_count']} scored"
+    )
+    for item in job["not_assessed"]:
+        console.print(f"Not assessed: {item}")
+    for note in output["notes"]:
+        console.print(f"Note: {note}")
+    table = Table(title=f"Top {len(output['top_matches'])} matches")
+    table.add_column("#", justify="right")
+    table.add_column("name")
+    table.add_column("score", justify="right")
+    table.add_column("matched skills")
+    table.add_column("reasoning")
+    for rank, match in enumerate(output["top_matches"], start=1):
+        table.add_row(
+            str(rank),
+            match["candidate_name"],
+            str(match["match_score"]),
+            ", ".join(match["matched_skills"]),
+            match["reasoning"],
+        )
+    console.print(table)
+    for rank, match in enumerate(output["top_matches"], start=1):
+        console.print(f"[bold]{rank}. {match['candidate_name']}[/bold] ({match['resume_path']})")
+        for excerpt in match["relevant_excerpts"]:
+            console.print(f"   - {excerpt}")
+    console.print(f"Total time: {output['timings_ms']['total']:.0f} ms")
+
+
+def render_batch_summary(rows: list[dict], console: Console) -> None:
+    """One row per JD: eligible, returned, top candidate, top score, latency."""
+    table = Table(title="Batch summary")
+    for column, justify in (
+        ("JD", "left"),
+        ("eligible", "right"),
+        ("returned", "right"),
+        ("top candidate", "left"),
+        ("top score", "right"),
+        ("latency ms", "right"),
+        ("output", "left"),
+    ):
+        table.add_column(column, justify=justify)
+    for row in rows:
+        table.add_row(
+            row["jd"],
+            str(row["eligible"]),
+            str(row["returned"]),
+            row["top_candidate"] or "-",
+            "-" if row["top_score"] is None else str(row["top_score"]),
+            f"{row['latency_ms']:.0f}",
+            row["output"],
+        )
+    console.print(table)

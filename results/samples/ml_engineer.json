@@ -1,0 +1,468 @@
+{
+  "job_description": "Machine Learning Engineer\nNorthlight Diagnostics - Remote (UK or EU time zones)\n\nWho we are\nNorthlight Diagnostics helps radiology teams triage scans faster. Our models review 40,000 chest X-rays a week across 30 hospitals, and a clinician checks every prediction before it reaches a patient record.\n\nAbout the role\nYou'll train, evaluate and ship the models clinicians rely on, working closely with our radiologists and the platform team. Our clinician dashboards are written in TypeScript, and the platform team runs everything on Kubernetes, so you'll spend your time on models rather than on servers.\n\nResponsibilities\n- Turn research prototypes into reliable, monitored production models.\n- Design evaluation sets with clinicians and track model quality over time.\n- Make training pipelines faster, so experiments take hours rather than days.\n- Write up results so that doctors and regulators can follow them.\n\nWhat you'll need:\n- At least 3 years' experience writing production Python.\n- Hands-on experience training models with PyTorch.\n- A solid grounding in machine learning, including validation, bias and failure analysis.\n- Clear writing: you'll explain model behaviour to doctors.\n\nBonus points:\n- Experiment tracking with MLflow.\n- Computer vision, especially medical imaging.\n- Natural language processing for radiology reports.\n- Packaging models with Docker.\n\nBenefits:\n- Fully remote, with a team week in Edinburgh twice a year.\n- Private health cover and a home-office budget.\n- A four-day working week every August.\n",
+  "top_matches": [
+    {
+      "candidate_name": "Wei Zhang",
+      "resume_path": "resumes/wei_zhang.pdf",
+      "match_score": 84,
+      "matched_skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "Computer Vision",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Train and ship PyTorch computer vision models for warehouse robots, lifting pick accuracy from 91% to 97.5%.",
+        "Developed PyTorch computer vision models that count shipping containers from port cameras, replacing manual tallies at three terminals.",
+        "Set up a Python evaluation harness that replays 2 million labelled frames before every release."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 6.2 yrs (3+ required), PyTorch 6.2 yrs, Machine Learning 6.2 yrs. Has 2 of 4 nice-to-haves (Computer Vision, Docker). 6.2 years' total experience. Strongest evidence in Experience (Machine Learning Engineer at Lumen Robotics, Computer Vision Engineer at Harbor Eye Analytics) and Projects.",
+      "candidate_id": "wei_zhang",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.7846,
+          "must_have": 1.0,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "Kenji Tanaka",
+      "resume_path": "resumes/kenji_tanaka.txt",
+      "match_score": 73,
+      "matched_skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "MLflow",
+        "Computer Vision"
+      ],
+      "relevant_excerpts": [
+        "Lead a team of 6 deploying real-time PyTorch computer vision models on Kubernetes with Triton Inference Server.",
+        "Built a CTR-prediction machine learning pipeline on Spark and Kubeflow.",
+        "Wrote internal python libraries for feature validation."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 8.9 yrs (3+ required), PyTorch 4.9 yrs, Machine Learning 8.9 yrs. Has 2 of 4 nice-to-haves (MLflow, Computer Vision). 10.9 years' total experience. Strongest evidence in Experience (Staff ML Engineer at Sakura Vision, ML Engineer at Shibuya Ads).",
+      "candidate_id": "kenji_tanaka",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.5131,
+          "must_have": 1.0,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    },
+    {
+      "candidate_name": "Fatima Al-Sayed",
+      "resume_path": "resumes/fatima_al_sayed.pdf",
+      "match_score": 67,
+      "matched_skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "Natural Language Processing",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Fine-tune and evaluate Arabic LLMs with PyTorch and Hugging Face, improving dialect question-answering accuracy by 11 points.",
+        "Built a Python evaluation suite covering 14 Arabic dialects that is now the team's release gate.",
+        "Built named-entity recognition models in PyTorch for legal contracts in Arabic and English."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 4.2 yrs (3+ required), PyTorch 4.2 yrs, Machine Learning 4.2 yrs. Has 2 of 4 nice-to-haves (Natural Language Processing, Docker). 4.2 years' total experience. Strongest evidence in Experience (Research Engineer, NLP at Qalam AI, Applied Scientist at Mirage Language Labs).",
+      "candidate_id": "fatima_al_sayed",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.3637,
+          "must_have": 1.0,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      }
+    }
+  ],
+  "job": {
+    "title": "Machine Learning Engineer",
+    "source": "job_descriptions/ml_engineer.txt",
+    "must_have": [
+      {
+        "any_of": [
+          "Python"
+        ],
+        "min_years": 3
+      },
+      {
+        "any_of": [
+          "PyTorch"
+        ],
+        "min_years": null
+      },
+      {
+        "any_of": [
+          "Machine Learning"
+        ],
+        "min_years": null
+      }
+    ],
+    "nice_to_have": [
+      "Computer Vision",
+      "Docker",
+      "MLflow",
+      "Natural Language Processing"
+    ],
+    "min_total_years": null,
+    "not_assessed": [
+      "Clear writing: you'll explain model behaviour to doctors."
+    ]
+  },
+  "filter": {
+    "mode": "strict",
+    "candidates_total": 35,
+    "eligible_count": 3,
+    "filtered_count": 32,
+    "scored_count": 3,
+    "filtered": [
+      {
+        "candidate_id": "aisha_okafor",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "ananya_iyer",
+        "unmet": [
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "arjun_nair",
+        "unmet": [
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "daniel_osei",
+        "unmet": [
+          "Python 3+ yrs (has 2.7)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "david_okonkwo",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "elena_rodriguez",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "emily_clarke",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "grace_kim",
+        "unmet": [
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "hannah_berg",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "hans_mueller",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "ishaan_gupta",
+        "unmet": [
+          "Python 3+ yrs (has 0.0)"
+        ]
+      },
+      {
+        "candidate_id": "james_o_brien",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "john_doe",
+        "unmet": [
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "kwame_mensah",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "liam_walsh",
+        "unmet": [
+          "Python 3+ yrs (has 2.8)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "lucas_martin",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "marcus_chen",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "maria_santos",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mateo_garcia",
+        "unmet": [
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "mohammed_rahman",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "nina_kowalski",
+        "unmet": [
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "noah_williams",
+        "unmet": [
+          "PyTorch (missing)"
+        ]
+      },
+      {
+        "candidate_id": "olga_petrova",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "omar_haddad",
+        "unmet": [
+          "Python 3+ yrs (has 0.0)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "peter_hughes",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma",
+        "unmet": [
+          "PyTorch (missing)"
+        ]
+      },
+      {
+        "candidate_id": "priya_sharma_2",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "rahul_verma",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "sofia_rossi",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "tomas_novak",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "yuki_sato",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      },
+      {
+        "candidate_id": "zoe_turner",
+        "unmet": [
+          "Python 3+ yrs (missing)",
+          "PyTorch (missing)",
+          "Machine Learning (missing)"
+        ]
+      }
+    ]
+  },
+  "config": {
+    "collection": "resumes__section-v1__hf-bge-small-en-v1.5",
+    "retrieval": {
+      "mode": "hybrid",
+      "query_source": "query_text",
+      "n_semantic": 228,
+      "n_keyword": 100,
+      "keyword_skills": "critical",
+      "keyword_mode": "skills",
+      "section_weights": {
+        "experience": 1.0,
+        "projects": 0.8,
+        "skills": 0.7,
+        "summary": 0.6,
+        "certifications": 0.5,
+        "other": 0.5,
+        "education": 0.4,
+        "coursework": 0.2,
+        "hobbies": 0.1
+      },
+      "second_chunk_weight": 0.3,
+      "rrf_k": 60,
+      "list_weights": {
+        "semantic": 1.0,
+        "keyword": 1.0
+      },
+      "pool_size": 3
+    },
+    "calibration": {
+      "floor": 0.8208460479974746,
+      "ceiling": 1.0117829240560532,
+      "source": "collection",
+      "embedder_id": "hf-bge-small-en-v1.5",
+      "jd_files": [
+        "job_descriptions/data_engineer.txt",
+        "job_descriptions/devops_sre.txt",
+        "job_descriptions/frontend.txt",
+        "job_descriptions/java_backend.txt",
+        "job_descriptions/ml_engineer.txt",
+        "job_descriptions/python_backend.txt"
+      ],
+      "pairs": 210,
+      "computed_at": "2026-11-24T04:12:27+00:00",
+      "retrieval": {
+        "query_source": "query_text",
+        "second_chunk_weight": 0.3,
+        "section_weights": {
+          "experience": 1.0,
+          "projects": 0.8,
+          "skills": 0.7,
+          "summary": 0.6,
+          "certifications": 0.5,
+          "other": 0.5,
+          "education": 0.4,
+          "coursework": 0.2,
+          "hobbies": 0.1
+        }
+      },
+      "floor_pct": 50.0,
+      "ceiling_pct": 99.0
+    }
+  },
+  "notes": [],
+  "warnings": [],
+  "timings_ms": {
+    "filter": 1.4,
+    "retrieval": {
+      "embed_query": 60.2,
+      "semantic_search": 4.2,
+      "keyword_search": 0.3,
+      "aggregate_fuse": 0.1,
+      "backfill": 0.0,
+      "total": 64.8
+    },
+    "scoring": 18.8,
+    "total": 84.9
+  }
+}

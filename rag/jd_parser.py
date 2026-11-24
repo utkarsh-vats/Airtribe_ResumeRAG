@@ -431,7 +431,14 @@ def load_job_description(source: str) -> tuple[str, str]:
         raise JobDescriptionError("the job description is empty")
     if not _looks_like_path(source):
         return source, "<text>"
-    path = source.strip()
+    return read_job_description(source)
+
+
+def read_job_description(path: str) -> tuple[str, str]:
+    """``(text, path)`` for a JD file under ``WORKSPACE_ROOT``, read via ``fs_tools``."""
+    path = path.strip()
+    if not path:
+        raise JobDescriptionError("the job description path is empty")
     result = fs_tools.read_file(path)
     if not result["success"]:
         error = result["error"]

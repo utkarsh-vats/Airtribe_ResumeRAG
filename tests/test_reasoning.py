@@ -69,3 +69,16 @@ def test_join_words():
         "a and b",
         "a, b and c",
     ]
+
+
+def test_self_employed_roles():
+    roles = (("Freelance Python Developer", "Self-employed"), ("Backend Engineer", "Pampa"))
+    chunks = [top("experience", 0), top("experience", 1)]
+    match = scored({"Python": 85}, chunks=chunks, roles=roles)
+    assert reasoning(match, PY_JD).endswith(
+        "Strongest evidence in Experience (Freelance Python Developer (self-employed), "
+        "Backend Engineer at Pampa)."
+    )
+    for company in ("Freelance", "self employed", "Freelancer"):
+        check = check_candidate(meta(roles=(("Designer", company),)), PY_JD)
+        assert check.role_labels == ("Designer (self-employed)",)

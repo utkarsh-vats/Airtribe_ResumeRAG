@@ -1,0 +1,474 @@
+{
+  "job_description": "Senior Python Backend Engineer\nTidewater Freight Labs - Rotterdam, Netherlands (hybrid)\n\nAbout us\nTidewater Freight Labs builds the booking and tracking platform behind 1,200 European freight forwarders. Our services move 9 million shipment events a day, and our 60 engineers care about calm on-call rotations, small pull requests and clear code reviews.\n\nThe role\nYou'll join the Shipments squad as a senior engineer, owning the services that turn raw carrier messages into the timeline our customers see. You'll work alongside our React frontend team, and with the data platform group, who run our analytics on BigQuery. Expect to spend most of your time on design and delivery, with a steady share of mentoring.\n\nWhat you'll do\n- Design and build backend services and public APIs used by thousands of forwarders.\n- Own the shipment data model and keep it fast at our scale.\n- Review code, mentor two mid-level engineers and help shape the technical roadmap.\n- Write design documents that the rest of the squad can challenge and build on.\n- Join a light on-call rotation, one week in eight.\n\nRequirements\n- 5+ years of professional Python experience, ideally building backend services.\n- Production experience with Django or FastAPI.\n- Solid PostgreSQL skills: schema design, indexing and query tuning.\n- Comfortable owning a service end to end, from design document to production.\n\nNice to have\n- Docker for local development and deployment.\n- Redis for caching or rate limiting.\n- Background jobs with Celery.\n- Running services on AWS.\n\nLocation and benefits\n- Hybrid: two days a week in our Rotterdam office, a short walk from the harbour.\n- 30 days of paid holiday and a yearly learning budget of 2,000 euros.\n- Relocation support for anyone moving to the Netherlands.\n- Salary bands are published internally, and we share yours in the first call.\n",
+  "top_matches": [
+    {
+      "candidate_name": "Ananya Iyer",
+      "resume_path": "resumes/ananya_iyer.docx",
+      "match_score": 100,
+      "matched_skills": [
+        "Python",
+        "Django",
+        "FastAPI",
+        "PostgreSQL",
+        "Docker",
+        "Redis",
+        "Celery",
+        "AWS"
+      ],
+      "relevant_excerpts": [
+        "Moved 14 Python services from hand-managed EC2 hosts to Docker containers on AWS ECS with blue-green releases.",
+        "Own the order-management service in FastAPI, serving 2,500 requests per second with p99 latency under 120 ms.",
+        "Partitioned a 1.8 TB PostgreSQL orders table by month, cutting nightly vacuum time from 6 hours to 40 minutes."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 7.1 yrs (5+ required), Django 2.8 yrs (Django or FastAPI), PostgreSQL 7.1 yrs. Has 4 of 4 nice-to-haves (Docker, Redis, Celery, AWS). 7.1 years' total experience. Strongest evidence in Experience (Senior Software Engineer, Backend at Kaveri Commerce, Software Engineer at Nimbus Ledger).",
+      "candidate_id": "ananya_iyer",
+      "score_breakdown": {
+        "components": {
+          "semantic": 1.0,
+          "must_have": 1.0,
+          "nice_to_have": 1.0,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": []
+    },
+    {
+      "candidate_name": "John Doe",
+      "resume_path": "resumes/john_doe.pdf",
+      "match_score": 99,
+      "matched_skills": [
+        "Python",
+        "Django",
+        "FastAPI",
+        "PostgreSQL",
+        "Docker",
+        "Redis",
+        "Celery",
+        "AWS"
+      ],
+      "relevant_excerpts": [
+        "Led migration of a monolithic Django app to 12 FastAPI microservices, cutting p95 latency by 40%.",
+        "django-audit-lite Maintainer of an open-source Python package for Django model change history.",
+        "Designed an idempotent payment-webhook pipeline on Celery and Redis processing 3M events per day."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 8.9 yrs (5+ required), Django 6.9 yrs (Django or FastAPI), PostgreSQL 4.0 yrs. Has 4 of 4 nice-to-haves (Docker, Redis, Celery, AWS). 8.9 years' total experience. Strongest evidence in Experience (Senior Backend Engineer at Lonestar Payments, Junior Software Engineer at Prairie Logistics) and Projects.",
+      "candidate_id": "john_doe",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.9638,
+          "must_have": 1.0,
+          "nice_to_have": 1.0,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": []
+    },
+    {
+      "candidate_name": "Noah Williams",
+      "resume_path": "resumes/noah_williams.txt",
+      "match_score": 93,
+      "matched_skills": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Docker",
+        "AWS"
+      ],
+      "relevant_excerpts": [
+        "Rebuilt the shipment-tracking service in FastAPI on Python 3.12, now ingesting 40M carrier events a day.",
+        "Tuned Postgres indexes and partitioning, cutting p95 query latency from 900 ms to 85 ms.",
+        "Built RESTful APIs in Python 3 for smart-meter billing across 220,000 households."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 6.1 yrs (5+ required), FastAPI 3.8 yrs (Django or FastAPI), PostgreSQL 6.1 yrs. Has 2 of 4 nice-to-haves (Docker, AWS). 6.1 years' total experience. Strongest evidence in Experience (Senior Backend Engineer at Harbourline Freight, Backend Developer at Maple Grid Energy).",
+      "candidate_id": "noah_williams",
+      "score_breakdown": {
+        "components": {
+          "semantic": 1.0,
+          "must_have": 1.0,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": []
+    },
+    {
+      "candidate_name": "Mateo Garcia",
+      "resume_path": "resumes/mateo_garcia.pdf",
+      "match_score": 86,
+      "matched_skills": [
+        "Python",
+        "Django",
+        "FastAPI",
+        "PostgreSQL",
+        "Docker",
+        "Celery"
+      ],
+      "relevant_excerpts": [
+        "Delivered REST APIs in FastAPI for four e-commerce and logistics clients alongside my full-time role.",
+        "Built a Python inventory-sync service linking two marketplaces to a client's warehouse, covering 15,000 SKUs.",
+        "Maintain the booking engine's Django back office used by 120 travel agents across Argentina and Chile."
+      ],
+      "reasoning": "Meets 2 of 3 must-haves: Django 4.3 yrs (Django or FastAPI), PostgreSQL 4.3 yrs. Misses: Python 5+ yrs (has 4.3). Has 2 of 4 nice-to-haves (Docker, Celery). 4.3 years' total experience. Strongest evidence in Experience (Freelance Python Developer (self-employed), Backend Engineer at Pampa Travel Tech).",
+      "candidate_id": "mateo_garcia",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.9155,
+          "must_have": 0.9556,
+          "nice_to_have": 0.5,
+          "experience": 0.8667
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Python 5+ yrs (has 4.3)"
+      ]
+    },
+    {
+      "candidate_name": "Nina Kowalski",
+      "resume_path": "resumes/nina_kowalski.txt",
+      "match_score": 50,
+      "matched_skills": [
+        "Python",
+        "AWS"
+      ],
+      "relevant_excerpts": [
+        "Wrote the SQL models behind the merchandising marts and the Python test harness that checks them.",
+        "Run the Apache Spark platform that builds the sales and stock lake for 900 stores, about 4 TB a day on AWS."
+      ],
+      "reasoning": "Meets 1 of 3 must-haves: Python 6.3 yrs (5+ required). Misses: Django or FastAPI (missing); PostgreSQL (missing). Has 1 of 4 nice-to-haves (AWS). 6.3 years' total experience. Strongest evidence in Experience (Senior Data Engineer at Wawel Retail Group, Data Engineer at Vistula Telecom).",
+      "candidate_id": "nina_kowalski",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.5265,
+          "must_have": 0.3333,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Django or FastAPI (missing)",
+        "PostgreSQL (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Wei Zhang",
+      "resume_path": "resumes/wei_zhang.pdf",
+      "match_score": 46,
+      "matched_skills": [
+        "Python",
+        "FastAPI",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Languages: Python AI & Modelling: PyTorch, Computer Vision, Deep Learning, ONNX Backend: FastAPI DevOps & Tooling: Docker, Git Data: NumPy Databases: MongoDB",
+        "Built the FastAPI model-serving gateway, with Docker images rolled out to 400 robots through staged updates.",
+        "Set up a Python evaluation harness that replays 2 million labelled frames before every release."
+      ],
+      "reasoning": "Meets 2 of 3 must-haves: Python 6.2 yrs (5+ required), FastAPI 3.8 yrs (Django or FastAPI). Misses: PostgreSQL (missing). Has 1 of 4 nice-to-haves (Docker). 6.2 years' total experience. Strongest evidence in Experience (Machine Learning Engineer at Lumen Robotics, Computer Vision Engineer at Harbor Eye Analytics) and Skills.",
+      "candidate_id": "wei_zhang",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.1781,
+          "must_have": 0.6667,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "PostgreSQL (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Emily Clarke",
+      "resume_path": "resumes/emily_clarke.docx",
+      "match_score": 44,
+      "matched_skills": [
+        "PostgreSQL",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "JavaScript, TypeScript, Node.js, Express.js, React, Microservices, PostgreSQL, MongoDB, Docker, Jest, REST APIs",
+        "Split the merchant monolith into nine Node.js microservices written in TypeScript, each owning its own PostgreSQL schema.",
+        "Packaged every service with Docker and cut local environment setup from a day to 20 minutes."
+      ],
+      "reasoning": "Meets 1 of 3 must-haves: PostgreSQL 3.9 yrs. Misses: Python 5+ yrs (missing); Django or FastAPI (missing). Has 1 of 4 nice-to-haves (Docker). 5.2 years' total experience. Strongest evidence in Experience (Senior Full-Stack Engineer at Pennine Payments, Full-Stack Developer at Irwell Digital) and Skills.",
+      "candidate_id": "emily_clarke",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.76,
+          "must_have": 0.3333,
+          "nice_to_have": 0.25,
+          "experience": 0.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Python 5+ yrs (missing)",
+        "Django or FastAPI (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Daniel Osei",
+      "resume_path": "resumes/daniel_osei.docx",
+      "match_score": 44,
+      "matched_skills": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Python, Django, Django REST Framework, PostgreSQL, HTML, CSS, Docker, pytest, Git, Excel",
+        "Built teacher-facing Django pages for setting and marking homework, used in 40 schools.",
+        "Wrote Python scripts that import pupil rosters from school information systems each night."
+      ],
+      "reasoning": "Meets 2 of 3 must-haves: Django 2.7 yrs (Django or FastAPI), PostgreSQL 1.4 yrs. Misses: Python 5+ yrs (has 2.7). Has 1 of 4 nice-to-haves (Docker). 11.6 years' total experience. Strongest evidence in Experience (Junior Developer at Brightpath EdTech, Django Developer at Ledgerly) and Skills.",
+      "candidate_id": "daniel_osei",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.1762,
+          "must_have": 0.8444,
+          "nice_to_have": 0.25,
+          "experience": 0.5333
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Python 5+ yrs (has 2.7)"
+      ]
+    },
+    {
+      "candidate_name": "Arjun Nair",
+      "resume_path": "resumes/arjun_nair.pdf",
+      "match_score": 42,
+      "matched_skills": [
+        "Python",
+        "Docker",
+        "AWS"
+      ],
+      "relevant_excerpts": [
+        "Data: PySpark, Airflow Backend: Kafka Cloud: AWS Languages: SQL, Python DevOps & Tooling: Docker, Git",
+        "Wrote incremental SQL loads into the AWS warehouse and versioned every pipeline in Git.",
+        "Lead six engineers running the viewing-events platform: Kafka streams of 1.5 billion events a day landing in an AWS lake."
+      ],
+      "reasoning": "Meets 1 of 3 must-haves: Python 8.1 yrs (5+ required). Misses: Django or FastAPI (missing); PostgreSQL (missing). Has 2 of 4 nice-to-haves (Docker, AWS). 8.1 years' total experience. Strongest evidence in Experience (Data Engineer at Periyar Fintech, Lead Data Engineer at Malabar Streaming) and Skills.",
+      "candidate_id": "arjun_nair",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.2333,
+          "must_have": 0.3333,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Django or FastAPI (missing)",
+        "PostgreSQL (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Grace Kim",
+      "resume_path": "resumes/grace_kim.docx",
+      "match_score": 35,
+      "matched_skills": [
+        "Python"
+      ],
+      "relevant_excerpts": [
+        "Built Spark jobs in Python that sessionise 300 million streaming events a day.",
+        "Data | dbt, Snowflake, Spark, Airflow, Looker Languages | SQL, Python DevOps & Tooling | Git"
+      ],
+      "reasoning": "Meets none of the 3 must-haves. Misses: Python 5+ yrs (has 4.2); Django or FastAPI (missing); PostgreSQL (missing). Has none of the 4 nice-to-haves. 4.2 years' total experience. Strongest evidence in Experience (Junior Data Engineer at Namsan Media, Analytics Engineer at Han River Commerce) and Skills.",
+      "candidate_id": "grace_kim",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.3425,
+          "must_have": 0.2778,
+          "nice_to_have": 0.0,
+          "experience": 0.8333
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Python 5+ yrs (has 4.2)",
+        "Django or FastAPI (missing)",
+        "PostgreSQL (missing)"
+      ]
+    }
+  ],
+  "job": {
+    "title": "Senior Python Backend Engineer",
+    "source": "job_descriptions/python_backend.txt",
+    "must_have": [
+      {
+        "any_of": [
+          "Python"
+        ],
+        "min_years": 5
+      },
+      {
+        "any_of": [
+          "Django",
+          "FastAPI"
+        ],
+        "min_years": null
+      },
+      {
+        "any_of": [
+          "PostgreSQL"
+        ],
+        "min_years": null
+      }
+    ],
+    "nice_to_have": [
+      "AWS",
+      "Celery",
+      "Docker",
+      "Redis"
+    ],
+    "min_total_years": null,
+    "not_assessed": [
+      "Comfortable owning a service end to end, from design document to production."
+    ]
+  },
+  "filter": {
+    "mode": "soft",
+    "candidates_total": 35,
+    "eligible_count": 3,
+    "filtered_count": 0,
+    "scored_count": 35,
+    "filtered": []
+  },
+  "config": {
+    "collection": "resumes__section-v1__hf-bge-small-en-v1.5",
+    "retrieval": {
+      "mode": "hybrid",
+      "query_source": "query_text",
+      "n_semantic": 228,
+      "n_keyword": 100,
+      "keyword_skills": "critical",
+      "keyword_mode": "skills",
+      "section_weights": {
+        "experience": 1.0,
+        "projects": 0.8,
+        "skills": 0.7,
+        "summary": 0.6,
+        "certifications": 0.5,
+        "other": 0.5,
+        "education": 0.4,
+        "coursework": 0.2,
+        "hobbies": 0.1
+      },
+      "second_chunk_weight": 0.3,
+      "rrf_k": 60,
+      "list_weights": {
+        "semantic": 1.0,
+        "keyword": 1.0
+      },
+      "pool_size": 35
+    },
+    "calibration": {
+      "floor": 0.8208460479974746,
+      "ceiling": 1.0117829240560532,
+      "source": "collection",
+      "embedder_id": "hf-bge-small-en-v1.5",
+      "jd_files": [
+        "job_descriptions/data_engineer.txt",
+        "job_descriptions/devops_sre.txt",
+        "job_descriptions/frontend.txt",
+        "job_descriptions/java_backend.txt",
+        "job_descriptions/ml_engineer.txt",
+        "job_descriptions/python_backend.txt"
+      ],
+      "pairs": 210,
+      "computed_at": "2026-11-24T04:12:27+00:00",
+      "retrieval": {
+        "query_source": "query_text",
+        "second_chunk_weight": 0.3,
+        "section_weights": {
+          "experience": 1.0,
+          "projects": 0.8,
+          "skills": 0.7,
+          "summary": 0.6,
+          "certifications": 0.5,
+          "other": 0.5,
+          "education": 0.4,
+          "coursework": 0.2,
+          "hobbies": 0.1
+        }
+      },
+      "floor_pct": 50.0,
+      "ceiling_pct": 99.0
+    }
+  },
+  "notes": [],
+  "warnings": [],
+  "timings_ms": {
+    "filter": 1.0,
+    "retrieval": {
+      "embed_query": 66.5,
+      "semantic_search": 18.3,
+      "keyword_search": 0.3,
+      "aggregate_fuse": 0.4,
+      "backfill": 4.0,
+      "total": 89.6
+    },
+    "scoring": 62.2,
+    "total": 152.7
+  }
+}

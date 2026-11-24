@@ -1,0 +1,459 @@
+{
+  "job_description": "Machine Learning Engineer\nNorthlight Diagnostics - Remote (UK or EU time zones)\n\nWho we are\nNorthlight Diagnostics helps radiology teams triage scans faster. Our models review 40,000 chest X-rays a week across 30 hospitals, and a clinician checks every prediction before it reaches a patient record.\n\nAbout the role\nYou'll train, evaluate and ship the models clinicians rely on, working closely with our radiologists and the platform team. Our clinician dashboards are written in TypeScript, and the platform team runs everything on Kubernetes, so you'll spend your time on models rather than on servers.\n\nResponsibilities\n- Turn research prototypes into reliable, monitored production models.\n- Design evaluation sets with clinicians and track model quality over time.\n- Make training pipelines faster, so experiments take hours rather than days.\n- Write up results so that doctors and regulators can follow them.\n\nWhat you'll need:\n- At least 3 years' experience writing production Python.\n- Hands-on experience training models with PyTorch.\n- A solid grounding in machine learning, including validation, bias and failure analysis.\n- Clear writing: you'll explain model behaviour to doctors.\n\nBonus points:\n- Experiment tracking with MLflow.\n- Computer vision, especially medical imaging.\n- Natural language processing for radiology reports.\n- Packaging models with Docker.\n\nBenefits:\n- Fully remote, with a team week in Edinburgh twice a year.\n- Private health cover and a home-office budget.\n- A four-day working week every August.\n",
+  "top_matches": [
+    {
+      "candidate_name": "Wei Zhang",
+      "resume_path": "resumes/wei_zhang.pdf",
+      "match_score": 84,
+      "matched_skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "Computer Vision",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Train and ship PyTorch computer vision models for warehouse robots, lifting pick accuracy from 91% to 97.5%.",
+        "Developed PyTorch computer vision models that count shipping containers from port cameras, replacing manual tallies at three terminals.",
+        "Set up a Python evaluation harness that replays 2 million labelled frames before every release."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 6.2 yrs (3+ required), PyTorch 6.2 yrs, Machine Learning 6.2 yrs. Has 2 of 4 nice-to-haves (Computer Vision, Docker). 6.2 years' total experience. Strongest evidence in Experience (Machine Learning Engineer at Lumen Robotics, Computer Vision Engineer at Harbor Eye Analytics) and Projects.",
+      "candidate_id": "wei_zhang",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.7846,
+          "must_have": 1.0,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": []
+    },
+    {
+      "candidate_name": "Kenji Tanaka",
+      "resume_path": "resumes/kenji_tanaka.txt",
+      "match_score": 73,
+      "matched_skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "MLflow",
+        "Computer Vision"
+      ],
+      "relevant_excerpts": [
+        "Lead a team of 6 deploying real-time PyTorch computer vision models on Kubernetes with Triton Inference Server.",
+        "Built a CTR-prediction machine learning pipeline on Spark and Kubeflow.",
+        "Wrote internal python libraries for feature validation."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 8.9 yrs (3+ required), PyTorch 4.9 yrs, Machine Learning 8.9 yrs. Has 2 of 4 nice-to-haves (MLflow, Computer Vision). 10.9 years' total experience. Strongest evidence in Experience (Staff ML Engineer at Sakura Vision, ML Engineer at Shibuya Ads).",
+      "candidate_id": "kenji_tanaka",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.5131,
+          "must_have": 1.0,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": []
+    },
+    {
+      "candidate_name": "Fatima Al-Sayed",
+      "resume_path": "resumes/fatima_al_sayed.pdf",
+      "match_score": 67,
+      "matched_skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "Natural Language Processing",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Fine-tune and evaluate Arabic LLMs with PyTorch and Hugging Face, improving dialect question-answering accuracy by 11 points.",
+        "Built a Python evaluation suite covering 14 Arabic dialects that is now the team's release gate.",
+        "Built named-entity recognition models in PyTorch for legal contracts in Arabic and English."
+      ],
+      "reasoning": "Meets all 3 must-haves: Python 4.2 yrs (3+ required), PyTorch 4.2 yrs, Machine Learning 4.2 yrs. Has 2 of 4 nice-to-haves (Natural Language Processing, Docker). 4.2 years' total experience. Strongest evidence in Experience (Research Engineer, NLP at Qalam AI, Applied Scientist at Mirage Language Labs).",
+      "candidate_id": "fatima_al_sayed",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.3637,
+          "must_have": 1.0,
+          "nice_to_have": 0.5,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": []
+    },
+    {
+      "candidate_name": "Ishaan Gupta",
+      "resume_path": "resumes/ishaan_gupta.docx",
+      "match_score": 45,
+      "matched_skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "Computer Vision"
+      ],
+      "relevant_excerpts": [
+        "Trained a PyTorch computer vision model that grades produce quality from photos, reaching 88% accuracy.",
+        "Leaf-disease classifier Final-year project: a PyTorch computer vision model that identifies 12 tomato leaf diseases from phone photos.",
+        "Wrote Python data-augmentation scripts that grew the training set from 3,000 to 18,000 images."
+      ],
+      "reasoning": "Meets 2 of 3 must-haves: PyTorch (no counted experience), Machine Learning (no counted experience). Misses: Python 3+ yrs (has 0.0). Has 1 of 4 nice-to-haves (Computer Vision). 0.0 years' total experience. Strongest evidence in Experience (Machine Learning Intern at Saffron Analytics, Data Science Intern at Kirana Commerce) and Projects.",
+      "candidate_id": "ishaan_gupta",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.5348,
+          "must_have": 0.6667,
+          "nice_to_have": 0.25,
+          "experience": 0.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Python 3+ yrs (has 0.0)"
+      ]
+    },
+    {
+      "candidate_name": "Noah Williams",
+      "resume_path": "resumes/noah_williams.txt",
+      "match_score": 40,
+      "matched_skills": [
+        "Python",
+        "Machine Learning",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Python 3, FastAPI, Postgres, k8s, Docker, Amazon Web Services, JS, ML, sklearn, RESTful APIs",
+        "Rebuilt the shipment-tracking service in FastAPI on Python 3.12, now ingesting 40M carrier events a day.",
+        "Shipped an ETA-prediction ML model built with sklearn and served it behind the tracking API."
+      ],
+      "reasoning": "Meets 2 of 3 must-haves: Python 6.1 yrs (3+ required), Machine Learning 3.8 yrs. Misses: PyTorch (missing). Has 1 of 4 nice-to-haves (Docker). 6.1 years' total experience. Strongest evidence in Experience (Senior Backend Engineer at Harbourline Freight, Backend Developer at Maple Grid Energy) and Skills.",
+      "candidate_id": "noah_williams",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.04,
+          "must_have": 0.6667,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "PyTorch (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Priya Sharma",
+      "resume_path": "resumes/priya_sharma.pdf",
+      "match_score": 37,
+      "matched_skills": [
+        "Python",
+        "Machine Learning"
+      ],
+      "relevant_excerpts": [
+        "Languages: Python, SQL Data: pandas, Airflow, Tableau, Jupyter AI & Modelling: scikit-learn, XGBoost, statsmodels Practices: A/B Testing"
+      ],
+      "reasoning": "Meets 2 of 3 must-haves: Python 5.4 yrs (3+ required), Machine Learning 5.4 yrs. Misses: PyTorch (missing). Has none of the 4 nice-to-haves. 5.4 years' total experience. Strongest evidence in Experience (Associate Data Scientist at Ganga Fintech, Data Scientist at Monsoon Retail) and Skills.",
+      "candidate_id": "priya_sharma",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.0586,
+          "must_have": 0.6667,
+          "nice_to_have": 0.0,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "PyTorch (missing)"
+      ]
+    },
+    {
+      "candidate_name": "John Doe",
+      "resume_path": "resumes/john_doe.pdf",
+      "match_score": 33,
+      "matched_skills": [
+        "Python",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Wrote Python ETL scripts consolidating shipment data from 5 carriers.",
+        "Mentored 4 engineers and introduced mypy type checking across all Python repositories.",
+        "Automated container deployments with Docker and GitHub Actions."
+      ],
+      "reasoning": "Meets 1 of 3 must-haves: Python 8.9 yrs (3+ required). Misses: PyTorch (missing); Machine Learning (missing). Has 1 of 4 nice-to-haves (Docker). 8.9 years' total experience. Strongest evidence in Experience (Junior Software Engineer at Prairie Logistics, Senior Backend Engineer at Lonestar Payments).",
+      "candidate_id": "john_doe",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.1155,
+          "must_have": 0.3333,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "PyTorch (missing)",
+        "Machine Learning (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Ananya Iyer",
+      "resume_path": "resumes/ananya_iyer.docx",
+      "match_score": 32,
+      "matched_skills": [
+        "Python",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Moved 14 Python services from hand-managed EC2 hosts to Docker containers on AWS ECS with blue-green releases.",
+        "Wrote Python scripts that de-duplicated 40,000 customer records."
+      ],
+      "reasoning": "Meets 1 of 3 must-haves: Python 7.1 yrs (3+ required). Misses: PyTorch (missing); Machine Learning (missing). Has 1 of 4 nice-to-haves (Docker). 7.1 years' total experience. Strongest evidence in Experience (Software Engineering Intern at Tessellate Labs, Software Engineer at Nimbus Ledger).",
+      "candidate_id": "ananya_iyer",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.0688,
+          "must_have": 0.3333,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "PyTorch (missing)",
+        "Machine Learning (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Mateo Garcia",
+      "resume_path": "resumes/mateo_garcia.pdf",
+      "match_score": 32,
+      "matched_skills": [
+        "Python",
+        "Docker"
+      ],
+      "relevant_excerpts": [
+        "Python, Django, FastAPI, PostgreSQL, MongoDB, Celery, Docker, Git, REST APIs",
+        "Built a Python inventory-sync service linking two marketplaces to a client's warehouse, covering 15,000 SKUs.",
+        "Introduced Docker-based local environments, taking new-hire setup from two days to one hour."
+      ],
+      "reasoning": "Meets 1 of 3 must-haves: Python 4.3 yrs (3+ required). Misses: PyTorch (missing); Machine Learning (missing). Has 1 of 4 nice-to-haves (Docker). 4.3 years' total experience. Strongest evidence in Experience (Freelance Python Developer (self-employed), Backend Engineer at Pampa Travel Tech) and Skills.",
+      "candidate_id": "mateo_garcia",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.082,
+          "must_have": 0.3333,
+          "nice_to_have": 0.25,
+          "experience": 1.0
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "PyTorch (missing)",
+        "Machine Learning (missing)"
+      ]
+    },
+    {
+      "candidate_name": "Liam Walsh",
+      "resume_path": "resumes/liam_walsh.docx",
+      "match_score": 30,
+      "matched_skills": [
+        "Python"
+      ],
+      "relevant_excerpts": [
+        "Built an end-to-end regression suite in Python with pytest and Playwright, reducing release testing from 3 days to 4 hours."
+      ],
+      "reasoning": "Meets none of the 3 must-haves. Misses: Python 3+ yrs (has 2.8); PyTorch (missing); Machine Learning (missing). Has none of the 4 nice-to-haves. 4.5 years' total experience. Strongest evidence in Experience (QA Automation Engineer at Liffey Software, QA Engineer at Emerald Insurance).",
+      "candidate_id": "liam_walsh",
+      "score_breakdown": {
+        "components": {
+          "semantic": 0.1585,
+          "must_have": 0.3148,
+          "nice_to_have": 0.0,
+          "experience": 0.9444
+        },
+        "weights": {
+          "semantic": 0.4,
+          "must_have": 0.3,
+          "nice_to_have": 0.15,
+          "experience": 0.15
+        }
+      },
+      "unmet": [
+        "Python 3+ yrs (has 2.8)",
+        "PyTorch (missing)",
+        "Machine Learning (missing)"
+      ]
+    }
+  ],
+  "job": {
+    "title": "Machine Learning Engineer",
+    "source": "job_descriptions/ml_engineer.txt",
+    "must_have": [
+      {
+        "any_of": [
+          "Python"
+        ],
+        "min_years": 3
+      },
+      {
+        "any_of": [
+          "PyTorch"
+        ],
+        "min_years": null
+      },
+      {
+        "any_of": [
+          "Machine Learning"
+        ],
+        "min_years": null
+      }
+    ],
+    "nice_to_have": [
+      "Computer Vision",
+      "Docker",
+      "MLflow",
+      "Natural Language Processing"
+    ],
+    "min_total_years": null,
+    "not_assessed": [
+      "Clear writing: you'll explain model behaviour to doctors."
+    ]
+  },
+  "filter": {
+    "mode": "soft",
+    "candidates_total": 35,
+    "eligible_count": 3,
+    "filtered_count": 0,
+    "scored_count": 35,
+    "filtered": []
+  },
+  "config": {
+    "collection": "resumes__section-v1__hf-bge-small-en-v1.5",
+    "retrieval": {
+      "mode": "hybrid",
+      "query_source": "query_text",
+      "n_semantic": 228,
+      "n_keyword": 100,
+      "keyword_skills": "critical",
+      "keyword_mode": "skills",
+      "section_weights": {
+        "experience": 1.0,
+        "projects": 0.8,
+        "skills": 0.7,
+        "summary": 0.6,
+        "certifications": 0.5,
+        "other": 0.5,
+        "education": 0.4,
+        "coursework": 0.2,
+        "hobbies": 0.1
+      },
+      "second_chunk_weight": 0.3,
+      "rrf_k": 60,
+      "list_weights": {
+        "semantic": 1.0,
+        "keyword": 1.0
+      },
+      "pool_size": 35
+    },
+    "calibration": {
+      "floor": 0.8208460479974746,
+      "ceiling": 1.0117829240560532,
+      "source": "collection",
+      "embedder_id": "hf-bge-small-en-v1.5",
+      "jd_files": [
+        "job_descriptions/data_engineer.txt",
+        "job_descriptions/devops_sre.txt",
+        "job_descriptions/frontend.txt",
+        "job_descriptions/java_backend.txt",
+        "job_descriptions/ml_engineer.txt",
+        "job_descriptions/python_backend.txt"
+      ],
+      "pairs": 210,
+      "computed_at": "2026-11-24T04:12:27+00:00",
+      "retrieval": {
+        "query_source": "query_text",
+        "second_chunk_weight": 0.3,
+        "section_weights": {
+          "experience": 1.0,
+          "projects": 0.8,
+          "skills": 0.7,
+          "summary": 0.6,
+          "certifications": 0.5,
+          "other": 0.5,
+          "education": 0.4,
+          "coursework": 0.2,
+          "hobbies": 0.1
+        }
+      },
+      "floor_pct": 50.0,
+      "ceiling_pct": 99.0
+    }
+  },
+  "notes": [],
+  "warnings": [],
+  "timings_ms": {
+    "filter": 1.3,
+    "retrieval": {
+      "embed_query": 59.5,
+      "semantic_search": 17.0,
+      "keyword_search": 0.4,
+      "aggregate_fuse": 0.5,
+      "backfill": 3.9,
+      "total": 81.3
+    },
+    "scoring": 55.0,
+    "total": 137.6
+  }
+}

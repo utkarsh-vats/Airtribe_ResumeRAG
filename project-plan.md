@@ -74,7 +74,9 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
       checks), `rag/calibration.py` + `resume_rag.py calibrate`, `rag/scoring.py`,
       `rag/reasoning.py`, `rag/matcher.py` (strict filter-then-retrieve, soft), retrieval
       `keyword_mode` and `candidate_ids` + tests.
-- [ ] **12b. Output** – excerpts, JSON output, `job_matcher.py` CLI + tests.
+- [x] **12b. Output** – `rag/excerpts.py`, `rag/output.py` (brief + full JSON),
+      `job_matcher.py` (`match`, `batch`, `parse`), shared `rag/cli.py`, Python-version guard,
+      committed `results/samples/` + tests.
 - [ ] **13. Evaluation** – metrics (P@5, R@10, MRR, nDCG@10) + latency, eval CLI + tests.
 - [ ] **14. Experiments notebook** – chunkers, retrieval modes, embedders (package code only).
 - [ ] **15. README + docs polish.**
