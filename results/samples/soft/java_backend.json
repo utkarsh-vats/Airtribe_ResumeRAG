@@ -118,9 +118,9 @@
         "Kubernetes"
       ],
       "relevant_excerpts": [
-        "AWS, Kubernetes, EKS, Terraform, ArgoCD, Docker, Jenkins, Ansible, Linux, Java",
         "Developed Java back-office modules for a telecoms billing product used by five operators.",
-        "Mapped billing entities with Hibernate and tuned the slowest overnight batch queries."
+        "Mapped billing entities with Hibernate and tuned the slowest overnight batch queries.",
+        "Chair the Kubernetes architecture forum and set the bank's container security baseline."
       ],
       "reasoning": "Meets 1 of 3 must-haves: Java 5.0 yrs (5+ required). Misses: Spring Boot (missing); Microservices (missing). Has 3 of 4 nice-to-haves (Hibernate, Docker, Kubernetes). 16.9 years' total experience. Strongest evidence in Experience (Java Developer at Okapi Systems, Principal Cloud Engineer at Meridian Bank Group) and Skills.",
       "candidate_id": "david_okonkwo",
@@ -184,7 +184,6 @@
         "Docker"
       ],
       "relevant_excerpts": [
-        "JavaScript, TypeScript, Node.js, Express.js, React, Microservices, PostgreSQL, MongoDB, Docker, Jest, REST APIs",
         "Split the merchant monolith into nine Node.js microservices written in TypeScript, each owning its own PostgreSQL schema.",
         "Packaged every service with Docker and cut local environment setup from a day to 20 minutes."
       ],
@@ -284,7 +283,6 @@
         "Docker"
       ],
       "relevant_excerpts": [
-        "C#, .NET, Microservices, Angular, TypeScript, SQL Server, Azure, Docker, REST APIs",
         "Designed ASP.NET Core microservices for patient records and lab results, serving 140 clinics.",
         "Moved the platform to Azure with Docker containers, cutting hosting costs by 30%."
       ],
@@ -451,16 +449,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 1.7,
+    "filter": 1.3,
     "retrieval": {
-      "embed_query": 61.8,
-      "semantic_search": 19.8,
+      "embed_query": 70.5,
+      "semantic_search": 21.9,
       "keyword_search": 0.4,
       "aggregate_fuse": 0.5,
-      "backfill": 4.9,
-      "total": 87.3
+      "backfill": 4.4,
+      "total": 97.7
     },
-    "scoring": 54.0,
-    "total": 143.0
+    "scoring": 46.3,
+    "total": 145.3
   }
 }

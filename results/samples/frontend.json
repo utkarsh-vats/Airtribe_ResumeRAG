@@ -14,9 +14,9 @@
         "Tailwind CSS"
       ],
       "relevant_excerpts": [
-        "TypeScript, JavaScript, HTML, CSS, React, Next.js, Redux, Tailwind CSS, Jest, Storybook",
         "Rebuilt the customer dashboard in React and TypeScript, raising the Lighthouse performance score from 62 to 94.",
-        "Implemented responsive marketing pages with Next.js."
+        "Implemented responsive marketing pages with Next.js.",
+        "Raised unit-test coverage from 35% to 80% with Jest."
       ],
       "reasoning": "Meets all 2 must-haves: React 3.4 yrs (3+ required), TypeScript 2.5 yrs. Has 4 of 4 nice-to-haves (Next.js, Redux, Jest, Tailwind CSS). 3.4 years' total experience. Strongest evidence in Experience (Frontend Engineer at Thames Digital, Junior Frontend Developer at Brixton Studio) and Skills.",
       "candidate_id": "aisha_okafor",
@@ -424,16 +424,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 1.0,
+    "filter": 1.3,
     "retrieval": {
-      "embed_query": 74.3,
-      "semantic_search": 3.8,
-      "keyword_search": 0.2,
+      "embed_query": 61.1,
+      "semantic_search": 4.7,
+      "keyword_search": 0.3,
       "aggregate_fuse": 0.1,
       "backfill": 0.0,
-      "total": 78.4
+      "total": 66.2
     },
-    "scoring": 21.4,
-    "total": 100.8
+    "scoring": 22.1,
+    "total": 89.5
   }
 }

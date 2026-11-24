@@ -110,3 +110,106 @@ def test_limits_and_determinism():
     assert excerpts(chunk(text)) == excerpts(chunk(text))
     with pytest.raises(ValueError):
         excerpts(chunk(text), max_excerpts=0)
+
+
+# --- Line joining and skills (step 12c) ---------------------------------------------------
+
+
+def test_title_lines_start_a_new_unit_and_are_never_excerpts():
+    text = (
+        "django-audit-lite\n"
+        "Maintainer of an open-source Python package for Django model change history.\n"
+        "Async Python in Production\n"
+        "Talk given at the Austin Python Meetup on running asyncio services."
+    )
+    assert body_sentences(chunk(text, "projects")) == [
+        "Maintainer of an open-source Python package for Django model change history.",
+        "Talk given at the Austin Python Meetup on running asyncio services.",
+    ]
+
+
+def test_wrapped_lines_still_join_even_before_a_capital():
+    text = "Built HIPAA-compliant REST APIs for clinics with\nDjango REST Framework.\nShipped it."
+    assert body_sentences(chunk(text)) == [
+        "Built HIPAA-compliant REST APIs for clinics with Django REST Framework.",
+        "Shipped it.",
+    ]
+    # a short unpunctuated tail of a longer unit ends that unit, and is kept
+    tail = "Cut report time from nine minutes to forty-five\nseconds overall\nLed the team."
+    assert body_sentences(chunk(tail)) == [
+        "Cut report time from nine minutes to forty-five seconds overall",
+        "Led the team.",
+    ]
+
+
+def test_a_last_short_line_is_kept_and_five_words_is_a_title():
+    assert body_sentences(chunk("Wrote Python services.\nOn call weekly")) == [
+        "Wrote Python services.",
+        "On call weekly",
+    ]
+    # exactly five words, unpunctuated, before a capital: a title line by the rule
+    assert body_sentences(chunk("REST APIs built with care\nDjango REST Framework.")) == [
+        "Django REST Framework."
+    ]
+
+
+def test_skills_chunks_never_supply_excerpts():
+    skills = chunk("Python, Django, FastAPI, PostgreSQL, Docker", "skills", semantic=0.9)
+    work = chunk("Shipped dashboards for ops.", semantic=0.2)
+    assert excerpts(skills, work) == ["Shipped dashboards for ops."]
+    assert excerpts(skills) == []
+
+
+# --- Corpus: every excerpt is verbatim persona text ---------------------------------------
+
+
+def _collapse(text: str) -> str:
+    return " ".join(text.split())
+
+
+def test_corpus_excerpts_are_verbatim_bullets_projects_or_summaries(fake_corpus):
+    from datetime import date
+
+    from rag.jd_parser import parse_job_description
+    from rag.matcher import match
+    from scripts.persona_schema import ROOT, load_personas
+
+    personas = {p.id: p for p in load_personas()}
+    found = fake_corpus.store.get(include=["documents", "metadatas"])
+    skills_text = {
+        meta["candidate_id"]: _collapse(doc)
+        for doc, meta in zip(found["documents"], found["metadatas"], strict=True)
+        if meta["section"] == "skills"
+    }
+    checked = 0
+    for path in sorted((ROOT / "data" / "job_descriptions").glob("*.txt")):
+        job = parse_job_description(path.read_text("utf-8"))
+        result = match(
+            job,
+            fake_corpus.store,
+            fake_corpus.keyword_index,
+            fake_corpus.embedder,
+            fake_corpus.sidecar,
+            filter_mode="soft",
+            k=10,
+            as_of=date(2026, 11, 1),
+        )
+        for m in result.matches:
+            persona = personas[m.candidate_id]
+            sources = [_collapse(b) for role in persona.experience for b in role.bullets]
+            sources += [_collapse(p.description) for p in persona.projects]
+            sources.append(_collapse(persona.summary))
+            for excerpt in m.relevant_excerpts:
+                text = _collapse(excerpt.removesuffix(ELLIPSIS))
+                hits = [s for s in sources if text in s]
+                assert len(hits) == 1, (path.stem, m.candidate_id, excerpt, hits)
+                for project in persona.projects:
+                    glued = _collapse(f"{project.name} {project.description}")[: len(text)]
+                    assert not text.startswith(_collapse(project.name) + " "), (excerpt, glued)
+                if m.candidate_id in skills_text:
+                    assert text not in skills_text[m.candidate_id] or any(
+                        text in s for s in sources
+                    )
+                    assert not skills_text[m.candidate_id].startswith(text)
+                checked += 1
+    assert checked > 100

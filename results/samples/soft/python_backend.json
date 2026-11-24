@@ -54,7 +54,7 @@
       ],
       "relevant_excerpts": [
         "Led migration of a monolithic Django app to 12 FastAPI microservices, cutting p95 latency by 40%.",
-        "django-audit-lite Maintainer of an open-source Python package for Django model change history.",
+        "Maintainer of an open-source Python package for Django model change history.",
         "Designed an idempotent payment-webhook pipeline on Celery and Redis processing 3M events per day."
       ],
       "reasoning": "Meets all 3 must-haves: Python 8.9 yrs (5+ required), Django 6.9 yrs (Django or FastAPI), PostgreSQL 4.0 yrs. Has 4 of 4 nice-to-haves (Docker, Redis, Celery, AWS). 8.9 years' total experience. Strongest evidence in Experience (Senior Backend Engineer at Lonestar Payments, Junior Software Engineer at Prairie Logistics) and Projects.",
@@ -189,7 +189,6 @@
         "Docker"
       ],
       "relevant_excerpts": [
-        "Languages: Python AI & Modelling: PyTorch, Computer Vision, Deep Learning, ONNX Backend: FastAPI DevOps & Tooling: Docker, Git Data: NumPy Databases: MongoDB",
         "Built the FastAPI model-serving gateway, with Docker images rolled out to 400 robots through staged updates.",
         "Set up a Python evaluation harness that replays 2 million labelled frames before every release."
       ],
@@ -222,7 +221,6 @@
         "Docker"
       ],
       "relevant_excerpts": [
-        "JavaScript, TypeScript, Node.js, Express.js, React, Microservices, PostgreSQL, MongoDB, Docker, Jest, REST APIs",
         "Split the merchant monolith into nine Node.js microservices written in TypeScript, each owning its own PostgreSQL schema.",
         "Packaged every service with Docker and cut local environment setup from a day to 20 minutes."
       ],
@@ -258,9 +256,9 @@
         "Docker"
       ],
       "relevant_excerpts": [
-        "Python, Django, Django REST Framework, PostgreSQL, HTML, CSS, Docker, pytest, Git, Excel",
         "Built teacher-facing Django pages for setting and marking homework, used in 40 schools.",
-        "Wrote Python scripts that import pupil rosters from school information systems each night."
+        "Wrote Python scripts that import pupil rosters from school information systems each night.",
+        "Wrote PostgreSQL reporting views that replaced a fragile spreadsheet export used by the finance team."
       ],
       "reasoning": "Meets 2 of 3 must-haves: Django 2.7 yrs (Django or FastAPI), PostgreSQL 1.4 yrs. Misses: Python 5+ yrs (has 2.7). Has 1 of 4 nice-to-haves (Docker). 11.6 years' total experience. Strongest evidence in Experience (Junior Developer at Brightpath EdTech, Django Developer at Ledgerly) and Skills.",
       "candidate_id": "daniel_osei",
@@ -292,9 +290,9 @@
         "AWS"
       ],
       "relevant_excerpts": [
-        "Data: PySpark, Airflow Backend: Kafka Cloud: AWS Languages: SQL, Python DevOps & Tooling: Docker, Git",
         "Wrote incremental SQL loads into the AWS warehouse and versioned every pipeline in Git.",
-        "Lead six engineers running the viewing-events platform: Kafka streams of 1.5 billion events a day landing in an AWS lake."
+        "Lead six engineers running the viewing-events platform: Kafka streams of 1.5 billion events a day landing in an AWS lake.",
+        "Standardised 200 Airflow DAGs on a shared Docker image with lineage and data-quality checks."
       ],
       "reasoning": "Meets 1 of 3 must-haves: Python 8.1 yrs (5+ required). Misses: Django or FastAPI (missing); PostgreSQL (missing). Has 2 of 4 nice-to-haves (Docker, AWS). 8.1 years' total experience. Strongest evidence in Experience (Data Engineer at Periyar Fintech, Lead Data Engineer at Malabar Streaming) and Skills.",
       "candidate_id": "arjun_nair",
@@ -325,8 +323,7 @@
         "Python"
       ],
       "relevant_excerpts": [
-        "Built Spark jobs in Python that sessionise 300 million streaming events a day.",
-        "Data | dbt, Snowflake, Spark, Airflow, Looker Languages | SQL, Python DevOps & Tooling | Git"
+        "Built Spark jobs in Python that sessionise 300 million streaming events a day."
       ],
       "reasoning": "Meets none of the 3 must-haves. Misses: Python 5+ yrs (has 4.2); Django or FastAPI (missing); PostgreSQL (missing). Has none of the 4 nice-to-haves. 4.2 years' total experience. Strongest evidence in Experience (Junior Data Engineer at Namsan Media, Analytics Engineer at Han River Commerce) and Skills.",
       "candidate_id": "grace_kim",
@@ -461,14 +458,14 @@
   "timings_ms": {
     "filter": 1.0,
     "retrieval": {
-      "embed_query": 66.5,
-      "semantic_search": 18.3,
-      "keyword_search": 0.3,
-      "aggregate_fuse": 0.4,
-      "backfill": 4.0,
-      "total": 89.6
+      "embed_query": 86.3,
+      "semantic_search": 25.6,
+      "keyword_search": 0.6,
+      "aggregate_fuse": 0.9,
+      "backfill": 5.4,
+      "total": 118.8
     },
-    "scoring": 62.2,
-    "total": 152.7
+    "scoring": 59.8,
+    "total": 179.6
   }
 }

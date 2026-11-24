@@ -463,16 +463,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 1.0,
+    "filter": 1.2,
     "retrieval": {
-      "embed_query": 72.0,
-      "semantic_search": 4.0,
-      "keyword_search": 0.4,
+      "embed_query": 73.2,
+      "semantic_search": 5.5,
+      "keyword_search": 0.3,
       "aggregate_fuse": 0.1,
       "backfill": 0.0,
-      "total": 76.4
+      "total": 79.0
     },
-    "scoring": 24.5,
-    "total": 101.9
+    "scoring": 22.1,
+    "total": 102.4
   }
 }

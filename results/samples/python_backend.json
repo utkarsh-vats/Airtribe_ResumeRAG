@@ -53,7 +53,7 @@
       ],
       "relevant_excerpts": [
         "Led migration of a monolithic Django app to 12 FastAPI microservices, cutting p95 latency by 40%.",
-        "django-audit-lite Maintainer of an open-source Python package for Django model change history.",
+        "Maintainer of an open-source Python package for Django model change history.",
         "Designed an idempotent payment-webhook pipeline on Celery and Redis processing 3M events per day."
       ],
       "reasoning": "Meets all 3 must-haves: Python 8.9 yrs (5+ required), Django 6.9 yrs (Django or FastAPI), PostgreSQL 4.0 yrs. Has 4 of 4 nice-to-haves (Docker, Redis, Celery, AWS). 8.9 years' total experience. Strongest evidence in Experience (Senior Backend Engineer at Lonestar Payments, Junior Software Engineer at Prairie Logistics) and Projects.",
@@ -459,16 +459,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 1.4,
+    "filter": 1.0,
     "retrieval": {
-      "embed_query": 71.9,
-      "semantic_search": 4.5,
+      "embed_query": 84.6,
+      "semantic_search": 4.4,
       "keyword_search": 0.3,
       "aggregate_fuse": 0.1,
       "backfill": 0.0,
-      "total": 76.8
+      "total": 89.4
     },
-    "scoring": 21.0,
-    "total": 99.1
+    "scoring": 23.8,
+    "total": 114.2
   }
 }

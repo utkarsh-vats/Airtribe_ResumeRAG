@@ -721,19 +721,30 @@ A deterministic template, no LLM. Every clause comes from the match:
 from the match's top chunks (the matcher stores them on each `ScoredMatch`):
 
 - Only the chunk body is used, i.e. the lines after `body_start`, so role-header lines
-  (title, company, dates) never appear. Lines are joined with spaces and split into
-  sentences, not at `e.g.`, `i.e.` or decimals. A project title without a full stop can
-  therefore run into the next sentence.
+  (title, company, dates) never appear.
+- **Line joining**: body lines are joined with spaces into units, so a bullet wrapped over
+  several lines stays one sentence, even when the continuation starts with a capital
+  ("...REST APIs for clinics with" + "Django REST Framework."). The exception is a
+  **title line**: a line with no terminal punctuation and at most five words, followed by a
+  line starting with an uppercase letter, such as a project name above its description. It
+  starts a new unit and is dropped, so "django-audit-lite" is neither glued to
+  "Maintainer of an open-source Python package..." nor offered as an excerpt itself. A short
+  unpunctuated line that ends a longer unit (a wrapped tail) also ends the unit but is kept.
+  Units are then split into sentences, not at `e.g.`, `i.e.` or decimals.
 - A sentence scores 2 per distinct JD must-have skill and 1 per distinct nice-to-have it
   mentions (`rag.skill_matcher`). Ties go to chunk order, then sentence order.
-- Experience, projects and skills chunks come first. Summary, education, certifications and
-  other sections are used only when none of those mentions a JD skill. Hobbies and
-  coursework are never used.
+- **Section preference**: experience and projects chunks first. Summary, education,
+  certifications and other sections only when none of those mentions a JD skill. Skills,
+  hobbies and coursework chunks never supply excerpts. The skills section already feeds
+  `matched_skills`, and a skills list (or a DOCX skills table flattened into one line) is
+  not a readable excerpt.
 - With no skill mention at all, the excerpt is the first body sentence of the chunk with the
   best semantic score.
 - Duplicates are dropped, and a long sentence is cut at a word boundary with `…`.
-- A skills-list chunk mentions many skills in one "sentence", so it often ranks first. That
-  is honest evidence (it is the candidate's own list); role sentences follow it.
+- A corpus test (FakeEmbedder, all six JDs, soft mode, top 10) checks that every excerpt,
+  without a trailing ellipsis, is a substring of exactly one persona role bullet, project
+  description or summary, and that none starts with a project name or comes from a skills
+  section.
 
 ### CLI (`job_matcher.py`, Part B)
 

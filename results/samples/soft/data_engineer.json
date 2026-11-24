@@ -108,7 +108,6 @@
         "Python"
       ],
       "relevant_excerpts": [
-        "python, C++, SQL, PyTorch, TensorFlow, ONNX, CUDA, Kubernetes, Kubeflow, MLflow, Spark",
         "Built a CTR-prediction machine learning pipeline on Spark and Kubeflow.",
         "Wrote internal python libraries for feature validation."
       ],
@@ -140,7 +139,6 @@
         "Python"
       ],
       "relevant_excerpts": [
-        "Languages: Python, SQL Data: pandas, Airflow, Tableau, Jupyter AI & Modelling: scikit-learn, XGBoost, statsmodels Practices: A/B Testing",
         "Productionised feature pipelines with Airflow."
       ],
       "reasoning": "Meets 2 of 3 must-haves: SQL (no counted experience), Airflow 3.7 yrs. Misses: Spark (missing). Has 1 of 4 nice-to-haves (Python). 5.4 years' total experience. Strongest evidence in Experience (Data Scientist at Monsoon Retail, Associate Data Scientist at Ganga Fintech) and Skills.",
@@ -170,9 +168,9 @@
         "Python"
       ],
       "relevant_excerpts": [
-        "Languages: Python, SQL AI & Modelling: PyTorch, Computer Vision, scikit-learn Data: pandas, NumPy DevOps & Tooling: Git",
         "Pulled six months of order data with SQL and cleaned it with pandas for a churn analysis.",
-        "Automated a weekly Python report that replaced three hours of manual spreadsheet work."
+        "Automated a weekly Python report that replaced three hours of manual spreadsheet work.",
+        "Wrote Python data-augmentation scripts that grew the training set from 3,000 to 18,000 images."
       ],
       "reasoning": "Meets 1 of 3 must-haves: SQL (no counted experience). Misses: Spark (missing); Airflow (missing). Has 1 of 4 nice-to-haves (Python). 0.0 years' total experience. Strongest evidence in Experience (Data Science Intern at Kirana Commerce, Machine Learning Intern at Saffron Analytics) and Skills.",
       "candidate_id": "ishaan_gupta",
@@ -232,7 +230,6 @@
         "Python"
       ],
       "relevant_excerpts": [
-        "Python, SQL, Bash, Django, FastAPI, Flask, Celery, PostgreSQL, Redis, Docker, AWS Lambda, GitHub Actions",
         "Mentored 4 engineers and introduced mypy type checking across all Python repositories.",
         "Wrote Python ETL scripts consolidating shipment data from 5 carriers."
       ],
@@ -263,8 +260,7 @@
         "SQL"
       ],
       "relevant_excerpts": [
-        "Write SQL against the claims warehouse to size process changes before they reach development.",
-        "SQL, Excel, Tableau, Power BI, Jira"
+        "Write SQL against the claims warehouse to size process changes before they reach development."
       ],
       "reasoning": "Meets 1 of 3 must-haves: SQL 3.9 yrs. Misses: Spark (missing); Airflow (missing). Has none of the 4 nice-to-haves. 5.9 years' total experience. Strongest evidence in Experience (Business Analyst at Nordlicht Insurance, Junior Business Analyst at Elbe Logistics) and Skills.",
       "candidate_id": "hannah_berg",
@@ -424,16 +420,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 1.3,
+    "filter": 1.6,
     "retrieval": {
-      "embed_query": 72.8,
-      "semantic_search": 25.3,
+      "embed_query": 65.3,
+      "semantic_search": 27.9,
       "keyword_search": 0.5,
-      "aggregate_fuse": 0.5,
-      "backfill": 4.4,
-      "total": 103.5
+      "aggregate_fuse": 0.8,
+      "backfill": 6.8,
+      "total": 101.1
     },
-    "scoring": 50.6,
-    "total": 155.5
+    "scoring": 53.6,
+    "total": 156.2
   }
 }

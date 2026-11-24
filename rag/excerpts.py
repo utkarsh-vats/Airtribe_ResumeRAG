@@ -3,14 +3,20 @@
 From a ``ScoredMatch``'s top chunks (at most three, best first):
 
 1. Only the body of each chunk is used: the lines after ``body_start``, so role-header lines
-   (title, company, dates) never appear. Lines are joined with spaces and split into
-   sentences (``rag.jd_parser.split_sentences``: not at ``e.g.``, ``i.e.`` or decimals).
+   (title, company, dates) never appear. Lines are joined with spaces into units, except
+   after a **title line**: a line with no terminal punctuation and at most five words,
+   followed by a line starting with an uppercase letter (a project name before its
+   description). A title line is a unit of its own and is never an excerpt. Long wrapped
+   lines still join even when the continuation starts with a capital ("...REST APIs with"
+   + "Django REST Framework."). Units are split into sentences
+   (``rag.jd_parser.split_sentences``: not at ``e.g.``, ``i.e.`` or decimals).
 2. Each sentence scores 2 per distinct JD must-have skill and 1 per distinct nice-to-have it
    mentions (``rag.skill_matcher``, the same mention rules as everywhere else). Ties go to
    chunk order, then sentence order.
-3. Experience, projects and skills chunks are preferred. Summary, education, certifications
-   and other sections are used only when no preferred sentence mentions a JD skill. Hobbies
-   and coursework never are.
+3. Experience and projects chunks are preferred. Summary, education, certifications and
+   other sections are used only when no preferred sentence mentions a JD skill. Skills,
+   hobbies and coursework chunks never supply excerpts (the skills section already feeds
+   ``matched_skills``).
 4. If no sentence mentions a JD skill, the excerpt is the first body sentence of the chunk
    with the best semantic score.
 5. Duplicates are dropped, and each excerpt is cut at a word boundary with an ellipsis when
@@ -27,16 +33,50 @@ from rag.skill_matcher import find_mentions
 DEFAULT_MAX_EXCERPTS = 3
 DEFAULT_MAX_CHARS = 220
 ELLIPSIS = "\u2026"
-PREFERRED_SECTIONS = frozenset({"experience", "projects", "skills"})
-EXCLUDED_SECTIONS = frozenset({"hobbies", "coursework"})
+PREFERRED_SECTIONS = frozenset({"experience", "projects"})
+EXCLUDED_SECTIONS = frozenset({"skills", "hobbies", "coursework"})
+TITLE_MAX_WORDS = 5
+TERMINAL_PUNCTUATION = (".", "!", "?")
 MUST_HAVE_WEIGHT = 2
 NICE_TO_HAVE_WEIGHT = 1
 
 
+def is_title_line(line: str, next_line: str) -> bool:
+    """A short unpunctuated line followed by a capitalised one: a name, not a wrapped line."""
+    return (
+        not line.endswith(TERMINAL_PUNCTUATION)
+        and len(line.split()) <= TITLE_MAX_WORDS
+        and next_line[:1].isupper()
+    )
+
+
+def body_units(chunk: TopChunk) -> list[str]:
+    """The chunk body's lines joined into units; title lines are dropped (see above)."""
+    lines = [ln.strip() for ln in chunk.text.split("\n")[chunk.body_start :] if ln.strip()]
+    units: list[str] = []
+    current: list[str] = []
+    for i, line in enumerate(lines):
+        following = lines[i + 1] if i + 1 < len(lines) else ""
+        title_like = bool(following) and is_title_line(line, following)
+        if title_like and (not current or current[-1].endswith(TERMINAL_PUNCTUATION)):
+            # A name on its own line (a project title): it ends what came before, and is
+            # neither glued to its description nor used as an excerpt.
+            if current:
+                units.append(" ".join(current))
+                current = []
+            continue
+        current.append(line)
+        if title_like:  # a short unpunctuated tail before a capitalised line ends the unit
+            units.append(" ".join(current))
+            current = []
+    if current:
+        units.append(" ".join(current))
+    return units
+
+
 def body_sentences(chunk: TopChunk) -> list[str]:
-    """The sentences of the chunk's body (role-header lines excluded)."""
-    body = " ".join(line.strip() for line in chunk.text.split("\n")[chunk.body_start :])
-    return split_sentences(body)
+    """The sentences of the chunk's body (role-header and title lines excluded)."""
+    return [s for unit in body_units(chunk) for s in split_sentences(unit)]
 
 
 def truncate(text: str, max_chars: int) -> str:

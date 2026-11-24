@@ -441,16 +441,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 1.4,
+    "filter": 1.1,
     "retrieval": {
-      "embed_query": 77.3,
-      "semantic_search": 4.2,
+      "embed_query": 136.4,
+      "semantic_search": 19.7,
       "keyword_search": 0.3,
       "aggregate_fuse": 0.1,
       "backfill": 0.0,
-      "total": 81.9
+      "total": 156.6
     },
-    "scoring": 17.6,
-    "total": 100.9
+    "scoring": 23.3,
+    "total": 181.0
   }
 }

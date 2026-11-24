@@ -462,14 +462,14 @@
   "timings_ms": {
     "filter": 1.4,
     "retrieval": {
-      "embed_query": 114.5,
-      "semantic_search": 4.9,
-      "keyword_search": 0.4,
+      "embed_query": 107.5,
+      "semantic_search": 37.4,
+      "keyword_search": 0.3,
       "aggregate_fuse": 0.1,
       "backfill": 0.0,
-      "total": 119.9
+      "total": 145.3
     },
-    "scoring": 34.4,
-    "total": 155.7
+    "scoring": 24.6,
+    "total": 171.4
   }
 }

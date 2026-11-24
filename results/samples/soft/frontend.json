@@ -14,9 +14,9 @@
         "Tailwind CSS"
       ],
       "relevant_excerpts": [
-        "TypeScript, JavaScript, HTML, CSS, React, Next.js, Redux, Tailwind CSS, Jest, Storybook",
         "Rebuilt the customer dashboard in React and TypeScript, raising the Lighthouse performance score from 62 to 94.",
-        "Implemented responsive marketing pages with Next.js."
+        "Implemented responsive marketing pages with Next.js.",
+        "Raised unit-test coverage from 35% to 80% with Jest."
       ],
       "reasoning": "Meets all 2 must-haves: React 3.4 yrs (3+ required), TypeScript 2.5 yrs. Has 4 of 4 nice-to-haves (Next.js, Redux, Jest, Tailwind CSS). 3.4 years' total experience. Strongest evidence in Experience (Frontend Engineer at Thames Digital, Junior Frontend Developer at Brixton Studio) and Skills.",
       "candidate_id": "aisha_okafor",
@@ -110,8 +110,7 @@
         "React"
       ],
       "relevant_excerpts": [
-        "Build React pages for small-business websites, 14 launched so far.",
-        "JavaScript, React, HTML, CSS, Git"
+        "Build React pages for small-business websites, 14 launched so far."
       ],
       "reasoning": "Meets none of the 2 must-haves. Misses: React 3+ yrs (has 1.6); TypeScript (missing). Has none of the 4 nice-to-haves. 1.6 years' total experience. Strongest evidence in Experience (Junior Frontend Developer at Coral Coast Web) and Skills.",
       "candidate_id": "zoe_turner",
@@ -143,7 +142,6 @@
         "Jest"
       ],
       "relevant_excerpts": [
-        "Vue.js, TypeScript, JavaScript, HTML, CSS, Jest, Figma, Git",
         "Rebuilt the ride-booking web app in Vue 3 and TypeScript, cutting time to first booking by 25%.",
         "Added Jest unit tests for the pricing and promo-code components, catching two pricing regressions before release."
       ],
@@ -175,8 +173,7 @@
         "TypeScript"
       ],
       "relevant_excerpts": [
-        "Developed the agent back-office in Angular and TypeScript, replacing a desktop client.",
-        "C#, .NET, Microservices, Angular, TypeScript, SQL Server, Azure, Docker, REST APIs"
+        "Developed the agent back-office in Angular and TypeScript, replacing a desktop client."
       ],
       "reasoning": "Meets 1 of 2 must-haves: TypeScript 8.5 yrs. Misses: React 3+ yrs (missing). Has none of the 4 nice-to-haves. 8.5 years' total experience. Strongest evidence in Experience (Software Engineer at Ashanti Mobile Money, Senior Software Engineer at Volta Health Systems) and Skills.",
       "candidate_id": "kwame_mensah",
@@ -416,16 +413,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 0.9,
+    "filter": 1.2,
     "retrieval": {
-      "embed_query": 68.7,
-      "semantic_search": 19.1,
-      "keyword_search": 0.2,
+      "embed_query": 57.9,
+      "semantic_search": 18.5,
+      "keyword_search": 0.3,
       "aggregate_fuse": 0.3,
-      "backfill": 2.8,
-      "total": 91.2
+      "backfill": 2.9,
+      "total": 79.9
     },
-    "scoring": 43.9,
-    "total": 136.1
+    "scoring": 44.5,
+    "total": 125.7
   }
 }

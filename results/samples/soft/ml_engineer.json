@@ -115,7 +115,7 @@
       ],
       "relevant_excerpts": [
         "Trained a PyTorch computer vision model that grades produce quality from photos, reaching 88% accuracy.",
-        "Leaf-disease classifier Final-year project: a PyTorch computer vision model that identifies 12 tomato leaf diseases from phone photos.",
+        "Final-year project: a PyTorch computer vision model that identifies 12 tomato leaf diseases from phone photos.",
         "Wrote Python data-augmentation scripts that grew the training set from 3,000 to 18,000 images."
       ],
       "reasoning": "Meets 2 of 3 must-haves: PyTorch (no counted experience), Machine Learning (no counted experience). Misses: Python 3+ yrs (has 0.0). Has 1 of 4 nice-to-haves (Computer Vision). 0.0 years' total experience. Strongest evidence in Experience (Machine Learning Intern at Saffron Analytics, Data Science Intern at Kirana Commerce) and Projects.",
@@ -148,9 +148,9 @@
         "Docker"
       ],
       "relevant_excerpts": [
-        "Python 3, FastAPI, Postgres, k8s, Docker, Amazon Web Services, JS, ML, sklearn, RESTful APIs",
         "Rebuilt the shipment-tracking service in FastAPI on Python 3.12, now ingesting 40M carrier events a day.",
-        "Shipped an ETA-prediction ML model built with sklearn and served it behind the tracking API."
+        "Shipped an ETA-prediction ML model built with sklearn and served it behind the tracking API.",
+        "Built RESTful APIs in Python 3 for smart-meter billing across 220,000 households."
       ],
       "reasoning": "Meets 2 of 3 must-haves: Python 6.1 yrs (3+ required), Machine Learning 3.8 yrs. Misses: PyTorch (missing). Has 1 of 4 nice-to-haves (Docker). 6.1 years' total experience. Strongest evidence in Experience (Senior Backend Engineer at Harbourline Freight, Backend Developer at Maple Grid Energy) and Skills.",
       "candidate_id": "noah_williams",
@@ -181,7 +181,7 @@
         "Machine Learning"
       ],
       "relevant_excerpts": [
-        "Languages: Python, SQL Data: pandas, Airflow, Tableau, Jupyter AI & Modelling: scikit-learn, XGBoost, statsmodels Practices: A/B Testing"
+        "Developed a credit-risk scorecard with scikit-learn using logistic regression and gradient boosting."
       ],
       "reasoning": "Meets 2 of 3 must-haves: Python 5.4 yrs (3+ required), Machine Learning 5.4 yrs. Misses: PyTorch (missing). Has none of the 4 nice-to-haves. 5.4 years' total experience. Strongest evidence in Experience (Associate Data Scientist at Ganga Fintech, Data Scientist at Monsoon Retail) and Skills.",
       "candidate_id": "priya_sharma",
@@ -279,7 +279,6 @@
         "Docker"
       ],
       "relevant_excerpts": [
-        "Python, Django, FastAPI, PostgreSQL, MongoDB, Celery, Docker, Git, REST APIs",
         "Built a Python inventory-sync service linking two marketplaces to a client's warehouse, covering 15,000 SKUs.",
         "Introduced Docker-based local environments, taking new-hire setup from two days to one hour."
       ],
@@ -444,16 +443,16 @@
   "notes": [],
   "warnings": [],
   "timings_ms": {
-    "filter": 1.3,
+    "filter": 1.0,
     "retrieval": {
-      "embed_query": 59.5,
-      "semantic_search": 17.0,
-      "keyword_search": 0.4,
-      "aggregate_fuse": 0.5,
-      "backfill": 3.9,
-      "total": 81.3
+      "embed_query": 59.2,
+      "semantic_search": 20.4,
+      "keyword_search": 0.3,
+      "aggregate_fuse": 0.4,
+      "backfill": 2.6,
+      "total": 82.8
     },
-    "scoring": 55.0,
-    "total": 137.6
+    "scoring": 46.1,
+    "total": 129.9
   }
 }
