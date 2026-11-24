@@ -30,6 +30,7 @@ def meta(
         highest_education=None,
         skills=tuple(sorted(skills)),
         skill_months=dict(skills),
+        skill_years={s: months_to_years(m) for s, m in skills.items()},
     )
 
 

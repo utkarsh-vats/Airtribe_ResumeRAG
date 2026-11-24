@@ -77,7 +77,9 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **12b. Output** – `rag/excerpts.py`, `rag/output.py` (brief + full JSON),
       `job_matcher.py` (`match`, `batch`, `parse`), shared `rag/cli.py`, Python-version guard,
       committed `results/samples/` + tests.
-- [ ] **13. Evaluation** – metrics (P@5, R@10, MRR, nDCG@10) + latency, eval CLI + tests.
+- [x] **13a. Evaluation API** – `rag/evaluation/` (metrics, ground-truth loading, ranking /
+      filter / extraction / end-to-end layers, label isolation) + tests.
+- [ ] **13b. Evaluation CLI + latency** – eval CLI, latency p50/p95 + tests.
 - [ ] **14. Experiments notebook** – chunkers, retrieval modes, embedders (package code only).
 - [ ] **15. README + docs polish.**
 

@@ -99,6 +99,7 @@ def match(
     weights: ScoreWeights | None = None,
     floor_pct: float = DEFAULT_FLOOR_PCT,
     ceiling_pct: float = DEFAULT_CEILING_PCT,
+    calibration: Calibration | None = None,
 ) -> MatchResult:
     """The top ``k`` candidates for ``job``; see the module docstring."""
     filter_mode = FilterMode(filter_mode)
@@ -113,8 +114,9 @@ def match(
             f"the index was built with as_of {sidecar.as_of}, not {as_of.isoformat()}; "
             "durations may be off (re-run index with --as-of)"
         )
-    calibration, calibration_warnings = load_calibration(sidecar, embedder)
-    warnings += calibration_warnings
+    if calibration is None:  # the sidecar's, else a fallback (with a warning)
+        calibration, calibration_warnings = load_calibration(sidecar, embedder)
+        warnings += calibration_warnings
     if calibration.source == "collection":
         if calibration.retrieval and calibration.retrieval != calibration_settings(config):
             warnings.append(
