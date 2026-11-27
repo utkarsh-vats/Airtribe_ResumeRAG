@@ -232,3 +232,212 @@ def test_build_script_skips_gemini_without_a_key(tmp_path, monkeypatch, capsys):
     assert build_script.main(["--only", "section-gemini"], load_env=False) == 0
     assert capsys.readouterr().out == "section-gemini: skipped (GEMINI_API_KEY is not set)\n"
     assert not (tmp_path / "chroma").exists()
+
+
+# --- Notebook runners (step 14b) ----------------------------------------------------------
+
+
+def test_dataset_counts_and_labels():
+    from rag.evaluation.experiments import dataset_counts, label_counts
+
+    rows = dataset_counts()
+    for dimension in ("format", "layout", "date_format"):
+        assert sum(r["resumes"] for r in rows if r["dimension"] == dimension) == 35
+    assert {r["value"] for r in rows if r["dimension"] == "format"} == {"pdf", "docx", "txt"}
+    assert label_counts() == [
+        {"jd_id": jd, "S": 3, "P": 3, "D": 2, "none": 27}
+        for jd in (
+            "data_engineer",
+            "devops_sre",
+            "frontend",
+            "java_backend",
+            "ml_engineer",
+            "python_backend",
+        )
+    ]
+
+
+def test_resume_lengths(monkeypatch):
+    from rag.evaluation.experiments import resume_lengths
+
+    monkeypatch.setenv("WORKSPACE_ROOT", str(ROOT / "data"))
+    rows = resume_lengths()
+    assert len(rows) == 35 and all(r["words"] > 50 for r in rows)
+    assert {r["format"] for r in rows} == {"pdf", "docx", "txt"}
+
+
+def test_extraction_summary_and_traps(collection, fake_corpus):
+    from rag.evaluation.experiments import extraction_summary, extraction_traps
+
+    summary = {r["metric"]: r["value"] for r in extraction_summary(fake_corpus.sidecar)}
+    assert summary["candidates"] == 35 and summary["skills F1 (micro)"] == 1.0
+    assert summary["candidates with a mismatch"] == 0
+    traps = {r["candidate_id"]: r for r in extraction_traps(collection)}
+    assert list(traps) == [
+        "peter_hughes",
+        "noah_williams",
+        "mateo_garcia",
+        "omar_haddad",
+        "ishaan_gupta",
+        "nina_kowalski",
+    ]
+    assert traps["peter_hughes"]["extracted"] == "Excel"
+    assert "k8s -> Kubernetes" in traps["noah_williams"]["extracted"]
+    assert traps["mateo_garcia"]["extracted"] == "Python 52 months (4.3 yrs)"
+    assert "76 months" in traps["mateo_garcia"]["detail"]  # summed would over-count
+    assert traps["omar_haddad"]["extracted"] == "Python 0 months, Django 0 months"
+    assert traps["ishaan_gupta"]["extracted"].startswith("total 0 months")
+    assert traps["nina_kowalski"]["detail"].endswith("from a skills section: none")
+
+
+def test_candidate_chunk_tokens_show_the_fixed_chunker_leak(tmp_path, monkeypatch, collection):
+    from rag.chunking import FixedSizeChunker
+    from rag.evaluation.experiments import candidate_chunk_tokens
+    from rag.indexer import index_directory
+    from rag.store import VectorStore
+
+    workspace = tmp_path / "workspace"
+    (workspace / "resumes").mkdir(parents=True)
+    import shutil
+    from datetime import date
+
+    shutil.copy(ROOT / "data" / "resumes" / "peter_hughes.pdf", workspace / "resumes")
+    monkeypatch.setenv("WORKSPACE_ROOT", str(workspace))
+    chunker, embedder = FixedSizeChunker(), FakeEmbedder()
+    store = VectorStore(tmp_path / "chroma", chunker.chunker_id, embedder.embedder_id, 64)
+    index_directory("resumes", chunker, embedder, store, date(2026, 11, 1))
+    fixed = ExperimentCollection("fixed", store, embedder)
+
+    (leaky,) = candidate_chunk_tokens(fixed, "peter_hughes", contains="Spark Energy")
+    assert leaky["body_start"] == 0 and "skill:spark" in leaky["skill_tokens"]
+    assert leaky["matching_lines"] and all("Spark Energy" in ln for ln in leaky["matching_lines"])
+    (clean,) = candidate_chunk_tokens(collection, "peter_hughes", contains="Spark Energy")
+    assert clean["body_start"] == 2 and "skill:spark" not in clean["skill_tokens"]
+    assert len(candidate_chunk_tokens(collection, "peter_hughes")) > 1
+
+
+def test_query_token_table():
+    from rag.evaluation.experiments import query_token_table
+
+    rows = query_token_table({"fake": FakeEmbedder()})
+    assert len(rows) == 6 and {r["model"] for r in rows} == {"fake"}
+    assert all(r["query_text"] < r["whole"] for r in rows)
+    assert set(rows[0]) == {
+        "jd_id",
+        "model",
+        "max_tokens",
+        "whole",
+        "query_text",
+        "whole_over",
+        "query_over",
+    }
+
+
+def test_per_jd_variant_rows(collection):
+    variants = {
+        "query_text": RetrievalConfig(),
+        "full_text": RetrievalConfig(query_source="full_text"),
+    }
+    rows = compare_retrieval_configs(
+        collection, variants, modes=("semantic",), orders=("retrieval",), per_jd=True
+    )
+    assert len(rows) == 2 * 6 and {r["variant"] for r in rows} == set(variants)
+    assert {"jd_id", "mode", "order", "nDCG@10"} <= set(rows[0])
+
+
+def test_open_collections_never_creates_a_missing_one(tmp_path, fake_corpus):
+    from rag.evaluation.experiments import CollectionSpec, open_collections
+
+    specs = (
+        CollectionSpec("present", "section-v1", "m", "section-bge-small"),
+        CollectionSpec("absent", "fixed-w120-o30", "m", "fixed-bge-small"),
+    )
+    chroma = fake_corpus.store.chroma_dir
+    before = sorted(p.name for p in chroma.iterdir())
+    opened, messages = open_collections(specs, chroma, embedder_factory=lambda m: FakeEmbedder())
+    assert opened["present"] is not None and opened["absent"] is None
+    assert messages[1].endswith(
+        "python -m scripts.build_experiment_collections --only fixed-bge-small"
+    )
+    assert sorted(p.name for p in chroma.iterdir()) == before
+
+
+def test_notebook_specs_match_the_build_script():
+    from rag.evaluation.experiments import NOTEBOOK_COLLECTIONS
+
+    assert {s.build_name for s in NOTEBOOK_COLLECTIONS} <= set(build_script.NAMES)
+
+
+# --- Figures ------------------------------------------------------------------------------
+
+
+def test_figures_are_saved_with_relative_paths(tmp_path, monkeypatch):
+    for key in (
+        "HF_HUB_DISABLE_SYMLINKS_WARNING",
+        "HF_HUB_VERBOSITY",
+        "HF_HUB_OFFLINE",
+        "HF_HUB_DISABLE_PROGRESS_BARS",
+        "TRANSFORMERS_VERBOSITY",
+        "TOKENIZERS_PARALLELISM",
+        "ANONYMIZED_TELEMETRY",
+    ):
+        monkeypatch.delenv(key, raising=False)  # restored after the test
+    import matplotlib
+
+    matplotlib.use("Agg")
+    from rag.evaluation.display import (
+        MODE_COLORS,
+        bar_chart,
+        histogram,
+        line_chart,
+        notebook_setup,
+        save_figure,
+    )
+
+    notebook_setup()
+    assert os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] == "1"
+    assert os.environ["HF_HUB_VERBOSITY"] == "error" and "HF_HUB_OFFLINE" in os.environ
+    rows = [
+        {"metric": m, "mode": mode, "panel": p, "value": v}
+        for m, v in (("nDCG@10", 0.9), ("P@5", 0.6))
+        for mode in ("semantic", "hybrid")
+        for p in ("a", "b")
+    ]
+    fig = bar_chart(
+        rows,
+        "metric",
+        "mode",
+        "value",
+        title="t",
+        ylabel="score",
+        palette=MODE_COLORS,
+        panel="panel",
+    )
+    labels = [t.get_text() for ax in fig.axes for t in ax.texts]
+    assert len(fig.axes) == 2 and labels.count("0.900") == 4  # every bar annotated
+    assert fig.axes[0].get_ylim()[0] == 0.0
+    assert fig.axes[0].patches[0].get_facecolor()[:3] == matplotlib.colors.to_rgb(
+        MODE_COLORS["semantic"]
+    )
+    curve = [{"k": k, "r": k / 10, "mode": "hybrid"} for k in range(1, 6)]
+    line = line_chart(curve, "k", "r", "mode", title="t", xlabel="k", ylabel="recall")
+    hist = histogram([1, 2, 3], bins=3, title="t", xlabel="words")
+    for fig_, name in ((fig, "bars"), (line, "line"), (hist, "hist")):
+        rel = save_figure(fig_, "00_test", name, tmp_path)
+        assert (tmp_path / f"00_test_{name}.png").exists() and ":" not in rel
+
+
+def test_melt():
+    from rag.evaluation.display import melt
+
+    rows = [{"mode": "hybrid", "a": 0.5, "b": 0.25, "x": 1}]
+    assert melt(rows, ["mode"], ["a", "b"]) == [
+        {"mode": "hybrid", "metric": "a", "value": 0.5},
+        {"mode": "hybrid", "metric": "b", "value": 0.25},
+    ]
+
+
+def test_to_frame_keeps_integer_columns_with_gaps():
+    frame = to_frame([{"rank": 3, "score": 0.5}, {"rank": None, "score": None}])
+    assert str(frame["rank"].dtype) == "Int64" and frame["rank"].isna().tolist() == [False, True]
+    assert "3.0" not in frame.to_string()

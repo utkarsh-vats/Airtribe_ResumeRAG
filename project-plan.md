@@ -85,8 +85,10 @@ Vertical slices. Each one leaves `ruff check .`, `ruff format --check .` and `py
 - [x] **14a. Experiment runners** – `scripts/build_experiment_collections.py`,
       `rag/evaluation/experiments.py` (collections, recall curves, retrieval/scoring/calibration
       variants, trap cases, chunk stats), `rag/evaluation/display.py` + tests.
-- [ ] **14b. Experiments notebook, part 1** (package code only).
-- [ ] **14c. Experiments notebook, part 2** (package code only).
+- [x] **14b. Notebook sections 1–6** (dataset, extraction, chunking, retrieval modes, tokenizer
+      modes, query source).
+- [ ] **14c. Notebook sections 7–12** (embedding models, section weights, calibration, scoring
+      weights, latency, error analysis and conclusions).
 - [ ] **15. README + docs polish.**
 
 **Bonus (cut if needed):** Gemini-based JD parser / LLM-written reasoning; a `match_jobs` tool

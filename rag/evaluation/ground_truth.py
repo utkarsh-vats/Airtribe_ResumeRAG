@@ -172,3 +172,21 @@ def parse_manifest(data: Any, where: str = "manifest") -> Manifest:
 def load_manifest(path: str | Path = MANIFEST_PATH) -> Manifest:
     """Read and validate ``manifest.json``."""
     return parse_manifest(_read(Path(path)), str(path))
+
+
+# --- persona render settings --------------------------------------------------------------
+
+PERSONAS_DIR = GROUND_TRUTH_DIR / "personas"
+RENDER_KEYS = ("format", "layout", "header_variant", "date_format")
+
+
+def load_resume_renders(personas_dir: str | Path = PERSONAS_DIR) -> dict[str, dict[str, str]]:
+    """``{candidate_id: {format, layout, header_variant, date_format}}`` from the personas."""
+    renders = {}
+    for path in sorted(Path(personas_dir).glob("*.json")):
+        data = _require(_read(path), {"id", "render"}, str(path))
+        render = _require(data["render"], set(RENDER_KEYS), f"{path}.render")
+        renders[data["id"]] = {key: str(render[key]) for key in RENDER_KEYS}
+    if not renders:
+        raise GroundTruthError(f"{personas_dir}: no persona files")
+    return renders

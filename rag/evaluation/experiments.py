@@ -27,15 +27,30 @@ from rag.calibration import (
 )
 from rag.embedders.base import Embedder
 from rag.evaluation.display import text_table, to_frame
-from rag.evaluation.evaluate import MODES, ORDERS, evaluate_ranking, load_jobs
-from rag.evaluation.ground_truth import GROUND_TRUTH_DIR, Qrels, load_qrels
+from rag.evaluation.evaluate import (
+    MODES,
+    ORDERS,
+    evaluate_extraction,
+    evaluate_ranking,
+    load_jobs,
+)
+from rag.evaluation.ground_truth import (
+    GROUND_TRUTH_DIR,
+    Manifest,
+    Qrels,
+    load_manifest,
+    load_qrels,
+    load_resume_renders,
+)
 from rag.evaluation.metrics import LENIENT, STRICT, macro_average, recall_at_k
-from rag.jd_parser import JobRequirements
-from rag.keyword_index import KeywordIndex
+from rag.jd_parser import JobRequirements, parse_job_description
+from rag.keyword_index import KeywordIndex, TokenizerMode
 from rag.matcher import FilterMode, MatchResult, match
+from rag.metadata import CandidateMetadata
 from rag.retrieval import RetrievalConfig, RetrievalMode
 from rag.scoring import ScoreWeights
-from rag.store import Sidecar, VectorStore
+from rag.skill_matcher import find_mentions
+from rag.store import Sidecar, VectorStore, collection_name, read_sidecar
 from rag.timeline import months_to_years
 
 JD_DIR = GROUND_TRUTH_DIR.parent / "job_descriptions"
@@ -210,8 +225,12 @@ def compare_retrieval_configs(
     orders: Sequence[str] = ORDERS,
     jd_paths: Iterable[str | Path] | None = None,
     qrels: Qrels | None = None,
+    per_jd: bool = False,
 ) -> Rows:
-    """Macro ranking metrics per retrieval-config variant (each variant's mode is overridden)."""
+    """Ranking metrics per retrieval-config variant (each variant's mode is overridden).
+
+    Macro averages by default; ``per_jd=True`` returns one row per JD instead.
+    """
     jobs, qrels = _inputs(jd_paths, qrels)
     rows = Rows()
     for name, config in variants.items():
@@ -225,7 +244,14 @@ def compare_retrieval_configs(
             calibration=collection.calibration,
             modes=modes,
         )
-        rows += _macro_rows(evaluation, orders, collection=collection.label, variant=name)
+        if per_jd:
+            rows += [
+                {"collection": collection.label, "variant": name} | row
+                for row in evaluation.rows
+                if row["order"] in orders
+            ]
+        else:
+            rows += _macro_rows(evaluation, orders, collection=collection.label, variant=name)
     return rows
 
 
@@ -502,3 +528,289 @@ def chunk_stats(collection: ExperimentCollection) -> Rows:
         }
         for section, counts in sorted(words.items())
     )
+
+
+# --- Opening the notebook's collections ---------------------------------------------------
+
+
+@dataclass(frozen=True)
+class CollectionSpec:
+    """A collection the notebook uses, and the build-script name that creates it."""
+
+    label: str
+    chunker_id: str
+    model: str  # Hugging Face model id
+    build_name: str  # scripts.build_experiment_collections --only NAME
+
+
+NOTEBOOK_COLLECTIONS = (
+    CollectionSpec("section", "section-v1", "BAAI/bge-small-en-v1.5", "section-bge-small"),
+    CollectionSpec("fixed", "fixed-w120-o30", "BAAI/bge-small-en-v1.5", "fixed-bge-small"),
+    CollectionSpec(
+        "section-noctx", "section-v1-noctx", "BAAI/bge-small-en-v1.5", "section-noctx-bge-small"
+    ),
+    CollectionSpec(
+        "section-minilm", "section-v1", "sentence-transformers/all-MiniLM-L6-v2", "section-minilm"
+    ),
+    CollectionSpec("section-bge-base", "section-v1", "BAAI/bge-base-en-v1.5", "section-bge-base"),
+)
+
+
+def open_collections(
+    specs: Sequence[CollectionSpec] = NOTEBOOK_COLLECTIONS,
+    chroma_dir: str | Path = ".chroma",
+    embedder_factory: Any = None,
+) -> tuple[dict[str, ExperimentCollection | None], list[str]]:
+    """``({label: collection or None}, messages)``; a missing collection is never created.
+
+    Embedders are shared between specs with the same model (models load lazily).
+    """
+    from rag.embedders import get_embedder
+
+    factory = embedder_factory or (lambda model: get_embedder("huggingface", model=model))
+    embedders: dict[str, Embedder] = {}
+    opened: dict[str, ExperimentCollection | None] = {}
+    messages = []
+    for spec in specs:
+        embedder = embedders.setdefault(spec.model, factory(spec.model))
+        name = collection_name(spec.chunker_id, embedder.embedder_id)
+        if read_sidecar(chroma_dir, name) is None:
+            opened[spec.label] = None
+            messages.append(
+                f"{spec.label}: not built ({name}); run: "
+                f"python -m scripts.build_experiment_collections --only {spec.build_name}"
+            )
+            continue
+        opened[spec.label] = open_collection(spec.label, spec.chunker_id, embedder, chroma_dir)
+        messages.append(f"{spec.label}: {name}")
+    return opened, messages
+
+
+# --- Dataset ------------------------------------------------------------------------------
+
+
+def dataset_counts(personas_dir: str | Path | None = None) -> Rows:
+    """Resumes per format, layout and date format."""
+    renders = load_resume_renders() if personas_dir is None else load_resume_renders(personas_dir)
+    rows = Rows()
+    for dimension in ("format", "layout", "date_format"):
+        counts: dict[str, int] = {}
+        for render in renders.values():
+            counts[render[dimension]] = counts.get(render[dimension], 0) + 1
+        rows += [
+            {"dimension": dimension, "value": value, "resumes": n}
+            for value, n in sorted(counts.items())
+        ]
+    return rows
+
+
+def label_counts(qrels: Qrels | None = None) -> Rows:
+    """S / P / D / none candidates per JD."""
+    qrels = qrels or load_qrels()
+    return Rows(
+        {"jd_id": jd_id}
+        | {
+            label: sum(1 for v in truth.labels.values() if v == label)
+            for label in ("S", "P", "D", "none")
+        }
+        for jd_id, truth in sorted(qrels.jds.items())
+    )
+
+
+def resume_lengths(directory: str = "resumes") -> Rows:
+    """Words of extracted text per resume (read through fs_tools, like indexing)."""
+    import fs_tools
+    from rag.indexer import default_workspace_root
+
+    rows = Rows()
+    with default_workspace_root():
+        for entry in sorted(fs_tools.list_files(directory), key=lambda e: e["path"]):
+            result = fs_tools.read_file(entry["path"])
+            if not result["success"]:
+                continue
+            rows.append(
+                {
+                    "candidate_id": Path(entry["path"]).stem,
+                    "format": entry["extension"].lstrip("."),
+                    "words": len(result["data"]["content"].split()),
+                }
+            )
+    return rows
+
+
+# --- Extraction ---------------------------------------------------------------------------
+
+
+def extraction_summary(sidecar: Sidecar, manifest: Manifest | None = None) -> Rows:
+    """Layer (c) headline numbers as metric / value rows."""
+    e = evaluate_extraction(sidecar, manifest or load_manifest())
+    return Rows(
+        [
+            {"metric": "candidates", "value": e.candidates},
+            {"metric": "name exact match", "value": e.name_exact},
+            {"metric": "skills precision (micro)", "value": e.skills_micro["precision"]},
+            {"metric": "skills recall (micro)", "value": e.skills_micro["recall"]},
+            {"metric": "skills F1 (micro)", "value": e.skills_micro["f1"]},
+            {"metric": "skills F1 (macro)", "value": e.skills_macro["f1"]},
+            {"metric": "total years exact match", "value": e.total_years_exact},
+            {"metric": "total years MAE", "value": e.total_years_mae},
+            {"metric": "skill years MAE", "value": e.skill_years_mae},
+            {"metric": "skill-year pairs compared", "value": e.skill_years_pairs},
+            {"metric": "highest education exact match", "value": e.education_exact},
+            {"metric": "candidates with a mismatch", "value": len(e.mismatches)},
+        ]
+    )
+
+
+def _meta(collection: ExperimentCollection, candidate_id: str) -> CandidateMetadata:
+    return CandidateMetadata.from_dict(collection.sidecar.candidates[candidate_id].metadata)
+
+
+def _chunks(collection: ExperimentCollection, candidate_id: str) -> list[tuple[str, dict]]:
+    found = collection.store.get(
+        where={"candidate_id": candidate_id}, include=["documents", "metadatas"]
+    )
+    pairs = sorted(
+        zip(found["documents"], found["metadatas"], found["ids"], strict=True),
+        key=lambda t: (t[1]["section"], t[1].get("role_index", -1), t[2]),
+    )
+    return [(doc or "", meta | {"chunk_id": cid}) for doc, meta, cid in pairs]
+
+
+def extraction_traps(collection: ExperimentCollection) -> Rows:
+    """What extraction did with the dataset's deliberate edge cases (from the sidecar)."""
+    rows = Rows()
+
+    peter = _meta(collection, "peter_hughes")
+    rows.append(
+        {
+            "trap": "look-alike words are not skills",
+            "candidate_id": "peter_hughes",
+            "extracted": ", ".join(peter.skills),
+            "detail": "HVAC engineer: 'Spark Energy Ltd', 'airflow', a Python hobby: no skill",
+        }
+    )
+
+    skills_text = " ".join(
+        doc for doc, meta in _chunks(collection, "noah_williams") if meta["section"] == "skills"
+    )
+    aliases = [
+        f"{m.matched_text} -> {m.canonical}"
+        for m in find_mentions(skills_text)
+        if m.matched_text.casefold() != m.canonical.casefold()
+    ]
+    rows.append(
+        {
+            "trap": "aliases map to canonical skills",
+            "candidate_id": "noah_williams",
+            "extracted": ", ".join(aliases),
+            "detail": f"{len(aliases)} aliases in the skills section",
+        }
+    )
+
+    mateo = _meta(collection, "mateo_garcia")
+    roles = [
+        int(loc.split(":")[1])
+        for loc in mateo.skill_evidence.get("Python", ())
+        if loc.startswith("experience:")
+    ]
+    summed = sum(mateo.roles[i].months for i in roles if mateo.roles[i].counts_towards_experience)
+    merged = mateo.skill_months.get("Python", 0)
+    rows.append(
+        {
+            "trap": "overlapping roles are merged, not summed",
+            "candidate_id": "mateo_garcia",
+            "extracted": f"Python {merged} months ({months_to_years(merged)} yrs)",
+            "detail": f"summed over {len(roles)} roles: {summed} months "
+            f"({months_to_years(summed)} yrs)",
+        }
+    )
+
+    omar = _meta(collection, "omar_haddad")
+    listed = [s for s in ("Python", "Django") if s in omar.skills]
+    rows.append(
+        {
+            "trap": "listed but never used: 0 months",
+            "candidate_id": "omar_haddad",
+            "extracted": ", ".join(f"{s} {omar.skill_months.get(s, 0)} months" for s in listed),
+            "detail": "evidence: "
+            + "; ".join(f"{s} in {', '.join(omar.skill_evidence.get(s, ()))}" for s in listed),
+        }
+    )
+
+    ishaan = _meta(collection, "ishaan_gupta")
+    rows.append(
+        {
+            "trap": "internships do not count as experience",
+            "candidate_id": "ishaan_gupta",
+            "extracted": f"total {ishaan.total_months} months ({ishaan.total_years} yrs)",
+            "detail": "; ".join(
+                f"{r.title} ({r.months} months, {'internship' if r.is_internship else 'counted'})"
+                for r in ishaan.roles
+            ),
+        }
+    )
+
+    nina = _meta(collection, "nina_kowalski")
+    from_skills = [s for s, locs in nina.skill_evidence.items() if "skills" in locs]
+    rows.append(
+        {
+            "trap": "skills found in role bullets",
+            "candidate_id": "nina_kowalski",
+            "extracted": ", ".join(nina.skills),
+            "detail": f"{len(nina.skills)} skills; from a skills section: "
+            f"{', '.join(from_skills) or 'none'}",
+        }
+    )
+    return rows
+
+
+def candidate_chunk_tokens(
+    collection: ExperimentCollection, candidate_id: str, contains: str | None = None
+) -> Rows:
+    """A candidate's chunks with the skill tokens the keyword index gives them (skills mode)."""
+    index = collection.keyword_index(TokenizerMode.SKILLS)
+    rows = Rows()
+    for text, meta in _chunks(collection, candidate_id):
+        if contains is not None and contains not in text:
+            continue
+        rows.append(
+            {
+                "collection": collection.label,
+                "section": meta["section"],
+                "role_index": meta.get("role_index"),
+                "body_start": meta.get("body_start", 0),
+                "matching_lines": [ln for ln in text.split("\n") if contains and contains in ln],
+                "text": text,
+                "skill_tokens": index.tokens(meta["chunk_id"]),
+            }
+        )
+    return rows
+
+
+# --- Query source -------------------------------------------------------------------------
+
+
+def query_token_table(
+    embedders: Mapping[str, Embedder], jd_paths: Iterable[str | Path] | None = None
+) -> Rows:
+    """Per JD and model: tokens of the whole JD file vs its ``query_text``, against the limit."""
+    paths = sorted(JD_DIR.glob("*.txt")) if jd_paths is None else sorted(map(Path, jd_paths))
+    rows = Rows()
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        query = parse_job_description(text).query_text
+        for name, embedder in embedders.items():
+            whole, part = embedder.token_count(text), embedder.token_count(query)
+            rows.append(
+                {
+                    "jd_id": path.stem,
+                    "model": name,
+                    "max_tokens": embedder.max_tokens,
+                    "whole": whole,
+                    "query_text": part,
+                    "whole_over": whole > embedder.max_tokens,
+                    "query_over": part > embedder.max_tokens,
+                }
+            )
+    return rows
